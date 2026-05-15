@@ -6,7 +6,7 @@ const footerLinks = [
   { href: "/product", label: "产品" },
   { href: "/pricing", label: "定价" },
   { href: "/about", label: "关于" },
-  { href: "/contact", label: "联系我们" },
+  { href: "/wendo-dev/contact", label: "联系我们" },
 ];
 
 export default function Footer() {

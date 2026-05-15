@@ -19,7 +19,7 @@ export default function NotFoundPage() {
           <Link href="/" className={styles.primaryBtn}>
             返回首页
           </Link>
-          <Link href="/contact" className={styles.secondaryBtn}>
+          <Link href="/wendo-dev/contact" className={styles.secondaryBtn}>
             联系我们
           </Link>
         </div>

@@ -67,7 +67,7 @@ export default function Navbar() {
             </li>
           ))}
           <li className={styles.mobileCta}>
-            <Link href="/contact" className={styles.ctaBtn} onClick={() => setMenuOpen(false)}>
+            <Link href="/wendo-dev/contact" className={styles.ctaBtn} onClick={() => setMenuOpen(false)}>
               报名体验
             </Link>
           </li>
@@ -98,7 +98,7 @@ export default function Navbar() {
             )}
           </button>
 
-          <Link href="/contact" className={styles.ctaBtn}>
+          <Link href="/wendo-dev/contact" className={styles.ctaBtn}>
             报名体验
           </Link>
 

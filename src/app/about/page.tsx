@@ -136,7 +136,7 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.cta}>
-        <a href="/contact" className={styles.ctaBtn}>
+        <a href="/wendo-dev/contact" className={styles.ctaBtn}>
           加入体验计划，与我们同行
         </a>
       </section>

@@ -117,10 +117,10 @@ export default function HomePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.55, duration: 0.5 }}
             >
-              <a href="/contact" className={styles.primaryBtn}>
+              <a href="/wendo-dev/contact" className={styles.primaryBtn}>
                 报名体验
               </a>
-              <a href="/product" className={styles.secondaryBtn}>
+              <a href="/wendo-dev/product" className={styles.secondaryBtn}>
                 了解产品 →
               </a>
             </motion.div>
@@ -176,7 +176,7 @@ export default function HomePage() {
               首批体验名额开放中，提交您的诊断需求，我们将尽快与您联系。
             </p>
           </div>
-          <a href="/contact" className={styles.ctaBtn}>
+          <a href="/wendo-dev/contact" className={styles.ctaBtn}>
             报名抢先体验计划
           </a>
         </div>
