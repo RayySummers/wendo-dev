@@ -45,7 +45,7 @@ export default function Navbar() {
       <nav className={styles.nav}>
         <Link href="/" className={styles.logo}>
 <img
-                src="/wendo-dev/wendo_logo_vectorized.svg"
+                src="/wendo_logo_vectorized.svg"
                 alt="文渡 Wendo"
                 width={28}
                 height={28}
@@ -67,7 +67,7 @@ export default function Navbar() {
             </li>
           ))}
           <li className={styles.mobileCta}>
-            <Link href="/wendo-dev/contact" className={styles.ctaBtn} onClick={() => setMenuOpen(false)}>
+            <Link href="/contact" className={styles.ctaBtn} onClick={() => setMenuOpen(false)}>
               报名体验
             </Link>
           </li>
@@ -98,7 +98,7 @@ export default function Navbar() {
             )}
           </button>
 
-          <Link href="/wendo-dev/contact" className={styles.ctaBtn}>
+          <Link href="/contact" className={styles.ctaBtn}>
             报名体验
           </Link>
 

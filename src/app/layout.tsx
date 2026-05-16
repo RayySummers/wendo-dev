@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: "zh_CN",
     siteName: "Wendo 文渡",
     images: [{
-      url: "/wendo-dev/wendo_logo_vectorized.svg",
+      url: "/wendo_logo_vectorized.svg",
       width: 400,
       height: 400,
       alt: "Wendo 文渡 Logo",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Wendo 文渡 — 跨境外贸网站本地化与文化适配诊断平台",
     description: "帮助中国出海企业发现并修复英文官网中的文化适配问题。",
-    images: ["/wendo-dev/wendo_logo_vectorized.svg"],
+    images: ["/wendo_logo_vectorized.svg"],
   },
   robots: {
     index: true,
