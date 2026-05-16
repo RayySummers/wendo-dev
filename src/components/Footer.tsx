@@ -27,7 +27,7 @@ export default function Footer() {
         </nav>
 
         <p className={styles.copyright}>
-          © 2026 文渡Wendo 版权所有
+          文渡Wendo © 2026
         </p>
       </div>
     </footer>
