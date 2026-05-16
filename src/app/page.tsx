@@ -77,7 +77,7 @@ export default function HomePage() {
           <div className={styles.heroContent}>
             <div className={styles.heroLogoMobile}>
               <img
-                src="/wendo_logo_vectorized.svg"
+                src="/wendo-dev/wendo_logo_vectorized.svg"
                 alt="文渡 Wendo"
                 width={280}
                 height={280}
@@ -132,7 +132,7 @@ export default function HomePage() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <img
-              src="/wendo_logo_vectorized.svg"
+              src="/wendo-dev/wendo_logo_vectorized.svg"
               alt="文渡 Wendo"
               width={400}
               height={400}
