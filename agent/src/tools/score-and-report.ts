@@ -64,10 +64,10 @@ export function buildUserPrompt(page: FetchedPage, kb: KbDigest): string {
     .join("\n\n");
 
   return `【样本信息】
-URL：${page.finalUrl}
+来源：${page.finalUrl || "用户粘贴的文本（单页正文，未经抓取）"}
 页面标题：${page.title || "（无标题）"}
 市场：${kb.marketName}（${kb.market}）　品类：${kb.categoryName}
-页面正文长度：${page.charCount} 字符（Scrapling 抓取，单页）
+页面正文长度：${page.charCount} 字符（${page.fetcher === "inline-text" ? "用户粘贴" : "Scrapling 抓取，单页"}）
 
 【页面正文（逐字引用只能取自这一段）】
 """

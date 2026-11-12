@@ -35,9 +35,14 @@ export const DimensionSchema = z.object({
   note: z.string().trim().min(2),
 });
 
+export const SOURCE_TYPES = ["url", "text"] as const;
+export type SourceType = (typeof SOURCE_TYPES)[number];
+
 export const ReportMetaSchema = z.object({
-  url: z.string().url(),
-  final_url: z.string().url(),
+  /** url = 抓取单页；text = 用户粘贴的文本，此时 url / final_url 为 null。 */
+  source_type: z.enum(SOURCE_TYPES).default("url"),
+  url: z.string().url().nullable(),
+  final_url: z.string().url().nullable(),
   title: z.string(),
   market: z.string(),
   market_name: z.string(),

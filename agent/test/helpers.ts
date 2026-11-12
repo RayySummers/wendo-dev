@@ -56,6 +56,7 @@ export function buildReport(kb: KbDigest): Report {
   return {
     ...buildModelReport(kb),
     meta: {
+      source_type: "url",
       url: "https://example.com/",
       final_url: "https://example.com/",
       title: "Example Home",

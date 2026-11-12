@@ -86,7 +86,7 @@ export function renderReportHtml(report: Report): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>文化适配诊断报告 · ${escapeHtml(meta.market_name)} · ${escapeHtml(meta.title || meta.final_url)}</title>
+<title>文化适配诊断报告 · ${escapeHtml(meta.market_name)} · ${escapeHtml(meta.title || meta.final_url || "粘贴文本")}</title>
 <style>
   :root {
     --primary: #1943c1;
@@ -167,7 +167,11 @@ export function renderReportHtml(report: Report): string {
   <header class="cover">
     <div class="brand">文渡 Wendo · Cultural Adaptation Diagnosis</div>
     <h1>文化适配诊断报告</h1>
-    <p class="subtitle">${escapeHtml(meta.market_name)} · ${escapeHtml(meta.category_name)} · <a href="${escapeHtml(meta.final_url)}">${escapeHtml(meta.final_url)}</a></p>
+    <p class="subtitle">${escapeHtml(meta.market_name)} · ${escapeHtml(meta.category_name)} · ${
+      meta.final_url
+        ? `<a href="${escapeHtml(meta.final_url)}">${escapeHtml(meta.final_url)}</a>`
+        : "粘贴文本"
+    }</p>
     <dl class="meta">
       <div><dt>页面标题</dt><dd>${escapeHtml(meta.title || "（无标题）")}</dd></div>
       <div><dt>诊断档位</dt><dd>${escapeHtml(meta.tier)}</dd></div>
