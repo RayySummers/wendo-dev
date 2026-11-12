@@ -1,6 +1,6 @@
 /**
  * 用已有的报告 JSON 重新渲染网页与 PDF，不重新诊断。
- * 用法：npx tsx scripts/render-report.ts reports/bear-malaysia-20261112.json [--no-pdf]
+ * 用法：npx tsx scripts/render-report.ts reports/bear-malaysia-v1-20261112.json [--no-pdf]
  */
 import { readFile, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";

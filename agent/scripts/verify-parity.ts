@@ -1,7 +1,7 @@
 /**
  * 核对网页与 PDF 是否完整呈现同一份报告 JSON。
  *
- * 用法：npx tsx scripts/verify-parity.ts reports/bear-malaysia-20261112.json
+ * 用法：npx tsx scripts/verify-parity.ts reports/bear-malaysia-v1-20261112.json
  * 可选：--html <path> --pdf <path>
  */
 import { execFile } from "node:child_process";

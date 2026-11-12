@@ -44,6 +44,9 @@
   | multi cooker | Periuk Serbaguna |
 - **[已核实] 英式英语拼写**：colour、centre、organise、catalogue、travelled；
   日期用 DD/MM/YYYY。避免 "lah"、"can or not" 等口语助词进入正式文案。
+- **[编辑判断] 避免中文直译品类词**：Health Pot（养生壶）在本地通常叫 glass kettle /
+  multifunction glass kettle；Stew Cooker 应写 slow cooker；Food Menu 会被读成餐厅菜单，
+  食谱栏目用 Recipes / Resipi。直译词既不进入本地搜索，也说不清用途。
 
 ## 4. 支付与结算
 

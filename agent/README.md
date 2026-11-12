@@ -14,9 +14,10 @@ fetch_page (Scrapling) → retrieve_kb (马来西亚 × 小家电) → score_and
 
 | 文件 | 说明 |
 |---|---|
-| `reports/bear-malaysia-20261112.json` | 小熊电器马来西亚站首页的诊断报告（演示样本） |
-| `reports/bear-malaysia-20261112.html` | 网页版报告，引用同一份 JSON |
-| `reports/bear-malaysia-20261112.pdf` | Typst 导出 PDF，内容与网页一致 |
+| `reports/bear-malaysia-v1-20261112.json` | 小熊电器马来西亚站首页的诊断报告（v1 演示样本） |
+| `reports/bear-malaysia-v1-20261112.html` | 网页版报告，引用同一份 JSON |
+| `reports/bear-malaysia-v1-20261112.pdf` | Typst 导出 PDF，内容与网页一致 |
+| `reports/reference/v0/` | 需求评论里给的 v0 基线，仅作对照，不参与应用 |
 
 报告契约见 [REPORTS.md](./REPORTS.md)。
 
@@ -136,7 +137,7 @@ agent/
 ```bash
 npm run typecheck
 npm test                 # 校验逻辑、KB 检索、HTML 渲染、Typst PDF 与文本一致性
-npm run verify:parity -- reports/bear-malaysia-20261112.json
+npm run verify:parity -- reports/bear-malaysia-v1-20261112.json
 ```
 
 `npm test` 中的 PDF 用例会在缺少 Typst 或 `pdftotext` 时自动跳过。

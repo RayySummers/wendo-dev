@@ -1,0 +1,48 @@
+# 小熊电器马来西亚站 · 文化适配诊断（v0）
+
+来源：https://bears.com.my/  
+生成：2026-11-12T12:22:46.581Z  
+模型：axonhub / group/deepseek-pool
+
+## 总体判断
+网站基础信任状（SIRIM、本地保修、3-pin 插头）做得比多数中国出海小家电品牌好，但产品命名沿用了中国直译（Health Pot、Stew Cooker），主打商品标题还有英文拼写错误，马来语仅一句话，整体仍像“进口品牌官网”而非本地品牌。
+
+## 风险
+
+### 1. [high] Bear Electric Food Steamer BFS-C60L 6L Multifuntion Double Layer 2 Tiers Pengukus Elektrik Pelbagai Fungsi
+**为什么**：这是首页 Bestsellers 与 Featured 都出现的核心单品标题，但“Multifuntion”拼写错误，而首页英文出错会直接影响马来西亚消费者对品质的信任，使本地经销商质疑品牌运营是否专业；“Double Layer 2 Tiers”与“6L”重复堆叠信息，读起来像平台后台自动上架的搬运文案。
+**改法**：改为“Bear Electric Food Steamer 6L (2-Tier) BFS-C60L — Pengukus Elektrik 2 Tingkat 6L”，英文与马来语各一句、不重复容量，并全站排查“Multifuntion→Multifunction”。
+
+### 2. [high] Health Pot 1.8L BHP-W18L
+**为什么**：“Health Pot”是中文“养生壶”的直译，马来西亚消费者搜索与认知里没有这个概念，通常叫 glass electric kettle / multifunction glass kettle；消费者看不懂用途就不会点进去，经销商也无法用一句话向顾客解释卖点。
+**改法**：改为“Multifunction Glass Kettle 1.8L BHP-W18L”，并在副标题补一句本地用法“for boiling water, tea & herbal soup”。
+
+### 3. [medium] Stew Cooker Recipe
+**为什么**：“Stew Cooker”是中文“炖锅”的直译，马来西亚英语更常用 slow cooker；同时“Food Menu / Blender Recipe / Stew Cooker Recipe”把食谱栏目叫“Food Menu”，容易被理解为餐厅菜单，削弱内容频道的可用性。
+**改法**：统一改为“Slow Cooker”与“Recipes（食谱 / Resipi）”，栏目名用“Recipes：Blender / Slow Cooker / Oven / Baby Food”。
+
+### 4. [medium] 03-456 7554
+**为什么**：同一个座机号码在页面上连排出现 4 次并配一个弹窗“Ok”，看起来像建站模板的占位内容而非真实客服入口；马来西亚消费者更习惯 WhatsApp 与在线聊天，只有座机会让下单前的疑虑（保修、退换）无处解决，对经销商也不够专业。
+**改法**：只保留一个号码，并加上 WhatsApp 按钮、客服时间（例如 Mon–Fri 9am–6pm MYT）、维修中心地址与电邮；删除重复的占位弹窗。
+
+### 5. [medium] BEAR- Baking
+**为什么**：分类名“Baking”“Healthy Living”“Home Living”是空泛的英文标签，既不是马来西亚消费者会用来搜索的品类词（Oven、Air Fryer、Periuk），也无法体现产品差异，导航层级对新顾客不友好。
+**改法**：改用可搜索的具体品类：Oven & Baking、Air Fryer、Rice Cooker、Blender、Lunch Box、Baby Care，并考虑英文/马来语双语标签（例如“Air Fryer / Penggoreng Udara”）。
+
+## 做得好的地方
+- 开头 Welcome 段落把本地信任状讲得很清楚：1-year warranty、马来西亚本地团队支援、SIRIM Malaysia 认证、标准马来西亚 3-pin 插头，正是当地消费者和经销商最关心的四点。
+- 核心单品已加马来语描述“Pengukus Elektrik Pelbagai Fungsi”，说明有双语意识，方向正确。
+- 价格以 RM 显示并附原价与折扣价，结算信息直观，符合本地电商（Shopee/Lazada）的价格呈现习惯。
+
+## 仅凭文本无法判断
+- meta description 为空，无法判断搜索引擎与社交分享文案的本地化水平。
+- 页面未展示任何 halal、食品接触材质（food-grade / BPA-free）相关说明，无法判断其在小家电食品接触类产品上的合规表述是否充分。
+- 未见支付方式（FPX、GrabPay、Touch 'n Go eWallet）、运费门槛与配送时效说明，无法评估结账流程的本地适配。
+- 未见用户评价、销量数据或本地 KOL/渠道背书，无法判断信任状在转化环节的实际强度。
+- 马来语仅出现在一条产品标题中，无法判断站内其他页面（FAQ、保修政策）是否有马来语版本。
+
+## 后台维度分（不对外）
+- language: 17
+- naturalness: 13
+- culture: 17
+- effectiveness: 15
