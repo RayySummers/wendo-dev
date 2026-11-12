@@ -3,7 +3,7 @@
   "market_name": "马来西亚",
   "category": "small_appliances",
   "category_name": "小家电",
-  "version": "2026-11-12",
+  "version": "2026-11-12-v2",
   "dimensions": [
     {
       "id": "language",
@@ -17,6 +17,7 @@
         {
           "id": "MY-LANG-01",
           "severity_hint": "medium",
+          "applies_to": "全部小家电，重点是面向大众市场的 SKU 标题与分类导航",
           "rule": "面向马来西亚大众市场的商品名与关键卖点应同时覆盖马来语，不能只做英文。",
           "why": "马来语是国语，也是 Shopee / Lazada 等本地平台的主要搜索语言；纯英文商品名会丢失大量自然搜索与看不懂英文的买家。",
           "fix": "商品标题采用「马来语 + 英文」并列，例如 Pengukus Elektrik（Electric Steamer）；分类导航补马来语词。",
@@ -28,11 +29,19 @@
             "ketuhar",
             "bahasa",
             "malay"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-LANG-02",
           "severity_hint": "medium",
+          "applies_to": "全部小家电 SKU 与营销页",
           "rule": "同一页面的本地语言覆盖不一致（个别 SKU 有马来语、其余全英文）会显得临时拼接。",
           "why": "只给一两个商品加马来语，会让本地用户感觉品牌没有认真做本地化，而不是「部分本地化」。",
           "fix": "统一本地化范围：要么全部主力 SKU 补马来语副标题，要么先做统一的英文 + 品类马来语关键词方案。",
@@ -40,11 +49,19 @@
             "pengukus elektrik",
             "multifuntion",
             "pelbagai fungsi"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-LANG-03",
           "severity_hint": "low",
+          "applies_to": "全部小家电的正式文案与规格表",
           "rule": "马来西亚属英联邦，正式文案应统一英式拼写与日期格式。",
           "why": "英式拼写与 DD/MM/YYYY 是本地教育与文书标准；美式拼写混用会降低专业感。",
           "fix": "统一 colour / centre / organise / catalogue / travelled，日期写 12/11/2026 或 12 November 2026。",
@@ -55,11 +72,19 @@
             "catalog",
             "customize",
             "personalized"
-          ]
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Wikipedia：Malaysian English（英式变体为教育标准）",
+            "url": "https://en.wikipedia.org/wiki/Malaysian_English"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-LANG-04",
           "severity_hint": "low",
+          "applies_to": "全部小家电的品牌文案与客服话术",
           "rule": "避免把马来式英语口语助词或中式英语直译写进正式文案。",
           "why": "「Can lah」「Please kindly revert ASAP」这类表达在正式品牌文案中显得不专业或难以理解。",
           "fix": "用中性、友好的标准英语：Contact us / Get in touch / We'll get back to you within one working day。",
@@ -69,11 +94,19 @@
             "revert",
             "welcome to call",
             "hope for your early reply"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-LANG-05",
           "severity_hint": "high",
+          "applies_to": "养生壶、电炖锅、料理机等中文思维命名的品类",
           "rule": "中文直译的品类词（Health Pot、Stew Cooker、Food Menu）在马来西亚没有对应认知，要换成本地常用说法。",
           "why": "直译词既不进入本地搜索词，也说不清用途：Health Pot（养生壶）本地通常叫 glass kettle / multifunction glass kettle，Stew Cooker 叫 slow cooker，Food Menu 会被读成餐厅菜单。",
           "fix": "改成 Multifunction Glass Kettle、Slow Cooker、Recipes（Resipi）；品类导航用可搜索词并配马来语，例如 Air Fryer / Penggoreng Udara。",
@@ -83,7 +116,58 @@
             "food menu",
             "multi cooker",
             "yogurt maker"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（基于 bears.com.my 实测与本地电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-LANG-06",
+          "severity_hint": "low",
+          "applies_to": "全部小家电的规格表与产品描述",
+          "rule": "规格与容量一律使用公制单位与摄氏度，不要出现美式单位。",
+          "why": "马来西亚官方计量采用公制，消费者习惯 L/ml、cm、W/kW 与摄氏度；oz / inch / lb / °F 会让本地买家无法判断容量与功率是否适合自己。",
+          "fix": "写 1.5 L、24 cm、800 W、5 L/min；确需并列美制时把公制放前面，例如 1.5 L (50 oz)。",
+          "signals": [
+            "oz",
+            "ounce",
+            "inch",
+            "lb",
+            "lbs",
+            "fahrenheit"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（马来西亚计量公制化的具体法规条文待核）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "待核"
+        },
+        {
+          "id": "MY-LANG-07",
+          "severity_hint": "low",
+          "applies_to": "全部小家电的标题、banner 与促销区",
+          "rule": "标题与促销区避免堆叠空泛营销词（Hot Sale、High Quality 等），改用具体卖点。",
+          "why": "「Hot Sale High Quality Good Price」这类堆叠词是典型中式电商英文，本地主流品牌不这样写，会降低可信度，也不进入本地搜索习惯。",
+          "fix": "换成可核对的具体信息：1-year local warranty、Free shipping over RM150、1700 W、8-in-1 functions；每句只保留一个卖点。",
+          "signals": [
+            "hot sale",
+            "high quality",
+            "good price",
+            "top quality"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 4（Chinglish 模式）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         }
       ]
     },
@@ -99,6 +183,7 @@
         {
           "id": "MY-PAY-01",
           "severity_hint": "high",
+          "applies_to": "全部小家电，尤其中高客单价商品（>RM300）",
           "rule": "首屏或加购区应展示本地支付方式（FPX、Touch 'n Go、GrabPay、ShopeePay、Boost、分期）。",
           "why": "FPX 网银与电子钱包是马来西亚电商的主流支付方式；只靠信用卡会让大量本地买家在结算前流失。",
           "fix": "在价格/加购按钮附近放支付图标行，并写明支持 FPX、TnG eWallet、GrabPay、ShopeePay 与分期。",
@@ -107,17 +192,25 @@
             "touch 'n go",
             "tng",
             "grabpay",
-            "shoopepay",
+            "shopeepay",
             "boost",
             "atome",
             "installment",
             "credit card",
             "paypal"
-          ]
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "U.S. ITA Trade.gov：Malaysia eCommerce（支付方式结构）",
+            "url": "https://www.trade.gov/country-commercial-guides/malaysia-ecommerce"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-PAY-02",
           "severity_hint": "medium",
+          "applies_to": "全部小家电价格展示",
           "rule": "价格必须使用 RM 与两位小数，并保持全站格式一致。",
           "why": "令吉符号与千分位格式是本地价格阅读习惯；格式混乱会削弱价格可信度。",
           "fix": "统一写成 RM1,299.00 / RM88.10，避免 MYR1299 与 RM 88.1 混用。",
@@ -125,11 +218,19 @@
             "myr",
             "rm0.00",
             "rm"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地价格书写习惯）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-PAY-03",
           "severity_hint": "medium",
+          "applies_to": "全部小家电的首屏与加购区",
           "rule": "支付安全与结算说明应在首页可见，而不是只出现在结算页。",
           "why": "新品牌缺少线下信任，首屏的支付与保障说明能降低「不敢下单」的顾虑。",
           "fix": "在产品区附近增加一行：Secure checkout · FPX & e-wallet supported · 7-day return。",
@@ -138,7 +239,36 @@
             "secure payment",
             "cart",
             "login"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-PAY-04",
+          "severity_hint": "medium",
+          "applies_to": "RM300 以上小家电（分期主力区间）",
+          "rule": "分期/BNPL 要写清免息期限与月供起点，不能只放一个 Atome/SPayLater 图标。",
+          "why": "Atome、SPayLater、GrabPay Later 等先买后付在马来西亚接受度高，是中高客单价小家电的重要转化工具；只放图标不写「0% 分期 / 起 RMxx/月」，买家感知不到价值。",
+          "fix": "价格旁写「or 3 payments of RMxx with Atome · 0% interest」，并在 FAQ 写明适用金额区间与逾期政策。",
+          "signals": [
+            "spaylater",
+            "paylater",
+            "grabpay later",
+            "0% installment",
+            "monthly payment"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（BNPL 服务条款以各平台官方页面为准，展示文案待核）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         }
       ]
     },
@@ -153,9 +283,10 @@
         {
           "id": "MY-LOG-01",
           "severity_hint": "high",
+          "applies_to": "全部小家电（运费政策对体积敏感）",
           "rule": "「Free shipping」必须写清门槛、适用区域与时效，尤其是东马（沙巴、砂拉越）。",
-          "why": "东马依赖海运、按邮编加收运费；不写清楚会让东马买家下单后才发现加价，直接造成退款与差评。",
-          "fix": "写成「Free shipping for orders above RM150 (Peninsular Malaysia). Sabah & Sarawak from RMXX, 7–14 working days」。",
+          "why": "东马依赖海运/空运并按邮编加收运费，且本地快递普遍收取燃油附加费；不写清楚会让东马买家下单后才发现加价，直接造成退款与差评。",
+          "fix": "写成「Free shipping for orders above RM150 (Peninsular Malaysia). Sabah & Sarawak from RMXX, 7–14 working days」，具体附加费率以东马承运商报价为准。",
           "signals": [
             "free shipping",
             "shipping",
@@ -164,25 +295,40 @@
             "sarawak",
             "east malaysia",
             "postage"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（东马附加费具体费率待核：Pos Malaysia 2026-03 起加收燃油附加费，见 malaymail.com.my 报道）",
+            "url": "https://www.malaymail.com/news/malaysia/2026/03/19/sending-international-parcels-pos-malaysia-just-added-a-40pc-fuel-surcharge/213153"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-LOG-02",
           "severity_hint": "medium",
+          "applies_to": "空气炸锅、蒸锅、烤箱等体积较大品类",
           "rule": "小家电属于体积较大的品类，应说明配送方式（送货上门/自提）与预计时效。",
           "why": "大家电与小家电的配送预期不同；没有 ETA 会让买家反复询问客服。",
           "fix": "商品页写明「Delivered in 2–5 working days (Peninsular); 7–14 working days (East Malaysia)」。",
           "signals": [
             "working days",
-            "delivery",
             "ship out",
             "courier",
             "tracking"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-LOG-03",
           "severity_hint": "low",
+          "applies_to": "全部小家电",
           "rule": "退换货地址与流程应与配送说明放在同一信任路径上。",
           "why": "小家电退货成本高，买家会在下单前确认「坏了寄给谁」。",
           "fix": "页脚或 FAQ 写清 return address、7 天退换条件与保修索赔入口。",
@@ -191,7 +337,37 @@
             "refund",
             "warranty policy",
             "exchange"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-LOG-04",
+          "severity_hint": "low",
+          "applies_to": "全部小家电",
+          "rule": "写明合作的本地快递与查询入口，让买家能预期「谁送货、怎么追踪」。",
+          "why": "Pos Laju、J&T Express、Ninja Van 等是本地买家熟悉的承运商；写出快递名称与运单号查询入口，比一句「we ship fast」可信得多。",
+          "fix": "FAQ 写「We ship via Pos Laju / J&T Express; tracking number will be emailed within 24 hours」，并附 parcel tracking 链接。",
+          "signals": [
+            "pos laju",
+            "j&t",
+            "ninja van",
+            "gdex",
+            "waybill",
+            "tracking number"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（主流快递名称为本地常识；合作承运商以店铺实际为准）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         }
       ]
     },
@@ -207,9 +383,10 @@
         {
           "id": "MY-TRUST-01",
           "severity_hint": "high",
+          "applies_to": "受管制电器（见 MY-TRUST-06 清单）",
           "rule": "电器类产品应明确 SIRIM 认证与能源委员会 COA/标签信息，且不能空口宣称。",
-          "why": "受管制电器在马来西亚销售需要 ST 的 COA 与 SIRIM 标签；这是本地买家判断「能不能安全用」的第一道门槛。",
-          "fix": "在规格区写「SIRIM certified (certificate no. XXXXX)」并附标签图；没有证书就先补证再宣传。",
+          "why": "受管制电器在马来西亚销售需要 ST 的 COA 与 SIRIM 标签；这是本地买家判断「能不能安全用」的第一道门槛。没有证书编号的「SIRIM certified」会被懂行的买家与执法人员直接质疑。",
+          "fix": "在规格区写「SIRIM certified (certificate no. XXXXX)」并附标签图；没有证书就先补证再宣传，页面未取证前删除该宣称。",
           "signals": [
             "sirim",
             "certified",
@@ -217,14 +394,22 @@
             "coa",
             "suruhanjaya tenaga",
             "safety"
-          ]
+          ],
+          "source": {
+            "type": "official",
+            "title": "Suruhanjaya Tenaga（能源委员会）官方 FAQ：需要 COA 的设备类别",
+            "url": "https://www.st.gov.my/what-are-categories-and-types-equipment-require-certificate-approval-coa"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "已核实"
         },
         {
           "id": "MY-TRUST-02",
           "severity_hint": "high",
+          "applies_to": "电饭煲、蒸锅、空气炸锅、料理机、水杯/水壶等食品接触类",
           "rule": "食品接触类小家电需要材质/食品接触说明；没有 JAKIM 认证不得使用清真标志或「halal certified」。",
-          "why": "穆斯林占多数，食物接触材质是真实购买顾虑；虚假清真宣称在马来西亚是高风险合规问题。",
-          "fix": "写「Food-contact parts are BPA-free and detachable for cleaning」，有检测报告再附；清真认证另行申请后再展示。",
+          "why": "穆斯林占多数，食物接触材质是真实购买顾虑；未经认证使用清真标志或宣称在马来西亚会被执法（KPDN 曾就未经授权清真标志执法）。",
+          "fix": "写「Food-contact parts are BPA-free and detachable for cleaning」，有检测报告再附；清真认证通过 JAKIM/州宗教局申请后再展示。",
           "signals": [
             "halal",
             "jakim",
@@ -233,26 +418,41 @@
             "bpa",
             "non-stick",
             "coating"
-          ]
+          ],
+          "source": {
+            "type": "official",
+            "title": "Halal Malaysia（JAKIM 官方门户）；另见 KPDN 2025-01-14 关于清真认证的报章文告",
+            "url": "https://www.halal.gov.my/"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-TRUST-03",
           "severity_hint": "medium",
+          "applies_to": "全部小家电（公司层信任）",
           "rule": "页脚应有本地公司实体、地址、客服邮箱与保修索赔路径。",
-          "why": "「local team in Malaysia」一句话不足以证明售后存在；本地地址与实体是最强的信任信号之一。",
+          "why": "「local team in Malaysia」一句话不足以证明售后存在；本地地址与 SSM 注册实体是最强的信任信号之一。",
           "fix": "页脚补 SSM 注册名、Selangor/KL 地址、support email、保修登记与索赔入口。",
           "signals": [
             "about us",
-            "contact us",
             "warranty registration",
             "local team",
             "address",
             "ssm"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（SSM 注册信息核对入口：ssm.com.my，页面结构待核）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-TRUST-04",
           "severity_hint": "medium",
+          "applies_to": "全部小家电（新品牌尤其）",
           "rule": "需要本地社会证明：真实评价、买家图、平台评分或媒体露出。",
           "why": "新品牌没有本地口碑时，Bestsellers 标签本身不构成证据；本地评价能显著降低决策成本。",
           "fix": "接入 Google Reviews / Shopee 评分，展示带图的本地买家评价与真实销量区间。",
@@ -263,7 +463,81 @@
             "bestsellers",
             "featured",
             "trusted"
-          ]
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "DataReportal, Digital 2025: Malaysia（社媒与电商渗透背景）",
+            "url": "https://datareportal.com/reports/digital-2025-malaysia"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-TRUST-05",
+          "severity_hint": "medium",
+          "applies_to": "带电源线的小家电（尤其出口原配美规/欧规插头时）",
+          "rule": "规格区应写明 240V / 50Hz 与插头类型；金属机身电器必须用 3-pin（BS 1363 / MS 589），2-pin 仅限 Class II 绝缘电器。",
+          "why": "马来西亚市电为 240V，插头标准由 ST 明确：13A 方脚插须符合 MS 589-1 / BS 1363-1；2-pin 只允许用于非金属机身（Class II）电器。配美规或欧规插头会让买家担心不能直接用，还可能过不了合规检查。",
+          "fix": "规格写「240V / 50Hz, 3-pin plug (BS 1363)」；金属机身产品不要配 2-pin 插头，页面显著标注插头类型。",
+          "signals": [
+            "240v",
+            "110v",
+            "type g",
+            "3-pin",
+            "2-pin"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Suruhanjaya Tenaga 官方 FAQ：马来西亚允许使用的插头类型",
+            "url": "https://www.st.gov.my/what-types-plug-tops-are-permitted-use-malaysia"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-TRUST-06",
+          "severity_hint": "high",
+          "applies_to": "电水壶、厨房机、烤面包机/烤箱、电饭煲、风扇、熨斗、吸尘器、适配器/充电器等",
+          "rule": "先核对品类是否在 ST 管制清单内：水壶、厨房机、烤面包机/烤箱、电饭煲、风扇、熨斗、吸尘器、适配器/充电器等消费电器都在 COA 管制范围，销售/宣传前必须先取证。",
+          "why": "ST 官方 FAQ 明确列出需 COA 的消费电器类别（含 Kettle、Kitchen Machine、Toaster/Oven、Rice Cooker、Fan、Iron、Vacuum Cleaner、Adapter/Charger 等 34 类）；品类在清单内而页面无 COA 信息，等于把合规风险直接暴露给买家。",
+          "fix": "对照 ST 清单逐 SKU 确认 COA 状态；清单内品类补齐证书后再宣传，页面写「Certified under Electricity Supply Act 1990 (COA no. XXXX)」。",
+          "signals": [
+            "rice cooker",
+            "kettle",
+            "kitchen machine",
+            "toaster",
+            "oven",
+            "fan",
+            "iron",
+            "vacuum"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Suruhanjaya Tenaga 官方 FAQ：需要 COA 的设备类别（34 类清单）",
+            "url": "https://www.st.gov.my/what-are-categories-and-types-equipment-require-certificate-approval-coa"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-TRUST-07",
+          "severity_hint": "medium",
+          "applies_to": "全部小家电（保修政策展示）",
+          "rule": "保修条款要写清期限、覆盖部件与索赔流程，并提示消费者可走 TTPM 渠道维权。",
+          "why": "马来西亚消费者可就商品缺陷向消费人仲裁庭（TTPM）索赔，卖家写清保修范围既能降低纠纷，也是信任信号；只写「1-year warranty」一句，买家无法判断是整机还是电机。",
+          "fix": "保修页写明「1-year warranty on motor & parts; excludes wear items (seals, blades); claim via WhatsApp + warranty form」，并保留购买凭证要求。",
+          "signals": [
+            "warranty",
+            "1-year warranty",
+            "warranty claim"
+          ],
+          "source": {
+            "type": "official",
+            "title": "KPDN：Tribunal Tuntutan Pengguna Malaysia (TTPM) 官方页面",
+            "url": "https://www.kpdn.gov.my/ms/info-korporat/bahagian/ketua-setiausaha/tribunal-tuntutan-pengguna-malaysia-ttpm"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         }
       ]
     },
@@ -279,6 +553,7 @@
         {
           "id": "MY-SVC-01",
           "severity_hint": "high",
+          "applies_to": "全部小家电（售前咨询为主）",
           "rule": "必须提供 WhatsApp 一键联系，并写清服务时间（MYT）。",
           "why": "WhatsApp 是马来西亚各年龄层的主导沟通工具；只有电话或表单会显著降低咨询转化。",
           "fix": "加「Chat with us on WhatsApp」按钮（wa.me/60XXXXXXXXX），标注 Mon–Fri 9:00–18:00 MYT。",
@@ -289,16 +564,23 @@
             "contact us",
             "03-",
             "phone"
-          ]
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "DataReportal, Digital 2025: Malaysia（WhatsApp 用户规模）",
+            "url": "https://datareportal.com/reports/digital-2025-malaysia"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-SVC-02",
           "severity_hint": "high",
+          "applies_to": "全部小家电（电话展示）",
           "rule": "电话号码必须是完整可拨的本地号码；缺位号码等同模板占位符。",
-          "why": "西马固话为 03-XXXXXXXX（8 位）；03-456 7554 这类 7 位号码会被本地用户识别为假号码或未填完的模板。",
+          "why": "西马固话为 03-XXXXXXXX（8 位），手机为 01X-XXX XXXX；03-456 7554 这类 7 位号码会被本地用户识别为假号码或未填完的模板。",
           "fix": "换成真实的 03-XXXX XXXX 或 01X-XXX XXXX，并在页脚、联系页、保修页保持一致。",
           "signals": [
-            "03-",
             "04-",
             "05-",
             "06-",
@@ -307,11 +589,19 @@
             "09-",
             "tel:",
             "call us"
-          ]
+          ],
+          "source": {
+            "type": "official",
+            "title": "MCMC Numbering and Electronic Addressing Plan（手机号 3+8 结构）",
+            "url": "https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/NumberingAndElectronicAddrressingPlan_2.pdf"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-SVC-03",
           "severity_hint": "medium",
+          "applies_to": "全部小家电（售前响应）",
           "rule": "客服渠道应给出响应承诺，而不是只留一个入口。",
           "why": "马来西亚消费者习惯先问再买；没有响应时效承诺会让人怀疑售后是否有人。",
           "fix": "写「We reply within 1 working day」或「WhatsApp us — typically replies in 15 minutes」。",
@@ -321,7 +611,35 @@
             "support",
             "customer service",
             "faq"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-SVC-04",
+          "severity_hint": "low",
+          "applies_to": "全部小家电（发货与客服日历）",
+          "rule": "发货与客服时效承诺要考虑联邦与州属公共假日的差异。",
+          "why": "马来西亚公共假日分联邦与州属两套，且部分州周末是周五/周日；节假日前夕（Raya、CNY 前）快递爆仓，承诺「24 hours dispatch」容易被假日击穿。",
+          "fix": "在配送政策写「Dispatched within 1–2 working days (excl. public holidays)」，节前在 banner 提示延长时效；州属假日以 MyGovernment 日历为准。",
+          "signals": [
+            "public holiday",
+            "cuti umum",
+            "holiday notice",
+            "festive season"
+          ],
+          "source": {
+            "type": "official",
+            "title": "MyGovernment 官方门户：马来西亚假期日历（联邦假日；州属假日另列）",
+            "url": "https://gaharu.malaysia.gov.my/en/calendar"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         }
       ]
     },
@@ -336,36 +654,46 @@
         {
           "id": "MY-PRICE-01",
           "severity_hint": "medium",
+          "applies_to": "全部小家电的促销展示",
           "rule": "折扣必须让用户一眼看懂：显示折扣百分比或「Save RMxx」，不能只留一个无单位数字。",
           "why": "划线价旁边的裸数字（如「11」）会被当成模板错误或未加载完的组件，削弱促销可信度。",
           "fix": "改成「-11%」或「Save RM16.30」，并保留原价与现价的清晰层级。",
           "signals": [
-            "rm",
             "price",
             "discount",
             "save",
             "%",
             "promotion",
             "sale"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（bears.com.my 实测观察）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-PRICE-02",
           "severity_hint": "low",
+          "applies_to": "全部小家电的商品卡",
           "rule": "价格、运费与支付选项应在首屏同时可见。",
           "why": "马来西亚消费者价格敏感，习惯先比较「到手价」再决定是否继续浏览。",
           "fix": "商品卡直接显示现价、原价、免运费门槛与分期起价（如 RM29.70 × 3）。",
-          "signals": [
-            "rm",
-            "free shipping",
-            "cart",
-            "bestsellers",
-            "featured"
-          ]
+          "signals": [],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-PRICE-03",
           "severity_hint": "low",
+          "applies_to": "全部小家电的促销话术",
           "rule": "避免过度紧迫的促销话术，改用价值与保障导向的表达。",
           "why": "本地消费者偏好深思熟虑的购买决策，过度催单会降低品牌可信度。",
           "fix": "用「1-year local warranty · Free shipping over RM150」替代「Hurry! Last chance!」。",
@@ -375,7 +703,14 @@
             "last chance",
             "buy now",
             "order now"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         }
       ]
     },
@@ -390,6 +725,7 @@
         {
           "id": "MY-CUL-01",
           "severity_hint": "medium",
+          "applies_to": "全部小家电（节庆 banner 与 bundle）",
           "rule": "节庆与场景内容应覆盖多族群（Hari Raya、CNY、Deepavali），不能只做单一族群。",
           "why": "马来西亚是多元族群社会；只做单一节庆会让其他族群感到被排除，也浪费全年多个销售高峰。",
           "fix": "按节庆排期做多套首屏 banner：Raya（家庭聚餐）、CNY（团圆饭）、Deepavali（甜点/烘焙），并保持视觉族群平衡。",
@@ -402,11 +738,19 @@
             "festive",
             "christmas",
             "merdeka"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 5",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-CUL-02",
           "severity_hint": "medium",
+          "applies_to": "电饭煲、蒸锅、空气炸锅、烤箱等「做饭场景」品类",
           "rule": "家庭场景比纯产品图更有效；小家电要卖「一家人一起吃饭」而不是参数。",
           "why": "家庭价值观在三大族群中都有强共鸣，是小家电最自然的购买理由。",
           "fix": "首屏用本地家庭厨房场景图，配一句「Made for Malaysian family kitchens」并给出使用场景（带饭、蒸鱼、烘焙）。",
@@ -416,13 +760,21 @@
             "kitchen",
             "recipe",
             "cooking"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-CUL-03",
           "severity_hint": "high",
+          "applies_to": "全部小家电的图片与视频素材",
           "rule": "避免宗教与族群敏感元素：猪、酒精、犬类形象、宗教符号误用、暴露着装。",
-          "why": "这些元素在马来西亚市场会直接引发抵制与平台下架风险。",
+          "why": "这些元素在马来西亚市场会直接引发抵制与平台下架风险；食谱/菜谱类内容尤其要避免猪肉与酒精菜品。",
           "fix": "上线前做素材审查；涉及食物拍摄时使用清真食材与不含酒精的餐桌布置。",
           "signals": [
             "pork",
@@ -432,21 +784,79 @@
             "dog",
             "bikini",
             "religion"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 5（文化禁忌）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-CUL-04",
           "severity_hint": "low",
+          "applies_to": "About/品牌故事区",
           "rule": "品牌视觉应体现多元马来西亚，而不是单一族群或纯中国总部叙事。",
           "why": "本地消费者更信任「在这里、为这里」的品牌；纯出口叙事会削弱亲近感。",
           "fix": "About 区加入本地团队、仓库、售后与马来西亚用户故事。",
           "signals": [
-            "about us",
             "malaysia",
-            "local team",
             "since",
             "global"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CUL-05",
+          "severity_hint": "medium",
+          "applies_to": "烹饪类小家电（空气炸锅、蒸锅、电饭煲、煎烤机）",
+          "rule": "Ramadan 到 Hari Raya 前的档期要按禁食节奏调整：白天避免「限时抢购美食」式推送，主打 sahur 备餐与 iftar 开桌场景。",
+          "why": "斋月期间白天禁食，烹饪类内容在 sahur（封斋前）与 iftar（开斋）两个时段才有共鸣；Raya 前是厨房小家电全年最大销售窗口之一（返乡聚餐、烘塔备节）。",
+          "fix": "3 月起切换素材：早餐机/空气炸锅绑 sahur 场景，蒸锅/烤箱绑 iftar 与 Raya 开放屋聚餐；促销节奏避开白天、集中在晚间推送。",
+          "signals": [
+            "ramadan",
+            "iftar",
+            "sahur",
+            "buka puasa",
+            "puasa"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（Raya 前销售高峰的量化数据待核）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CUL-06",
+          "severity_hint": "low",
+          "applies_to": "全部小家电（电商大促日历）",
+          "rule": "促销日历按本地大促节点排：9.9 / 10.10 / 11.11 / 12.12 双日大促与 Black Friday，节庆档期叠加 Raya / CNY / Merdeka。",
+          "why": "Shopee/Lazada 的双日大促已成为本地消费者的固定囤货节点，独立站若不在同期做活动，流量与转化会被平台吸走。",
+          "fix": "按季度排期：Raya 前 4 周预热；9.9/10.10/11.11/12.12 各出「flash deal + 分期」组合；Merdeka 出国货自豪主题。",
+          "signals": [
+            "11.11",
+            "12.12",
+            "9.9",
+            "black friday",
+            "mega sale",
+            "merdeka sale"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（大促 GMV 数据待核）",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         }
       ]
     },
@@ -461,48 +871,64 @@
         {
           "id": "MY-CONT-01",
           "severity_hint": "medium",
+          "applies_to": "全部小家电（首屏）",
           "rule": "首屏必须回答「卖什么、为什么选你、下一步做什么」，不能只有欢迎语和分类导航。",
           "why": "移动端首屏决定去留；只有「Welcome to ... Store」会让用户不知道这家店的核心价值。",
           "fix": "首屏改成一句价值主张 + 主 CTA（Shop bestsellers / Chat on WhatsApp）+ 信任条（SIRIM、1-year warranty）。",
           "signals": [
             "welcome to",
-            "bestsellers",
-            "featured",
             "shop now",
             "more"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         },
         {
           "id": "MY-CONT-02",
           "severity_hint": "medium",
+          "applies_to": "全部小家电（文案质量）",
           "rule": "避免中式英语与机械重复的模板句，改用自然的本地英语。",
-          "why": "「Welcome to call us」「Multifuntion」这类表达会让本地用户觉得是机器翻译，降低品牌可信度。",
+          "why": "「Welcome to call us」这类表达会让本地用户觉得是机器翻译，降低品牌可信度。",
           "fix": "统一校对：Multifunction、Contact us、Free shipping over RM150；每段文案只保留一个 CTA。",
           "signals": [
-            "multifuntion",
-            "welcome to",
-            "contact us",
-            "more",
             "information"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 4",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-CONT-03",
           "severity_hint": "low",
+          "applies_to": "全部小家电（CTA）",
           "rule": "CTA 用温和引导，避免命令式与过度紧迫。",
           "why": "本地消费者偏好非侵入式引导；「Buy now!」式 CTA 在马来西亚转化并不占优。",
           "fix": "用 Learn more / Explore the range / Chat with us，主 CTA 每屏只保留一个。",
           "signals": [
-            "buy now",
-            "shop now",
-            "order now",
             "click here",
             "learn more"
-          ]
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-12",
+          "confidence": "佐证"
         },
         {
           "id": "MY-CONT-04",
           "severity_hint": "medium",
+          "applies_to": "分类导航与栏目命名",
           "rule": "分类导航要用本地消费者会搜索的具体品类词，不要用 Baking、Healthy Living 这类空泛英文标签。",
           "why": "空泛标签既不是本地搜索词，也无法体现产品差异；新顾客在导航层就要猜每个分类卖什么。",
           "fix": "改成 Oven & Baking、Air Fryer、Rice Cooker、Blender、Lunch Box、Baby Care，并考虑英文/马来语双语标签。",
@@ -512,7 +938,35 @@
             "home living",
             "product catalog",
             "category"
-          ]
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CONT-05",
+          "severity_hint": "medium",
+          "applies_to": "全部小家电（客服语言矩阵）",
+          "rule": "客服至少保证英文可通，马来语问答要跟上；只有中文客服或只有邮箱是转化硬伤。",
+          "why": "马来语是国语，占人口多数的马来消费者首选马来语/英语；WhatsApp 快捷回复若只有中文，等于把最大族群挡在门外。",
+          "fix": "WhatsApp 快捷回复准备英文 + 马来语两套模板（打招呼、报价、发货、保修四类），中文仅作内部使用。",
+          "signals": [
+            "email us",
+            "enquiry",
+            "inquiry",
+            "hotline"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断",
+            "url": null
+          },
+          "accessed": "2026-11-12",
+          "confidence": "编辑判断"
         }
       ]
     }
