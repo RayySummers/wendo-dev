@@ -1,0 +1,27 @@
+{
+  "name": "@wendo/agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Wendo 文化适配诊断 agent：固定工具链 fetch_page → retrieve_kb → score_and_report",
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "scripts": {
+    "diagnose": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts",
+    "verify:parity": "tsx scripts/verify-parity.ts",
+    "render": "tsx scripts/render-report.ts"
+  },
+  "dependencies": {
+    "@earendil-works/pi-agent-core": "1.5.2",
+    "@earendil-works/pi-ai": "1.5.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "url": "https://bears.com.my/",
+    "final_url": "https://bears.com.my/",
+    "title": "Bear Malaysia - Home Appliances | Cookware",
+    "market": "MY",
+    "market_name": "马来西亚",
+    "category": "small_appliances",
+    "category_name": "小家电",
+    "generated_at": "2026-11-12T20:57:45+08:00",
+    "tier": "Lite",
+    "source_chars": 2590,
+    "knowledge_version": "2026-11-12",
+    "agent_version": "0.1.0"
+  },
+  "summary": "这个首页把最关键的三个信任信号（SIRIM 认证、1 年本地保修、马标三脚插头）都写出来了，但都停留在一句宣称上：SIRIM 没有证书编号或标签图，客服电话是不完整的 7 位号码，首屏也只有欢迎语没有主 CTA，本地买家很难确认「这家能不能下单、坏了找谁」。建议先做两件最能立刻见效的事：把 SIRIM 证书编号和完整电话号码补上，再把首屏欢迎语换成一句价值主张 + WhatsApp 按钮 + 信任条。",
+  "risks": [
+    {
+      "severity": "high",
+      "quote": "Each unit is certified by SIRIM Malaysia, ensuring compliance with national safety and quality standards.",
+      "why": "受管制电器在马来西亚销售需要能源委员会（ST）的 COA 并加贴 SIRIM 标签，SIRIM 认证是本地买家判断「能不能安全用」的第一道门槛。首页只有一句「certified by SIRIM Malaysia」，既没有证书编号，也没有标签位置或标签图，属于无法核实的空口宣称，遇到较真的买家或平台审核时无法举证。",
+      "fix": "在产品规格区改写为可核实的版本，例如「SIRIM certified — Certificate No. [证书编号]」，并附上机身 SIRIM 标签实拍图；同时在 Warranty Policy 页同步一份证书说明。没有证书编号之前，先把这句改成「Designed to meet Malaysia safety standards」，补证后再写 certified。"
+    },
+    {
+      "severity": "high",
+      "quote": "03-456 7554",
+      "why": "西马固话格式为 03-XXXXXXXX（区号后 8 位），页面上这个 7 位号码会被本地用户识别为模板没填完或假号码，直接损伤信任；而且全站唯一的即时联系入口只有电话和 Contact Us 表单，没有 WhatsApp——马来西亚从年轻到年长的客群都以 WhatsApp 为主要沟通工具，只有电话会显著压低咨询转化。",
+      "fix": "换成真实完整号码，例如 03-XXXX XXXX 或 01X-XXX XXXX，并在页脚、Contact Us、Warranty Policy 三处保持一致；同时在页脚加「Chat with us on WhatsApp」按钮（wa.me/60XXXXXXXXX）并标注服务时间，例如「Mon–Fri 9:00–18:00 MYT」。"
+    },
+    {
+      "severity": "medium",
+      "quote": "Welcome to Bear Malaysia Store",
+      "why": "首屏只有一句欢迎语，紧接着就是 Bestsellers / Featured 商品墙，中间没有一句说清「卖什么、为什么选你、下一步做什么」。移动端首屏决定去留，本地用户点进来看到的是导航分类加欢迎语，找不到核心价值和主要行动入口。",
+      "fix": "把欢迎语换成一句价值主张 + 一个主 CTA + 一条信任条，例如主标题「Everyday kitchen appliances for Malaysian homes」，副标题「SIRIM certified · 1-year local warranty · Ready-to-use 3-pin plug」，按钮「Explore bestsellers」和「Chat on WhatsApp」二选一作为主 CTA（每屏只保留一个主 CTA）。"
+    },
+    {
+      "severity": "medium",
+      "quote": "Bear Electric Food Steamer BFS-C60L 6L Multifuntion Double Layer 2 Tiers Pengukus Elektrik Pelbagai Fungsi",
+      "why": "马来语是国语，也是 Shopee / Lazada 等本地平台的主要搜索语言。全页只有蒸锅这一个 SKU 夹带了马来语（Pengukus Elektrik / Pelbagai Fungsi），其余主力商品全是英文，这种「个别 SKU 有马来语」的覆盖方式会显得临时拼接；同一句里还有拼写错误 Multifuntion，本地用户容易读成机器翻译。",
+      "fix": "统一本地化范围：所有主力 SKU 的商品名后面补马来语副标题，例如 Rice Cooker →「Periuk Nasi」、Air Fryer →「Penggoreng Udara」、Blender →「Pengisar」、Electric Lunch Box →「Bekas Makanan Elektrik」；同时把 Multifuntion 改为 Multifunction，全文做一次拼写校对。"
+    },
+    {
+      "severity": "medium",
+      "quote": "Free shipping",
+      "why": "只写「Free shipping」没有说明门槛、适用区域和时效。马来西亚西马与东马物流差异很大，沙巴、砂拉越依赖海运、常按邮编加收运费，东马买家下单后才发现要加价，是退款和差评的直接来源。",
+      "fix": "改成一行写清门槛与区域，例如「Free shipping for orders above RM[门槛] (Peninsular Malaysia). Sabah & Sarawak from RM[金额], 7–14 working days」，并把同一句放进商品页配送说明和 FAQ，与 Return & Refund Policy 放在同一条信任路径上。"
+    },
+    {
+      "severity": "low",
+      "quote": "Health Pot 1.8L BHP-W18L",
+      "why": "「Health Pot」是中文「养生壶」的直译，在马来西亚没有对应认知，也不进入本地搜索词，用户看不出这是烧水还是煮茶。同类直译还有页面里的 Stew Cooker、Food Menu，本地读者会把 Food Menu 理解成餐厅菜单。",
+      "fix": "改成本地常用说法并配马来语，例如「Multifunction Glass Kettle 1.8L BHP-W18L · Cerek Kaca Serbaguna」；Stew Cooker 改为 Slow Cooker，食谱栏目 Food Menu 改为 Recipes（Resipi）。"
+    }
+  ],
+  "strengths": [
+    {
+      "quote": "For added convenience, our products are fitted with the standard Malaysia 3-pin plug, ready to use right out of the box.",
+      "why": "插头类型是小家电买家最常担心的实操问题，直接写清「standard Malaysia 3-pin plug、开箱即用」能消除「要不要买转换插头」的顾虑，是本地化做得最实的一句。"
+    },
+    {
+      "quote": "All our products come with a 1-year warranty, backed by our local team in Malaysia for your peace of mind.",
+      "why": "1 年保修 + 本地团队是马来西亚小家电的核心信任信号，配合页面已有的 Online Warranty Registration 与 Warranty Policy 入口，已经具备了可继续补齐的售后骨架。"
+    },
+    {
+      "quote": "Return & Refund Policy",
+      "why": "页脚把退换货政策与保修政策分开列出，小家电退货成本高，买家下单前会确认「坏了寄给谁」，有这个入口比完全没有要好，接下来只需把地址与流程补进去。"
+    }
+  ],
+  "not_assessable": [
+    {
+      "item": "支持的支付方式（FPX、Touch 'n Go、GrabPay、ShopeePay、分期）",
+      "reason": "首页正文只有 Cart、Login 和金额，没有任何支付图标或结算方式说明，无法判断实际接入了哪些本地支付渠道。"
+    },
+    {
+      "item": "配送时效、配送方式与东马（沙巴、砂拉越）覆盖",
+      "reason": "页面只有一句 Free shipping，没有 ETA、送货上门/自提说明与东马运费规则，单看首页无法判断区域覆盖与时效。"
+    },
+    {
+      "item": "保修范围与索赔流程（哪些部件、寄回还是送修、收件地址）",
+      "reason": "首页只写 1-year warranty，Warranty Policy 与 Online Warranty Registration 只是导航入口，正文不在本页，无法判断条款细节。"
+    },
+    {
+      "item": "食品接触材质与清真相关表述",
+      "reason": "首页没有 BPA-free、食品接触材质、可拆卸清洗或 JAKIM 认证的任何文字，无法判断；且未获认证不得展示清真标志或写 halal certified，需要另行核实证书。"
+    },
+    {
+      "item": "本地公司实体信息（SSM 注册名、地址、客服邮箱）",
+      "reason": "页脚只有电话号码与版权行，没有注册名、办公地址或客服邮箱，「local team in Malaysia」一句不足以证明本地实体存在。"
+    },
+    {
+      "item": "本地社会证明（真实评价、买家图、平台评分、销量区间）",
+      "reason": "首页只有 Bestsellers / Featured 这类自设标签，没有任何带图评价、评分或媒体露出，无法判断本地口碑。"
+    },
+    {
+      "item": "节庆与家庭场景内容（Hari Raya / CNY / Deepavali、本地厨房场景）",
+      "reason": "抓取到的正文只有分类名与商品名，没有 banner 文案或场景描述可引用，无法判断是否做了多族群节庆排期。"
+    }
+  ],
+  "dimensions": [
+    {
+      "name": "信息层级与表达自然度",
+      "status": "risk",
+      "note": "首屏只有「Welcome to Bear Malaysia Store」，随后直接进入 Bestsellers / Featured 商品墙，缺价值主张与主 CTA。"
+    },
+    {
+      "name": "语言与本地化表达",
+      "status": "risk",
+      "note": "主力 SKU 全英文，只有蒸锅标题夹带马来语，并出现 Multifuntion 拼写错误与 Health Pot 这类直译品类词。"
+    },
+    {
+      "name": "信任与合规资质",
+      "status": "risk",
+      "note": "SIRIM 只有一句宣称、无证书编号与标签图，页脚也缺 SSM 注册名、地址与客服邮箱。"
+    },
+    {
+      "name": "价格与促销表达",
+      "status": "ok",
+      "note": "现价与原价均以 RM 加两位小数呈现（如 RM132.60 / RM149.00），格式统一；折扣旁的裸数字「11」不成词组，无法作为引用证据，建议改为「-11%」或「Save RM16.30」。"
+    },
+    {
+      "name": "支付与结算习惯",
+      "status": "not_assessable",
+      "note": "首页正文没有任何支付方式图标或结算说明，无法判断是否支持 FPX、Touch 'n Go、GrabPay、ShopeePay 与分期。"
+    },
+    {
+      "name": "物流与区域覆盖",
+      "status": "risk",
+      "note": "只有一句「Free shipping」，没有门槛、适用区域（西马/东马）与预计时效。"
+    },
+    {
+      "name": "客服与联络渠道",
+      "status": "risk",
+      "note": "唯一渠道是 7 位号码「03-456 7554」与 Contact Us 表单，没有 WhatsApp 一键联系与服务时间。"
+    },
+    {
+      "name": "文化语境与节庆",
+      "status": "not_assessable",
+      "note": "本页正文只有分类名与商品名，没有可引用的节庆 banner、家庭场景文案或图片描述，无法判断多族群内容排期。"
+    }
+  ]
+}
