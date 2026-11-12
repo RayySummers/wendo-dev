@@ -1,0 +1,281 @@
+{
+  "market": "MY",
+  "market_name": "马来西亚",
+  "category": "small_appliances",
+  "category_name": "小家电",
+  "version": "2026-11-12",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": ["Section 3", "Section 4", "Section 7"],
+      "rules": [
+        {
+          "id": "MY-LANG-01",
+          "severity_hint": "medium",
+          "rule": "面向马来西亚大众市场的商品名与关键卖点应同时覆盖马来语，不能只做英文。",
+          "why": "马来语是国语，也是 Shopee / Lazada 等本地平台的主要搜索语言；纯英文商品名会丢失大量自然搜索与看不懂英文的买家。",
+          "fix": "商品标题采用「马来语 + 英文」并列，例如 Pengukus Elektrik（Electric Steamer）；分类导航补马来语词。",
+          "signals": ["pengukus", "elektrik", "periuk", "pengisar", "ketuhar", "bahasa", "malay"]
+        },
+        {
+          "id": "MY-LANG-02",
+          "severity_hint": "medium",
+          "rule": "同一页面的本地语言覆盖不一致（个别 SKU 有马来语、其余全英文）会显得临时拼接。",
+          "why": "只给一两个商品加马来语，会让本地用户感觉品牌没有认真做本地化，而不是「部分本地化」。",
+          "fix": "统一本地化范围：要么全部主力 SKU 补马来语副标题，要么先做统一的英文 + 品类马来语关键词方案。",
+          "signals": ["pengukus elektrik", "multifuntion", "pelbagai fungsi"]
+        },
+        {
+          "id": "MY-LANG-03",
+          "severity_hint": "low",
+          "rule": "马来西亚属英联邦，正式文案应统一英式拼写与日期格式。",
+          "why": "英式拼写与 DD/MM/YYYY 是本地教育与文书标准；美式拼写混用会降低专业感。",
+          "fix": "统一 colour / centre / organise / catalogue / travelled，日期写 12/11/2026 或 12 November 2026。",
+          "signals": ["color", "center", "organize", "catalog", "customize", "personalized"]
+        },
+        {
+          "id": "MY-LANG-04",
+          "severity_hint": "low",
+          "rule": "避免把马来式英语口语助词或中式英语直译写进正式文案。",
+          "why": "「Can lah」「Please kindly revert ASAP」这类表达在正式品牌文案中显得不专业或难以理解。",
+          "fix": "用中性、友好的标准英语：Contact us / Get in touch / We'll get back to you within one working day。",
+          "signals": ["lah", "please kindly", "revert", "welcome to call", "hope for your early reply"]
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付与结算习惯",
+      "source_sections": ["Section 1", "Section 6", "Section 7"],
+      "rules": [
+        {
+          "id": "MY-PAY-01",
+          "severity_hint": "high",
+          "rule": "首屏或加购区应展示本地支付方式（FPX、Touch 'n Go、GrabPay、ShopeePay、Boost、分期）。",
+          "why": "FPX 网银与电子钱包是马来西亚电商的主流支付方式；只靠信用卡会让大量本地买家在结算前流失。",
+          "fix": "在价格/加购按钮附近放支付图标行，并写明支持 FPX、TnG eWallet、GrabPay、ShopeePay 与分期。",
+          "signals": ["fpx", "touch 'n go", "tng", "grabpay", "shoopepay", "boost", "atome", "installment", "credit card", "paypal"]
+        },
+        {
+          "id": "MY-PAY-02",
+          "severity_hint": "medium",
+          "rule": "价格必须使用 RM 与两位小数，并保持全站格式一致。",
+          "why": "令吉符号与千分位格式是本地价格阅读习惯；格式混乱会削弱价格可信度。",
+          "fix": "统一写成 RM1,299.00 / RM88.10，避免 MYR1299 与 RM 88.1 混用。",
+          "signals": ["myr", "rm0.00", "rm"]
+        },
+        {
+          "id": "MY-PAY-03",
+          "severity_hint": "medium",
+          "rule": "支付安全与结算说明应在首页可见，而不是只出现在结算页。",
+          "why": "新品牌缺少线下信任，首屏的支付与保障说明能降低「不敢下单」的顾虑。",
+          "fix": "在产品区附近增加一行：Secure checkout · FPX & e-wallet supported · 7-day return。",
+          "signals": ["checkout", "secure payment", "cart", "login"]
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "物流与区域覆盖",
+      "source_sections": ["Section 1", "Section 6"],
+      "rules": [
+        {
+          "id": "MY-LOG-01",
+          "severity_hint": "high",
+          "rule": "「Free shipping」必须写清门槛、适用区域与时效，尤其是东马（沙巴、砂拉越）。",
+          "why": "东马依赖海运、按邮编加收运费；不写清楚会让东马买家下单后才发现加价，直接造成退款与差评。",
+          "fix": "写成「Free shipping for orders above RM150 (Peninsular Malaysia). Sabah & Sarawak from RMXX, 7–14 working days」。",
+          "signals": ["free shipping", "shipping", "delivery", "sabah", "sarawak", "east malaysia", "postage"]
+        },
+        {
+          "id": "MY-LOG-02",
+          "severity_hint": "medium",
+          "rule": "小家电属于体积较大的品类，应说明配送方式（送货上门/自提）与预计时效。",
+          "why": "大家电与小家电的配送预期不同；没有 ETA 会让买家反复询问客服。",
+          "fix": "商品页写明「Delivered in 2–5 working days (Peninsular); 7–14 working days (East Malaysia)」。",
+          "signals": ["working days", "delivery", "ship out", "courier", "tracking"]
+        },
+        {
+          "id": "MY-LOG-03",
+          "severity_hint": "low",
+          "rule": "退换货地址与流程应与配送说明放在同一信任路径上。",
+          "why": "小家电退货成本高，买家会在下单前确认「坏了寄给谁」。",
+          "fix": "页脚或 FAQ 写清 return address、7 天退换条件与保修索赔入口。",
+          "signals": ["return", "refund", "warranty policy", "exchange"]
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "信任与合规资质",
+      "source_sections": ["Section 5", "Section 6", "Section 7"],
+      "rules": [
+        {
+          "id": "MY-TRUST-01",
+          "severity_hint": "high",
+          "rule": "电器类产品应明确 SIRIM 认证与能源委员会 COA/标签信息，且不能空口宣称。",
+          "why": "受管制电器在马来西亚销售需要 ST 的 COA 与 SIRIM 标签；这是本地买家判断「能不能安全用」的第一道门槛。",
+          "fix": "在规格区写「SIRIM certified (certificate no. XXXXX)」并附标签图；没有证书就先补证再宣传。",
+          "signals": ["sirim", "certified", "certificate", "coa", "suruhanjaya tenaga", "safety"]
+        },
+        {
+          "id": "MY-TRUST-02",
+          "severity_hint": "high",
+          "rule": "食品接触类小家电需要材质/食品接触说明；没有 JAKIM 认证不得使用清真标志或「halal certified」。",
+          "why": "穆斯林占多数，食物接触材质是真实购买顾虑；虚假清真宣称在马来西亚是高风险合规问题。",
+          "fix": "写「Food-contact parts are BPA-free and detachable for cleaning」，有检测报告再附；清真认证另行申请后再展示。",
+          "signals": ["halal", "jakim", "muslim", "food contact", "bpa", "non-stick", "coating"]
+        },
+        {
+          "id": "MY-TRUST-03",
+          "severity_hint": "medium",
+          "rule": "页脚应有本地公司实体、地址、客服邮箱与保修索赔路径。",
+          "why": "「local team in Malaysia」一句话不足以证明售后存在；本地地址与实体是最强的信任信号之一。",
+          "fix": "页脚补 SSM 注册名、Selangor/KL 地址、support email、保修登记与索赔入口。",
+          "signals": ["about us", "contact us", "warranty registration", "local team", "address", "ssm"]
+        },
+        {
+          "id": "MY-TRUST-04",
+          "severity_hint": "medium",
+          "rule": "需要本地社会证明：真实评价、买家图、平台评分或媒体露出。",
+          "why": "新品牌没有本地口碑时，Bestsellers 标签本身不构成证据；本地评价能显著降低决策成本。",
+          "fix": "接入 Google Reviews / Shopee 评分，展示带图的本地买家评价与真实销量区间。",
+          "signals": ["review", "testimonial", "rating", "bestsellers", "featured", "trusted"]
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": ["Section 1", "Section 6", "Section 7"],
+      "rules": [
+        {
+          "id": "MY-SVC-01",
+          "severity_hint": "high",
+          "rule": "必须提供 WhatsApp 一键联系，并写清服务时间（MYT）。",
+          "why": "WhatsApp 是马来西亚各年龄层的主导沟通工具；只有电话或表单会显著降低咨询转化。",
+          "fix": "加「Chat with us on WhatsApp」按钮（wa.me/60XXXXXXXXX），标注 Mon–Fri 9:00–18:00 MYT。",
+          "signals": ["whatsapp", "wa.me", "live chat", "contact us", "03-", "phone"]
+        },
+        {
+          "id": "MY-SVC-02",
+          "severity_hint": "high",
+          "rule": "电话号码必须是完整可拨的本地号码；缺位号码等同模板占位符。",
+          "why": "西马固话为 03-XXXXXXXX（8 位）；03-456 7554 这类 7 位号码会被本地用户识别为假号码或未填完的模板。",
+          "fix": "换成真实的 03-XXXX XXXX 或 01X-XXX XXXX，并在页脚、联系页、保修页保持一致。",
+          "signals": ["03-", "04-", "05-", "06-", "07-", "08-", "09-", "tel:", "call us"]
+        },
+        {
+          "id": "MY-SVC-03",
+          "severity_hint": "medium",
+          "rule": "客服渠道应给出响应承诺，而不是只留一个入口。",
+          "why": "马来西亚消费者习惯先问再买；没有响应时效承诺会让人怀疑售后是否有人。",
+          "fix": "写「We reply within 1 working day」或「WhatsApp us — typically replies in 15 minutes」。",
+          "signals": ["reply", "response", "support", "customer service", "faq"]
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "价格与促销表达",
+      "source_sections": ["Section 6", "Section 7"],
+      "rules": [
+        {
+          "id": "MY-PRICE-01",
+          "severity_hint": "medium",
+          "rule": "折扣必须让用户一眼看懂：显示折扣百分比或「Save RMxx」，不能只留一个无单位数字。",
+          "why": "划线价旁边的裸数字（如「11」）会被当成模板错误或未加载完的组件，削弱促销可信度。",
+          "fix": "改成「-11%」或「Save RM16.30」，并保留原价与现价的清晰层级。",
+          "signals": ["rm", "price", "discount", "save", "%", "promotion", "sale"]
+        },
+        {
+          "id": "MY-PRICE-02",
+          "severity_hint": "low",
+          "rule": "价格、运费与支付选项应在首屏同时可见。",
+          "why": "马来西亚消费者价格敏感，习惯先比较「到手价」再决定是否继续浏览。",
+          "fix": "商品卡直接显示现价、原价、免运费门槛与分期起价（如 RM29.70 × 3）。",
+          "signals": ["rm", "free shipping", "cart", "bestsellers", "featured"]
+        },
+        {
+          "id": "MY-PRICE-03",
+          "severity_hint": "low",
+          "rule": "避免过度紧迫的促销话术，改用价值与保障导向的表达。",
+          "why": "本地消费者偏好深思熟虑的购买决策，过度催单会降低品牌可信度。",
+          "fix": "用「1-year local warranty · Free shipping over RM150」替代「Hurry! Last chance!」。",
+          "signals": ["hurry", "limited time", "last chance", "buy now", "order now"]
+        }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "文化语境与节庆",
+      "source_sections": ["Section 5", "Section 6"],
+      "rules": [
+        {
+          "id": "MY-CUL-01",
+          "severity_hint": "medium",
+          "rule": "节庆与场景内容应覆盖多族群（Hari Raya、CNY、Deepavali），不能只做单一族群。",
+          "why": "马来西亚是多元族群社会；只做单一节庆会让其他族群感到被排除，也浪费全年多个销售高峰。",
+          "fix": "按节庆排期做多套首屏 banner：Raya（家庭聚餐）、CNY（团圆饭）、Deepavali（甜点/烘焙），并保持视觉族群平衡。",
+          "signals": ["hari raya", "raya", "chinese new year", "cny", "deepavali", "festive", "christmas", "merdeka"]
+        },
+        {
+          "id": "MY-CUL-02",
+          "severity_hint": "medium",
+          "rule": "家庭场景比纯产品图更有效；小家电要卖「一家人一起吃饭」而不是参数。",
+          "why": "家庭价值观在三大族群中都有强共鸣，是小家电最自然的购买理由。",
+          "fix": "首屏用本地家庭厨房场景图，配一句「Made for Malaysian family kitchens」并给出使用场景（带饭、蒸鱼、烘焙）。",
+          "signals": ["family", "home", "kitchen", "recipe", "cooking"]
+        },
+        {
+          "id": "MY-CUL-03",
+          "severity_hint": "high",
+          "rule": "避免宗教与族群敏感元素：猪、酒精、犬类形象、宗教符号误用、暴露着装。",
+          "why": "这些元素在马来西亚市场会直接引发抵制与平台下架风险。",
+          "fix": "上线前做素材审查；涉及食物拍摄时使用清真食材与不含酒精的餐桌布置。",
+          "signals": ["pork", "alcohol", "wine", "beer", "dog", "bikini", "religion"]
+        },
+        {
+          "id": "MY-CUL-04",
+          "severity_hint": "low",
+          "rule": "品牌视觉应体现多元马来西亚，而不是单一族群或纯中国总部叙事。",
+          "why": "本地消费者更信任「在这里、为这里」的品牌；纯出口叙事会削弱亲近感。",
+          "fix": "About 区加入本地团队、仓库、售后与马来西亚用户故事。",
+          "signals": ["about us", "malaysia", "local team", "since", "global"]
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": ["Section 4", "Section 6"],
+      "rules": [
+        {
+          "id": "MY-CONT-01",
+          "severity_hint": "medium",
+          "rule": "首屏必须回答「卖什么、为什么选你、下一步做什么」，不能只有欢迎语和分类导航。",
+          "why": "移动端首屏决定去留；只有「Welcome to ... Store」会让用户不知道这家店的核心价值。",
+          "fix": "首屏改成一句价值主张 + 主 CTA（Shop bestsellers / Chat on WhatsApp）+ 信任条（SIRIM、1-year warranty）。",
+          "signals": ["welcome to", "bestsellers", "featured", "shop now", "more"]
+        },
+        {
+          "id": "MY-CONT-02",
+          "severity_hint": "medium",
+          "rule": "避免中式英语与机械重复的模板句，改用自然的本地英语。",
+          "why": "「Welcome to call us」「Multifuntion」这类表达会让本地用户觉得是机器翻译，降低品牌可信度。",
+          "fix": "统一校对：Multifunction、Contact us、Free shipping over RM150；每段文案只保留一个 CTA。",
+          "signals": ["multifuntion", "welcome to", "contact us", "more", "information"]
+        },
+        {
+          "id": "MY-CONT-03",
+          "severity_hint": "low",
+          "rule": "CTA 用温和引导，避免命令式与过度紧迫。",
+          "why": "本地消费者偏好非侵入式引导；「Buy now!」式 CTA 在马来西亚转化并不占优。",
+          "fix": "用 Learn more / Explore the range / Chat with us，主 CTA 每屏只保留一个。",
+          "signals": ["buy now", "shop now", "order now", "click here", "learn more"]
+        }
+      ]
+    }
+  ]
+}
