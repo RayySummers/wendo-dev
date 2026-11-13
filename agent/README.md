@@ -142,6 +142,10 @@ npm run verify:parity -- reports/bear-malaysia-v1-20261112.json
 
 `npm test` 中的 PDF 用例会在缺少 Typst 或 `pdftotext` 时自动跳过。
 
+## 第三方许可
+
+Pi 的 `pi-ai` / `pi-agent-core` / `pi-schema` / `pi-telemetry` 均为 MIT；完整许可文本见 [`THIRD_PARTY_LICENSES.md`](./THIRD_PARTY_LICENSES.md)。
+
 ## 已知限制（11/15 演示版）
 
 - 只抓单个页面，不爬站、不执行复杂前端交互；Scrapling `Fetcher` 为主，JS 重的站点可能抓不全。
