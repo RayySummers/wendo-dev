@@ -41,7 +41,8 @@ const SYSTEM_PROMPT = `你是「文渡 Wendo」的文化适配诊断引擎，为
 5. summary、why、fix、note 用简体中文；quote 保留页面原文语言（英文/马来文）。
 6. strengths 必须给出页面原文引用；not_assessable 写清「首页无法判断什么、为什么无法判断」。
 7. 知识库里的建议是编辑判断，不要写成马来西亚法规；没有页面证据时放进 not_assessable。
-8. 只输出一个 JSON 对象：不要 Markdown 代码块，不要前后解释，不要注释。`;
+8. 只输出一个 JSON 对象：不要 Markdown 代码块，不要前后解释，不要注释。
+9. 不要判断字号、宽度、溢出、截断、断词、层级通道这类界面实现问题：这些由代码侧的界面信号单独检查并在报告里另行标注。你只依据【页面正文】与【知识库】判断内容与表达。`;
 
 function buildRuleBlock(dimensions: KbDimension[]): string {
   return dimensions

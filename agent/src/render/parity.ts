@@ -38,6 +38,10 @@ export function reportTexts(report: Report): ReportText[] {
       { label: `risks[${index}].why`, value: risk.why },
       { label: `risks[${index}].fix`, value: risk.fix },
     );
+    // 界面信号带一条可直接核对的 CSS/HTML 证据，网页与 PDF 都要出现。
+    if (risk.evidence) {
+      items.push({ label: `risks[${index}].evidence`, value: risk.evidence });
+    }
   });
   report.strengths.forEach((strength, index) => {
     items.push(

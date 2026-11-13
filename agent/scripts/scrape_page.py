@@ -6,8 +6,13 @@
 - 只提取可见文本，不执行站内 JS 交互；
 - 失败时返回明确的 JSON 错误并以非 0 退出，绝不输出空正文。
 
+除正文外，还会抽取界面可翻译性信号（`interface`，见 scripts/interface_signals.py）：
+文档语言、内联/外链 CSS 的计算样式快照，供 TypeScript 侧判断换语言后会不会
+截断、断词或层级塌掉。这一步失败只降级为 `interface.captured=false`，不影响正文。
+
 用法：
     python3 scripts/scrape_page.py <url> <output.json> [--timeout 30] [--max-chars 20000]
+                                   [--no-interface] [--interface-max-sheets 6]
 """
 
 from __future__ import annotations
@@ -35,6 +40,11 @@ except Exception as exc:  # pragma: no cover - dependency guard
         file=sys.stderr,
     )
     sys.exit(2)
+
+try:
+    from interface_signals import extract_interface_signals
+except Exception:  # pragma: no cover - 单文件运行时也能降级
+    extract_interface_signals = None  # type: ignore[assignment]
 
 
 def fail(code: str, message: str, **extra: object) -> None:
@@ -80,6 +90,12 @@ def main() -> None:
     parser.add_argument("output")
     parser.add_argument("--timeout", type=int, default=30)
     parser.add_argument("--max-chars", type=int, default=20000)
+    parser.add_argument(
+        "--no-interface",
+        action="store_true",
+        help="跳过界面可翻译性信号抽取（只出正文）",
+    )
+    parser.add_argument("--interface-max-sheets", type=int, default=6)
     args = parser.parse_args()
 
     parsed = urlparse(args.url)
@@ -116,6 +132,17 @@ def main() -> None:
             chars=len(text),
         )
 
+    interface: dict[str, object]
+    if args.no_interface or extract_interface_signals is None:
+        interface = {"captured": False, "reason": "disabled"}
+    else:
+        try:
+            interface = extract_interface_signals(
+                response, Fetcher, max_sheets=max(0, args.interface_max_sheets)
+            )
+        except Exception as exc:  # 取证失败不能拖垮正文
+            interface = {"captured": False, "reason": f"interface_failed: {exc}"}
+
     payload = {
         "url": args.url,
         "final_url": str(getattr(response, "url", args.url) or args.url),
@@ -127,6 +154,7 @@ def main() -> None:
         "elapsed_ms": int((time.monotonic() - started) * 1000),
         "fetcher": "scrapling/0.5.1 Fetcher",
         "normalization": "collapse whitespace; drop consecutive duplicate lines; cap at max-chars",
+        "interface": interface,
     }
 
     with open(args.output, "w", encoding="utf-8") as handle:

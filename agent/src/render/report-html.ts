@@ -42,18 +42,32 @@ export function formatDateTime(iso: string): string {
 export function renderReportHtml(report: Report): string {
   const { meta } = report;
   const risks = report.risks
-    .map(
-      (risk, index) => `
+    .map((risk, index) => {
+      // 界面信号是代码证据，不是页面正文引用：加来源标签，引用片段改用等宽字体。
+      const kindChip =
+        risk.kind === "interface_translation"
+          ? '<span class="kind">界面可翻译性</span>'
+          : "";
+      const quote = escapeHtml(risk.quote);
+      const quoteBlock = risk.quote.trimStart().startsWith("<")
+        ? `<blockquote class="source">${quote}</blockquote>`
+        : `<blockquote>${quote}</blockquote>`;
+      const evidence = risk.evidence
+        ? `<div class="field"><span class="label">界面证据</span><p class="evidence">${escapeHtml(risk.evidence)}</p></div>`
+        : "";
+      return `
       <section class="risk">
         <div class="risk-head">
           <span class="sev ${SEVERITY_CLASS[risk.severity]}">${SEVERITY_LABEL[risk.severity]}风险</span>
+          ${kindChip}
           <h3>风险 ${index + 1}</h3>
         </div>
-        <blockquote>${escapeHtml(risk.quote)}</blockquote>
+        ${quoteBlock}
+        ${evidence}
         <div class="field"><span class="label">为什么是问题</span><p>${escapeHtml(risk.why)}</p></div>
         <div class="field"><span class="label">怎么改</span><p>${escapeHtml(risk.fix)}</p></div>
-      </section>`,
-    )
+      </section>`;
+    })
     .join("\n");
 
   const dimensions = report.dimensions
@@ -135,6 +149,9 @@ export function renderReportHtml(report: Report): string {
   .risk-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .risk-head h3 { margin: 0; font-size: 16px; color: var(--dark); }
   blockquote { margin: 8px 0 14px; padding: 12px 16px; background: #f7f8fb; border-left: 3px solid var(--warm); border-radius: 0 8px 8px 0; font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 15px; color: #2b2f36; }
+  blockquote.source { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; word-break: break-all; }
+  .kind { display: inline-block; border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; white-space: nowrap; background: #eef2ff; color: var(--primary); }
+  .evidence { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12.5px; color: #3d4552; background: #f7f8fb; border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; word-break: break-all; }
   .field { margin-top: 10px; }
   .label { display: block; font-size: 12px; font-weight: 700; letter-spacing: .06em; color: var(--primary); text-transform: uppercase; margin-bottom: 2px; }
   .field p { margin: 0; }

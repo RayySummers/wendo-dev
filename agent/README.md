@@ -4,11 +4,35 @@
 并按同一份 JSON 渲染网页与 Typst PDF。
 
 ```
-fetch_page (Scrapling) → retrieve_kb (马来西亚 × 小家电) → score_and_report (Pi)
+fetch_page (Scrapling + 界面信号) → retrieve_kb (马来西亚 × 小家电) → score_and_report (Pi)
 ```
 
 三步由 `src/pipeline.ts` 按顺序驱动，agent 不参与规划，也不能跳过、改序或自由调用工具。
 这是 RAY-657 的实现，服务于 RAY-655「Wendo MVP 11/15 演示版」。
+
+## 界面可翻译性信号（RAY-674）
+
+`fetch_page` 除了正文，还会从抓到的 HTML/CSS 里抽一份「计算样式快照」：文档 `lang`、
+`<style>` 内联块与同源外链样式表、以及每个带文本元素的字号/字重/颜色/行高/宽高/
+`white-space`/`text-overflow`/`word-break`/`line-clamp` 等声明。随后由 `src/interface/`
+在代码侧判断「换成英语或马来语后会不会被裁、会不会断错词、层级会不会塌」，命中才写进报告，
+没有信号就不产出条目。它是「信息层级与表达自然度」维度下的子检查，不新增维度。
+
+- 规则与文案：`src/interface/rules.ts`，编号对齐知识库 `MY-UI-01/02/03/05`
+  （`knowledge/my/interface-survivability.md`，RAY-673）
+- 判定与阈值：`src/interface/analyze.ts`（字符宽度估算 + 1.4 倍翻译探针）
+- 渲染与合并：`src/interface/report.ts`（`kind: interface_translation` + `evidence`）
+- 抽取脚本：`scripts/interface_signals.py`
+
+不需要模型 key 就能单独核对某页命中了什么：
+
+```bash
+npx tsx scripts/interface-report.ts https://bears.com.my/          # 人类可读
+npx tsx scripts/interface-report.ts https://bears.com.my/ --json   # 机器可读
+```
+
+`python3 scripts/scrape_page.py <url> <out.json> --no-interface` 可关闭抽取；抽取失败只降级为
+`interface.captured=false`，不影响正文与报告生成。
 
 ## 产物
 
@@ -87,8 +111,9 @@ agent/
 │  ├─ pipeline.ts            固定工具链编排 + meta 注入
 │  ├─ config.ts              档位映射、网关配置、.env 读取
 │  ├─ types.ts               zod 报告 schema
+│  ├─ interface/             界面可翻译性信号：规则包、判定、报告合并
 │  ├─ tools/
-│  │  ├─ fetch-page.ts       fetch_page：Scrapling 单页抓取
+│  │  ├─ fetch-page.ts       fetch_page：Scrapling 单页抓取 + 样式快照
 │  │  ├─ retrieve-kb.ts      retrieve_kb：信号匹配 + 知识库摘录
 │  │  └─ score-and-report.ts score_and_report：Pi agent + 校验/重试
 │  └─ render/
@@ -97,6 +122,8 @@ agent/
 │     └─ parity.ts           网页/PDF 内容一致性核对
 ├─ scripts/
 │  ├─ scrape_page.py         Scrapling 抓取脚本（只抓单页）
+│  ├─ interface_signals.py   CSS 层叠 + 继承 + 尺寸归一，输出样式快照
+│  ├─ interface-report.ts    只需抓取就能预览界面信号的 CLI
 │  └─ verify-parity.ts       逐字段核对网页与 PDF
 ├─ knowledge/my/
 │  ├─ malaysia.md            团队国家知识库（来自 wendo-knowledge-base）
