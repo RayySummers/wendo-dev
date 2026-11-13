@@ -118,3 +118,74 @@
   前端与 `obsidian-vault-wendo/`。
 - `retrieve-kb.ts` 以宽松方式消费 `index.json`（只读取既有字段），新增字段对运行时无影响；
   `knowledge_version` 会随 `index.json` 的 `version` 字段自动进入报告 meta。
+
+---
+
+## v3 增补：界面可翻译性规则（RAY-673 / RAY-674）
+
+版本 `2026-11-12-v2` → `2026-11-13-v3`；规则 40 → 50 条。新增 10 条全部挂在 `content`
+「信息层级与表达自然度」维度下，**不新增维度、不改既有 40 条规则的信号与权重**。
+
+规则正文、判据、反例、中英对照例句见 `interface-survivability.md`（同目录）；`index.json`
+里的条目是它的可检索版本，编号一致（`MY-UI-01`…`MY-UI-10`）。
+
+| ID | 一句话 | severity_hint | 文本信号 |
+| --- | --- | --- | --- |
+| MY-UI-01 | 宽度不按字符数写（ch/ex/JS 限长） | high | 无（CSS 层取证） |
+| MY-UI-02 | 截断只能是显式策略，优先换行 | high | 无（CSS 层取证） |
+| MY-UI-03 | 用 lang 驱动断词，不用 break-all | high | 无（CSS 层取证） |
+| MY-UI-04 | CJK 可读性下限 12px | medium | 无（CSS 层取证） |
+| MY-UI-05 | 层级只用目标语言提供的通道 | medium | 无（需同屏统计） |
+| MY-UI-06 | 密度买空间不买时间 | medium | 无（需基线） |
+| MY-UI-07 | 不用「仅需」这类补丁词区分主次 | medium | `仅需`、`仅可`、`only saves`、`just saves`、`only save` |
+| MY-UI-08 | 输入成本 / IME 硬限长 | medium | `字以内`、`max characters`、`maximum of`、`characters left`、`characters remaining`、`剩余字符` |
+| MY-UI-09 | 声音层：功能直译、voice 重写 | low | `oops`、`you're all set`、`hang tight`、`nothing here yet`、`something went wrong` |
+| MY-UI-10 | RTL 与拉丁假设遗留（不进 MVP） | low | 无（记录项） |
+
+**为什么 7 条不给文本信号**：`retrieve_kb` 只对 `fetch_page` 抽出的**可见正文**做匹配
+（`pipeline.ts` 传的是 `page.text`），而 MY-UI-01/02/03/04/05/06/10 的证据在 CSS 与 DOM 结构里，
+可见文本根本看不到。给它们编造文案信号会造成两种坏结果：规则被无关页面误命中、检索排序被虚高的
+命中数打乱。因此这些条目以「无信号规则」存在——按 `MY-PRICE-02` 的先例，规则文本仍会进入诊断
+prompt，由模型按页面自行举证；结构性取证由 RAY-674 的 `scripts/interface_signals.py` +
+`src/interface/` 承担（它直接解析 CSS 层叠，命中后由代码注入 `kind: interface_translation`
+的风险条目，证据带 `MY-UI-*` 编号）。
+
+**信号挑选标准：出现在可见文本里就接近举证。** 实测被排除的候选（全语料 70 个页面）：
+
+| 候选 | 为什么排除 |
+| --- | --- |
+| `…` | 命中的全是加载态（`Sending your verification code…`，senheng.com.my）或正文省略（工商银行、阮一峰博客），没有一处是 CSS 截断 |
+| `一键` | 多是产品功能：`一键看电视`（苏宁）、`一键抠图`（CSDN）、`一键刷新BIOS` |
+| `立即购买` / `立即抢购` | 正常电商 CTA：`立即购买 Galaxy S26 Ultra`（三星中国），不是补丁词 |
+| 单独的 `仅` | 正文里是「只」：`政府仅批准两项申请`（东方日报） |
+| `read more` / `view all` | 正常的展开/查看全部入口（ZALORA、HERMO），不是截断证据 |
+| `search` / `just` | 几乎每站都有，纯噪音 |
+
+## v3 实测检索结果（2026-11-14）
+
+`retrieve_kb` 直接跑 `index.json`，两条真实页面命中：
+
+| 页面 | 结果 |
+| --- | --- |
+| `https://www.easyparcel.my/quote`（404 页，站点提供 EN/中文/Malay） | `MY-UI-09`［命中：`oops`］；content 维度 hits=4，排名 2/8 |
+| `https://www.bears.com.my/` | 0 条 MY-UI 命中（英文首页，无界面文案证据），content hits=8，排名 3/8 |
+
+bears 上 0 命中是**预期结果**：那是全英文页面，页面上没有补丁词、没有中文限长提示、没有
+voice 层短句；它的截断问题在 CSS 里（`#tab-description li.tablinks a` 的
+`max-width:200px + nowrap + ellipsis`），由 RAY-674 的 CSS 层负责报，不由文本信号负责。
+不为了让 demo 好看而硬造信号，是本规则的底线。
+
+## v3 验证
+
+- `npm test`：15 个用例全绿，其中 4 个是本单新增的 MY-UI 回归用例（检索、命中、不误命中、
+  prompt 注入）。
+- `npx tsc --noEmit`：无报错。
+- 排序无回归：bears / ZALORA / Lazada / HERMO 四个真实页面上，8 个维度的 hits 与排名与 v2
+  **完全一致**（新增 10 条规则全部 0 命中，不影响既有排序）。
+- 未运行真实模型调用，不产生 token 费用。
+
+## v3 边界
+
+- 只改 `knowledge/my/index.json`、`knowledge/my/README.md`、`knowledge/my/interface-survivability.md`
+  与 `test/validation.test.ts`；未改 `src/tools/retrieve-kb.ts`、评分权重与前端。
+- `retrieve-kb.ts` 仍以宽松方式消费 `index.json`，新增规则零代码改动即可被检索。

@@ -9,8 +9,9 @@ v0.2 按 Ray 2026-11-13 的追问重排：把 [Rene Wang 全文](https://rene.wa
 1–3 都出自 §Atom and Wrap，4/6 出自 §Pay for compression，10 跨 §Pass the mirror test 与
 §Distrust the units。映射见 §1。
 
-本文件不接入 `index.json`、不改 `retrieve-kb` 与评分权重；接入方式见 §5，是否接入与阈值
-由 RAY-674 决定。
+**已接入**：`index.json` 里已有 10 条 `MY-UI-*` 规则（版本 `2026-11-13-v3`），`retrieve_kb`
+可直接命中并进入诊断 prompt；本文件是它们的规则正文与出处。接入范围与实测结果见 §5，
+CSS 层的结构性取证由 RAY-674 负责。
 
 ---
 
@@ -546,11 +547,10 @@ Apple HIG *Right to Left*。
 
 ---
 
-## 附录 A：`index.json` 片段（草稿，未接入）
+## 附录 A：`index.json` 片段（已接入，2026-11-14；此处保留为可追溯副本）
 
-字段与现有 40 条规则一致；`signals` 为草稿值，**多为结构信号**（从 CSS/HTML 取，不是文案词），
-需 RAY-674 按实际抽取能力调整。建议挂到 `dimensions[id=content].rules` 末尾；MY-UI-09/10
-不给片段（人工/记录，避免自动打分）。
+下面是 `index.json` 里 `content` 维度新增的 10 条规则**原样副本**（`python json.dumps` 输出）。
+实际生效的是 `index.json`；本附录只用于对照，改动请以 `index.json` 为准。
 
 ```json
 {
@@ -560,11 +560,15 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-01",
       "severity_hint": "high",
       "applies_to": "按钮、导航项、标签页、徽章、表头、商品卡标题等可翻译标签",
-      "rule": "宽度不能按字符数写；min-width 用视觉单位，JS 限长不能当布局兜底。",
-      "why": "CJK 是定宽原子，英文/德文/马来文是变长原子；24ch 在中文下远远放不下，JS 限长也救不了。",
-      "fix": "min-width 用 px/rem；容器允许增长；长度限制只表达业务上限。",
+      "rule": "宽度不能按字符数写：不要用 ch / ex 或「能放 N 个字符」折算宽度，也不要用 JS 按字符数截断兜底。",
+      "why": "ch 量的是数字 0 的宽度、ex 量的是小写 x 的高度，都按拉丁字形定义；同一串 24ch 的中文会远远超出，换成英文又可能剩一大截。这类宽度不随语言变化，翻译后必然错位。",
+      "fix": "最小宽度改用视觉单位（px / rem）或 min-width + 自适应；长度限制只表达业务上限，不与像素宽度绑定；确实要按字符排版时，先确认这串文字永不翻译。",
       "signals": [],
-      "source": {"type": "secondary", "title": "Rene Wang, §Atom and Wrap / §Distrust the units", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Atom and Wrap / §Distrust the units",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -572,11 +576,15 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-02",
       "severity_hint": "high",
       "applies_to": "导航、tab 条、表格头、商品卡标题、按钮",
-      "rule": "放不下时默认换行/撑高，截断只能是显式策略，且要有 title/aria-label 全文出口。",
-      "why": "nowrap+overflow:hidden+ellipsis 三件套会在目标语言变长时直接丢信息；德文截断行高度不变，说明长度被丢掉而不是吸收。",
-      "fix": "让标签换行、行/列表/面板长高；只有不能换行时才截断，并补全文出口。",
-      "signals": ["nowrap", "text-overflow", "ellipsis", "line-clamp"],
-      "source": {"type": "secondary", "title": "Rene Wang, §Atom and Wrap", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "rule": "放不下时应默认换行并让行/列表/面板增高；截断只能是显式策略，且被截掉的信息要另有出口。",
+      "why": "nowrap + overflow:hidden + ellipsis 三件套在目标语言变长时直接丢信息：德文下截断行的高度与英文完全一致，说明它没有吸收多出来的长度，而是把长度丢掉了。中文靠更短的字符能把信息塞进两三行，换成英文/马来文后最先被裁掉的往往是型号或卖点。 注：可见文本里的「…」多为加载态（如「Sending your verification code…」），实测在 senheng.com.my 上即为此类，不能当截断证据，故本规则不设文本信号，取证交给 CSS 层（RAY-674）。",
+      "fix": "让标签换行、容器跟着长高；只有确实不能换行（tab 条、表头）才截断，并补 title / aria-label / 详情页全文出口；不要用 JS 截字符串兜底。",
+      "signals": [],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Atom and Wrap",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -584,11 +592,15 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-03",
       "severity_hint": "high",
       "applies_to": "正文、标题、设置项、多语混排段落",
-      "rule": "断行要同时保住比例与语义；用 lang 驱动断词，按 Intl.Segmenter 词缝断，不用 break-all 硬切。",
-      "why": "英文空格是免费的语义缝，CJK 没有；break-all 在任意两字符间断开且不显示连字符，缺 lang 时 hyphens:auto 不生效。",
-      "fix": "标注 lang；CJK 用 word-break:normal + line-break（或 Segmenter 断点）；拉丁用 overflow-wrap:anywhere；段落 text-wrap:pretty。",
-      "signals": ["break-all", "hyphens", "auto-phrase", "line-break"],
-      "source": {"type": "secondary", "title": "Rene Wang, §Atom and Wrap / §Notes", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "rule": "断行要同时保住比例与语义：用 lang 驱动断词、在词缝处断行，不要用 word-break: break-all 硬切。",
+      "why": "英文的空格是免费的语义缝，浏览器不会把词切两半；CJK 没有空格，比例和语义两个任务都得自己处理。break-all 会在任意两字符间断开且不显示连字符；缺 lang 时 hyphens: auto 根本不生效，长词只能溢出或硬断。",
+      "fix": "给 html 或元素补 lang（zh-Hans / en-MY / ms）；CJK 用 word-break: normal + 合适的 line-break，短语级断行用 Intl.Segmenter 断点（auto-phrase 是实验性，不能当唯一方案）；拉丁语用 overflow-wrap: anywhere；段落加 text-wrap: pretty；标题行高 ≥ 1.2、正文 ≥ 1.4。",
+      "signals": [],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Atom and Wrap / §Notes",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -596,11 +608,15 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-04",
       "severity_hint": "medium",
       "applies_to": "lang 为 zh/ja 的页面正文、说明文字、表单标签",
-      "rule": "CJK 可读性下限更高：lang=zh/ja 时正文 ≥12px 是下限，10/11px 必须单独查。",
-      "why": "中文的区分特征是内部笔画的高空间频率（未/末、己/已/巳），像素不够就糊；拉丁靠外形轮廓，10px 仍可读。",
-      "fix": "正文 ≥14px，行高 1.5；不要用缩放/缩小字号解决溢出。",
+      "rule": "CJK 的可读性下限比拉丁高：lang=zh/ja 时正文 12px 是下限而不是目标，10/11px 的 CJK 文本要单独查。",
+      "why": "拉丁字靠外形轮廓区分，小字号仍能认；CJK 的区分特征是内部笔画的高空间频率（未/末只差一条横线长短，己/已/巳只差开口），像素不够就糊成一团。文章的字号梯度样本里，拉丁到 8px 仍能靠轮廓分辨，CJK 先糊掉。",
+      "fix": "正文 ≥ 14px、行高 ≥ 1.5；不要用 transform: scale() 或缩小字号解决溢出（应回到 MY-UI-02 换行）；角标可以小，但不要承载正文信息。",
       "signals": [],
-      "source": {"type": "secondary", "title": "Rene Wang, §Pay for compression / §Notes", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Pay for compression / §Notes",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -608,11 +624,15 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-05",
       "severity_hint": "medium",
       "applies_to": "同一视图内的标题、正文、标签、状态标记",
-      "rule": "层级只能用目标语言真正提供的通道；颜色/框线不能是唯一通道。",
-      "why": "拉丁有 case/italic/weight/small caps/letterspacing 五个通道，CJK 只有 weight；CJK 界面常拿颜色和框线补层级，换到无 case 的语言后这一层消失。",
-      "fix": "列出目标语言可用通道再搭层级；CJK 用字号+字重+留白，颜色只做状态；同屏强调色 ≤2。",
-      "signals": ["uppercase"],
-      "source": {"type": "secondary", "title": "Rene Wang, §Count your channels", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "rule": "层级只能用目标语言真正提供的通道搭；颜色与框线不能是唯一的层级手段。",
+      "why": "拉丁文字自带 case，再加 italic、weight、small caps、letterspacing，五个通道不花字号和颜色就能表达等级；CJK 只有 weight，而 weight 是五个里最弱的（加粗密集字形是填满字怀，不是增加与周围空白的对比），没有 case，合成斜体只会更糟。中文界面常拿颜色和框线补层级——这不是审美问题，是买不到排版通道时的替代品；换成无 case 的语言后这一层会消失。",
+      "fix": "先列出目标语言可用的通道，再从这张表里搭层级；CJK 用字号 + 字重 + 留白/分隔线，颜色只做状态（成功/警告/错误）不做等级；同屏强调色 ≤ 2。",
+      "signals": [],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Count your channels",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -620,11 +640,15 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-06",
       "severity_hint": "medium",
       "applies_to": "首屏、分类页、促销区",
-      "rule": "密度买空间不买时间；不要用「中文能放下」证明英文/马来文也放得下。",
-      "why": "Coupé 2019 测得 17 种语言信息率约 39 bit/s，密度高的语言语速更慢；正文里中文的面积优势在可读字号下消失。",
-      "fix": "正文 ≥14px、行高 1.5；一屏一个主 CTA；促销信息排期，不要同屏叠加。",
+      "rule": "密度买空间不买时间：不要用「中文一屏放得下」证明英文或马来文也放得下。",
+      "why": "中文一屏能放更多字符，来自字宽均匀与免费断行，是空间优势不是阅读速度优势。Coupé 等人在 2019 年测了 17 种语言的受控朗读，信息率都聚在约 39 bit/s：信息密度高的语言说得更慢，最后拉平。把密度当卖点会让翻译后的界面既挤又难读。",
+      "fix": "正文 ≥ 14px、行高 1.5；一屏一个主 CTA，次要信息进折叠或次级页；促销信息排期，不要同屏叠加；不要拿密度当卖点文案。",
       "signals": [],
-      "source": {"type": "secondary", "title": "Rene Wang, §Pay for compression；Coupé et al. 2019", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Pay for compression",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -632,11 +656,21 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-07",
       "severity_hint": "medium",
       "applies_to": "主次按钮、CTA、表单动作",
-      "rule": "不要用「仅/一键/立即/just」补布局；先改布局，再改词，aria-label 写全。",
-      "why": "「仅」在中文只占几像素，英文要多几个字符且仍说不清主次；这是拿语言补设计的洞。",
-      "fix": "用位置/分组/尺寸表达主次；文案写全；aria-label 保留完整语义。",
-      "signals": ["仅", "一键", "立即"],
-      "source": {"type": "secondary", "title": "Rene Wang, §Don't patch with words", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "rule": "不要用「仅 / 一键 / 立即」这类小字去修补布局问题；先改布局，再改词，aria-label 仍写完整。",
+      "why": "用副词解释一个本来就不清楚的布局，是在拿语言补设计的洞。中文里「仅」只占几个像素，补得上；翻成英文要多好几个字符（Just save），补不上，还更啰嗦，而且还说不清主次。信号只收「仅需/仅可」这类把两个近义动作区分开的副词与对应英文；「立即购买」「一键」在电商里是正常 CTA 与功能描述（实测三星中国、苏宁、CSDN 上均属此类），不构成界面证据，故意不收。",
+      "fix": "用位置、分组、尺寸表达主次；文案写全（Save to collection / Publish as list）；视觉上省掉的词，aria-label 里要写全。",
+      "signals": [
+        "仅需",
+        "仅可",
+        "only saves",
+        "just saves",
+        "only save"
+      ],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Don't patch with words",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     },
@@ -644,11 +678,60 @@ Apple HIG *Right to Left*。
       "id": "MY-UI-08",
       "severity_hint": "medium",
       "applies_to": "表单、搜索、命令面板、快捷键、错误提示",
-      "rule": "输入成本不是常数：硬限长、Enter 直接提交、空格转 -、只按拉丁索引的搜索都会放大 CJK 用户的成本。",
-      "why": "英文 8 键=8 字形，中文 6 键+选词=2 字形；IME 用 Enter 选词会误触发提交；命令面板假设一切是拉丁。",
-      "fix": "Enter 提交判 event.isComposing；长度按业务上限；搜索支持拼音/分词；快捷键避开组合期。",
-      "signals": ["maxlength", "iscomposing", "pinyin"],
-      "source": {"type": "secondary", "title": "Rene Wang, §Price the input", "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"},
+      "rule": "输入成本不是常数：按拉丁键盘假设设计的硬限长、Enter 直接提交、空格转 -、只按拉丁索引的搜索，都会放大 CJK 用户的成本。",
+      "why": "英文 8 个键 = 8 个字母 = 8 个字形；中文「设置」6 个键 + 1 次候选选择只换来 2 个字形，而且选词要把视线从句子移开。IME 用户用 Enter 选词时会误触发提交；命令面板只对拉丁名称建索引，CJK 命名的内容搜不到。",
+      "fix": "Enter 提交前判 event.isComposing；长度限制表达业务上限并给「还能输入 N 字」的可见反馈；空格替换只用于 slug；搜索支持拼音与分词；快捷键避开输入法组合期。",
+      "signals": [
+        "字以内",
+        "max characters",
+        "maximum of",
+        "characters left",
+        "characters remaining",
+        "剩余字符"
+      ],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Price the input",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
+      "accessed": "2026-11-13",
+      "confidence": "佐证"
+    },
+    {
+      "id": "MY-UI-09",
+      "severity_hint": "low",
+      "applies_to": "空状态、成功提示、错误提示、标语与口号",
+      "rule": "声音层（语域 / 习语 / 节奏）不能直译：功能字符串直译，voice 字符串重写。",
+      "why": "几何能翻译，声音不能。英文产品语域是一条窄带（介于正式与随意的中间档），中文只有 您/你 两档，中间几乎没有过渡；「You're all set.」这类短句翻过去要么幼稚要么官僚，三词标题的节奏在译文里也保不住。反直觉的是：声音越强，越难翻译。",
+      "fix": "把字符串分两类：functional（标签、字段名、错误原因、设置项）直译并守住 MY-UI-01~08；voice（空状态、成功提示、标语）重写而不是翻译；上线前做一次 EN→ZH→EN（或 ZH→EN→ZH）round-trip，用你能判断的语言读结果。",
+      "signals": [
+        "oops",
+        "you're all set",
+        "hang tight",
+        "nothing here yet",
+        "something went wrong"
+      ],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Don't translate vibe",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
+      "accessed": "2026-11-13",
+      "confidence": "佐证"
+    },
+    {
+      "id": "MY-UI-10",
+      "severity_hint": "low",
+      "applies_to": "需要 RTL 或非拉丁语言支持的站点；显示层与排序/分词 API",
+      "rule": "RTL 下按关系而非位置布局；同时留意把拉丁假设写进布局与 API 的地方（本轮只记录，不进 MVP）。",
+      "why": "编码顺序的东西（返回箭头、进度、滑块、步骤流）要镜像，表现约定或实物的东西（时钟、播放控制、对勾）不动，数字不镜像——阿拉伯数字在 RTL 行里仍从左到右，一行里同时有两个方向。另一类同源盲点是拉丁假设：ch/ex 按拉丁字形定义，toUpperCase() 假设 case 存在，排序、字符串长度、搜索分词、截断都默认拉丁。",
+      "fix": "逻辑属性（margin-inline-start、inset-inline）、flex/grid 自然顺序、数字与代码用 bidi isolate；显示层不做 locale 无关的大小写变换；排序用 Intl.Collator；CJK 标点（text-spacing-trim / text-autospace）与竖排列入后续。",
+      "signals": [],
+      "source": {
+        "type": "secondary",
+        "title": "Rene Wang, Build Interfaces That Survive Translation，§Pass the mirror test / §Distrust the units",
+        "url": "https://rene.wang/essay/build-interfaces-that-survive-translation"
+      },
       "accessed": "2026-11-13",
       "confidence": "佐证"
     }
