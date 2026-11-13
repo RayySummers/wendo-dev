@@ -190,6 +190,41 @@
   ]
 }
 
+// ---------- 界面候选与后续项（声音层 / RTL 记录） ----------
+#let candidates = report.at("interface_candidates", default: ())
+#if candidates.len() > 0 [
+  #section[界面候选与后续项]
+  #text(size: 8.6pt, fill: muted)[
+    以下是提示，不是缺陷：声音层未做 round-trip 前不判为问题，RTL 本轮只记录。
+  ]
+  #v(5pt)
+  #for candidate in candidates {
+    block(breakable: false, below: 11pt, width: 100%)[
+      #block(
+        width: 100%,
+        fill: rgb("#f7f8fb"),
+        stroke: (left: 2.4pt + warm),
+        inset: (x: 9pt, y: 6pt),
+        radius: (right: 4pt),
+      )[
+        #text(font: quote-font, size: 9.6pt, fill: rgb("#2b2f36"), candidate.quote)
+      ]
+      #v(4pt)
+      #block(
+        width: 100%,
+        fill: rgb("#ffffff"),
+        stroke: 0.6pt + border,
+        inset: (x: 8pt, y: 4pt),
+        radius: 4pt,
+      )[
+        #text(font: mono-font, size: 8pt, fill: rgb("#3d4552"), candidate.evidence)
+      ]
+      #v(4pt)
+      #text(size: 9pt, fill: muted, candidate.suggestion)
+    ]
+  }
+]
+
 // ---------- 本次无法判断 ----------
 #section[本次无法判断]
 #for item in report.not_assessable {

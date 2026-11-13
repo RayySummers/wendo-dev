@@ -95,6 +95,56 @@ export const INTERFACE_RULES: Record<InterfaceRuleId, InterfaceRule> = {
     why: "同一屏里字号、字重的层次很少，层级主要靠颜色和边框区分。拉丁文字自带大小写、斜体等通道，中文没有这些通道，只能拿颜色和框线来补；换成英语或马来语后文字长度一变、色块关系先乱，读者就分不清哪句是标题、哪句是补充说明。",
     fix: "把关键层级落到字号和字重上（标题更大更粗），颜色只做状态标记；改完再按目标语言检查每个层级的对比度与主次是否还成立。",
   },
+
+  "IF-SIZE-01": {
+    id: "IF-SIZE-01",
+    kbRule: "MY-UI-04",
+    channel: "legibility",
+    mechanism: "小字号",
+    label: "小字号在 CJK 下低于可读下限",
+    why: "字号已经压到 11px 及以下。拉丁字靠外形轮廓区分，这个尺寸还能认；CJK 靠内部笔画区分（未/末只差一条横线长短），像素不够就糊成一团。中文或日文版本在同样字号下会明显更难读，而目标语言往往比当前语言需要更多行，缩字号又会被拿去当「放得下」的手段。",
+    fix: "正文字号提到 14px 以上（CJK 12px 只是地板），配套行高 1.5；承载正文信息的角标不要用 10–11px。需要腾空间时先换行、再考虑删减，不要继续缩字号。",
+  },
+
+  "IF-DENSITY-01": {
+    id: "IF-DENSITY-01",
+    kbRule: "MY-UI-06",
+    channel: "density",
+    mechanism: "首屏动作过多",
+    label: "首屏可点元素过多且没有唯一主 CTA",
+    why: "首屏塞了远超常规数量的链接、按钮与卡片，而且看不出唯一的主操作。中文靠字符密度还能把这些并排塞下，换成英语或马来语后每个标签都会变长、换行或截断，原本就弱的主次会先塌，读者不知道该点哪里。密度换来的是空间，不是阅读时间。",
+    fix: "首屏收敛到一个主 CTA，次要入口收进导航或折叠区；促销与角标做排期，不要同屏叠加；不要用「中文一屏能放 N 个」来论证英文版布局。",
+  },
+
+  "IF-WORD-01": {
+    id: "IF-WORD-01",
+    kbRule: "MY-UI-07",
+    channel: "wording",
+    mechanism: "副词补主次",
+    label: "用「仅 / 一键 / just」补设计",
+    why: "按钮或说明用「仅 / 一键 / 立即 / just / only / simply」这类副词去区分主次或掩盖多步操作。中文里「仅」只占几个像素，补得上；翻成英文要多好几个字符，既补不上又更啰嗦，而且仍然没说清主次。",
+    fix: "先用位置、分组、尺寸表达主次，再改文案：把次要动作移开，文案写全（例如 Save to collection / Publish as list），不要用副词省字；视觉上省掉的词要在 aria-label 里写全。",
+  },
+
+  "IF-INPUT-01": {
+    id: "IF-INPUT-01",
+    kbRule: "MY-UI-08",
+    channel: "input",
+    mechanism: "硬限长",
+    label: "输入框硬限长没有业务理由",
+    why: "输入框写了很短的 maxlength。英文 8 个键换 8 个字形，中文「设置」6 个键加一次选词才换 2 个字形，同样的字数对 CJK 用户意味着高得多的输入成本；长度上限按当前语言拍板，换语言后要么让人写不完，要么根本没有余量。",
+    fix: "长度上限只表达业务上限并给足余量，配「还能输入 N 字」的可见反馈；确实要限长的字段（邮编、验证码）单独标注，不要套用到备注、地址这类自然语言输入。",
+  },
+
+  "IF-INPUT-02": {
+    id: "IF-INPUT-02",
+    kbRule: "MY-UI-08",
+    channel: "input",
+    mechanism: "Enter / 空格被劫持",
+    label: "Enter 提交或空格替换没有考虑输入法",
+    why: "内联脚本在 Enter 上直接提交，或把空格替换成 `-`，都没有判断输入法组合状态。中文、日文用户按 Enter 是在选词，这一下会直接触发提交或发送；空格替换则会把正常词组切碎。",
+    fix: "Enter 提交前判断 `event.isComposing`（或 `compositionstart/end` 状态）；空格替换只用于 slug 字段；搜索支持拼音与分词，快捷键避开组合期。",
+  },
 };
 
 export const INTERFACE_RULE_ORDER: InterfaceRuleId[] = [
@@ -105,7 +155,12 @@ export const INTERFACE_RULE_ORDER: InterfaceRuleId[] = [
   "IF-WRAP-02",
   "IF-WRAP-03",
   "IF-WRAP-04",
+  "IF-SIZE-01",
   "IF-HIER-01",
+  "IF-DENSITY-01",
+  "IF-WORD-01",
+  "IF-INPUT-01",
+  "IF-INPUT-02",
 ];
 
 export function ruleFor(id: InterfaceRuleId): InterfaceRule {

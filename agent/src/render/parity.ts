@@ -49,6 +49,13 @@ export function reportTexts(report: Report): ReportText[] {
       { label: `strengths[${index}].why`, value: strength.why },
     );
   });
+  (report.interface_candidates ?? []).forEach((candidate, index) => {
+    items.push(
+      { label: `interface_candidates[${index}].quote`, value: candidate.quote },
+      { label: `interface_candidates[${index}].evidence`, value: candidate.evidence },
+      { label: `interface_candidates[${index}].suggestion`, value: candidate.suggestion },
+    );
+  });
   report.not_assessable.forEach((item, index) => {
     items.push(
       { label: `not_assessable[${index}].item`, value: item.item },

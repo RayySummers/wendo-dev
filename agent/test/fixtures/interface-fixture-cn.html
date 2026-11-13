@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<style>
+  body { font-family: "Inter", "PingFang SC", sans-serif; font-size: 16px; }
+  .hero-title { font-size: 25px; line-height: 1.2; }
+  .sku-title { height: 40px; width: 240px; overflow: hidden; font-size: 16px; line-height: 20px; }
+  .mixed-sku { width: 140px; word-break: break-all; font-size: 14px; }
+  .badge { font-size: 10px; color: #fff; background: #d32f2f; }
+  .nav { display: flex; }
+  .nav > div { width: 24ch; }
+  .banner { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+</style>
+</head>
+<body>
+  <div class="hero-title">Bear Kitchen 小熊厨房</div>
+  <div class="sku-title">Bear Electric Food Steamer BFS-C60L 6L Multifunction Double Layer 2 Tiers</div>
+  <span class="badge">仅剩 2 件</span>
+  <div class="banner">Free shipping over RM150</div>
+  <div class="mixed-sku">Bear Multifunction Steamer Pengukus Elektrik</div>
+  <p>You're all set.</p>
+  <nav class="nav"><div>Home</div><div>Products</div><div>Support</div><div>Contact</div></nav>
+  <button>仅保存</button>
+  <button onclick="save()">Save to collection</button>
+  <form action="/search"><input id="kw" name="note" type="text" maxlength="20" placeholder="写下你的备注"
+     onkeydown="if(event.key==='Enter'){submit();}" oninput="this.value=this.value.replace(/ /g,'-')"></form>
+</body>
+</html>

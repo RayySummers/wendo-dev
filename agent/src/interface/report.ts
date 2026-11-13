@@ -1,4 +1,4 @@
-import type { Dimension, Risk } from "../types.js";
+import type { Dimension, InterfaceCandidateEntry, Risk } from "../types.js";
 import { describeFinding } from "./rules.js";
 import { interfaceDimensionNote, type InterfaceAnalysis } from "./analyze.js";
 
@@ -45,7 +45,12 @@ export function mergeInterfaceIntoReport(
   report: { risks: Risk[]; dimensions: Dimension[] },
   analysis: InterfaceAnalysis,
   options: MergeOptions = {},
-): { risks: Risk[]; dimensions: Dimension[]; injected: number } {
+): {
+  risks: Risk[];
+  dimensions: Dimension[];
+  interfaceCandidates: InterfaceCandidateEntry[];
+  injected: number;
+} {
   const injected = interfaceRisks(analysis);
 
   const ranked = [...injected, ...report.risks]
@@ -70,5 +75,14 @@ export function mergeInterfaceIntoReport(
       : dimension,
   );
 
-  return { risks: ranked, dimensions, injected: injected.length };
+  const interfaceCandidates: InterfaceCandidateEntry[] = analysis.candidates.map((candidate) => ({
+    rule: candidate.rule,
+    kind: candidate.kind,
+    quote: candidate.quote,
+    selector: candidate.selector,
+    evidence: candidate.evidence,
+    suggestion: candidate.suggestion,
+  }));
+
+  return { risks: ranked, dimensions, interfaceCandidates, injected: injected.length };
 }

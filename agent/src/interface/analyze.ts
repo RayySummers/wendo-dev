@@ -1,10 +1,36 @@
 import { INTERFACE_RULE_ORDER, INTERFACE_RULES } from "./rules.js";
 import type {
+  InterfaceCandidate,
   InterfaceElementSnapshot,
   InterfaceFinding,
+  InterfaceFormSnapshot,
   InterfaceRuleId,
   InterfaceSnapshot,
 } from "./types.js";
+
+/** 与抓取侧保持一致：这些 input type 不承载自然语言输入。 */
+const NON_TEXT_INPUT_TYPES = new Set([
+  "hidden",
+  "submit",
+  "button",
+  "reset",
+  "image",
+  "file",
+  "checkbox",
+  "radio",
+  "email",
+  "tel",
+  "password",
+  "number",
+  "date",
+  "time",
+  "datetime-local",
+  "month",
+  "week",
+  "color",
+  "range",
+  "url",
+]);
 
 /**
  * 目标语言相对当前文案的膨胀系数。
@@ -349,6 +375,209 @@ function checkHierarchy(elements: InterfaceElementSnapshot[], stats: HierarchySt
   return [findingsFor("IF-HIER-01", "medium", representative, evidence)];
 }
 
+const CJK_TEXT = /[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\u3041-\u30ff]/;
+
+/**
+ * IF-SIZE-01（MY-UI-04）：字号压到 CJK 可读下限以下。
+ *
+ * 只报「会承载阅读」的文本：整段说明、商品名、价格这类；单个角标数字也报，
+ * 因为角标在大促界面里经常就是唯一的促销信息载体。
+ */
+function checkSmallType(
+  elements: InterfaceElementSnapshot[],
+  documentLang: string | null | undefined,
+): InterfaceFinding[] {
+  // 规则包明确排除「拉丁文 10px」：拉丁靠轮廓区分，小字号本身不是发现。
+  // 只有当页面语言是 CJK、或这段文字本身就是 CJK 时才判。
+  const pageIsCjk = /^(zh|ja|ko)\b/i.test((documentLang ?? "").trim());
+  const findings: InterfaceFinding[] = [];
+  for (const element of elements) {
+    if (element.font_size_px > 11) continue;
+    const text = element.text.trim();
+    if (text.length < 2) continue;
+    // 纯图标 / 纯符号（货币符号、单个数字除外）不当作可读性问题。
+    if (!/[\p{L}\p{N}]/u.test(text)) continue;
+    if (text.length <= 1 && !CJK_TEXT.test(text)) continue;
+
+    const isCjk = CJK_TEXT.test(text);
+    if (!isCjk && !pageIsCjk) continue;
+    const evidence = evidenceLine(
+      "IF-SIZE-01",
+      [
+        `font-size:${round(element.font_size_px)}px`,
+        `line-height:${round(element.line_height_px)}px`,
+        isCjk ? "当前文本已是 CJK，低于 12px 可读下限" : "目标语言为 CJK 时低于 12px 可读下限",
+      ],
+      element.selector,
+    );
+    findings.push(findingsFor("IF-SIZE-01", element.font_size_px <= 10 ? "medium" : "low", element, evidence));
+  }
+  return findings;
+}
+
+/** 首屏动作密度阈值（编辑判断）：与知识库 MY-UI-06 一致，本包不预设「同类基线」，只做显著偏离。 */
+const DENSITY_ACTIONS = 40;
+const DENSITY_UNIQUE_TARGETS = 30;
+
+/**
+ * IF-DENSITY-01（MY-UI-06）：可点元素过多、且没有任何主次区分。
+ *
+ * 口径限制（会写进证据）：静态抓取量不到「首屏」，这里数的是**整页**可点元素；
+ * 也没有同品类基线（RAY-673 要求基线由本单给出，目前只有这一个站点样本），
+ * 所以判据取得很保守——数量显著偏离常规，且连一个视觉上突出的主操作都找不到。
+ * 只要存在若干带底色/更大字号的按钮，就认为页面搭了层级，不报。
+ */
+function checkActionDensity(elements: InterfaceElementSnapshot[]): InterfaceFinding[] {
+  const interactive = elements.filter((element) => element.is_interactive);
+  if (interactive.length < DENSITY_ACTIONS) return [];
+
+  const distinctTexts = new Set(
+    interactive.map((element) => element.text.trim().toLowerCase()).filter(Boolean),
+  );
+  if (distinctTexts.size < DENSITY_UNIQUE_TARGETS) return [];
+
+  // 主 CTA：字号明显大于其他动作、或带独立底色的动作。
+  // 只要存在若干这样的动作，就说明页面确实搭了层级；只有「一个都没有」才谈得上没有主次。
+  const sizes = interactive.map((element) => element.font_size_px);
+  const median = medianOf(sizes);
+  const promoted = interactive.filter(
+    (element) =>
+      element.font_size_px >= median * 1.25 ||
+      (element.background_color !== null &&
+        !["transparent", "inherit", "none", "rgba(0, 0, 0, 0)"].includes(element.background_color)),
+  );
+  if (promoted.length > 0) return [];
+
+  const representative = interactive.reduce((best, element) =>
+    element.text.length > best.text.length ? element : best,
+  );
+  const evidence = evidenceLine(
+    "IF-DENSITY-01",
+    [
+      `整页可点元素 ${interactive.length} 个 / 不同文案 ${distinctTexts.size} 条`,
+      `字号中位数 ${round(median)}px，没有任何视觉上突出的主操作`,
+    ],
+    representative.selector,
+  );
+  return [findingsFor("IF-DENSITY-01", "medium", representative, evidence)];
+}
+
+/** 用副词区分主次或掩盖多步操作（MY-UI-07）。 */
+const PATCH_WORD = /(仅|一键|立即|轻松|只需|只需一键|\bjust\b|\bonly\b|\bsimply\b|\beasily\b)/i;
+
+function checkPatchWords(elements: InterfaceElementSnapshot[]): InterfaceFinding[] {
+  const findings: InterfaceFinding[] = [];
+  const seen = new Set<string>();
+  for (const element of elements) {
+    // 规则说的是「用副词区分主次动作」，所以只判可点元素；「仅剩 2 件」这类陈述不是它的靶子。
+    if (!element.is_interactive) continue;
+    const text = element.text.trim();
+    if (!text || text.length > 40) continue;
+    if (!PATCH_WORD.test(text)) continue;
+    if (seen.has(text.toLowerCase())) continue;
+    seen.add(text.toLowerCase());
+    const matched = text.match(PATCH_WORD)?.[0] ?? "";
+    const evidence = evidenceLine(
+      "IF-WORD-01",
+      [`按钮/标签文案含「${matched}」`, `完整文案「${text}」`],
+      element.selector,
+    );
+    findings.push(findingsFor("IF-WORD-01", "low", element, evidence));
+  }
+  return findings;
+}
+
+/** 不算「自然语言输入」的字段（规则包排除项）：邮箱、电话、验证码等 Latin-only 字段。 */
+const LATIN_ONLY_FIELD = /(email|e-mail|phone|tel|mobile|fax|zip|postal|code|captcha|otp|slug|sku|search|q)$/i;
+
+/**
+ * IF-INPUT-01（MY-UI-08）：输入框硬限长。
+ *
+ * 判据是「短上限 + 自然语言字段」：地址 30 字、备注 100 字这类会在中文输入下先撞墙。
+ * 搜索框与邮箱/电话/验证码不算（规则包排除项）。
+ */
+function checkHardMaxlength(forms: InterfaceFormSnapshot[]): InterfaceFinding[] {
+  const findings: InterfaceFinding[] = [];
+  for (const form of forms) {
+    if (form.tag !== "input" && form.tag !== "textarea") continue;
+    if (form.type && NON_TEXT_INPUT_TYPES.has(form.type)) continue;
+    if (form.maxlength === null || form.maxlength <= 0) continue;
+    // 搜索框限长不构成缺陷：查询本来就是短串。
+    if (form.type === "search" || LATIN_ONLY_FIELD.test(form.name ?? "") || /search/i.test(form.placeholder ?? "")) {
+      continue;
+    }
+    const limit = form.maxlength;
+    if (limit > 60) continue;
+    const severity = limit <= 20 ? "medium" : "low";
+    const evidence = [
+      "MY-UI-08",
+      "硬限长",
+      `maxlength=${limit}`,
+      form.placeholder ? `placeholder「${form.placeholder}」` : `字段 ${form.name ?? "(未命名)"}`,
+      form.inside_form ? "位于表单内" : "独立输入框",
+      form.selector,
+    ].join(" · ");
+    findings.push({
+      rule: "IF-INPUT-01",
+      channel: INTERFACE_RULES["IF-INPUT-01"].channel,
+      severity,
+      quote: form.placeholder || form.aria_label || `maxlength=${limit}`,
+      selector: form.selector,
+      evidence,
+      occurrences: 1,
+    });
+  }
+  return findings;
+}
+
+const ENTER_SUBMIT = /(key(code)?\s*(===?|==)\s*['"]Enter['"]|keyCode\s*(===?|==)\s*13|which\s*(===?|==)\s*13)/i;
+const SPACE_REWRITE = /replace\s*\(\s*\/[^/]*\\s[^/]*\/[gi]*\s*,\s*['"`]-/i;
+const COMPOSING_GUARD = /isComposing|compositionstart|compositionend|compositionupdate/i;
+
+/**
+ * IF-INPUT-02（MY-UI-08）：Enter 提交 / 空格替换没有判输入法组合态。
+ *
+ * 只做静态判据：内联脚本里出现 Enter 提交或空格转 `-`，且通篇找不到 isComposing 判断。
+ * 运行时行为（组合期是否真的抢键）标注为「需要交互复核」，不写成确定结论。
+ */
+function checkInputHandlers(forms: InterfaceFormSnapshot[]): InterfaceFinding[] {
+  const findings: InterfaceFinding[] = [];
+  for (const form of forms) {
+    const all = Object.values(form.handlers).join(" ");
+    if (!all) continue;
+    const enters = ENTER_SUBMIT.test(all);
+    const spaces = SPACE_REWRITE.test(all);
+    if (!enters && !spaces) continue;
+    if (COMPOSING_GUARD.test(all)) continue;
+
+    const mechanism = enters && spaces ? "Enter 提交 + 空格替换" : enters ? "Enter 直接提交" : "空格替换成 -";
+    const evidence = [
+      "MY-UI-08",
+      mechanism,
+      "未判断 isComposing",
+      form.placeholder ? `placeholder「${form.placeholder}」` : `字段 ${form.name ?? "(未命名)"}`,
+      form.selector,
+    ].join(" · ");
+    findings.push({
+      rule: "IF-INPUT-02",
+      channel: INTERFACE_RULES["IF-INPUT-02"].channel,
+      severity: enters ? "medium" : "low",
+      quote: form.placeholder || form.aria_label || form.name || form.selector,
+      selector: form.selector,
+      evidence,
+      occurrences: 1,
+    });
+  }
+  return findings;
+}
+
+function medianOf(values: number[]): number {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 0 ? ((sorted[mid - 1] as number) + (sorted[mid] as number)) / 2 : (sorted[mid] as number);
+}
+
 function mode(values: number[]): number | undefined {
   if (values.length === 0) return undefined;
   const counts = new Map<number, number>();
@@ -366,6 +595,11 @@ export interface InterfaceAnalysis {
   findings: InterfaceFinding[];
   /** 交给报告的条目：同一规则合并，按严重程度取前几条。 */
   reported: InterfaceFinding[];
+  /**
+   * 只作提示的候选：MY-UI-09 声音层（没做 round-trip 不写成缺陷）、
+   * MY-UI-10 RTL（本轮只记录）。不进 risks，报告单列一节。
+   */
+  candidates: InterfaceCandidate[];
   hierarchy: HierarchyStats;
   captured: boolean;
   reason?: string;
@@ -390,6 +624,7 @@ export function analyzeInterface(snapshot: InterfaceSnapshot | undefined): Inter
     return {
       findings: [],
       reported: [],
+      candidates: [],
       hierarchy: emptyHierarchy,
       captured: false,
       reason: snapshot?.reason ?? "抓取结果里没有界面样式快照",
@@ -399,6 +634,7 @@ export function analyzeInterface(snapshot: InterfaceSnapshot | undefined): Inter
   const elements = snapshot.elements ?? [];
   const hierarchy = measureHierarchy(elements);
 
+  const forms = snapshot.forms ?? [];
   const all: InterfaceFinding[] = [
     ...checkCharUnitWidths(elements),
     ...checkPinnedBox(elements),
@@ -407,7 +643,12 @@ export function analyzeInterface(snapshot: InterfaceSnapshot | undefined): Inter
     ...checkDocumentLang(snapshot),
     ...checkLongTokens(snapshot),
     ...checkTightHeadings(elements),
+    ...checkSmallType(elements, snapshot.lang),
     ...checkHierarchy(elements, hierarchy),
+    ...checkActionDensity(elements),
+    ...checkPatchWords(elements),
+    ...checkHardMaxlength(forms),
+    ...checkInputHandlers(forms),
   ];
 
   // 同一规则合并：保留最严重的一条作为代表，其余只计数。
@@ -435,7 +676,150 @@ export function analyzeInterface(snapshot: InterfaceSnapshot | undefined): Inter
     )
     .slice(0, MAX_REPORTED);
 
-  return { findings: merged, reported, hierarchy, captured: true };
+  return {
+    findings: merged,
+    reported,
+    candidates: collectCandidates(snapshot, elements),
+    hierarchy,
+    captured: true,
+  };
+}
+
+// ---------------------------------------------------------------- 候选（不进 risks）
+
+/**
+ * 声音层短句（MY-UI-09 判据 1）：高语域依赖的收尾/打气式文案。
+ *
+ * 这类句子直译会变平，规则包要求「重写，不翻译」，而且**没做 round-trip 不写成缺陷**，
+ * 所以只作为候选提示，报告里写成建议。
+ */
+const VOICE_PHRASES =
+  /\b(oops|yay|nice|awesome|you'?re all set|all set|hang tight|let'?s get you set up|get more done|nothing was lost|give it another go)\b/i;
+
+/** 三词以内、以句号收尾的短标语：节奏本身就是卖点，翻译后最容易丢。 */
+function looksLikeSlogan(text: string): boolean {
+  const trimmed = text.trim();
+  if (!/[.!]$/.test(trimmed)) return false;
+  const words = trimmed.replace(/[.!]+$/, "").trim().split(/\s+/);
+  if (words.length === 0 || words.length > 3) return false;
+  return /[A-Za-z]/.test(trimmed);
+}
+
+/**
+ * MY-UI-09 声音层候选 + 字体回退候选。
+ *
+ * 只在「能给出具体引用」时产出：命中固定句式、短标语、或页面层级依赖拉丁字面却没写 CJK 回退。
+ * 规则包的红线是「没做 round-trip 不写成缺陷」，因此这些永远进 candidates，不进 risks。
+ */
+function collectCandidates(
+  snapshot: InterfaceSnapshot,
+  elements: InterfaceElementSnapshot[],
+): InterfaceCandidate[] {
+  return [...voiceCandidates(snapshot, elements), ...rtlCandidates(snapshot)];
+}
+
+function voiceCandidates(
+  snapshot: InterfaceSnapshot,
+  elements: InterfaceElementSnapshot[],
+): InterfaceCandidate[] {
+  const candidates: InterfaceCandidate[] = [];
+
+  // 1) 固定句式 / 短标语
+  const seen = new Set<string>();
+  for (const element of elements) {
+    const text = element.text.trim();
+    if (!text || text.length > 80) continue;
+    const key = text.toLowerCase();
+    if (seen.has(key)) continue;
+
+    const phrase = text.match(VOICE_PHRASES)?.[0];
+    const slogan = !phrase && looksLikeSlogan(text) && element.font_size_px >= 20;
+    if (!phrase && !slogan) continue;
+
+    seen.add(key);
+    candidates.push({
+      rule: "MY-UI-09",
+      kind: "voice",
+      quote: text.slice(0, 80),
+      selector: element.selector,
+      evidence: [
+        "MY-UI-09",
+        phrase ? `高语域短句「${phrase}」` : "短标语（节奏即卖点）",
+        `font-size:${round(element.font_size_px)}px`,
+        "未做 round-trip，仅候选",
+      ].join(" · "),
+      suggestion:
+        "这类字符串按声音层处理：重写而不是直译（例如按目标语言重新组织一句等价的语气），并在 EN→ZH→EN（或 ZH→EN→ZH）之后复核语气是否变平、变幼稚或变官僚。",
+    });
+    if (candidates.length >= 3) break;
+  }
+
+  // 2) 页面层级依赖拉丁 display face，却没有声明 CJK 回退
+  if (snapshot.cjk_font_declared === false) {
+    // 嵌套元素会把同一句话重复算多次（下拉菜单的 "Login" 会出现 3 层），所以按文案去重。
+    const distinctText = new Set<string>();
+    const big = elements.filter((element) => {
+      if (element.font_size_px < 24) return false;
+      const text = element.text.trim();
+      if (text.length < 2) return false;
+      const key = text.toLowerCase();
+      if (distinctText.has(key)) return false;
+      distinctText.add(key);
+      return true;
+    });
+    // 代表样本取字号最大、其次文案最长的那一条，避免拿 "Login" 这种短标签当标题证据。
+    const declared = [...big]
+      .filter((element) => element.font_family)
+      .sort(
+        (a, b) =>
+          b.font_size_px - a.font_size_px || b.text.trim().length - a.text.trim().length,
+      )[0];
+    if (declared && big.length >= 2) {
+      const sizes = [...new Set(big.map((element) => Math.round(element.font_size_px)))].sort((a, b) => a - b);
+      candidates.push({
+        rule: "MY-UI-09",
+        kind: "voice",
+        quote: declared.text.slice(0, 60),
+        selector: declared.selector,
+        evidence: [
+          "MY-UI-09",
+          `${big.length} 处标题级文字（${sizes.join("/")}px）`,
+          `字体栈「${(declared.font_family ?? "(未声明)").slice(0, 60)}」没有声明 CJK 字面`,
+        ].join(" · "),
+        suggestion:
+          "在字体栈里显式补 CJK 回退（例如 Noto Sans SC / Source Han Sans），并逐档检查字重与行高：中文版整体退回系统字体后，标题的层级与节奏会跟着变。",
+      });
+    }
+  }
+  return candidates;
+}
+
+/**
+ * MY-UI-10：RTL / Latin 假设遗留 —— 按父单决定**本轮只记录**，不做检测结论。
+ *
+ * 有 dir 声明就把实测值写下来（供后续镜像测试对照）；没有就记「未声明」。
+ * 这一条不产生风险条目，也不影响维度状态。
+ */
+function rtlCandidates(snapshot: InterfaceSnapshot): InterfaceCandidate[] {
+  const dir = (snapshot.dir ?? "").trim();
+  const lang = (snapshot.lang ?? "").trim();
+  if (dir.toLowerCase() === "rtl") return [];
+  return [
+    {
+      rule: "MY-UI-10",
+      kind: "rtl",
+      quote: snapshot.html_open_tag?.trim() || "<html>",
+      selector: "html",
+      evidence: [
+        "MY-UI-10",
+        dir ? `dir="${dir}"` : "未声明 dir",
+        lang ? `lang="${lang}"` : "未声明 lang",
+        "RTL 镜像测试未执行（本轮只记录）",
+      ].join(" · "),
+      suggestion:
+        "后续扩展：给根节点加 dir=\"rtl\" 做一次镜像测试，按「关系而非位置」复核（返回箭头、进度、步骤流要镜像；时钟、播放控制、对勾不动；数字不镜像）；同时检查 left/right 定位、translateX、写死的 flex order、以及 toUpperCase() 这类拉丁假设。",
+    },
+  ];
 }
 
 /** 界面可翻译性维度的一句话依据。 */

@@ -37,6 +37,7 @@ TRACKED_PROPERTIES: frozenset[str] = frozenset(
         "line-height",
         "letter-spacing",
         "text-transform",
+        "font-family",
         "white-space",
         "overflow",
         "overflow-x",
@@ -86,6 +87,32 @@ SKIP_SELECTOR = re.compile(
     r"::?(before|after|placeholder|selection|first-line|first-letter|marker|backdrop)\b"
     r"|:(hover|focus|active|visited|focus-within|focus-visible|checked|disabled|target|link)\b",
     re.IGNORECASE,
+)
+
+# 可点元素：MY-UI-06 用它数首屏 CTA 密度，MY-UI-07 用它找并列的主次动作。
+INTERACTIVE_TAGS = frozenset({"a", "button"})
+INTERACTIVE_ROLES = frozenset({"button", "link", "tab", "menuitem"})
+
+# 表单/输入：MY-UI-08 只看这些元素的静态属性（不跑交互）。
+FORM_TAGS = frozenset({"input", "textarea", "select", "form", "label"})
+
+# 字体栈里出现这些词就当「已声明 CJK 回退」（MY-UI-09 判据 3）。
+CJK_FONT_HINTS = (
+    "cjk",
+    "han",
+    "hei",
+    "song",
+    "kai",
+    "ming",
+    "yahei",
+    "pingfang",
+    "noto sans sc",
+    "noto serif sc",
+    "source han",
+    "hiragino",
+    "ms gothic",
+    "malgun",
+    "sarabun",
 )
 
 SKIP_TAGS = frozenset(
@@ -263,7 +290,11 @@ def _inline_css(response: Any) -> tuple[str, int]:
     except Exception:
         return "", 0
     for block in blocks:
-        text = block.get_all_text() or ""
+        # get_all_text() 会跳过 style（按「可见文本」处理），样式表内容只在 _root.text 里。
+        raw = getattr(block, "_root", block)
+        text = (getattr(raw, "text", "") or "") + "".join(
+            child.tail or "" for child in raw if isinstance(child.tag, str)
+        )
         if not text.strip():
             continue
         if size + len(text) > MAX_INLINE_CSS_CHARS:
@@ -584,6 +615,106 @@ def _long_tokens(elements: list[dict[str, Any]], min_length: int = 14) -> list[d
     return found
 
 
+_CJK_SEARCH_HINTS = re.compile(r"[\u4e00-\u9fff]")
+
+# 只对「人写的自然语言」限长有意义；邮箱/电话/验证码这类字段不参与（规则包排除项）。
+NON_TEXT_INPUT_TYPES = frozenset(
+    {
+        "hidden",
+        "submit",
+        "button",
+        "reset",
+        "image",
+        "file",
+        "checkbox",
+        "radio",
+        "email",
+        "tel",
+        "password",
+        "number",
+        "date",
+        "time",
+        "datetime-local",
+        "month",
+        "week",
+        "color",
+        "range",
+        "url",
+    }
+)
+
+
+def _inline_handlers(node: Any) -> dict[str, str]:
+    """内联事件属性：Scrapling 的 Selector 没有 lxml 的 get()，统一走 _root。"""
+    handlers: dict[str, str] = {}
+    raw = getattr(node, "_root", node)
+    for name in ("onkeydown", "onkeyup", "onkeypress", "oninput", "onchange", "onsubmit"):
+        value = raw.get(name)
+        if value:
+            handlers[name] = re.sub(r"\s+", " ", value).strip()
+    return handlers
+
+
+def _collect_forms(response: Any) -> list[dict[str, Any]]:
+    """静态表单快照：MY-UI-08 只看属性与内联 JS，不执行任何交互。"""
+    records: list[dict[str, Any]] = []
+    seen: set[tuple[Any, ...]] = set()
+    try:
+        nodes = response.css("input, textarea, select, form")
+    except Exception:
+        return records
+    for node in nodes:
+        raw = getattr(node, "_root", node)
+        tag = (raw.tag or "").lower()
+        attrib = {k: (v or "") for k, v in raw.attrib.items()}
+        handlers = _inline_handlers(node)
+        record: dict[str, Any] = {
+            "selector": _css_path(raw),
+            "tag": tag,
+            "type": (attrib.get("type") or ("textarea" if tag == "textarea" else "")).strip().lower() or None,
+            "name": (attrib.get("name") or "").strip() or None,
+            "placeholder": (attrib.get("placeholder") or "").strip() or None,
+            "maxlength": _int_attr(attrib.get("maxlength")),
+            "minlength": _int_attr(attrib.get("minlength")),
+            "autocomplete": (attrib.get("autocomplete") or "").strip() or None,
+            "inputmode": (attrib.get("inputmode") or "").strip() or None,
+            "aria_label": (attrib.get("aria-label") or "").strip() or None,
+            "handlers": handlers,
+            "inside_form": tag == "form"
+            or (raw.getparent() is not None and _has_form_ancestor(raw)),
+        }
+        if tag == "form":
+            record["action"] = (attrib.get("action") or "").strip() or None
+            record["method"] = (attrib.get("method") or "").strip().lower() or None
+        # 同构模板里的重复控件（每个商品卡一个隐藏 input）合并成一条，避免 payload 膨胀。
+        signature = (record["selector"], record["tag"], record["type"], record["maxlength"], record["name"])
+        if signature in seen:
+            continue
+        seen.add(signature)
+        records.append(record)
+    return records
+
+
+def _has_form_ancestor(node: Any) -> bool:
+    parent = node.getparent()
+    depth = 0
+    while parent is not None and depth < 12:
+        if isinstance(parent.tag, str) and parent.tag.lower() == "form":
+            return True
+        parent = parent.getparent()
+        depth += 1
+    return False
+
+
+def _int_attr(value: Any) -> int | None:
+    if value is None:
+        return None
+    try:
+        return int(str(value).strip())
+    except (TypeError, ValueError):
+        return None
+
+
 def _viewport(response: Any) -> str | None:
     try:
         found = response.css('meta[name="viewport"]::attr(content)').get()
@@ -681,11 +812,22 @@ def extract_interface_signals(
         if _is_hidden(style, node):
             continue
 
+        attrib = {k: (v or "") for k, v in node.attrib.items()}
         elements.append(
             {
                 "selector": _css_path(node),
                 "tag": tag,
                 "text": text,
+                # 元素级 lang 覆盖：混排页面（en 页面里夹马来语商品名）只有这里看得出来。
+                "lang": (attrib.get("lang") or "").strip() or None,
+                # 截断后的全文出口：有 title / aria-label 时 MY-UI-02 从「有损」降级。
+                "title_attr": (attrib.get("title") or "").strip() or None,
+                "aria_label": (attrib.get("aria-label") or "").strip() or None,
+                "role": (attrib.get("role") or "").strip().lower() or None,
+                "is_interactive": tag in INTERACTIVE_TAGS
+                or (attrib.get("role") or "").strip().lower() in INTERACTIVE_ROLES
+                or attrib.get("onclick") is not None,
+                "font_family": (style.get("font-family") or "").strip() or None,
                 "font_size_px": round(font_px, 2),
                 "font_weight": weight,
                 "color": (style.get("color") or "").strip().lower() or None,
@@ -733,7 +875,20 @@ def extract_interface_signals(
         "stylesheets": collected["stats"],
         "elements": capped,
         "long_tokens": _long_tokens(capped),
+        "forms": _collect_forms(response),
+        "cjk_font_declared": _declares_cjk_font(computed),
     }
+
+
+def _declares_cjk_font(computed: dict[str, dict[str, Any]]) -> bool:
+    """页面是否在某个字体栈里显式写了 CJK 字面（MY-UI-09 判据 3 的前提）。"""
+    for style in computed.values():
+        family = (style.get("font-family") or "").lower()
+        if not family:
+            continue
+        if any(hint in family for hint in CJK_FONT_HINTS):
+            return True
+    return False
 
 
 def _round(value: float | None) -> float | None:

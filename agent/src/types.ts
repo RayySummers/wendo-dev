@@ -66,6 +66,16 @@ export const ReportMetaSchema = z.object({
   agent_version: z.string(),
 });
 
+/** 界面可翻译性候选：声音层（MY-UI-09）与 RTL 记录（MY-UI-10），只作提示，不是缺陷。 */
+export const InterfaceCandidateSchema = z.object({
+  rule: z.enum(["MY-UI-09", "MY-UI-10"]),
+  kind: z.enum(["voice", "rtl"]),
+  quote: z.string().trim().min(2),
+  selector: z.string().trim().min(1),
+  evidence: z.string().trim().min(2),
+  suggestion: z.string().trim().min(2),
+});
+
 export const ReportSchema = z.object({
   meta: ReportMetaSchema,
   summary: z.string().trim().min(10),
@@ -73,10 +83,15 @@ export const ReportSchema = z.object({
   strengths: z.array(StrengthSchema).min(1).max(6),
   not_assessable: z.array(NotAssessableSchema).min(1).max(8),
   dimensions: z.array(DimensionSchema).min(3).max(10),
+  /**
+   * 界面可翻译性的「候选」通道：声音层与 RTL 记录。
+   * 规则包要求这两类不做成缺陷（没 round-trip / 本轮只记录），所以单列，不进 risks。
+   */
+  interface_candidates: z.array(InterfaceCandidateSchema).optional(),
 });
 
 /** 模型只负责这五个字段；meta 由 pipeline 在代码侧补齐，避免模型编造 URL 与时间。 */
-export const ModelReportSchema = ReportSchema.omit({ meta: true }).extend({
+export const ModelReportSchema = ReportSchema.omit({ meta: true, interface_candidates: true }).extend({
   // 模型不产出来源标记与证据：这两项由界面信号在代码侧注入。
   risks: z.array(RiskCoreSchema).min(3).max(8),
 });
@@ -86,6 +101,7 @@ export type Risk = z.infer<typeof RiskSchema>;
 export type Strength = z.infer<typeof StrengthSchema>;
 export type NotAssessable = z.infer<typeof NotAssessableSchema>;
 export type Dimension = z.infer<typeof DimensionSchema>;
+export type InterfaceCandidateEntry = z.infer<typeof InterfaceCandidateSchema>;
 export type ReportMeta = z.infer<typeof ReportMetaSchema>;
 export type Report = z.infer<typeof ReportSchema>;
 export type ModelReport = z.infer<typeof ModelReportSchema>;

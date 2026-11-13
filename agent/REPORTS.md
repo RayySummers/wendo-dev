@@ -82,16 +82,48 @@
 - 明细写在 `risks` 里，条目由代码注入（`src/interface/report.ts`），规则编号用知识库的
   `MY-UI-*`（见 `knowledge/my/interface-survivability.md`，RAY-673）。
 
-三个约束：
+### 覆盖的 10 类
+
+| 类 | 知识库 | 实现 | 证据口径 |
+|---|---|---|---|
+| 1 | MY-UI-01 | IF-TRUNC-03 | `ch`/`ex` 宽度声明 |
+| 2 | MY-UI-02 | IF-TRUNC-01 / IF-TRUNC-02 | 固定高 / `line-clamp` / `nowrap` + 省略 |
+| 3 | MY-UI-03 | IF-WRAP-01..04 | `break-all`、缺 `lang`、长词、行高 < 1.2 |
+| 4 | MY-UI-04 | IF-SIZE-01 | `font-size` ≤ 11px 且承载文本 |
+| 5 | MY-UI-05 | IF-HIER-01 | 同屏字号/字重/颜色计数 |
+| 6 | MY-UI-06 | IF-DENSITY-01 | 可点元素数量 + 有无视觉主 CTA |
+| 7 | MY-UI-07 | IF-WORD-01 | 按钮/标签里的「仅 / 一键 / just」 |
+| 8 | MY-UI-08 | IF-INPUT-01 / IF-INPUT-02 | `maxlength`、内联 Enter / 空格处理 |
+| 9 | MY-UI-09 | 候选（`interface_candidates`） | 声音层与字体回退，**只作提示** |
+| 10 | MY-UI-10 | 候选（`interface_candidates`） | RTL **只记录**，不做检测结论 |
+
+### 候选通道
+
+`interface_candidates` 是可选数组，**不进 `risks`、不影响维度状态**。规则包要求：
+声音层没做 round-trip 不写成缺陷（MY-UI-09），RTL 本轮只记录（MY-UI-10）。
+
+| 字段 | 说明 |
+|---|---|
+| `rule` | `MY-UI-09` 或 `MY-UI-10` |
+| `kind` | `voice` / `rtl` |
+| `quote` | 页面原文片段（或 `<html>` 开标签） |
+| `selector` | 元素选择器 |
+| `evidence` | 规则号 + 判据 + 关键值 |
+| `suggestion` | 后续怎么做（建议，不是结论） |
+
+### 三个约束
 
 - **命中才写**：没有信号就不产出条目。
 - **有证据**：`evidence` 形如 `MY-UI-02 · 定高裁切 · height:55px · line-height:19.2px ·
   估算 4 行 / 可容纳 2.9 行 · 容器宽约 310px · <选择器>`；宽度来自声明推算时标「（估算）」。
 - **不覆盖模型条目**：合并后按严重程度排序，最多 8 条；超出时先舍弃严重程度最低的模型条目。
 
-判定口径（与知识库对齐）：MY-UI-01 `ch`/`ex` 定宽、MY-UI-02 截断（定高 / 单行省略）、
-MY-UI-03 断行（`break-all`、缺 `lang`、长词、行高 < 1.2）、MY-UI-05 层级通道。
-翻译膨胀按 **1.4 探针**估算，只有连 40% 余量都没有的容器才会被报出来。
+### 已知口径限制
+
+- 静态抓取拿不到 `scrollWidth > clientWidth` 这类渲染实测，宽度与文本宽度都是**声明推算 + 字符估算**，
+  因此只在余量明显不足时报，证据里标「（估算）」。
+- 数量不到「首屏」：MY-UI-06 数的是**整页**可点元素，且没有同品类基线，判据取保守值。
+- IME 的运行时行为（组合期是否真的抢键）需要交互复核，静态只判「脚本里有没有 `isComposing` 守卫」。
 
 ## 硬性约束
 

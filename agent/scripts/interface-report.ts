@@ -49,6 +49,8 @@ if (args.json) {
         hierarchy: analysis.hierarchy,
         captured: analysis.captured,
         findings: analysis.findings,
+        candidates: analysis.candidates,
+        forms: page.interface?.forms ?? [],
         dimension,
         risks,
       },
@@ -72,6 +74,14 @@ console.log("");
 console.log(`维度    ${dimension.name} [${dimension.status}]`);
 console.log(`说明    ${interfaceDimensionNote(analysis)}`);
 console.log("");
+
+if (analysis.candidates.length > 0) {
+  console.log(`候选 ${analysis.candidates.length} 条（不进 risks）：`);
+  for (const candidate of analysis.candidates) {
+    console.log(`  [${candidate.rule}/${candidate.kind}] ${candidate.evidence.slice(0, 110)}`);
+  }
+  console.log("");
+}
 
 if (analysis.findings.length === 0) {
   console.log("没有命中界面信号。");

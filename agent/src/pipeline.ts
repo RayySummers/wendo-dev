@@ -99,6 +99,7 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
     strengths: report.strengths,
     not_assessable: report.not_assessable,
     dimensions: merged.dimensions,
+    interface_candidates: merged.interfaceCandidates,
   };
 
   const meta: Report["meta"] = {

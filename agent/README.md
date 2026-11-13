@@ -18,11 +18,15 @@ fetch_page (Scrapling + 界面信号) → retrieve_kb (马来西亚 × 小家电
 在代码侧判断「换成英语或马来语后会不会被裁、会不会断错词、层级会不会塌」，命中才写进报告，
 没有信号就不产出条目。它是「信息层级与表达自然度」维度下的子检查，不新增维度。
 
-- 规则与文案：`src/interface/rules.ts`，编号对齐知识库 `MY-UI-01/02/03/05`
+- 规则与文案：`src/interface/rules.ts`，编号对齐知识库 `MY-UI-01..10`
   （`knowledge/my/interface-survivability.md`，RAY-673）
 - 判定与阈值：`src/interface/analyze.ts`（字符宽度估算 + 1.4 倍翻译探针）
 - 渲染与合并：`src/interface/report.ts`（`kind: interface_translation` + `evidence`）
 - 抽取脚本：`scripts/interface_signals.py`
+
+覆盖范围：01 固定宽度 / 02 截断 / 03 断行 / 04 CJK 小字号 / 05 层级通道 / 06 密度 /
+07 用词补设计 / 08 输入与 IME（静态）。第 09 类声音层与第 10 类 RTL 只进
+`interface_candidates`（提示，不是缺陷）——规则包要求没做 round-trip 不写成缺陷、RTL 只记录。
 
 不需要模型 key 就能单独核对某页命中了什么：
 
@@ -30,6 +34,8 @@ fetch_page (Scrapling + 界面信号) → retrieve_kb (马来西亚 × 小家电
 npx tsx scripts/interface-report.ts https://bears.com.my/          # 人类可读
 npx tsx scripts/interface-report.ts https://bears.com.my/ --json   # 机器可读
 ```
+
+离线测试：`npm run test`（TS 侧规则与渲染）+ `npm run test:py`（抽取器夹具，不联网）。
 
 `python3 scripts/scrape_page.py <url> <out.json> --no-interface` 可关闭抽取；抽取失败只降级为
 `interface.captured=false`，不影响正文与报告生成。

@@ -88,6 +88,28 @@ export function renderReportHtml(report: Report): string {
     )
     .join("\n");
 
+  const candidates = (report.interface_candidates ?? [])
+    .map(
+      (candidate) => `
+        <li>
+          <blockquote class="source">${escapeHtml(candidate.quote)}</blockquote>
+          <p class="evidence">${escapeHtml(candidate.evidence)}</p>
+          <p>${escapeHtml(candidate.suggestion)}</p>
+        </li>`,
+    )
+    .join("\n");
+
+  const candidatesSection = candidates
+    ? `
+  <section>
+    <h2>界面候选与后续项</h2>
+    <p class="hint">以下是提示，不是缺陷：声音层未做 round-trip 前不判为问题，RTL 本轮只记录。</p>
+    <ul>
+${candidates}
+    </ul>
+  </section>`
+    : "";
+
   const notAssessable = report.not_assessable
     .map(
       (item) => `
@@ -158,6 +180,7 @@ export function renderReportHtml(report: Report): string {
   ul { padding-left: 20px; }
   ul li { margin: 12px 0; }
   ul li p { margin: 4px 0 0; color: var(--muted); }
+  .hint { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
   .note { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 44px; padding-top: 16px; }
   @media print {
     body { background: #fff; padding: 0; }
@@ -226,6 +249,8 @@ ${strengths}
 ${notAssessable}
     </ul>
   </section>
+
+${candidatesSection}
 
   <p class="note">本报告基于该页面单页公开内容与 Wendo 马来西亚知识库自动生成，不构成法律或合规意见；认证、法规与平台政策请以官方口径为准。报告只描述可核对的页面证据，不使用评分。</p>
 </main>

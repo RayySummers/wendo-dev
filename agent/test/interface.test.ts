@@ -7,7 +7,11 @@ import {
   measureHierarchy,
 } from "../src/interface/analyze.js";
 import { CONTENT_DIMENSION_NAME, interfaceRisks, mergeInterfaceIntoReport } from "../src/interface/report.js";
-import type { InterfaceElementSnapshot, InterfaceSnapshot } from "../src/interface/types.js";
+import type {
+  InterfaceElementSnapshot,
+  InterfaceFormSnapshot,
+  InterfaceSnapshot,
+} from "../src/interface/types.js";
 import { renderReportHtml } from "../src/render/report-html.js";
 import { retrieveKb } from "../src/tools/retrieve-kb.js";
 import { validateReport } from "../src/tools/score-and-report.js";
@@ -46,6 +50,12 @@ function element(overrides: Partial<InterfaceElementSnapshot> = {}): InterfaceEl
     background_color: "#ffffff",
     border_width_px: 0,
     border_radius_px: 0,
+    lang: null,
+    title_attr: null,
+    aria_label: null,
+    role: null,
+    is_interactive: false,
+    font_family: null,
     ...overrides,
   };
 }
@@ -256,3 +266,222 @@ function buildReportWithMeta(
     },
   };
 }
+
+// ---------------------------------------------------------------- 第 4/6/7/8/9/10 类
+
+function elementWith(overrides: Partial<InterfaceElementSnapshot>): InterfaceElementSnapshot {
+  return element(overrides);
+}
+
+function formWith(overrides: Partial<InterfaceFormSnapshot>): InterfaceFormSnapshot {
+  return {
+    selector: "#q",
+    tag: "input",
+    type: "text",
+    name: "note",
+    placeholder: null,
+    maxlength: null,
+    minlength: null,
+    autocomplete: null,
+    inputmode: null,
+    aria_label: null,
+    handlers: {},
+    inside_form: true,
+    ...overrides,
+  };
+}
+
+test("MY-UI-04：11px 及以下字号命中 IF-SIZE-01，正常字号不报", () => {
+  const small = elementWith({ selector: ".badge", text: "仅剩 2 件", font_size_px: 10, line_height_px: 12 });
+  const normal = elementWith({ selector: ".body", text: "普通正文", font_size_px: 14, line_height_px: 22 });
+  const analysis = analyzeInterface(snapshot([small, normal], { lang: "zh-CN" }));
+  const finding = analysis.findings.find((item) => item.rule === "IF-SIZE-01");
+  assert.ok(finding);
+  assert.equal(finding.channel, "legibility");
+  assert.match(finding.evidence, /MY-UI-04/);
+  assert.match(finding.evidence, /font-size:10px/);
+  assert.equal(analysis.findings.filter((item) => item.rule === "IF-SIZE-01").length, 1);
+
+  // 规则包排除项：纯拉丁页面上的 10px 小字不算可读性发现
+  const latin = analyzeInterface(
+    snapshot([elementWith({ selector: ".fine", text: "Price includes SST", font_size_px: 10 })], { lang: "en-US" }),
+  );
+  assert.equal(latin.findings.some((item) => item.rule === "IF-SIZE-01"), false);
+});
+
+test("MY-UI-06：首屏动作过多且无主 CTA 才命中 IF-DENSITY-01", () => {
+  const many = Array.from({ length: 45 }, (_, index) =>
+    elementWith({
+      selector: `.nav-${index}`,
+      tag: "a",
+      text: `Category item ${index}`,
+      is_interactive: true,
+      font_size_px: 14,
+      background_color: "transparent",
+    }),
+  );
+  const dense = analyzeInterface(snapshot(many));
+  const finding = dense.findings.find((item) => item.rule === "IF-DENSITY-01");
+  assert.ok(finding);
+  assert.match(finding.evidence, /整页可点元素 45 个/);
+  assert.match(finding.evidence, /没有任何视觉上突出的主操作/);
+
+  // 有唯一主 CTA（明显更大 + 独立底色）时不报
+  const withCta = [...many];
+  withCta[0] = elementWith({
+    selector: ".primary-cta",
+    tag: "a",
+    text: "Shop now",
+    is_interactive: true,
+    font_size_px: 22,
+    background_color: "#1943c1",
+  });
+  const promoted = analyzeInterface(snapshot(withCta));
+  assert.equal(promoted.findings.some((item) => item.rule === "IF-DENSITY-01"), false);
+
+  // 多个突出动作 = 已经搭了层级，不报（bears.com.my 的回归用例）
+  const withManyCtas = many.map((item, index) =>
+    index < 8
+      ? elementWith({
+          selector: `.cta-${index}`,
+          tag: "a",
+          text: `Action ${index}`,
+          is_interactive: true,
+          font_size_px: 14,
+          background_color: "#1943c1",
+        })
+      : item,
+  );
+  const hierarchical = analyzeInterface(snapshot(withManyCtas));
+  assert.equal(hierarchical.findings.some((item) => item.rule === "IF-DENSITY-01"), false);
+
+  // 动作不多的页面不报
+  const sparse = analyzeInterface(snapshot(many.slice(0, 10)));
+  assert.equal(sparse.findings.some((item) => item.rule === "IF-DENSITY-01"), false);
+});
+
+test("MY-UI-07：按钮文案里的「仅 / just」命中 IF-WORD-01", () => {
+  const analyses = [
+    analyzeInterface(snapshot([elementWith({ text: "仅保存", tag: "button", is_interactive: true })])),
+    analyzeInterface(snapshot([elementWith({ text: "Just save", tag: "button", is_interactive: true })])),
+    analyzeInterface(snapshot([elementWith({ text: "一键下单", tag: "button", is_interactive: true })])),
+  ];
+  // 非动作文本（库存角标）不算「用词补设计」
+  const badge = analyzeInterface(snapshot([elementWith({ text: "仅剩 2 件", tag: "span", is_interactive: false })]));
+  assert.equal(badge.findings.some((item) => item.rule === "IF-WORD-01"), false);
+  for (const analysis of analyses) {
+    const finding = analysis.findings.find((item) => item.rule === "IF-WORD-01");
+    assert.ok(finding, "应当命中用词补设计");
+    assert.equal(finding.channel, "wording");
+    assert.match(finding.evidence, /MY-UI-07/);
+  }
+  const plain = analyzeInterface(snapshot([elementWith({ text: "Save to collection", tag: "button", is_interactive: true })]));
+  assert.equal(plain.findings.some((item) => item.rule === "IF-WORD-01"), false);
+});
+
+test("MY-UI-08：自然语言字段硬限长命中 IF-INPUT-01，搜索/邮箱不报", () => {
+  const analysis = analyzeInterface(
+    snapshot([element()], {
+      forms: [
+        formWith({ selector: "#note", tag: "textarea", name: "remark", maxlength: 30 }),
+        formWith({ selector: "#q", name: "search", type: "search", maxlength: 20, placeholder: "Search" }),
+        formWith({ selector: "#mail", name: "email", type: "email", maxlength: 40 }),
+      ],
+    }),
+  );
+  const hits = analysis.findings.filter((item) => item.rule === "IF-INPUT-01");
+  assert.equal(hits.length, 1);
+  assert.match(hits[0]!.evidence, /maxlength=30/);
+  assert.equal(hits[0]!.selector, "#note");
+});
+
+test("MY-UI-08：Enter 提交未判 isComposing 命中 IF-INPUT-02，有守卫则不报", () => {
+  const bad = analyzeInterface(
+    snapshot([element()], {
+      forms: [
+        formWith({
+          selector: "#q",
+          name: "search",
+          placeholder: "Search",
+          handlers: { onkeydown: "if(event.key==='Enter'){submit();}" },
+        }),
+      ],
+    }),
+  );
+  const finding = bad.findings.find((item) => item.rule === "IF-INPUT-02");
+  assert.ok(finding);
+  assert.match(finding.evidence, /Enter 直接提交/);
+  assert.match(finding.evidence, /未判断 isComposing/);
+
+  const guarded = analyzeInterface(
+    snapshot([element()], {
+      forms: [
+        formWith({
+          selector: "#q",
+          placeholder: "Search",
+          handlers: { onkeydown: "if(!event.isComposing && event.key==='Enter'){submit();}" },
+        }),
+      ],
+    }),
+  );
+  assert.equal(guarded.findings.some((item) => item.rule === "IF-INPUT-02"), false);
+});
+
+test("MY-UI-09：声音层短句只进候选，不进 risks", () => {
+  const analysis = analyzeInterface(
+    snapshot([elementWith({ selector: ".empty", text: "You're all set.", font_size_px: 20 })]),
+  );
+  const voice = analysis.candidates.filter((candidate) => candidate.kind === "voice");
+  assert.ok(voice.length >= 1);
+  assert.equal(voice[0]!.rule, "MY-UI-09");
+  assert.match(voice[0]!.evidence, /未做 round-trip/);
+  assert.equal(analysis.findings.some((item) => item.rule.startsWith("IF-")), false);
+  assert.equal(interfaceRisks(analysis).length, 0);
+});
+
+test("MY-UI-09：层级依赖拉丁字面且无 CJK 回退时给候选", () => {
+  const headings = [
+    elementWith({ selector: "h1", tag: "h1", text: "Bear Kitchen", font_size_px: 32, font_family: "Inter, sans-serif" }),
+    elementWith({ selector: "h2", tag: "h2", text: "Our Story", font_size_px: 26, font_family: "Inter, sans-serif" }),
+  ];
+  const analysis = analyzeInterface(snapshot(headings, { cjk_font_declared: false }));
+  const fontCandidate = analysis.candidates.find((candidate) => /CJK 字面/.test(candidate.evidence));
+  assert.ok(fontCandidate);
+  assert.match(fontCandidate!.suggestion, /CJK/);
+
+  const declared = analyzeInterface(snapshot(headings, { cjk_font_declared: true }));
+  assert.equal(declared.candidates.some((candidate) => /CJK 字面/.test(candidate.evidence)), false);
+});
+
+test("MY-UI-10：RTL 只记录为候选，不产生风险条目", () => {
+  const analysis = analyzeInterface(snapshot([element()], { dir: "ltr" }));
+  const rtl = analysis.candidates.find((candidate) => candidate.kind === "rtl");
+  assert.ok(rtl);
+  assert.equal(rtl!.rule, "MY-UI-10");
+  assert.match(rtl!.evidence, /本轮只记录/);
+  assert.equal(analysis.findings.some((item) => item.rule.includes("RTL")), false);
+  // 已经是 RTL 的页面不重复记录
+  assert.equal(
+    analyzeInterface(snapshot([element()], { dir: "rtl" })).candidates.some((c) => c.kind === "rtl"),
+    false,
+  );
+});
+
+test("候选进入报告契约与网页渲染，且不占 risks 名额", async () => {
+  const kb = await retrieveKb({ pageText: PAGE_TEXT });
+  const model = buildModelReport(kb);
+  const analysis = analyzeInterface(
+    snapshot([element({ selector: ".product-name", text: "Bear Electric Food Steamer BFS-C60L 6L Multifunction Double Layer", height_px: 36, max_height_px: 36, line_height_px: 18, overflow: "hidden" })]),
+  );
+  const merged = mergeInterfaceIntoReport(model, analysis);
+  const report = ReportSchema.parse({
+    ...buildReportWithMeta(model, merged),
+    interface_candidates: merged.interfaceCandidates,
+  });
+  assert.ok((report.interface_candidates ?? []).length >= 1);
+  assert.ok(merged.risks.length <= 8);
+
+  const html = renderReportHtml(report);
+  assert.match(html, /界面候选与后续项/);
+  assert.match(html, /MY-UI-10/);
+});

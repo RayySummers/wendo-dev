@@ -42,6 +42,50 @@ export interface InterfaceElementSnapshot {
   background_color: string | null;
   border_width_px: number;
   border_radius_px: number | null;
+  /** 元素级 lang（混排页面才有）；null 表示继承文档。 */
+  lang: string | null;
+  /** 截断后的全文出口；有任一项时 MY-UI-02 从「有损」降级为「可恢复」。 */
+  title_attr: string | null;
+  aria_label: string | null;
+  role: string | null;
+  is_interactive: boolean;
+  /** 元素生效的字体栈原文，用于 MY-UI-09 判据 3。 */
+  font_family: string | null;
+}
+
+/** 输入控件快照：只看静态属性与内联 JS，不执行交互（MY-UI-08）。 */
+export interface InterfaceFormSnapshot {
+  selector: string;
+  tag: string;
+  type: string | null;
+  name: string | null;
+  placeholder: string | null;
+  maxlength: number | null;
+  minlength: number | null;
+  autocomplete: string | null;
+  inputmode: string | null;
+  aria_label: string | null;
+  handlers: Record<string, string>;
+  inside_form: boolean;
+  action?: string | null;
+  method?: string | null;
+}
+
+/**
+ * 候选（不是发现）。
+ *
+ * MY-UI-09 声音层按规则包要求「没做 round-trip 不写成缺陷」，所以只以候选 + 建议出现；
+ * MY-UI-10 的 RTL 本轮只记录，同样走这条通道。报告里单独一节展示，不计入 risks。
+ */
+export interface InterfaceCandidate {
+  rule: "MY-UI-09" | "MY-UI-10";
+  /** 候选类型：voice = 声音层，rtl = 镜像/排版遗留。 */
+  kind: "voice" | "rtl";
+  quote: string;
+  selector: string;
+  evidence: string;
+  /** 建议怎么做；不含结论性判断。 */
+  suggestion: string;
 }
 
 export interface InterfaceLongToken {
@@ -69,6 +113,9 @@ export interface InterfaceSnapshot {
   stylesheets?: InterfaceStylesheetStats;
   elements?: InterfaceElementSnapshot[];
   long_tokens?: InterfaceLongToken[];
+  forms?: InterfaceFormSnapshot[];
+  /** 页面是否在任一字体栈里显式声明了 CJK 字面。 */
+  cjk_font_declared?: boolean;
 }
 
 /** 规则 id 稳定不变：报告、知识库、前端都按它对齐文案。 */
@@ -80,9 +127,21 @@ export type InterfaceRuleId =
   | "IF-WRAP-02"
   | "IF-WRAP-03"
   | "IF-WRAP-04"
-  | "IF-HIER-01";
+  | "IF-SIZE-01"
+  | "IF-HIER-01"
+  | "IF-DENSITY-01"
+  | "IF-WORD-01"
+  | "IF-INPUT-01"
+  | "IF-INPUT-02";
 
-export type InterfaceChannel = "truncation" | "wrapping" | "hierarchy";
+export type InterfaceChannel =
+  | "truncation"
+  | "wrapping"
+  | "legibility"
+  | "hierarchy"
+  | "density"
+  | "wording"
+  | "input";
 
 export interface InterfaceFinding {
   rule: InterfaceRuleId;
