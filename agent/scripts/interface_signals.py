@@ -488,6 +488,16 @@ def _line_height_px(value: str | None, font_size_px: float) -> float:
     return round(resolved, 2) if resolved is not None else round(font_size_px * 1.2, 2)
 
 
+def _line_height_declared(value: str | None) -> bool:
+    """line-height 是否给了具体值；normal / initial 这类关键字一律算推算。"""
+    if not value:
+        return False
+    text = value.strip().lower()
+    if text in ("normal", "inherit", "initial", "unset", ""):
+        return False
+    return True
+
+
 def _line_clamp(style: dict[str, str]) -> int | None:
     for prop in ("-webkit-line-clamp", "line-clamp"):
         raw = style.get(prop)
@@ -832,6 +842,9 @@ def extract_interface_signals(
                 "font_weight": weight,
                 "color": (style.get("color") or "").strip().lower() or None,
                 "line_height_px": _line_height_px(style.get("line-height"), font_px),
+                # 行高是网页与 PDF 同源核对的一部分：没写具体值时是 1.2 倍推算，
+                # 证据里要标出来，不能让它看起来像实测。
+                "line_height_declared": _line_height_declared(style.get("line-height")),
                 "text_transform": (style.get("text-transform") or "").strip().lower() or None,
                 "font_style": (style.get("font-style") or "").strip().lower() or None,
                 "letter_spacing_px": _length_px(style.get("letter-spacing"), font_px),

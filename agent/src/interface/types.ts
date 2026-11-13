@@ -16,6 +16,8 @@ export interface InterfaceElementSnapshot {
   font_weight: number;
   color: string | null;
   line_height_px: number;
+  /** 行高是否由声明给出；false 表示按 font-size × 1.2 推算，证据里要标「推算」。 */
+  line_height_declared?: boolean;
   text_transform: string | null;
   font_style: string | null;
   letter_spacing_px: number | null;

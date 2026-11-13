@@ -93,6 +93,12 @@ const round = (value: number, digits = 1): number => {
   return Math.round(value * factor) / factor;
 };
 
+/** 行高原值可能来自 normal/initial 推算，证据里要区分「声明」与「推算」。 */
+function lineHeightLabel(element: InterfaceElementSnapshot): string {
+  const value = `line-height:${round(element.line_height_px)}px`;
+  return element.line_height_declared === false ? `${value}（按 normal 推算）` : value;
+}
+
 function isClipped(element: InterfaceElementSnapshot): boolean {
   if (element.line_clamp && element.line_clamp > 0) return true;
   return element.overflow === "hidden" || element.overflow === "clip";
@@ -190,7 +196,7 @@ function checkPinnedBox(elements: InterfaceElementSnapshot[]): InterfaceFinding[
       "IF-TRUNC-01",
       [
         `height:${round(element.height_px ?? 0)}px`,
-        `line-height:${round(element.line_height_px)}px`,
+        lineHeightLabel(element),
         `估算 ${linesAfter} 行 / 可容纳 ${round(capacity)} 行`,
         `容器宽约 ${Math.round(width)}px${precision}`,
       ],
@@ -316,7 +322,7 @@ function checkTightHeadings(elements: InterfaceElementSnapshot[]): InterfaceFind
       "IF-WRAP-04",
       [
         `font-size:${round(element.font_size_px)}px`,
-        `line-height:${round(element.line_height_px)}px（${round(ratio, 2)} 倍）`,
+        `${lineHeightLabel(element)}（${round(ratio, 2)} 倍）`,
       ],
       element.selector,
     );
@@ -405,7 +411,7 @@ function checkSmallType(
       "IF-SIZE-01",
       [
         `font-size:${round(element.font_size_px)}px`,
-        `line-height:${round(element.line_height_px)}px`,
+        lineHeightLabel(element),
         isCjk ? "当前文本已是 CJK，低于 12px 可读下限" : "目标语言为 CJK 时低于 12px 可读下限",
       ],
       element.selector,

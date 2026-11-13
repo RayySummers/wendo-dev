@@ -145,6 +145,16 @@ snap = snapshot("<html><body><p>Hello</p></body></html>")
 check("缺 lang 时 lang 为 None", snap["lang"] is None)
 check("保留原始 html 开标签", snap["html_open_tag"] == "<html>")
 
+# 8.5) 行高来源：具体值算声明，normal/initial 算推算
+snap = snapshot(
+    """<html><head><style>
+    .a { font-size: 16px; line-height: 24px; }
+    .b { font-size: 16px; line-height: normal; }
+    </style></head><body><p class="a">A</p><p class="b">B</p></body></html>"""
+)
+check("line-height 具体值标记为已声明", by_selector(snap, "p.a")["line_height_declared"] is True)
+check("line-height:normal 标记为推算", by_selector(snap, "p.b")["line_height_declared"] is False)
+
 # 9) ch / ex 原值保留（MY-UI-01）。只对有可见文本的元素成立：
 #    空输入框没有可引用的原文，按「没有复核就不报」的口径不产出证据。
 snap = snapshot(
