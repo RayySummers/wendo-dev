@@ -19,7 +19,8 @@ fetch_page (Scrapling + 界面信号) → retrieve_kb (马来西亚 × 小家电
 没有信号就不产出条目。它是「信息层级与表达自然度」维度下的子检查，不新增维度。
 
 - 规则与文案：`src/interface/rules.ts`，编号对齐知识库 `MY-UI-01..10`
-  （`knowledge/my/interface-survivability.md`，RAY-673）
+  （`knowledge/my/interface-survivability.md`，RAY-673；该文件在 RAY-673 分支上，
+  尚未并入 `master`，代码不依赖它）
 - 判定与阈值：`src/interface/analyze.ts`（字符宽度估算 + 1.4 倍翻译探针）
 - 渲染与合并：`src/interface/report.ts`（`kind: interface_translation` + `evidence`）
 - 抽取脚本：`scripts/interface_signals.py`

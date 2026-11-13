@@ -82,6 +82,10 @@
 - 明细写在 `risks` 里，条目由代码注入（`src/interface/report.ts`），规则编号用知识库的
   `MY-UI-*`（见 `knowledge/my/interface-survivability.md`，RAY-673）。
 
+> 规则正文目前只在 RAY-673 的分支 `knowledge/interface-survivability` 上，尚未并入 `master`。
+> 代码不读这个文件（`src/interface/rules.ts` 自带文案，按 `MY-UI-*` 编号对齐），所以它缺席
+> 不影响运行；RAY-673 合并后这份引用即可对上。
+
 ### 覆盖的 10 类
 
 | 类 | 知识库 | 实现 | 证据口径 |
