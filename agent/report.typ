@@ -20,6 +20,7 @@
 #let border = rgb("#d8dce6")
 #let body-font = ("MiSans", "Noto Sans CJK SC", "Source Han Sans SC", "Microsoft YaHei", "PingFang SC", "Helvetica", "Arial")
 #let quote-font = ("Newsreader", "Noto Serif", "Noto Serif CJK SC", "Songti SC", "SimSun", "Georgia", "Times New Roman")
+#let mono-font = ("DejaVu Sans Mono", "Noto Sans Mono", "Consolas", "Courier New", "Liberation Mono")
 
 #set text(font: body-font, size: 10pt, fill: rgb("#1e1e1e"), lang: "zh", hyphenate: false)
 #set par(justify: true, leading: 0.85em, spacing: 1.15em)
@@ -121,8 +122,14 @@
 // ---------- 风险与修改建议 ----------
 #section[风险与修改建议]
 #for (i, risk) in report.risks.enumerate() {
+  let kind = risk.at("kind", default: none)
+  let evidence = risk.at("evidence", default: none)
   block(breakable: false, width: 100%)[
     #chip(sev-label(risk.severity), sev-bg(risk.severity), sev-fg(risk.severity))
+    #if kind == "interface_translation" {
+      h(5pt)
+      chip("界面可翻译性", rgb("#eef2ff"), primary)
+    }
     #h(5pt)
     #text(size: 11.5pt, weight: "bold", fill: dark)[风险 #(i + 1)]
     #v(5pt)
@@ -133,9 +140,27 @@
       inset: (x: 10pt, y: 7pt),
       radius: (right: 4pt),
     )[
-      #text(font: quote-font, size: 10.4pt, fill: rgb("#2b2f36"), risk.quote)
+      #if kind == "interface_translation" {
+        text(font: mono-font, size: 9pt, fill: rgb("#2b2f36"), risk.quote)
+      } else {
+        text(font: quote-font, size: 10.4pt, fill: rgb("#2b2f36"), risk.quote)
+      }
     ]
     #v(7pt)
+    #if evidence != none {
+      field-label[界面证据]
+      v(1pt)
+      block(
+        width: 100%,
+        fill: rgb("#ffffff"),
+        stroke: 0.6pt + border,
+        inset: (x: 8pt, y: 5pt),
+        radius: 4pt,
+      )[
+        #text(font: mono-font, size: 8.4pt, fill: rgb("#3d4552"), evidence)
+      ]
+      v(7pt)
+    }
     #field-label[为什么是问题]
     #v(1pt)
     #text(size: 9.6pt, risk.why)
@@ -164,6 +189,41 @@
     #text(size: 9.2pt, fill: muted, s.why)
   ]
 }
+
+// ---------- 界面候选与后续项（声音层 / RTL 记录） ----------
+#let candidates = report.at("interface_candidates", default: ())
+#if candidates.len() > 0 [
+  #section[界面候选与后续项]
+  #text(size: 8.6pt, fill: muted)[
+    以下是提示，不是缺陷：声音层未做 round-trip 前不判为问题，RTL 本轮只记录。
+  ]
+  #v(5pt)
+  #for candidate in candidates {
+    block(breakable: false, below: 11pt, width: 100%)[
+      #block(
+        width: 100%,
+        fill: rgb("#f7f8fb"),
+        stroke: (left: 2.4pt + warm),
+        inset: (x: 9pt, y: 6pt),
+        radius: (right: 4pt),
+      )[
+        #text(font: quote-font, size: 9.6pt, fill: rgb("#2b2f36"), candidate.quote)
+      ]
+      #v(4pt)
+      #block(
+        width: 100%,
+        fill: rgb("#ffffff"),
+        stroke: 0.6pt + border,
+        inset: (x: 8pt, y: 4pt),
+        radius: 4pt,
+      )[
+        #text(font: mono-font, size: 8pt, fill: rgb("#3d4552"), candidate.evidence)
+      ]
+      #v(4pt)
+      #text(size: 9pt, fill: muted, candidate.suggestion)
+    ]
+  }
+]
 
 // ---------- 本次无法判断 ----------
 #section[本次无法判断]

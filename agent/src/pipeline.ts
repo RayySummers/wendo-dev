@@ -1,11 +1,13 @@
 import { resolveLlmConfig, resolveTier } from "./config.js";
 import type { DiagnosisResult, FetchedPage, KbDigest, Report } from "./types.js";
 import { ReportSchema } from "./types.js";
+import { analyzeInterface, type InterfaceAnalysis } from "./interface/analyze.js";
+import { mergeInterfaceIntoReport } from "./interface/report.js";
 import { fetchPage, type FetchPageOptions } from "./tools/fetch-page.js";
 import { retrieveKb } from "./tools/retrieve-kb.js";
 import { scoreAndReport } from "./tools/score-and-report.js";
 
-export const AGENT_VERSION = "0.1.0";
+export const AGENT_VERSION = "0.2.0";
 
 /** 马来西亚固定 UTC+8，无夏令时；报告时间直接带本地时区，PDF 与网页显示一致。 */
 function toMalaysiaIso(date: Date): string {
@@ -37,6 +39,8 @@ export interface RunDiagnosisOptions {
 export interface TimedDiagnosis extends DiagnosisResult {
   page: FetchedPage;
   kb: KbDigest;
+  /** 界面可翻译性信号的命中结果（代码侧，不经模型）。 */
+  interfaceAnalysis: InterfaceAnalysis;
   timings: { fetchMs: number; retrieveMs: number; reportMs: number; totalMs: number };
 }
 
@@ -78,6 +82,26 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
   });
   const reportMs = Date.now() - reportStart;
 
+  // 界面信号在代码侧分析并合并进报告：命中才写，没有信号不硬编。
+  const interfaceAnalysis = analyzeInterface(page.interface);
+  const contentDimension = kb.dimensions.find((dimension) => dimension.id === "content");
+  const merged = mergeInterfaceIntoReport(
+    { risks: report.risks, dimensions: report.dimensions },
+    interfaceAnalysis,
+    { contentDimensionName: contentDimension?.name },
+  );
+  if (merged.injected > 0) {
+    options.onStage?.("score_and_report", `并入 ${merged.injected} 条界面可翻译性信号`);
+  }
+  const composed = {
+    summary: report.summary,
+    risks: merged.risks,
+    strengths: report.strengths,
+    not_assessable: report.not_assessable,
+    dimensions: merged.dimensions,
+    interface_candidates: merged.interfaceCandidates,
+  };
+
   const meta: Report["meta"] = {
     url: page.url,
     final_url: page.finalUrl,
@@ -93,13 +117,14 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
     agent_version: AGENT_VERSION,
   };
 
-  const full = ReportSchema.parse({ ...report, meta });
+  const full = ReportSchema.parse({ ...composed, meta });
   return {
     report: full,
     usage,
     attempts,
     page,
     kb,
+    interfaceAnalysis,
     timings: { fetchMs, retrieveMs, reportMs, totalMs: Date.now() - started },
   };
 }

@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import type { FetchedPage } from "../types.js";
+import type { InterfaceSnapshot } from "../interface/types.js";
 
 const execFileAsync = promisify(execFile);
 
@@ -28,6 +29,8 @@ export interface FetchPageOptions {
   maxChars?: number;
   /** 覆盖 Python 解释器，默认 $WENDO_PYTHON 或 python3。 */
   python?: string;
+  /** 是否抽取界面可翻译性信号（CSS 声明快照），默认开启。 */
+  interface?: boolean;
 }
 
 function parseScraplingError(stderr: string): { code: string; message: string } | undefined {
@@ -69,6 +72,7 @@ export async function fetchPage(options: FetchPageOptions): Promise<FetchedPage>
       "--max-chars",
       String(maxChars),
     ];
+    if (options.interface === false) args.push("--no-interface");
 
     try {
       await execFileAsync(python, args, {
@@ -108,6 +112,7 @@ export async function fetchPage(options: FetchPageOptions): Promise<FetchedPage>
       fetched_at: string;
       elapsed_ms: number;
       fetcher: string;
+      interface?: InterfaceSnapshot;
     };
     const page: FetchedPage = {
       url: payload.url,
@@ -119,6 +124,7 @@ export async function fetchPage(options: FetchPageOptions): Promise<FetchedPage>
       fetchedAt: payload.fetched_at,
       elapsedMs: payload.elapsed_ms,
       fetcher: payload.fetcher,
+      interface: payload.interface,
     };
     if (!page.text || page.text.trim().length < 40) {
       throw new FetchPageError("empty_content", "抓取结果正文过短，已中止，不生成空报告。");

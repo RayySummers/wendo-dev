@@ -12,7 +12,10 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx --test test/*.test.ts",
     "verify:parity": "tsx scripts/verify-parity.ts",
-    "render": "tsx scripts/render-report.ts"
+    "render": "tsx scripts/render-report.ts",
+    "test:py": "python3 test/interface_signals_test.py",
+    "test:all": "npm run test && npm run test:py",
+    "verify:fixture": "tsx scripts/verify-interface-fixture.ts"
   },
   "dependencies": {
     "@earendil-works/pi-agent-core": "1.5.2",

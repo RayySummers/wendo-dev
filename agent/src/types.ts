@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { InterfaceSnapshot } from "./interface/types.js";
 
 export const SEVERITIES = ["high", "medium", "low"] as const;
 export type Severity = (typeof SEVERITIES)[number];
@@ -7,16 +8,31 @@ export const DIMENSION_STATUSES = ["risk", "ok", "not_assessable"] as const;
 export type DimensionStatus = (typeof DIMENSION_STATUSES)[number];
 
 /**
+ * 风险来源。
+ * - content：模型依据页面正文 + 知识库得出的内容/表达问题（默认）
+ * - interface_translation：代码从 HTML/CSS 抽出的界面信号，带选择器与声明证据
+ */
+export const RISK_KINDS = ["content", "interface_translation"] as const;
+export type RiskKind = (typeof RISK_KINDS)[number];
+
+/**
  * 报告 JSON 契约。
  * 网页与 PDF 共用这一份 JSON；字段变更需要同时更新 agent/REPORT-SCHEMA.md。
  * 注意：报告不含任何分数、百分比或评级数字。
  */
-export const RiskSchema = z.object({
+export const RiskCoreSchema = z.object({
   severity: z.enum(SEVERITIES),
   /** 页面正文中的逐字引用，代码会做子串校验。 */
   quote: z.string().trim().min(2),
   why: z.string().trim().min(2),
   fix: z.string().trim().min(2),
+});
+
+/** 报告里的风险条目：模型字段 + 可选的来源标记与界面证据。 */
+export const RiskSchema = RiskCoreSchema.extend({
+  kind: z.enum(RISK_KINDS).optional(),
+  /** 界面信号证据：规则 id + 关键声明 + 选择器；只有 interface_translation 会带。 */
+  evidence: z.string().trim().min(2).optional(),
 });
 
 export const StrengthSchema = z.object({
@@ -50,6 +66,16 @@ export const ReportMetaSchema = z.object({
   agent_version: z.string(),
 });
 
+/** 界面可翻译性候选：声音层（MY-UI-09）与 RTL 记录（MY-UI-10），只作提示，不是缺陷。 */
+export const InterfaceCandidateSchema = z.object({
+  rule: z.enum(["MY-UI-09", "MY-UI-10"]),
+  kind: z.enum(["voice", "rtl"]),
+  quote: z.string().trim().min(2),
+  selector: z.string().trim().min(1),
+  evidence: z.string().trim().min(2),
+  suggestion: z.string().trim().min(2),
+});
+
 export const ReportSchema = z.object({
   meta: ReportMetaSchema,
   summary: z.string().trim().min(10),
@@ -57,15 +83,25 @@ export const ReportSchema = z.object({
   strengths: z.array(StrengthSchema).min(1).max(6),
   not_assessable: z.array(NotAssessableSchema).min(1).max(8),
   dimensions: z.array(DimensionSchema).min(3).max(10),
+  /**
+   * 界面可翻译性的「候选」通道：声音层与 RTL 记录。
+   * 规则包要求这两类不做成缺陷（没 round-trip / 本轮只记录），所以单列，不进 risks。
+   */
+  interface_candidates: z.array(InterfaceCandidateSchema).optional(),
 });
 
 /** 模型只负责这五个字段；meta 由 pipeline 在代码侧补齐，避免模型编造 URL 与时间。 */
-export const ModelReportSchema = ReportSchema.omit({ meta: true });
+export const ModelReportSchema = ReportSchema.omit({ meta: true, interface_candidates: true }).extend({
+  // 模型不产出来源标记与证据：这两项由界面信号在代码侧注入。
+  risks: z.array(RiskCoreSchema).min(3).max(8),
+});
 
+export type RiskCore = z.infer<typeof RiskCoreSchema>;
 export type Risk = z.infer<typeof RiskSchema>;
 export type Strength = z.infer<typeof StrengthSchema>;
 export type NotAssessable = z.infer<typeof NotAssessableSchema>;
 export type Dimension = z.infer<typeof DimensionSchema>;
+export type InterfaceCandidateEntry = z.infer<typeof InterfaceCandidateSchema>;
 export type ReportMeta = z.infer<typeof ReportMetaSchema>;
 export type Report = z.infer<typeof ReportSchema>;
 export type ModelReport = z.infer<typeof ModelReportSchema>;
@@ -80,6 +116,8 @@ export interface FetchedPage {
   fetchedAt: string;
   elapsedMs: number;
   fetcher: string;
+  /** HTML/CSS 界面信号快照；抓取脚本未产出或失败时缺省。 */
+  interface?: InterfaceSnapshot;
 }
 
 export interface KbRule {

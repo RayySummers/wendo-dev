@@ -23,7 +23,7 @@
     "tier": "Lite",
     "source_chars": 2590,
     "knowledge_version": "2026-11-12",
-    "agent_version": "0.1.0"
+    "agent_version": "0.2.0"
   },
   "summary": "两到三句话：最关键的适配问题 + 一个可以直接执行的下一步。",
   "risks": [
@@ -32,6 +32,14 @@
       "quote": "页面正文里的逐字片段",
       "why": "为什么这在马来西亚市场是问题",
       "fix": "具体怎么改，给出可直接使用的文案或做法"
+    },
+    {
+      "severity": "high",
+      "kind": "interface_translation",
+      "quote": "Bear Electric Food Steamer BFS-C60L 6L Multifuntion Double Layer 2 Tiers",
+      "why": "文本被锁在固定高度或固定行数里，超出部分直接裁掉……（规则包文案）",
+      "fix": "让高度跟着内容走：去掉固定 height，或把 line-clamp 提到目标语言真正需要的行数……",
+      "evidence": "IF-TRUNC-01 · height:55px · line-height:19.2px · 估算 4 行 / 可容纳 2.9 行 · 容器宽约 310px · .product-name"
     }
   ],
   "strengths": [
@@ -55,11 +63,71 @@
 | `meta.tier` | string | 只可能是 `Lite`（11/15 演示版） |
 | `summary` | string | 简体中文，≥ 10 字符 |
 | `risks` | array | 3–8 条，按严重程度排序；`severity` 为 `high/medium/low` |
-| `risks[].quote` | string | 必须是页面正文的逐字子串（≥ 8 字符），代码会核对 |
+| `risks[].quote` | string | 内容风险：必须是页面正文的逐字子串（≥ 8 字符），代码会核对；界面风险：命中的元素文本或 HTML 片段 |
 | `risks[].why` / `fix` | string | 简体中文，给出可执行改法 |
+| `risks[].kind` | string? | 缺省视为 `content`；`interface_translation` 表示由界面信号（HTML/CSS）产出，不经模型 |
+| `risks[].evidence` | string? | 仅 `interface_translation`：规则 id + 关键 CSS 声明 + 选择器，网页与 PDF 都要原样渲染 |
 | `strengths` | array | 1–6 条，`quote` 同样逐字核对 |
 | `not_assessable` | array | 1–8 条，说明「首页看不到什么、为什么」 |
 | `dimensions` | array | 3–10 条，覆盖检索到的全部维度；`status` 为 `risk/ok/not_assessable` |
+
+## 界面可翻译性子检查（RAY-674）
+
+界面可翻译性是「信息层级与表达自然度」（knowledge 里的 `content` 维度）下的**子检查**，
+不新增维度、不改现有权重（与 RAY-672 / RAY-673 的约定一致）：
+
+- `dimensions` 条数不变，`content` 那一行的 `note` 末尾追加一句
+  `界面子检查：检查 N 个文本元素，X 档字号 / Y 档字重 / Z 种文字颜色。命中 …`；
+- 有命中时该维度状态至少是 `risk`；没抓到 CSS 时写「界面子检查无法判断」，不当作合格；
+- 明细写在 `risks` 里，条目由代码注入（`src/interface/report.ts`），规则编号用知识库的
+  `MY-UI-*`（见 `knowledge/my/interface-survivability.md`，RAY-673）。
+
+> 规则正文目前只在 RAY-673 的分支 `knowledge/interface-survivability` 上，尚未并入 `master`。
+> 代码不读这个文件（`src/interface/rules.ts` 自带文案，按 `MY-UI-*` 编号对齐），所以它缺席
+> 不影响运行；RAY-673 合并后这份引用即可对上。
+
+### 覆盖的 10 类
+
+| 类 | 知识库 | 实现 | 证据口径 |
+|---|---|---|---|
+| 1 | MY-UI-01 | IF-TRUNC-03 | `ch`/`ex` 宽度声明 |
+| 2 | MY-UI-02 | IF-TRUNC-01 / IF-TRUNC-02 | 固定高 / `line-clamp` / `nowrap` + 省略 |
+| 3 | MY-UI-03 | IF-WRAP-01..04 | `break-all`、缺 `lang`、长词、行高 < 1.2 |
+| 4 | MY-UI-04 | IF-SIZE-01 | `font-size` ≤ 11px 且承载文本 |
+| 5 | MY-UI-05 | IF-HIER-01 | 同屏字号/字重/颜色计数 |
+| 6 | MY-UI-06 | IF-DENSITY-01 | 可点元素数量 + 有无视觉主 CTA |
+| 7 | MY-UI-07 | IF-WORD-01 | 按钮/标签里的「仅 / 一键 / just」 |
+| 8 | MY-UI-08 | IF-INPUT-01 / IF-INPUT-02 | `maxlength`、内联 Enter / 空格处理 |
+| 9 | MY-UI-09 | 候选（`interface_candidates`） | 声音层与字体回退，**只作提示** |
+| 10 | MY-UI-10 | 候选（`interface_candidates`） | RTL **只记录**，不做检测结论 |
+
+### 候选通道
+
+`interface_candidates` 是可选数组，**不进 `risks`、不影响维度状态**。规则包要求：
+声音层没做 round-trip 不写成缺陷（MY-UI-09），RTL 本轮只记录（MY-UI-10）。
+
+| 字段 | 说明 |
+|---|---|
+| `rule` | `MY-UI-09` 或 `MY-UI-10` |
+| `kind` | `voice` / `rtl` |
+| `quote` | 页面原文片段（或 `<html>` 开标签） |
+| `selector` | 元素选择器 |
+| `evidence` | 规则号 + 判据 + 关键值 |
+| `suggestion` | 后续怎么做（建议，不是结论） |
+
+### 三个约束
+
+- **命中才写**：没有信号就不产出条目。
+- **有证据**：`evidence` 形如 `MY-UI-02 · 定高裁切 · height:55px · line-height:19.2px ·
+  估算 4 行 / 可容纳 2.9 行 · 容器宽约 310px · <选择器>`；宽度来自声明推算时标「（估算）」。
+- **不覆盖模型条目**：合并后按严重程度排序，最多 8 条；超出时先舍弃严重程度最低的模型条目。
+
+### 已知口径限制
+
+- 静态抓取拿不到 `scrollWidth > clientWidth` 这类渲染实测，宽度与文本宽度都是**声明推算 + 字符估算**，
+  因此只在余量明显不足时报，证据里标「（估算）」。
+- 数量不到「首屏」：MY-UI-06 数的是**整页**可点元素，且没有同品类基线，判据取保守值。
+- IME 的运行时行为（组合期是否真的抢键）需要交互复核，静态只判「脚本里有没有 `isComposing` 守卫」。
 
 ## 硬性约束
 
