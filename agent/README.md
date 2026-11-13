@@ -1,6 +1,6 @@
 # Wendo Agent — 文化适配诊断（11/15 演示版）
 
-固定工具链的文化适配诊断 agent：输入一个落地页 URL，输出一份可核对的诊断报告 JSON，
+固定工具链的文化适配诊断 agent：输入一个落地页 URL（或用户粘贴的文本），输出一份可核对的诊断报告 JSON，
 并按同一份 JSON 渲染网页与 Typst PDF。
 
 ```
@@ -34,6 +34,9 @@ cp .env.example .env
 # 填入 WENDO_LLM_API_KEY；正式环境用 DeepSeek 官方 key
 
 npm run diagnose -- https://bears.com.my/ --slug bear-malaysia
+
+# 文本模式（前端「粘贴文本」诊断走这条）：跳过抓取，检索与生成不变
+npm run diagnose -- --text-file /tmp/copy.txt --title "某落地页文案"
 ```
 
 输出写入 `reports/`：`<slug>-<YYYYMMDD>.json` / `.html` / `.pdf`。
@@ -130,6 +133,11 @@ agent/
 - `runDiagnosis()` 返回 `usage: { inputTokens, outputTokens, totalTokens, model, tier }`，
   供 RAY-656 的 ledger 记录 token 与扣减；档位倍率在 `src/config.ts` 的 `TIERS`。
 - `npm run diagnose -- <url> --json` 输出 JSON 结果（路径、风险数、usage、耗时），供后端调用。
+- `--include-source` 让 `--json` 结果带上页面正文，前端用它在报告里定位原文。
+- `--text-file <path>` / `--text <string>` 走文本模式；`meta.source_type=text`，`url/final_url` 为 `null`。
+- RAY-659 在 `E:\Creative\Projects\Wendo\obsidian-vault-wendo\Wendo` 里用子进程调用本 CLI：
+  诊断只落 `reports/app/<reportId>.json`（`--no-pdf --no-html`），PDF 由
+  `scripts/render-report.ts` 按需生成，网页与 PDF 始终读同一份 JSON。
 - 报告 JSON 是 RAY-658 前端报告页的唯一数据源；`reports/*.html` 只是同源渲染的参考实现。
 
 ## 测试

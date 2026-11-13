@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
@@ -16,6 +16,13 @@ const HELP = `文渡 Wendo 诊断 CLI（固定工具链 fetch_page → retrieve_
 
 用法：
   npm run diagnose -- <url> [选项]
+  npm run diagnose -- --text-file <path> [选项]
+
+输入（二选一）：
+  <url>                    单页地址，走 Scrapling 抓取
+  --text-file <path>       读取粘贴文本（前端文本诊断用）
+  --text <string>          直接传文本（仅调试，注意 shell 转义）
+  --title <string>         文本来源的标题，默认「粘贴文本」
 
 选项：
   --tier <lite>            模型档位，11/15 演示版只开放 lite
@@ -25,7 +32,8 @@ const HELP = `文渡 Wendo 诊断 CLI（固定工具链 fetch_page → retrieve_
   --no-html                只生成 JSON（调试用）
   --timeout <seconds>      单次模型调用超时，默认 180
   --max-attempts <n>       校验失败后的总尝试次数，默认 2
-  --json                   以 JSON 打印结果（给后端集成）
+  --json                   以 JSON 打印结果（给后端集成；进度走 stderr）
+  --include-source         在 --json 结果里附带页面正文（前端原文定位用）
   --debug                  打印每次校验失败的具体问题
   -h, --help               显示帮助
 
@@ -72,6 +80,10 @@ async function main(): Promise<void> {
       tier: { type: "string", default: "lite" },
       "out-dir": { type: "string", default: "reports" },
       slug: { type: "string" },
+      "text-file": { type: "string" },
+      text: { type: "string" },
+      title: { type: "string" },
+      "include-source": { type: "boolean", default: false },
       "no-pdf": { type: "boolean", default: false },
       "no-html": { type: "boolean", default: false },
       timeout: { type: "string" },
@@ -87,13 +99,24 @@ async function main(): Promise<void> {
     return;
   }
 
-  const url = positionals[0];
-  if (!url) die("缺少 URL。用法：npm run diagnose -- https://bears.com.my/", [], 2);
-  try {
-    const parsed = new URL(url);
-    if (!["http:", "https:"].includes(parsed.protocol)) throw new Error("protocol");
-  } catch {
-    die(`URL 不合法：${url}（只接受 http/https 单页地址）`, [], 2);
+  const url = positionals[0]?.trim() ?? "";
+  const fileText = values["text-file"] ? await readFile(values["text-file"], "utf8") : "";
+  const inlineText = values.text ?? "";
+  const text = (fileText || inlineText).trim();
+
+  if (url && text) die("URL 与 --text-file / --text 只能二选一", [], 2);
+  if (!url && !text) {
+    die("缺少输入。用法：npm run diagnose -- https://bears.com.my/ 或 --text-file <path>", [], 2);
+  }
+  if (url) {
+    try {
+      const parsed = new URL(url);
+      if (!["http:", "https:"].includes(parsed.protocol)) throw new Error("protocol");
+    } catch {
+      die(`URL 不合法：${url}（只接受 http/https 单页地址）`, [], 2);
+    }
+  } else if (text.length < 40) {
+    die("粘贴文本太短（至少 40 字符）", [], 2);
   }
 
   const timeoutSeconds = Number.parseInt(values.timeout ?? "", 10);
@@ -102,12 +125,13 @@ async function main(): Promise<void> {
 
   const started = Date.now();
   const result = await runDiagnosis({
-    url,
+    ...(url ? { url } : { text, textTitle: values.title }),
     tier: values.tier,
     maxAttempts,
     timeoutMs: Number.isFinite(timeoutSeconds) ? timeoutSeconds * 1000 : undefined,
     onStage: (stage, detail) => {
-      if (!values.json) console.error(`→ ${stage}：${detail}`);
+      // 进度只走 stderr，--json 时 stdout 仍是单个 JSON 对象。
+      console.error(`→ ${stage}：${detail}`);
     },
     onAttempt: (attempt, problems) => {
       if (!values.debug || !problems.length) return;
@@ -118,7 +142,7 @@ async function main(): Promise<void> {
 
   const { report } = result;
   const date = malaysiaDate(report.meta.generated_at);
-  const base = `${values.slug ?? defaultSlug(report.meta.final_url)}-${date.replace(/-/g, "")}`;
+  const base = `${values.slug ?? (report.meta.final_url ? defaultSlug(report.meta.final_url) : "text")}-${date.replace(/-/g, "")}`;
   const outDir = resolve(process.cwd(), values["out-dir"] ?? "reports");
   await mkdir(outDir, { recursive: true });
 
@@ -151,6 +175,13 @@ async function main(): Promise<void> {
     usage: result.usage,
     timings: result.timings,
     generated_at: formatDateTime(report.meta.generated_at),
+    source: {
+      type: report.meta.source_type,
+      title: report.meta.title,
+      url: report.meta.final_url,
+      char_count: report.meta.source_chars,
+      ...(values["include-source"] ? { text: result.page.text } : {}),
+    },
   };
 
   if (values.json) {

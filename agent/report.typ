@@ -68,7 +68,11 @@
   #meta.market_name · #meta.category_name
 ]
 #v(2pt)
-#link(meta.final_url)[#text(size: 9pt, fill: primary, meta.final_url)]
+#if meta.final_url != none [
+  #link(meta.final_url)[#text(size: 9pt, fill: primary, meta.final_url)]
+] else [
+  #text(size: 9pt, fill: primary)[粘贴文本]
+]
 
 #v(12pt)
 #line(length: 100%, stroke: 2.2pt + primary)
@@ -78,7 +82,7 @@
   columns: (58pt, 1fr),
   stroke: none,
   inset: (x: 0pt, y: 3pt),
-  [ #field-label[页面标题] ], [ #meta.title ],
+  [ #field-label[来源标题] ], [ #if meta.title != "" [#meta.title] else [（无标题）] ],
   [ #field-label[诊断档位] ], [ #meta.tier ],
   [ #field-label[生成时间] ], [ #text(size: 9pt, fmt-time(meta.generated_at)) ],
   [ #field-label[知识库版本] ], [ #text(size: 9pt, meta.knowledge_version) ],

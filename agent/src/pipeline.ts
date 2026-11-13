@@ -24,7 +24,12 @@ function toMalaysiaIso(date: Date): string {
 }
 
 export interface RunDiagnosisOptions {
-  url: string;
+  /** 单页地址；与 text 二选一。 */
+  url?: string;
+  /** 用户粘贴的文本；与 url 二选一。跳过 fetch_page，其余两步不变。 */
+  text?: string;
+  /** 粘贴文本的标题，仅 text 模式使用。 */
+  textTitle?: string;
   /** 业务代码只写 lite；pro/max 在这里会被拒绝。 */
   tier?: string;
   fetch?: Omit<FetchPageOptions, "url">;
@@ -40,21 +45,50 @@ export interface TimedDiagnosis extends DiagnosisResult {
   timings: { fetchMs: number; retrieveMs: number; reportMs: number; totalMs: number };
 }
 
+/** 把粘贴文本包装成和抓取结果同构的 FetchedPage，后续两步不需要分支。 */
+function inlinePage(text: string, title: string | undefined): FetchedPage {
+  const body = text.trim();
+  return {
+    url: "",
+    finalUrl: "",
+    status: 200,
+    title: (title || "").trim() || "粘贴文本",
+    text: body,
+    charCount: body.length,
+    fetchedAt: new Date().toISOString(),
+    elapsedMs: 0,
+    fetcher: "inline-text",
+  };
+}
+
 /**
  * 固定工具链：fetch_page → retrieve_kb → score_and_report。
  * 三步由代码按顺序驱动，agent 不参与规划，也不能跳过或改序。
+ * text 模式没有页面可抓，第一步退化为「接收粘贴文本」，检索与生成完全一致。
  */
 export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedDiagnosis> {
   const tier = resolveTier(options.tier ?? "lite");
   // 先校验网关配置，缺 key 时在抓取前就失败，不浪费一次网络请求。
   resolveLlmConfig(tier);
+
+  const url = options.url?.trim() ?? "";
+  const text = options.text?.trim() ?? "";
+  if ((url && text) || (!url && !text)) {
+    throw new TypeError("runDiagnosis 需要 url 或 text 其中之一（不能同时提供，也不能都为空）");
+  }
+
   const started = Date.now();
 
-  options.onStage?.("fetch_page", options.url);
+  options.onStage?.("fetch_page", url || "粘贴文本");
   const fetchStart = Date.now();
-  const page = await fetchPage({ url: options.url, ...options.fetch });
+  const page = url
+    ? await fetchPage({ url, ...options.fetch })
+    : inlinePage(text, options.textTitle);
   const fetchMs = Date.now() - fetchStart;
-  options.onStage?.("fetch_page", `抓到 ${page.charCount} 字符（HTTP ${page.status}）`);
+  options.onStage?.(
+    "fetch_page",
+    url ? `抓到 ${page.charCount} 字符（HTTP ${page.status}）` : `收到粘贴文本 ${page.charCount} 字符`,
+  );
 
   options.onStage?.("retrieve_kb", "马来西亚 × 小家电");
   const retrieveStart = Date.now();
@@ -79,8 +113,9 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
   const reportMs = Date.now() - reportStart;
 
   const meta: Report["meta"] = {
-    url: page.url,
-    final_url: page.finalUrl,
+    source_type: url ? "url" : "text",
+    url: page.url || null,
+    final_url: page.finalUrl || null,
     title: page.title,
     market: kb.market,
     market_name: kb.marketName,
