@@ -1,0 +1,329 @@
+{
+  "url": "https://www.senheng.com.my/product/joyoung-360-3d-dual-heating-circulation-6-5l-air-fryer-jaf-65f09/",
+  "title": "6.5L Dual Heating Air Fryer JAF-65F09 | Senheng",
+  "category": "small_appliances",
+  "ran_at": "2026-11-14T16:01:53.273Z",
+  "rules_version": "2026-11-14-v0.1c",
+  "counts": {
+    "total": 2,
+    "high": 1,
+    "medium": 1,
+    "low": 0,
+    "rule_level": 1,
+    "substantiation": 1,
+    "human_review": 0,
+    "reviewRequired": 1
+  },
+  "findings": [
+    {
+      "ruleId": "MY-ECOM-06",
+      "severity": "high",
+      "quote": "360 3D Dual Heating Circulation 6.5L Air Fryer JAF-65F09",
+      "why": "整页可见文本里没有发现国语（马来语）版本，商品信息以英文呈现。CP (ETT) Regs 2024 reg.4(1) 要求向消费者披露的附表信息以国语提供，其他语言可以并列。这里只看页面文本，页面未展示不等于商家没有其他语言版本；reg.4 是否覆盖品牌自营独立站（而非只覆盖平台 listing）在规则库里仍待核，需按商家主体类型确认。",
+      "fix": "把附表 1-10 项（卖家名称与联系方式、完整价格与费用、条款、预计送达、证书等）加上马来语版本并与英文并列；只把品牌名译成马来语不算。",
+      "dimension": "compliance",
+      "lawName": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
+      "lawShort": "CP (ETT) Regs 2024",
+      "article": "reg.4(1)-(2)",
+      "officialUrl": "https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/2587477/PUA%20449%20(2024).pdf",
+      "decisionLevel": "rule_level",
+      "reviewRequired": true,
+      "lastVerified": "2026-11-14",
+      "confidence": "medium",
+      "evidence": "规则 MY-ECOM-06 · CP (ETT) Regs 2024 reg.4(1)-(2) · 官方来源 https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/2587477/PUA%20449%20(2024).pdf · 取证：整页可见文本（马来语标记命中 0） · 命中：整页未见马来语版本"
+    },
+    {
+      "ruleId": "MY-ADV-06",
+      "severity": "medium",
+      "quote": "-33%",
+      "why": "CPA 1999 s.12(1)：不得给出误导性的价格指示；划线价、‘was’价、折扣率必须有真实的价格历史或比较依据，不能虚构原价。 页面出现「-33% 形式的折扣徽标」表述，这类表述需要能出示对应证明，报告只记「需要证明」，不判断真假。",
+      "fix": "准备并留存：促销前后的实际售价记录（含日期）、建议零售价来源、同款在其他渠道的公开价格截图（含时间）。 拿不出证据时，把表述改成可核对的具体参数（型号、材质、容量），不要用形容词。",
+      "dimension": "compliance",
+      "lawName": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
+      "lawShort": "CPA 1999",
+      "article": "s.12(1)",
+      "officialUrl": "https://lom.agc.gov.my/ilims/upload/portal/akta/outputaktap/1690994_BI/011121_Act%20599_final.pdf",
+      "decisionLevel": "substantiation",
+      "reviewRequired": false,
+      "lastVerified": "2026-11-14",
+      "confidence": "high",
+      "evidence": "规则 MY-ADV-06 · CPA 1999 s.12(1) · 官方来源 https://lom.agc.gov.my/ilims/upload/portal/akta/outputaktap/1690994_BI/011121_Act%20599_final.pdf · 取证：商品主面板（价格锚点，向上 10 行 / 向下 70 行，止于推荐位） + 详情区（Description / Specifications，止于推荐位） · 命中：-33% 形式的折扣徽标"
+    }
+  ],
+  "dispositions": [
+    {
+      "ruleId": "MY-ADV-01",
+      "decisionLevel": "human_review",
+      "outcome": "no_match",
+      "reason": "页面正文未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-02",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-04",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面正文未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-05",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-11",
+      "decisionLevel": "human_review",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-13",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面正文未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-14",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-APP-03",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面正文未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-FOOD-02",
+      "decisionLevel": "substantiation",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-07",
+      "decisionLevel": "rule_level",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-08",
+      "decisionLevel": "rule_level",
+      "outcome": "no_match",
+      "reason": "页面商品主面板未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-16",
+      "decisionLevel": "rule_level",
+      "outcome": "no_match",
+      "reason": "页面正文未出现该条规则的表述"
+    },
+    {
+      "ruleId": "MY-ADV-09",
+      "decisionLevel": "rule_level",
+      "outcome": "no_match",
+      "reason": "页面未触发该条检查的触发条件"
+    },
+    {
+      "ruleId": "MY-HALAL-01",
+      "decisionLevel": "rule_level",
+      "outcome": "no_match",
+      "reason": "页面未触发该条检查的触发条件"
+    },
+    {
+      "ruleId": "MY-PRIV-01",
+      "decisionLevel": "rule_level",
+      "outcome": "no_match",
+      "reason": "页面已有隐私告知，或没有可观察的数据收集入口"
+    },
+    {
+      "ruleId": "MY-ADV-06",
+      "decisionLevel": "substantiation",
+      "outcome": "finding",
+      "pattern": "-33% 形式的折扣徽标"
+    },
+    {
+      "ruleId": "MY-ECOM-06",
+      "decisionLevel": "rule_level",
+      "outcome": "finding",
+      "pattern": "整页未见马来语版本"
+    },
+    {
+      "ruleId": "MY-ADV-03",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "要求先确认陈述是假的（翻新当新机、假注册号、虚假商品说明）；页面文本无法自证真假，转人工核实。"
+    },
+    {
+      "ruleId": "MY-ECOM-05",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "要求先确认陈述是假的（翻新当新机、假注册号、虚假商品说明）；页面文本无法自证真假，转人工核实。"
+    },
+    {
+      "ruleId": "MY-ADV-12",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "要求先确认陈述是假的（翻新当新机、假注册号、虚假商品说明）；页面文本无法自证真假，转人工核实。"
+    },
+    {
+      "ruleId": "MY-ADV-10",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-APP-01",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-APP-02",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-APP-04",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-3C-01",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-3C-02",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-3C-03",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-3C-04",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-3C-05",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-3C-06",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-ECOM-04",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-HALAL-02",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "电气/通讯设备的认证状态要用证书编号到 ST / MCMC / SIRIM 数据库核对，页面缺失不等于未认证；v0.1 只记录认证展示（见市场就绪度 MY-MR-08）。"
+    },
+    {
+      "ruleId": "MY-ECOM-01",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-ECOM-02",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-ECOM-03",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-ECOM-07",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-ECOM-08",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-ADV-15",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-HALAL-03",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-FOOD-03",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-PRIV-02",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-PRIV-03",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "属披露义务或主体义务（地址、运费、退换、平台责任、法务联系人），支付/物流/退换已由市场就绪度覆盖，其余需主体资料，不在单页文本可判定范围。"
+    },
+    {
+      "ruleId": "MY-ADV-17",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "与已判定规则指向同一表述或需要额外事实（举证责任在被告的虚假陈述、客服口头说明、食品接触迁移检测），为避免重复与越界，v0.1 不单独出 finding。"
+    },
+    {
+      "ruleId": "MY-ADV-18",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "与已判定规则指向同一表述或需要额外事实（举证责任在被告的虚假陈述、客服口头说明、食品接触迁移检测），为避免重复与越界，v0.1 不单独出 finding。"
+    },
+    {
+      "ruleId": "MY-FOOD-01",
+      "decisionLevel": "rule_level",
+      "outcome": "not_assessable",
+      "reason": "与已判定规则指向同一表述或需要额外事实（举证责任在被告的虚假陈述、客服口头说明、食品接触迁移检测），为避免重复与越界，v0.1 不单独出 finding。"
+    }
+  ],
+  "boundary": {
+    "item": "合规与风险（合规与风险）的判定范围",
+    "reason": "马来西亚规则库 45 条中，本版对页面文本可判定的 17 条已跑（规则直判 1、需事实核实 1、需人工判断 0）。其余条目属证书核验、主体或平台义务，不生成 finding，也不据此判断合规。"
+  }
+}

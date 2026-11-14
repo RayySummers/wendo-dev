@@ -12,6 +12,14 @@ import {
   marketReadinessNote,
   type MarketReadinessAnalysis,
 } from "./market-readiness/analyze.js";
+import {
+  analyzeCompliance,
+  complianceDimension,
+  complianceRisks,
+  complianceSummary,
+  type ComplianceAnalysis,
+} from "./compliance/analyze.js";
+import { COMPLIANCE_DIMENSION_NAME } from "./compliance/types.js";
 import { fetchPage, type FetchPageOptions } from "./tools/fetch-page.js";
 import { retrieveKb } from "./tools/retrieve-kb.js";
 import { scoreAndReport } from "./tools/score-and-report.js";
@@ -54,6 +62,8 @@ export interface TimedDiagnosis extends DiagnosisResult {
   interfaceAnalysis: InterfaceAnalysis;
   /** 市场就绪度 8 项检查结果（代码侧，不经模型）。 */
   marketReadiness: MarketReadinessAnalysis;
+  /** 合规与风险的规则级判定（代码侧，只读 MY 规则库，不经模型）。 */
+  compliance: ComplianceAnalysis;
   timings: { fetchMs: number; retrieveMs: number; reportMs: number; totalMs: number };
 }
 
@@ -118,23 +128,37 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
     "score_and_report",
     `市场就绪度 ${marketReadiness.findings.length} 项检查：未展示 ${marketReadiness.counts.missing}、需复核 ${marketReadiness.counts.needs_review}`,
   );
+  // 合规与风险（RAY-698）：只读 MY 规则库，代码侧判定，不经模型。
+  const compliance = analyzeCompliance({
+    text: page.text,
+    category: category.code,
+    title: page.title,
+    url: page.finalUrl,
+  });
+  options.onStage?.("score_and_report", complianceSummary(compliance));
+
   const dimensions = [
-    ...merged.dimensions.filter((dimension) => dimension.name !== MARKET_READINESS_DIMENSION_NAME),
+    ...merged.dimensions.filter(
+      (dimension) => dimension.name !== MARKET_READINESS_DIMENSION_NAME && dimension.name !== COMPLIANCE_DIMENSION_NAME,
+    ),
     {
       name: MARKET_READINESS_DIMENSION_NAME,
       status: marketReadinessDimensionStatus(marketReadiness.counts),
       note: marketReadinessNote(marketReadiness.counts),
     },
+    complianceDimension(compliance),
   ];
-  // 把这一层的能力边界写进「未覆盖范围」，避免被读成认证/合规结论；上限 8 条，满了就不加。
-  const notAssessable =
-    report.not_assessable.length < 8
-      ? [...report.not_assessable, { ...MARKET_READINESS_LIMIT }]
-      : report.not_assessable;
+  // 把两层的能力边界写进「未覆盖范围」，避免被读成认证/合规结论。
+  const notAssessable = [...report.not_assessable];
+  for (const limit of [MARKET_READINESS_LIMIT, compliance.boundaryNote]) {
+    if (notAssessable.length >= 10) break;
+    notAssessable.push({ ...limit });
+  }
 
   const composed = {
     summary: report.summary,
-    risks: merged.risks,
+    // 合规条目与内容风险共用 `risks`（RAY-696 契约），用 dimension 区分。
+    risks: [...merged.risks, ...complianceRisks(compliance)],
     strengths: report.strengths,
     not_assessable: notAssessable,
     dimensions,
@@ -166,6 +190,7 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
     kb,
     interfaceAnalysis,
     marketReadiness,
+    compliance,
     timings: { fetchMs, retrieveMs, reportMs, totalMs: Date.now() - started },
   };
 }
