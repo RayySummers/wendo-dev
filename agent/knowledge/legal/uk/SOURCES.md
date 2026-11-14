@@ -43,6 +43,7 @@
 | ID | 文件 | 用途 | 官方 URL | 本地文件 | SHA-256 |
 | --- | --- | --- | --- | --- | --- |
 | UK-C1 | The Product Safety and Metrology etc. (Amendment) Regulations 2024（SI 2024/696） | 核对 CE 标志在 GB 继续被承认的法律依据（2024-10-01 生效） | https://www.legislation.gov.uk/uksi/2024/696/data.xml | `si2024_696.xml` | `1f4c56aab8c9753cafc6a0f6e914da68a6696924a471d484db5de29083823aab` |
+| UK-C2 | Consumer Protection Act 1987 s. 12（违反安全条例罪） | 核对 Plugs 1994 等安全条例的罚则路径（简易程序最高 6 个月 / level 5） | https://www.legislation.gov.uk/ukpga/1987/43/section/12/data.xml | `cpa1987_s12.xml` | `89c0e7fa3332c766acbf1a36bfe9ce252a7f69661990dbcd8cbafe32f175f651` |
 
 > 注：gov.uk 指引写作 “The Product Safety and Metrology (Amendment) Regulations 2024”，官方 SI 标题为 “The Product Safety and Metrology etc. (Amendment) Regulations 2024”（SI 2024/696）。规则 UK-SAFE-12 的引文取自 gov.uk 页面原文，故保留页面写法；两条来源已交叉核对。
 
@@ -65,6 +66,7 @@ curl -sSL "$base/eur/2016/679/data.xml"    -o ukgdpr.xml
 curl -sSL "$base/uksi/2004/102/data.xml"   -o pmo2004.xml
 curl -sSL "$base/uksi/2008/1276/data.xml"  -o bprs2008.xml
 curl -sSL "$base/uksi/2024/696/data.xml"   -o si2024_696.xml
+curl -sSL "$base/ukpga/1987/43/section/12/data.xml" -o cpa1987_s12.xml
 curl -sSL -A 'Mozilla/5.0' https://www.asa.org.uk/type/non_broadcast/code_section/03.html -o cap03.html
 curl -sSL -A 'Mozilla/5.0' https://www.asa.org.uk/type/non_broadcast/code_section/11.html -o cap11.html
 curl -sSL -A 'Mozilla/5.0' https://www.gov.uk/guidance/using-the-ukca-marking -o ukca.html
@@ -82,7 +84,8 @@ sha256sum *.xml *.html
 5. **Schedule 20 清单**：逐段核对 32 项，本库选用 para 3（信任标志）、para 4（批准/背书）、para 5（诱饵价）、para 7（虚假限时）、para 10（可销售印象）、para 13（虚假评论）、para 19（疾病声称）、para 23（“免费”）。para 12（付费软文）、para 13、para 30 被 s. 237(8) 排除在刑事罪之外，但仍是民事不公平行为。
 6. **CRA 2015**：s. 11(1) 描述一致；s. 11(4) 把 2013 年消费者合同信息条例附表 1/2(a) 的“主要特征”并入合同；s. 9(5)-(6) 把广告/标签中的公开陈述纳入“令人满意”判断；s. 31(1) 排除责任条款不具约束力；s. 62(4) 不公平条款定义；s. 68(1) 透明度。与 DMCCA 的分工：CRA 管合同与法定质量，DMCCA 管交易前的商业行为。
 7. **EESR 2016**：reg 4（安全目标）、reg 8（型号/批次/制造商地址）、reg 9（清晰、易读、易于理解的英文说明）、reg 34（UKCA 加贴限制）、reg 50-51（罚则）。reg 6/38/39 的 “…” 是脱欧修订删除的字样，引用时已避开。
-8. **插头**：Plugs and Sockets etc. (Safety) Regulations 1994 reg 12(1) 要求 BS 1363 标准插头 + BS 1362 保险丝；EESR 2016 reg 35 对 GB 市场电气设备作对应要求（含转换插头与保险丝额定）。两条交叉核对一致。
+8. **插头**：Plugs and Sockets etc. (Safety) Regulations 1994 reg 12(1) 要求 BS 1363 标准插头 + BS 1362 保险丝；EESR 2016 reg 35 对 GB 市场电气设备作对应要求（含转换插头与保险丝额定）。两条交叉核对一致。1994 年条例本身不含罚则条款，其违反依《1987 年消费者保护法》s. 12 处理（UK-C2：简易程序最高 6 个月监禁或 level 5 罚金，或并罚）。
+8a. **PMO 2004 罚则**：该令 art. 15（执法）已删除，正文无 “offence/penalty” 条款；因此 UK-PRC-01 的 `penalty_or_note` 只写“由地方贸易标准部门监督、以整改为主”，不写刑事后果。
 9. **CE 标志仍被承认**：gov.uk 指引明确 “the UK continues to recognise the CE marking, alongside or in place of the UKCA marking, for the Great Britain market under The Product Safety and Metrology (Amendment) Regulations 2024”；SI 2024/696 reg 1 载明 2024-10-01 生效。**“英国已不承认 CE”属过时信息**，不得写入报告。
 10. **GPSR 2005**：reg 5（安全产品）、reg 7(1)（风险信息）、reg 20（罚则：公诉最高 12 个月/£20,000）。北爱尔兰自 2024-12-13 起适用欧盟 GPSR (EU) 2023/988，本库未覆盖。
 11. **EMC / Radio**：EMC 2016 reg 7（基本要求）；Radio 2017 reg 13(1)（英文说明、预期用途信息、频段与射频功率）。两者均要求 “easily understandable English”。

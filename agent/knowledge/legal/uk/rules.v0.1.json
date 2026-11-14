@@ -567,7 +567,7 @@
       ],
       "requirement": "向消费者标示销售价格（及适用的单位价格）时，必须以英镑表示。若同时接受外币，还须给出外币价格与佣金或明确换算率，并说明卡组织换算的例外。",
       "evidence_needed": "页面价格与币种、结算币种、是否按实时汇率换算、外币收费说明。",
-      "penalty_or_note": "由地方贸易标准部门执法；违反属刑事犯罪（经简易程序罚金）。实际执法以整改为主。",
+      "penalty_or_note": "本令自身未见独立罚则条款（art. 15 已删除）；由地方贸易标准部门在消费者保护执法框架下监督，实际以整改为主。不宜据本条推断刑事后果。",
       "verbatim_excerpt": "The indication of selling price and unit price shall be in sterling."
     },
     {
@@ -865,7 +865,7 @@
       ],
       "requirement": "供应电器时，电器须正确装配符合 BS 1363 的标准插头，并配符合 BS 1362 且按制造商说明选型的保险丝；仅有欧标/美标插头或转换插头不满足（转换插头须为获批类型且需工具才能拆下）。",
       "evidence_needed": "插头实物照片（三脚、保险丝仓）、保险丝规格、转换插头型号与批准记录。",
-      "penalty_or_note": "违反属犯罪；可被要求下架/召回。电气设备条例 reg 35 有对应的 GB 要求。",
+      "penalty_or_note": "违反可依《1987 年消费者保护法》第 12 条作为犯罪处理（简易程序：最高 6 个月监禁或 level 5 罚金，或并罚）；亦可由市场监督要求下架/召回。电气设备条例 reg 35 有对应的 GB 要求。",
       "verbatim_excerpt": "no person shall supply, offer for supply, agree to supply, expose for supply or possess for supply any appliance unless that appliance is correctly fitted with a standard plug which– (a) complies with the requirements of regulation 8 above; and (b) is fitted with a fuse link which conforms to BS 1362 and is rated in accordance with the appliance manufacturer's instructions"
     },
     {
