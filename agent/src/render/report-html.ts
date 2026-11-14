@@ -12,6 +12,13 @@ const STATUS_CLASS: Record<DimensionStatus, string> = {
   ok: "st-ok",
   not_assessable: "st-na",
 };
+/** 合规与风险（RAY-698）：三档判定与「需专业审核」的展示口径。 */
+const DECISION_LABEL: Record<string, string> = {
+  rule_level: "规则直判",
+  substantiation: "需事实核实",
+  human_review: "需人工判断",
+};
+
 /** 市场就绪度：四种状态只表示「页面有没有写到」，不是风险等级。 */
 const MR_STATUS_LABEL: Record<string, string> = {
   present: "已展示",
@@ -54,7 +61,10 @@ export function formatDateTime(iso: string): string {
 /** 网页与 PDF 共用同一份报告 JSON；这个渲染器只负责排版，不做任何内容加工。 */
 export function renderReportHtml(report: Report): string {
   const { meta } = report;
-  const risks = report.risks
+  // 合规条目单独成章（与市场就绪度一致），不再混进风险清单重复展示。
+  const contentRisks = report.risks.filter((risk) => risk.dimension !== "compliance");
+  const complianceRisks = report.risks.filter((risk) => risk.dimension === "compliance");
+  const risks = contentRisks
     .map((risk, index) => {
       // 界面信号是代码证据，不是页面正文引用：加来源标签，引用片段改用等宽字体。
       const kindChip =
@@ -120,6 +130,45 @@ export function renderReportHtml(report: Report): string {
     <ul>
 ${candidates}
     </ul>
+  </section>`
+    : "";
+
+  const complianceCounts = {
+    rule_level: complianceRisks.filter((risk) => risk.decision_level === "rule_level").length,
+    substantiation: complianceRisks.filter((risk) => risk.decision_level === "substantiation").length,
+    human_review: complianceRisks.filter((risk) => risk.decision_level === "human_review").length,
+    review: complianceRisks.filter((risk) => risk.review_required).length,
+  };
+  const complianceSection = complianceRisks.length
+    ? `
+  <section>
+    <h2>合规与风险（马来西亚）</h2>
+    <p class="hint">基于公开法规的自动筛查，不构成法律意见。共 ${complianceRisks.length} 条：
+      规则直判 ${complianceCounts.rule_level}、需事实核实 ${complianceCounts.substantiation}、
+      需人工判断 ${complianceCounts.human_review}，其中 ${complianceCounts.review} 条需专业审核。
+      每条都标了法条与核验日期；只做规则级筛查，不对是否触犯法条下结论，也不核验证书真伪。</p>
+${complianceRisks
+  .map(
+    (risk, index) => `
+    <article class="risk compliance">
+      <div class="risk-head">
+        <span class="sev ${SEVERITY_CLASS[risk.severity]}">${SEVERITY_LABEL[risk.severity]}风险</span>
+        <span class="kind">${escapeHtml(DECISION_LABEL[risk.decision_level ?? ""] ?? "需人工判断")}</span>
+        ${risk.review_required ? '<span class="kind review">需专业审核</span>' : ""}
+        <h3>合规 ${index + 1}</h3>
+      </div>
+      ${
+        risk.quote
+          ? `<blockquote>${escapeHtml(risk.quote)}</blockquote>`
+          : '<p class="mr-empty">页面未展示这项内容，没有可引用的原文。</p>'
+      }
+      <p class="citation">法条出处：${escapeHtml(risk.law_name ?? "规则库未给出")}${risk.article ? ` · ${escapeHtml(risk.article)}` : ""}${risk.last_verified ? ` · 核验 ${escapeHtml(risk.last_verified)}` : ""}</p>
+      <div class="field"><span class="label">为什么记这一条</span><p>${escapeHtml(risk.why)}</p></div>
+      <div class="field"><span class="label">怎么改</span><p>${escapeHtml(risk.fix)}</p></div>
+      ${risk.evidence ? `<div class="field"><span class="label">规则与来源</span><p class="evidence">${escapeHtml(risk.evidence)}</p></div>` : ""}
+    </article>`,
+  )
+  .join("\n")}
   </section>`
     : "";
 
@@ -228,6 +277,8 @@ ${marketChecks
   .mr-empty { margin: 8px 0 12px; padding: 10px 14px; border: 1px dashed var(--border); border-radius: 8px; color: var(--muted); font-size: 13px; }
   .risk { border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; margin: 16px 0; break-inside: avoid; }
   .risk-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .citation { margin: 8px 0 0; font-size: 12.5px; color: var(--muted); }
+  .kind.review { background: #fdecea; color: var(--danger); }
   .risk-head h3 { margin: 0; font-size: 16px; color: var(--dark); }
   blockquote { margin: 8px 0 14px; padding: 12px 16px; background: #f7f8fb; border-left: 3px solid var(--warm); border-radius: 0 8px 8px 0; font-family: ui-serif, Georgia, "Times New Roman", serif; font-size: 15px; color: #2b2f36; }
   blockquote.source { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; word-break: break-all; }
@@ -291,6 +342,7 @@ ${dimensions}
   </section>
 
 ${marketSection}
+${complianceSection}
 
   <section>
     <h2>风险与修改建议</h2>
