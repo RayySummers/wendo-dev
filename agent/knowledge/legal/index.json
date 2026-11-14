@@ -1,0 +1,81 @@
+{
+  "version": "2026-11-14",
+  "updated_at": "2026-11-14T14:00:00+08:00",
+  "description": "文渡合规规则库索引（Layer 4）。只收录官方来源，规则可追溯到条文与原文短引。",
+  "markets": [
+    {
+      "market": "MY",
+      "market_name": "马来西亚",
+      "status": "v0.1",
+      "rules_count": 34,
+      "laws_count": 7,
+      "last_verified": "2026-11-14",
+      "rules_file": "my/rules.v0.1.json",
+      "readme": "my/README.md",
+      "sources": "my/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPA 1999 / TDA 2011）",
+        "电商信息披露（CP(ETT) Regs 2012）",
+        "小家电电气准入（Electricity Regs 1994）",
+        "Halal 认证与标识（Halal Order 2011）",
+        "隐私告知（PDPA 2010）",
+        "食品接触材料（Food Regs 1985）"
+      ],
+      "known_gaps": [
+        "CMA 1998 s.233 未收录（未取得可核对全文）",
+        "PDPA s.12B 数据泄露通知未收录",
+        "Food Regs reg.28 陶瓷器皿未单列",
+        "价格管制法、计量法未覆盖",
+        "美妆/食品/玩具等品类特殊规则未覆盖"
+      ]
+    }
+  ],
+  "backlog": [
+    {
+      "market": "US",
+      "priority": 1,
+      "status": "not_started",
+      "scope": "联邦层面：FTC Act s.5（不公平/欺骗性行为）、16 CFR Part 255（代言与推荐指南）、16 CFR Part 260（绿色指南）、16 CFR Part 323（Made in USA 标签规则）、Fair Packaging and Labeling Act、Lanham Act s.43(a)、FDA 化妆品标签、CPSC 消费品安全",
+      "notes": "州级（加州 Prop 65、加州 ACP 等）另列 backlog；US 的 substantiation 体系与 MY 差异大，需单独设计 decision_level"
+    },
+    {
+      "market": "DE",
+      "priority": 2,
+      "status": "not_started",
+      "scope": "UWG §§5, 5a, 6, 7（误导、遗漏、比较广告、骚扰广告）；PAngV（价格标示）；LMIV（食品信息）；GPSR (EU) 2023/988；ElektroG/WEEE；CE 相关指令；GDPR Art.13",
+      "notes": "德语原文 + EUR-Lex 英文对照；注意 UWG 的 Unterlassungsklage（竞争团体警告函）风险"
+    },
+    {
+      "market": "JP",
+      "priority": 3,
+      "status": "not_started",
+      "scope": "景品表示法（不当表示：优良误认、有利误认）；药机法（功效宣称）；食品表示法；电气用品安全法（PSE）；家庭用品有害物质法；个人情报保护法",
+      "notes": "日语原文；品类审批与 PSE 区分特定/非特定电气用品；最后做"
+    }
+  ],
+  "schema": {
+    "required_fields": [
+      "id",
+      "market",
+      "category",
+      "law_name",
+      "article",
+      "official_url",
+      "language",
+      "effective_date",
+      "last_verified",
+      "rule_type",
+      "claim_pattern",
+      "requirement",
+      "evidence_needed",
+      "penalty_or_note",
+      "verbatim_excerpt"
+    ],
+    "decision_levels": {
+      "rule_level": "法条 + 页面原文同时成立时，可给规则级判断（禁止/需事前批准/需附条件）",
+      "substantiation": "只能判'需要证明'，不能判真假",
+      "human_review": "整体印象、公平性、安全性等语境判断，必须人工/律师复核"
+    },
+    "review_policy": "review_required=true 的规则必须人工复核后才能进入报告结论；confidence=medium 的规则需在报告中标注不确定性。"
+  }
+}
