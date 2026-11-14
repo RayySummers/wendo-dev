@@ -33,11 +33,42 @@ export const RiskCoreSchema = z.object({
   fix: z.string().trim().min(2),
 });
 
-/** 报告里的风险条目：模型字段 + 可选的来源标记与界面证据。 */
+/** 六维固定顺序；合规条目用 `dimension: "compliance"`，与前端 DimensionKey 对齐。 */
+export const RISK_DIMENSIONS = [
+  "language",
+  "naturalness",
+  "culture",
+  "effectiveness",
+  "market_readiness",
+  "compliance",
+] as const;
+export type RiskDimension = (typeof RISK_DIMENSIONS)[number];
+
+export const DECISION_LEVELS = ["rule_level", "substantiation", "human_review"] as const;
+
+/**
+ * 报告里的风险条目：模型字段 + 可选的来源标记与界面证据。
+ *
+ * RAY-696 / RAY-698 起，合规条目也走这个结构（`dimension: "compliance"`），
+ * 出处字段一律可选：旧报告不填也能渲染，BFF 负责 snake_case → camelCase。
+ */
 export const RiskSchema = RiskCoreSchema.extend({
   kind: z.enum(RISK_KINDS).optional(),
   /** 界面信号证据：规则 id + 关键声明 + 选择器；只有 interface_translation 会带。 */
   evidence: z.string().trim().min(2).optional(),
+  /** 所属维度；缺省时前端按「综合判断」处理。 */
+  dimension: z.enum(RISK_DIMENSIONS).optional(),
+  /** 法条出处（RAY-696 契约）：法规全名与条文号。 */
+  law_name: z.string().trim().min(2).optional(),
+  article: z.string().trim().min(2).optional(),
+  /** 判断层级：规则直判 / 需事实核实 / 需人工判断；由规则库给出，不由模型改写。 */
+  decision_level: z.enum(DECISION_LEVELS).optional(),
+  /** true 时报告页与 PDF 标「需专业审核」。 */
+  review_required: z.boolean().optional(),
+  /** 该条规则最近一次核验日期（YYYY-MM-DD）。 */
+  last_verified: z.string().trim().min(4).optional(),
+  /** 判断把握，只用于展示，不是分数。 */
+  confidence: z.enum(SEVERITIES).optional(),
 });
 
 export const StrengthSchema = z.object({
@@ -100,9 +131,11 @@ export const InterfaceCandidateSchema = z.object({
 export const ReportSchema = z.object({
   meta: ReportMetaSchema,
   summary: z.string().trim().min(10),
-  risks: z.array(RiskSchema).min(3).max(8),
+  // 模型最多 8 条内容风险 + 代码侧最多 6 条合规条目（RAY-698），上限放到 16。
+  risks: z.array(RiskSchema).min(3).max(16),
   strengths: z.array(StrengthSchema).min(1).max(6),
-  not_assessable: z.array(NotAssessableSchema).min(1).max(8),
+  // 模型条目 + 市场就绪度/合规两条能力边界说明（RAY-697 / RAY-698），上限放到 10。
+  not_assessable: z.array(NotAssessableSchema).min(1).max(10),
   dimensions: z.array(DimensionSchema).min(3).max(10),
   /**
    * 界面可翻译性的「候选」通道：声音层与 RTL 记录。

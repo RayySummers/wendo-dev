@@ -64,9 +64,28 @@ const MARKET_READINESS_FIXTURE = [
   { checkId: "MY-MR-08", label: "认证标志展示", status: "not_applicable" as const, quote: "", why: "本页不是商品详情页，认证展示不在本页范围。", fix: "本项不适用，无需改动。", evidence: "适用性判定：不适用" },
 ].map((item) => ({ ...item, dimension: "market_readiness" as const }));
 
+/** 合规条目（RAY-698）：网页与 PDF 都要渲染法条、核验日期与「需专业审核」。 */
+const COMPLIANCE_FIXTURE = [
+  {
+    severity: "high" as const,
+    quote: "We are a SIRIM certified local distributor.",
+    why: "CPA 1999 s.10(1)(h)：认证类宣称需要能出示证书编号与适用范围；报告只记「需要证明」，不判断真假。",
+    fix: "把 SIRIM 证书编号、型号范围与有效期写进页面；拿不出证书就删去该表述。",
+    dimension: "compliance" as const,
+    law_name: "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
+    article: "s.10(1)(h)",
+    decision_level: "substantiation" as const,
+    review_required: true,
+    last_verified: "2026-11-14",
+    confidence: "high" as const,
+    evidence: "规则 MY-ADV-04 · CPA 1999 s.10(1)(h) · 官方来源 https://lom.agc.gov.my/ · 取证：整页句子行 · 命中：sirim certified",
+  },
+];
+
 export function buildReport(kb: KbDigest): Report {
   return {
     ...buildModelReport(kb),
+    risks: [...buildModelReport(kb).risks, ...COMPLIANCE_FIXTURE],
     market_readiness: MARKET_READINESS_FIXTURE,
     meta: {
       url: "https://example.com/",

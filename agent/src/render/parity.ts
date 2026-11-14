@@ -42,6 +42,10 @@ export function reportTexts(report: Report): ReportText[] {
     if (risk.evidence) {
       items.push({ label: `risks[${index}].evidence`, value: risk.evidence });
     }
+    // 合规条目（RAY-698）的法条出处与核验日期，网页与 PDF 必须一致。
+    if (risk.law_name) items.push({ label: `risks[${index}].law_name`, value: risk.law_name });
+    if (risk.article) items.push({ label: `risks[${index}].article`, value: risk.article });
+    if (risk.last_verified) items.push({ label: `risks[${index}].last_verified`, value: risk.last_verified });
   });
   report.strengths.forEach((strength, index) => {
     items.push(

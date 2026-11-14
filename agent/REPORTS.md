@@ -75,18 +75,25 @@
 | `meta.generated_at` | string | 马来西亚时间（UTC+8），ISO 8601 |
 | `meta.tier` | string | 只可能是 `Lite`（11/15 演示版） |
 | `summary` | string | 简体中文，≥ 10 字符 |
-| `risks` | array | 3–8 条，按严重程度排序；`severity` 为 `high/medium/low` |
+| `risks` | array | 3–16 条（模型 3–8 条内容风险 + 合规条目最多 6 条），按严重程度排序；`severity` 为 `high/medium/low` |
 | `risks[].quote` | string | 内容风险：必须是页面正文的逐字子串（≥ 8 字符），代码会核对；界面风险：命中的元素文本或 HTML 片段 |
 | `risks[].why` / `fix` | string | 简体中文，给出可执行改法 |
 | `risks[].kind` | string? | 缺省视为 `content`；`interface_translation` 表示由界面信号（HTML/CSS）产出，不经模型 |
 | `risks[].evidence` | string? | 仅 `interface_translation`：规则 id + 关键 CSS 声明 + 选择器，网页与 PDF 都要原样渲染 |
 | `strengths` | array | 1–6 条，`quote` 同样逐字核对 |
-| `not_assessable` | array | 1–8 条，说明「首页看不到什么、为什么」 |
+| `not_assessable` | array | 1–10 条，说明「首页看不到什么、为什么」；含两条能力边界（市场就绪度 / 合规） |
 | `dimensions` | array | 3–10 条，覆盖检索到的全部维度；`status` 为 `risk/ok/not_assessable` |
 | `market_readiness` | array? | 固定 8 条（`MY-MR-01`…`MY-MR-08`，允许 `not_applicable`）；代码侧产出，模型不生成 |
 | `market_readiness[].status` | string | `present/missing/needs_review/not_applicable`，不是风险等级 |
 | `market_readiness[].quote` | string | 页面原文；页面没展示时为空字符串，**不补写**；超长行截断后仍是原文子串 |
 | `market_readiness[].evidence` | string? | 代码侧取证范围与命中项，不是页面原文 |
+| `risks[].dimension` | string? | 六维之一；合规条目固定为 `compliance`（RAY-698） |
+| `risks[].law_name` | string? | 法规全名，取自 `knowledge/legal/my/rules.v0.1.json`，代码不写死 |
+| `risks[].article` | string? | 条文号，例如 `s.10(1)(h)`、`reg.4(1)-(2)` |
+| `risks[].decision_level` | string? | `rule_level` / `substantiation` / `human_review`，沿用规则库，代码不改写 |
+| `risks[].review_required` | boolean? | `true` 时网页与 PDF 显示「需专业审核」；high 级与 `human_review` 默认 true |
+| `risks[].last_verified` | string? | 该条规则的最近核验日期（`YYYY-MM-DD`） |
+| `risks[].confidence` | string? | `high/medium/low`，只表示判断把握，不是分数 |
 
 ## 界面可翻译性子检查（RAY-674）
 
@@ -171,6 +178,29 @@
   一条同样的能力边界说明。
 - **版式**：网页与 PDF 都在「诊断维度」之后、风险清单之前单独成章；`scripts/verify-parity.ts`
   会把这一章的文本一起核对。
+
+## 合规与风险判定（RAY-698）
+
+合规与风险（Layer 4）v0.1 只接马来西亚，只消费 `knowledge/legal/my/rules.v0.1.json`
+（45 条 / 9 部法规），由 `src/compliance/analyze.ts` 在 pipeline 里**代码侧**判定，不经模型：
+
+- **三档判定**：`rule_level`（页面要素直接对应法条）/ `substantiation`（只写「需要证明」）/
+  `human_review`（需人工判断）。层级只来自规则库，代码不升级也不降级。
+- **可判定子集**：45 条里 17 条可由页面文本判定（见 `knowledge/compliance/my/README.md`）；
+  其余 28 条写在 `COMPLIANCE_SKIP_REASONS` 里，逐条给原因，不硬凑覆盖率。
+- **出处可追溯**：每条 finding 的 `law_name` / `article` / `last_verified` 来自规则库，
+  `evidence` 写成 `规则 <id> · <法条> · 官方来源 <url> · 取证：<范围> · 命中：<模式>`，
+  网页与 PDF 都原样渲染，所以每条都能回到规则 id + 条文 + 官方 URL。
+- **误报处理**：取证范围优先商品主面板 + 详情区（Description / Specifications，止于推荐位），
+  模式加词边界（`6.5L` 不命中 `5l`）、泛词（`certified` / `approved` / `japan`）要求同行上下文、
+  `Save RM0.00`、`From RM49.92 / month`、测试条件里的 `100%` 都排除；记录见 `SAMPLE_FINDINGS.md`。
+- **去重**：同一页同一规则只出一条；同一句 + 同一层级的多个规则合并成一张卡，其余条文写进
+  `evidence`；跨层级不合并（否则会吞掉其中一档），各自成条并互相引用。
+- **不在报告里下判决**：输出不含「合法 / 违法 / 保证通过 / 已认证」；缺席类检查（国语版本、
+  隐私告知）只写「页面未展示」，且一律 `review_required: true`。
+- **版式**：网页与 PDF 都在「市场就绪度」之后单独成章「合规与风险（马来西亚）」，
+  章节开头固定「基于公开法规的自动筛查，不构成法律意见」；`risks` 里仍带全部合规条目，
+  由前端 / 渲染器按 `dimension` 分章，不再重复出现在风险清单。
 
 ## 硬性约束
 
