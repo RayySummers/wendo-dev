@@ -1,3 +1,19 @@
+# 马来西亚知识库
+
+## 品类路由（RAY-686）
+
+`retrieve_kb` 按 `WENDO_CATEGORY` / `--category` 选择品类，未登记品类直接报错，不会回落到小家电：
+
+| 品类代码 | 报告品类名 | 结构化索引 | 规则原文 |
+| --- | --- | --- | --- |
+| `small_appliances`（默认） | 小家电 | `index.json` | `small-appliances.md` |
+| `consumer_electronics` | 3C 数码 | `index.consumer-electronics.json` | `consumer-electronics.md` |
+
+国家知识库 `malaysia.md` 由两个品类共用。新增品类时同时补索引与规则原文，
+再到 `wendo-server/src/lib/categories.ts` 把该品类从 `pending` 改成 `dedicated`。
+
+---
+
 # 马来西亚 × 小家电知识库 v2（RAY-660）
 
 本目录是 retrieve_kb（固定工具链第 2 步）的检索源。v2 的目标：把知识库从「能跑」提升到

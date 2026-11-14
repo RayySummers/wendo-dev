@@ -1,5 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { resolveCategoryProfile, type CategoryProfile } from "../categories.js";
 import type { KbDigest, KbDimension, KbExcerpt, KbRule, Severity } from "../types.js";
 
 interface RawRule {
@@ -24,29 +25,47 @@ interface RawIndex {
   category: string;
   category_name: string;
   version: string;
+  /** 品类口径说明：哪些规则适用、哪些属于其他品类、不要套用。 */
+  scope?: string;
   dimensions: RawDimension[];
 }
 
 const KB_DIR = new URL("../../knowledge/my/", import.meta.url);
-const MARKET_PATH = fileURLToPath(new URL("index.json", KB_DIR));
 const COUNTRY_PATH = fileURLToPath(new URL("malaysia.md", KB_DIR));
-const CATEGORY_PATH = fileURLToPath(new URL("small-appliances.md", KB_DIR));
 
-let cache: { index: RawIndex; country: Map<string, string>; category: string } | undefined;
+interface LoadedKb {
+  index: RawIndex;
+  country: Map<string, string>;
+  category: string;
+}
 
-async function loadKb() {
-  if (cache) return cache;
+/** 每个品类单独缓存；小家电与 3C 的索引互不影响。 */
+const cache = new Map<string, LoadedKb>();
+
+async function loadKb(profile: CategoryProfile): Promise<LoadedKb> {
+  const cached = cache.get(profile.code);
+  if (cached) return cached;
+
+  const indexPath = fileURLToPath(new URL(profile.indexFile, KB_DIR));
+  const categoryPath = fileURLToPath(new URL(profile.rulesFile, KB_DIR));
   const [indexRaw, countryRaw, categoryRaw] = await Promise.all([
-    readFile(MARKET_PATH, "utf8"),
+    readFile(indexPath, "utf8"),
     readFile(COUNTRY_PATH, "utf8"),
-    readFile(CATEGORY_PATH, "utf8"),
+    readFile(categoryPath, "utf8"),
   ]);
-  cache = {
-    index: JSON.parse(indexRaw) as RawIndex,
+  const index = JSON.parse(indexRaw) as RawIndex;
+  if (index.category !== profile.code) {
+    throw new Error(
+      `知识库索引品类不一致：${profile.indexFile} 写的是「${index.category}」，注册表写的是「${profile.code}」`,
+    );
+  }
+  const loaded: LoadedKb = {
+    index,
     country: splitCountrySections(countryRaw),
     category: categoryRaw.trim(),
   };
-  return cache;
+  cache.set(profile.code, loaded);
+  return loaded;
 }
 
 /** 把国家知识库按「## Section N」切成 section 片段，检索时只取命中的段落。 */
@@ -96,6 +115,8 @@ function toRule(raw: RawRule, text: string): KbRule {
 
 export interface RetrieveKbOptions {
   pageText: string;
+  /** 诊断品类代码；缺省为 small_appliances。未知品类直接报错，不回落。 */
+  category?: string;
   /** 附带原文的国家知识库段落数量，默认按命中排序取 3 个维度。 */
   excerptDimensions?: number;
   /** 每个段落的最大字符数。 */
@@ -104,11 +125,15 @@ export interface RetrieveKbOptions {
 
 /**
  * retrieve_kb：固定工具链第 2 步。
- * 用确定性信号匹配把页面文本映射到马来西亚 × 小家电规则，并按命中排序；
+ * 用确定性信号匹配把页面文本映射到「马来西亚 × 选定品类」规则，并按命中排序；
  * 不使用 LLM，保证同一页面每次拿到同一份知识库上下文。
+ *
+ * RAY-686：品类由 `resolveCategoryProfile` 解析，索引与规则原文按品类加载；
+ * 未登记品类抛错，避免把 3C 页面静默套进小家电规则。
  */
 export async function retrieveKb(options: RetrieveKbOptions): Promise<KbDigest> {
-  const { index, country, category } = await loadKb();
+  const profile = resolveCategoryProfile(options.category);
+  const { index, country, category } = await loadKb(profile);
   const text = options.pageText.toLowerCase();
 
   const dimensions: KbDimension[] = index.dimensions.map((dimension) => {
@@ -143,8 +168,8 @@ export async function retrieveKb(options: RetrieveKbOptions): Promise<KbDigest> 
     }
   }
   excerpts.push({
-    title: "马来西亚小家电品类规则",
-    source: "knowledge/my/small-appliances.md",
+    title: `马来西亚${index.category_name}品类规则`,
+    source: `knowledge/my/${profile.rulesFile}`,
     body: category.slice(0, maxChars),
   });
 
@@ -153,6 +178,7 @@ export async function retrieveKb(options: RetrieveKbOptions): Promise<KbDigest> 
     marketName: index.market_name,
     category: index.category,
     categoryName: index.category_name,
+    scope: index.scope,
     version: index.version,
     dimensions: ranked,
     totalHits: dimensions.reduce((sum, dimension) => sum + dimension.hits, 0),

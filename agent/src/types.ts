@@ -149,6 +149,8 @@ export interface KbDigest {
   marketName: string;
   category: string;
   categoryName: string;
+  /** 品类口径说明：哪些规则适用、哪些规则属于其他品类、不得套用。 */
+  scope?: string;
   version: string;
   dimensions: KbDimension[];
   totalHits: number;

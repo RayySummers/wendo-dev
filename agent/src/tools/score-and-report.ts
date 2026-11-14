@@ -42,7 +42,8 @@ const SYSTEM_PROMPT = `你是「文渡 Wendo」的文化适配诊断引擎，为
 6. strengths 必须给出页面原文引用；not_assessable 写清「首页无法判断什么、为什么无法判断」。
 7. 知识库里的建议是编辑判断，不要写成马来西亚法规；没有页面证据时放进 not_assessable。
 8. 只输出一个 JSON 对象：不要 Markdown 代码块，不要前后解释，不要注释。
-9. 不要判断字号、宽度、溢出、截断、断词、层级通道这类界面实现问题：这些由代码侧的界面信号单独检查并在报告里另行标注。你只依据【页面正文】与【知识库】判断内容与表达。`;
+9. 不要判断字号、宽度、溢出、截断、断词、层级通道这类界面实现问题：这些由代码侧的界面信号单独检查并在报告里另行标注。你只依据【页面正文】与【知识库】判断内容与表达。
+10. 严格按【样本信息】里的品类口径诊断：只使用该品类的知识库规则，不要套用其他品类的专属规则（例如 3C 数码不要判断食品接触、halal、厨房场景；小家电不要判断系统兼容、运营商合约）。语言、支付、物流、退换、客服等共用规则按页面证据正常使用。`;
 
 function buildRuleBlock(dimensions: KbDimension[]): string {
   return dimensions
@@ -69,6 +70,9 @@ URL：${page.finalUrl}
 页面标题：${page.title || "（无标题）"}
 市场：${kb.marketName}（${kb.market}）　品类：${kb.categoryName}
 页面正文长度：${page.charCount} 字符（Scrapling 抓取，单页）
+
+【品类口径】
+${kb.categoryName}${kb.scope ? `：${kb.scope}` : "。"}
 
 【页面正文（逐字引用只能取自这一段）】
 """
