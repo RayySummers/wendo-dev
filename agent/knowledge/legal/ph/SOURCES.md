@@ -88,6 +88,7 @@ sha256sum ph1_ra7394.html ph2_dao01_2008.html ph3_bps_schemes.html \
 | RA 10173 生效日 2012-09-09 | 条文 Sec. 45 要求公布后 15 天生效；公布日未取得 | 常见引用，未直接核对公报（confidence: medium） |
 | DAO 01:2008 与 CPA Art. 77 | 两者均要求标签披露；DAO 追加英文/菲语平行翻译与投诉台地址 | 互补，无冲突 |
 | BPS 页面与 DAO 02:2007 | BPS 页面「PS/ICC 方可分销」与 DAO 02:2007 s.3.3（进口商先取 ICC）、s.5.4（标签/包装显示标志）一致 | 一致 |
+| PH6 PDF 可复现性 | 2026-11-14 重新下载 `ph6_dao02_2007.pdf`，SHA-256 与首次下载一致 | `06428bbe…b7b015`，一致 |
 | ITA s.23(a) 与 CPA Art. 81 | ITA 明文引用 Art. 81 | 一致 |
 | ITA s.23(c)(1) 语言要求 与 DAO 01:2008 s.2 | ITA：包装信息以 Filipino and/or English；DAO：英文或菲语平行翻译 | 不冲突；线上销售两者叠加 |
 
