@@ -25,8 +25,13 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-└── us/                     # 美国（RAY-691）
-    ├── rules.v0.1.json     # 35 条规则（JSON）
+├── us/                     # 美国（RAY-691）
+│   ├── rules.v0.1.json     # 35 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+└── uk/                     # 英国（RAY-692）
+    ├── rules.v0.1.json     # 43 条规则（JSON）
     ├── README.md
     ├── SOURCES.md
     └── SAMPLE_FINDINGS.md
@@ -39,13 +44,14 @@ agent/knowledge/legal/
 | 1 | 马来西亚 (MY) | RAY-688 / RAY-689 | v0.1（定稿候选，待产品验收） | v0.1c | 45 | 9 | 2026-11-14 | 通用广告 + 小家电 + 3C 数码 + 电商披露（2024 条例）；含通讯设备认证、Halal、PDPA、陶瓷食品接触 |
 | 2 | 新加坡 (SG) | RAY-690 | v0.1（定稿候选，待产品验收） | v0.1b | 36 | 8 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / 食品接触 / 计量 / GST 标价 / PDPA(DNC) / Spam Control |
 | 3 | 美国 (US) | RAY-691 | v0.1（定稿候选，待产品验收） | v0.1 | 35 | 20 | 2026-11-14 | 联邦优先；FTC §5 + Endorsement/Green/Review Guides + FPLA + CPSA + FCC + FDCA §409 + Magnuson-Moss + CAN-SPAM；州级另列 backlog |
-| 4 | 英国 (UK) | RAY-692 | backlog | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
+| 4 | 英国 (UK) | RAY-692 | v0.1（定稿候选，待产品验收） | v0.1 | 43 | 15 | 2026-11-14 | DMCCA 2024（CPRs 2008 已于 2025-04-06 废止）+ CRA 2015 + EESR/Plugs/GPSR/EMC/Radio/WEEE/Batteries + PMO + UK GDPR/PECR + BPRs + CAP；CE 与 UKCA 在 GB 并行 |
 | 5 | 澳大利亚 (AU) | RAY-693 | backlog | — | — | — | — | ACL / EESS-RCM / Food Standards / Privacy Act |
 | 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
 > 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿（MY 45 条、SG 36 条均已定稿）。
 > RAY-688（MY v0.1 首单，3C 6 条）与 RAY-689（MY 定稿单）范围重叠：RAY-689 已在 RAY-688 的 40 条 baseline 上完成复核与定稿（45 条），两单验收口径按 RAY-689 执行，避免重复复核。
+> 2026-11-14 UK v0.1（RAY-692）：**CPRs 2008 已于 2025-04-06 废止**，英国不公平商业行为规则迁入 DMCCA 2024 Part 4 Chapter 1；CMA 可直接罚款（s.182(6)：£300,000 或全球营业额 10%）。CE 标志在 GB 继续与 UKCA 并行被承认（SI 2024/696）。
 
 ## 语言政策（2026-11-14 起）
 
