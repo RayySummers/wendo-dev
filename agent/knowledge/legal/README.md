@@ -15,10 +15,14 @@
 agent/knowledge/legal/
 ├── index.json              # 机器可读索引：市场、状态、规则数、backlog
 ├── README.md               # 本文件：方法、字段、扩展流程
-└── my/                     # 马来西亚
-    ├── rules.v0.1.json     # 34 条规则（JSON）
-    ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
-    └── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
+├── my/                     # 马来西亚
+│   ├── rules.v0.1.json     # 34 条规则（JSON）
+│   ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
+│   └── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
+└── sg/                     # 新加坡
+    ├── rules.v0.1.json     # 22 条规则（JSON）
+    ├── README.md
+    └── SOURCES.md
 ```
 
 ## 当前状态
@@ -26,7 +30,7 @@ agent/knowledge/legal/
 | 市场 | 优先级 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 马来西亚 (MY) | live | v0.1 | 34 | 7 | 2026-11-14 | 通用广告 + 小家电；含电商披露、Halal、PDPA、食品接触 |
-| 新加坡 (SG) | 1 | — | — | — | — | 英语官方语言；CPFTA / CPSR SAFETY Mark / PDPA / 食品 |
+| 新加坡 (SG) | 1 | v0.1 | 22 | 4 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / PDPA；食品与计量留 v0.2 |
 | 美国 (US) | 2 | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
 | 英国 (UK) | 3 | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
 | 澳大利亚 (AU) | 4 | — | — | — | — | ACL / EESS-RCM / Food Standards / Privacy Act |
@@ -39,7 +43,7 @@ agent/knowledge/legal/
 
 - 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
-- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 34 条已全部改为英文引文。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 34 条与新加坡 v0.1 的 22 条均为英文引文。
 
 ## 规则字段
 

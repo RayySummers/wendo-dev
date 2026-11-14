@@ -29,17 +29,32 @@
         "价格管制法、计量法未覆盖",
         "美妆/食品/玩具等品类特殊规则未覆盖"
       ]
-    }
-  ],
-  "backlog": [
+    },
     {
       "market": "SG",
       "market_name": "新加坡",
-      "priority": 1,
-      "status": "not_started",
-      "scope": "Consumer Protection (Fair Trading) Act 2003（不公平行为、误导性宣称）；Consumer Protection (Safety Requirements) Regulations（CPSA / SAFETY Mark，小家电准入）；Personal Data Protection Act 2012（告知、同意、DNC）；Sale of Food Act / Food Regulations（标签、食品接触）；Weights and Measures Act；广告行为准则（如适用，仅官方来源）",
-      "notes": "英语为官方语言，SSO/AGC 与 Enterprise Singapore 有英文原文；优先级仅次于 MY"
-    },
+      "status": "v0.1",
+      "rules_count": 22,
+      "laws_count": 4,
+      "last_verified": "2026-11-14",
+      "rules_file": "sg/rules.v0.1.json",
+      "readme": "sg/README.md",
+      "sources": "sg/SOURCES.md",
+      "coverage": [
+        "通用广告/不公平行为（CPFTA 2003 / CPTDSRA 1975）",
+        "小家电 Safety Mark 准入（CPSR）",
+        "隐私告知与 DPO（PDPA 2012）"
+      ],
+      "known_gaps": [
+        "食品接触/食品标签（SFA 本次不可达）",
+        "计量/净含量",
+        "DNC 与短信营销",
+        "GST 价格展示",
+        "CPSR 风险等级逐 SKU 分类"
+      ]
+    }
+  ],
+  "backlog": [
     {
       "market": "US",
       "market_name": "美国",
