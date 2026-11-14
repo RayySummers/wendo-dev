@@ -1,6 +1,6 @@
 {
   "version": "2026-11-14",
-  "updated_at": "2026-11-14T20:10:00+08:00",
+  "updated_at": "2026-11-14T22:40:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -115,18 +115,50 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "us/SAMPLE_FINDINGS.md"
-    }
-  ],
-  "backlog": [
+    },
     {
       "market": "UK",
       "market_name": "英国",
-      "priority": 3,
-      "status": "not_started",
-      "scope": "Consumer Protection from Unfair Trading Practices Regulations 2008；Business Protection from Misleading Marketing Regulations 2008；Consumer Rights Act 2015（s.11 误导性行为）；ASA/CAP Code（行业自律，标 guideline）；Electrical Equipment (Safety) Regulations 2016；UKCA/CE 过渡；GDPR/DPA 2018",
-      "notes": "英语原文；注意北爱尔兰与 EU 规则并行",
-      "issue": "RAY-692"
-    },
+      "status": "v0.1",
+      "rules_count": 43,
+      "laws_count": 15,
+      "last_verified": "2026-11-14",
+      "rules_file": "uk/rules.v0.1.json",
+      "readme": "uk/README.md",
+      "sources": "uk/SOURCES.md",
+      "coverage": [
+        "通用广告与不公平商业行为（DMCCA 2024 ss.225-230、Sch.20：虚假评论/诱饵价/虚假限时/免费声称/信任标志/批准背书）",
+        "CMA 直接罚款与 substantiation（DMCCA 2024 ss.182、195、237-241）",
+        "价格标示与英镑计价（PMO 2004 art.6；DMCCA s.230 总价/drip pricing）",
+        "消费者合同与商品说明（CRA 2015 ss.9、11、31、62）",
+        "电气安全准入与英文说明（EESR 2016 regs.4、8、9、34；Plugs 1994 reg.12 BS 1363 + BS 1362）",
+        "通用产品安全与风险警示（GPSR 2005 regs.5、7）",
+        "EMC 与无线电设备（EMC 2016 reg.7；Radio 2017 reg.13）",
+        "WEEE 与电池打叉垃圾桶标识（WEEE 2013 reg.22；Batteries 2008 reg.5）",
+        "UKCA/CE 并行与合格评定（gov.uk 指引；SI 2024/696）",
+        "隐私告知与电子营销（UK GDPR Arts.12-13；PECR regs.6、22）",
+        "B2B 误导性广告与比较广告（BPRs 2008 regs.3、4）",
+        "行业自律（CAP Code rules 3.7、11.1/11.4）"
+      ],
+      "known_gaps": [
+        "北爱尔兰适用 EU 规则（CE/UKNI；GPSR (EU) 2023/988 自 2024-12-13 起），本版仅标注差异，未建 NI 规则",
+        "The Product Regulation and Metrology Act 2025 是否生效/是否取代 GPSR 2005 未核",
+        "DMCCA Part 4 Chapter 2（订阅合同）未覆盖：滤芯订阅/延保订阅的 reminder notice 要求待核",
+        "DMCCA Sch.20 para 12（付费软文）未单列为规则：被 s.237(8) 排除刑事罪，民事仍适用",
+        "MHRA 医疗器械边界（杀菌/抗过敏/美容声称）未覆盖，需另开子单",
+        "能源标签（Energy Labelling）未逐 SKU 映射",
+        "纺织品标签（Textile Products (Labelling etc.) Regulations 2012）与食品接触材料未覆盖",
+        "PMO 2004 art.5 单位价格对线上家居耗材的适用性未逐项确认",
+        "WEEE 生产者注册/申报/回收义务与包装 EPR 未覆盖（页面不可观察）",
+        "CMA 直接罚款的公开执法案例与金额尚无样本；罚则只写上限"
+      ],
+      "issue": "RAY-692",
+      "rules_version": "2026-11-14-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "uk/SAMPLE_FINDINGS.md"
+    }
+  ],
+  "backlog": [
     {
       "market": "AU",
       "market_name": "澳大利亚",
