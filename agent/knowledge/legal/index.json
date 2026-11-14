@@ -1,7 +1,8 @@
 {
   "version": "2026-11-14",
-  "updated_at": "2026-11-14T14:00:00+08:00",
-  "description": "文渡合规规则库索引（Layer 4）。只收录官方来源，规则可追溯到条文与原文短引。",
+  "updated_at": "2026-11-14T15:30:00+08:00",
+  "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
+  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
     {
       "market": "MY",
@@ -32,25 +33,62 @@
   ],
   "backlog": [
     {
-      "market": "US",
+      "market": "SG",
+      "market_name": "新加坡",
       "priority": 1,
+      "status": "not_started",
+      "scope": "Consumer Protection (Fair Trading) Act 2003（不公平行为、误导性宣称）；Consumer Protection (Safety Requirements) Regulations（CPSA / SAFETY Mark，小家电准入）；Personal Data Protection Act 2012（告知、同意、DNC）；Sale of Food Act / Food Regulations（标签、食品接触）；Weights and Measures Act；广告行为准则（如适用，仅官方来源）",
+      "notes": "英语为官方语言，SSO/AGC 与 Enterprise Singapore 有英文原文；优先级仅次于 MY"
+    },
+    {
+      "market": "US",
+      "market_name": "美国",
+      "priority": 2,
       "status": "not_started",
       "scope": "联邦层面：FTC Act s.5（不公平/欺骗性行为）、16 CFR Part 255（代言与推荐指南）、16 CFR Part 260（绿色指南）、16 CFR Part 323（Made in USA 标签规则）、Fair Packaging and Labeling Act、Lanham Act s.43(a)、FDA 化妆品标签、CPSC 消费品安全",
       "notes": "州级（加州 Prop 65、加州 ACP 等）另列 backlog；US 的 substantiation 体系与 MY 差异大，需单独设计 decision_level"
     },
     {
-      "market": "DE",
-      "priority": 2,
+      "market": "UK",
+      "market_name": "英国",
+      "priority": 3,
       "status": "not_started",
-      "scope": "UWG §§5, 5a, 6, 7（误导、遗漏、比较广告、骚扰广告）；PAngV（价格标示）；LMIV（食品信息）；GPSR (EU) 2023/988；ElektroG/WEEE；CE 相关指令；GDPR Art.13",
-      "notes": "德语原文 + EUR-Lex 英文对照；注意 UWG 的 Unterlassungsklage（竞争团体警告函）风险"
+      "scope": "Consumer Protection from Unfair Trading Practices Regulations 2008；Business Protection from Misleading Marketing Regulations 2008；Consumer Rights Act 2015（s.11 误导性行为）；ASA/CAP Code（行业自律，标 guideline）；Electrical Equipment (Safety) Regulations 2016；UKCA/CE 过渡；GDPR/DPA 2018",
+      "notes": "英语原文；注意北爱尔兰与 EU 规则并行"
+    },
+    {
+      "market": "AU",
+      "market_name": "澳大利亚",
+      "priority": 4,
+      "status": "not_started",
+      "scope": "Competition and Consumer Act 2010（ACL：s.18 误导性行为、s.29 虚假陈述）；Australian Consumer Law 价格与促销规则；Electrical Equipment Safety System (EESS) / RCM；Food Standards Code；Privacy Act 1988",
+      "notes": "联邦 + 州/领地差异；EESS 注册是电器准入重点"
+    },
+    {
+      "market": "PH",
+      "market_name": "菲律宾",
+      "priority": 5,
+      "status": "not_started",
+      "scope": "Consumer Act of the Philippines (RA 7394)；Philippine Standards / ICC 与 PS 认证（DTI-BPS）；FDA 化妆品/食品；Data Privacy Act 2012 (RA 10173)；广告规则（AdBoard，如有官方来源）",
+      "notes": "英语为官方语言之一；部分规则为菲律宾语/英语双语，需确认官方英文版本"
+    },
+    {
+      "market": "CA",
+      "market_name": "加拿大",
+      "priority": 6,
+      "status": "not_started",
+      "scope": "Competition Act（虚假/误导性陈述）；Consumer Packaging and Labelling Act；Canada Consumer Product Safety Act；Electrical safety（CSA/ULC，省际差异）；PIPEDA；Quebec 法语宪章（Bill 96）另标",
+      "notes": "Quebec/French 问题单独标注；联邦与省分层"
+    }
+  ],
+  "out_of_scope": [
+    {
+      "market": "DE",
+      "reason": "2026-11-14 范围修正：文渡只做 de facto official language 为英语的市场；德国（德语）移出本单"
     },
     {
       "market": "JP",
-      "priority": 3,
-      "status": "not_started",
-      "scope": "景品表示法（不当表示：优良误认、有利误认）；药机法（功效宣称）；食品表示法；电气用品安全法（PSE）；家庭用品有害物质法；个人情报保护法",
-      "notes": "日语原文；品类审批与 PSE 区分特定/非特定电气用品；最后做"
+      "reason": "2026-11-14 范围修正：日本（日语）移出本单"
     }
   ],
   "schema": {

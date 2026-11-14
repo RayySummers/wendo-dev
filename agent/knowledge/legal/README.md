@@ -23,12 +23,23 @@ agent/knowledge/legal/
 
 ## 当前状态
 
-| 市场 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
-| --- | --- | --- | --- | --- | --- |
-| 马来西亚 (MY) | v0.1 | 34 | 7 | 2026-11-14 | 通用广告 + 小家电；含电商披露、Halal、PDPA、食品接触 |
-| 美国 (US) | — | — | — | — | backlog #1，联邦优先 |
-| 德国 (DE) | — | — | — | — | backlog #2，UWG/GPSR/GDPR |
-| 日本 (JP) | — | — | — | — | backlog #3，景表法/药机法/PSE |
+| 市场 | 优先级 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 马来西亚 (MY) | live | v0.1 | 34 | 7 | 2026-11-14 | 通用广告 + 小家电；含电商披露、Halal、PDPA、食品接触 |
+| 新加坡 (SG) | 1 | — | — | — | — | 英语官方语言；CPFTA / CPSR SAFETY Mark / PDPA / 食品 |
+| 美国 (US) | 2 | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
+| 英国 (UK) | 3 | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
+| 澳大利亚 (AU) | 4 | — | — | — | — | ACL / EESS-RCM / Food Standards / Privacy Act |
+| 菲律宾 (PH) | 5 | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
+| 加拿大 (CA) | 6 | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+
+> 德国 (DE)、日本 (JP) 已按 2026-11-14 的范围修正移出：文渡目前只做 de facto official language 为英语的市场，不再收集德语/日语法条。
+
+## 语言政策（2026-11-14 起）
+
+- 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
+- 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 34 条已全部改为英文引文。
 
 ## 规则字段
 
@@ -67,7 +78,7 @@ agent/knowledge/legal/
 
 1. 只收：法规原文、政府公报、监管机关指南/FAQ。
 2. 二手解读（律所文章、商业数据库、NGO 页面）只能当线索，不能进规则库；若用于交叉核对，写进 `SOURCES.md` 的"辅助来源"。
-3. 找不到官方原文就标 `not_found`，不凭记忆写法条。
+3. 找不到官方原文就标 `not_found`，不凭记忆写法条；没有官方英文版本就标 `official_english_unavailable`。
 4. 每条都要有 `last_verified`；法规更新时保留旧版本文件（`rules.v0.1.json` → `rules.v0.2.json`），不要原地覆盖。
 5. 罚则写"上限"，不写"必然处罚"。
 
