@@ -20,8 +20,13 @@ agent/knowledge/legal/
 │   ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
 │   ├── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
 │   └── SAMPLE_FINDINGS.md  # 真实页面「规则→finding」样例与误报/漏报记录
-└── sg/                     # 新加坡（RAY-690）
-    ├── rules.v0.1.json     # 36 条规则（JSON）
+├── sg/                     # 新加坡（RAY-690）
+│   ├── rules.v0.1.json     # 36 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+└── us/                     # 美国（RAY-691）
+    ├── rules.v0.1.json     # 35 条规则（JSON）
     ├── README.md
     ├── SOURCES.md
     └── SAMPLE_FINDINGS.md
@@ -33,7 +38,7 @@ agent/knowledge/legal/
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 马来西亚 (MY) | RAY-688 / RAY-689 | v0.1（定稿候选，待产品验收） | v0.1c | 45 | 9 | 2026-11-14 | 通用广告 + 小家电 + 3C 数码 + 电商披露（2024 条例）；含通讯设备认证、Halal、PDPA、陶瓷食品接触 |
 | 2 | 新加坡 (SG) | RAY-690 | v0.1（定稿候选，待产品验收） | v0.1b | 36 | 8 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / 食品接触 / 计量 / GST 标价 / PDPA(DNC) / Spam Control |
-| 3 | 美国 (US) | RAY-691 | backlog | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
+| 3 | 美国 (US) | RAY-691 | v0.1（定稿候选，待产品验收） | v0.1 | 35 | 20 | 2026-11-14 | 联邦优先；FTC §5 + Endorsement/Green/Review Guides + FPLA + CPSA + FCC + FDCA §409 + Magnuson-Moss + CAN-SPAM；州级另列 backlog |
 | 4 | 英国 (UK) | RAY-692 | backlog | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
 | 5 | 澳大利亚 (AU) | RAY-693 | backlog | — | — | — | — | ACL / EESS-RCM / Food Standards / Privacy Act |
 | 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
@@ -46,7 +51,7 @@ agent/knowledge/legal/
 
 - 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
-- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条与新加坡 v0.1 的 36 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条、新加坡 v0.1 的 36 条与美国 v0.1 的 35 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
 
 ## 规则字段
 
