@@ -1,0 +1,1061 @@
+{
+  "market": "MY",
+  "market_name": "马来西亚",
+  "category": "consumer_electronics",
+  "category_name": "3C 数码",
+  "version": "2026-11-14-v1",
+  "scope": "只适用于 3C 数码（手机、电脑、平板、穿戴、耳机、配件）。不包含小家电的食品接触、halal、厨房场景规则；语言、支付、物流、退换、客服、价格等共用规则可复用。全球品牌的规模优势不等于中小企业必须项：Apple 有门店、全球保修与品牌溢价，本地中小企业应按自身渠道取证，不要照抄「Apple 有所以我们也要有」。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-LANG-01",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类；全球品牌与本地品牌都适用，但证据标准不同",
+          "rule": "英文主文案可以保留，但交易与售后信息（配送、保修、退货、客服）至少要有一眼可见的马来语入口或双语说明。",
+          "why": "马来西亚英语普及度高，3C 买家看英文参数没有障碍；但保修、退货、客服这些「出问题才看」的内容如果只有英文，会放大求助门槛。全球品牌常靠品牌信任抵消，本地中小企业没有这个缓冲。",
+          "fix": "商品页与帮助中心提供 Bahasa Melayu 版本，至少覆盖配送、保修、退货、联系方式四块；首页可保留英文主文案。",
+          "signals": [
+            "malay",
+            "bahasa"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-LANG-02",
+          "severity_hint": "low",
+          "applies_to": "全部 3C 品类",
+          "rule": "马来西亚属英联邦，正式英文文案应统一英式拼写与 DD/MM/YYYY 日期格式。",
+          "why": "英式拼写是本地教育与企业写作标准；美式拼写混用会显得文案直接从美国站搬来，细节上不专业。",
+          "fix": "统一 colour / centre / organise / catalogue；日期写 14/11/2026，避免 11/14/2026。",
+          "signals": [
+            "colour",
+            "center",
+            "organize",
+            "catalog",
+            "11/14",
+            "mm/dd"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-LANG-03",
+          "severity_hint": "low",
+          "applies_to": "全部 3C 品类，重点规格表",
+          "rule": "规格一律使用公制与摄氏度：mm / cm / g / kg / W / Wh / °C，不要混入 inch、oz、lb、°F。",
+          "why": "马来西亚采用公制；3C 参数常从美国站直接复制，混用英制会让本地买家需要二次换算。",
+          "fix": "屏幕写 6.3 吋或 16.0 cm（并统一口径）、重量写 187 g、温度写 °C；如保留吋，括号内补公制。",
+          "signals": [
+            "inch",
+            "inches",
+            "oz",
+            "lbs",
+            "°f",
+            "fahrenheit",
+            "cm",
+            "mm",
+            "kg"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-LANG-04",
+          "severity_hint": "medium",
+          "applies_to": "手机、电脑、平板、穿戴、耳机及配件",
+          "rule": "型号与地区版本要写清马来西亚版（如 MY/A 结尾），不要只给美国或欧洲型号。",
+          "why": "3C 买家会按型号核对频段、插头、保修地区与二手价值；型号含糊会直接导致「买到水货」的疑虑。",
+          "fix": "规格区写「Model: AXXXX (MY)」，并说明盒内配件、插头类型与保修适用地区。",
+          "signals": [
+            "model code",
+            "region code",
+            "malaysia set",
+            "part number",
+            "sku"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-LANG-05",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "不要直译中文 3C 品类词或营销词（如「hand machine」「digital product」「machine king」），用本地通行的 phone / tablet / laptop / earbuds。",
+          "why": "直译词在本地搜索里没有对应认知，也说不清产品是什么；3C 品类词比小家电更标准化，直译的伤害更明显。",
+          "fix": "用 iPhone、laptop、tablet、smartwatch、wireless earbuds、power bank 等本地通行词；品牌名保持原文。",
+          "signals": [
+            "hand machine",
+            "digital product",
+            "machine king",
+            "electronic product"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "specs",
+      "name": "产品规格与兼容性",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-SPEC-01",
+          "severity_hint": "high",
+          "applies_to": "含电源适配器、充电器、带插头的 3C 产品",
+          "rule": "电源类产品必须写 240V / 50Hz 与马来西亚插头：13A 三脚（BS 1363 / MS 589），两脚仅限 Class II。",
+          "why": "马来西亚低压供电为 240V/50Hz；受管制电器与适配器/充电器在 ST 清单内。插头与电压写错，轻则买家要另买转换头，重则无法合法销售。",
+          "fix": "规格写「Input: 100–240V, 50/60Hz; Plug: UK 3-pin (BS 1363)」；附转换头的要说明「includes MY plug adapter」。",
+          "signals": [
+            "240v",
+            "50hz",
+            "plug",
+            "adapter",
+            "charger",
+            "bs 1363",
+            "3-pin",
+            "3 pin"
+          ],
+          "source": {
+            "type": "official",
+            "title": "SIRIM QAS：进口受管制电器须 240V/50Hz、13A 三脚或 2.5A 两脚插头",
+            "url": "https://www.sirim-qas.com.my/downloads/brochure/PCIT/Batch%20Certification%20%28Import%20Consignment%29.pdf"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-SPEC-02",
+          "severity_hint": "high",
+          "applies_to": "手机、平板、笔记本、手表、耳机、Wi-Fi/蓝牙设备",
+          "rule": "无线通信设备应说明 MCMC 合规批准与认证标签，并列出马来西亚支持的频段；不要笼统写「global bands」。",
+          "why": "MCMC 要求通信设备上市前取得合规批准（Type Approval）并贴认证标签；频段与SAR/功率不合规会影响入网与合法销售。",
+          "fix": "规格区写「MCMC certified」并给证书/标签图；频段写具体 LTE/5G/Wi-Fi 频段，避免只写「supports 5G」。",
+          "signals": [
+            "mcmc",
+            "type approval",
+            "5g",
+            "lte",
+            "wi-fi",
+            "bluetooth",
+            "bands",
+            "certified"
+          ],
+          "source": {
+            "type": "official",
+            "title": "MCMC：通信设备合规批准（Type Approval）",
+            "url": "https://mcmc.gov.my/en/faqs/communications-equipment-certification/certification/what-is-compliance-approval-certification?lang=ms-MYen-US"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-SPEC-03",
+          "severity_hint": "high",
+          "applies_to": "手机、电脑、平板、穿戴、耳机",
+          "rule": "型号、地区版本、盒内清单与保修地区必须成套出现，不能只给一个产品名。",
+          "why": "3C 是高单价、强型号驱动的品类；买家会用型号核对配置与保修，缺一项就会转向有完整信息的竞品或授权店。",
+          "fix": "做一张「What's in the box / Model / Warranty region」小表，型号与地区版本逐项列出。",
+          "signals": [
+            "what's in the box",
+            "in the box",
+            "model",
+            "warranty",
+            "region",
+            "box contents"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-SPEC-04",
+          "severity_hint": "medium",
+          "applies_to": "手机、电脑、平板、穿戴、耳机及配件",
+          "rule": "兼容性要写清 OS 版本、充电协议与配件代际，不要假设买家已有美规/欧规配件。",
+          "why": "3C 的兼容性问题多半发生在配件与系统版本上；只写「compatible with all devices」会在售后变成退货理由。",
+          "fix": "写「Requires iOS 18 or later」「USB-C PD 30W」「compatible with Apple Watch Series 6 and later」这类可核对的条件。",
+          "signals": [
+            "compatible",
+            "ios",
+            "android",
+            "usb-c",
+            "usb c",
+            "thunderbolt",
+            "requires",
+            "support"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-SPEC-05",
+          "severity_hint": "medium",
+          "applies_to": "电池、充电器、穿戴与移动电源",
+          "rule": "电池容量用 Wh、充电功率用 W、防护等级用 IP 代码；不要用「all-day battery」「fast charge」代替可核对数字。",
+          "why": "3C 买家会用 Wh/W/IP 比较产品；只有形容词的规格无法比较，也容易被认定为夸大宣传。",
+          "fix": "写「Battery: 3,274 mAh / 12.7 Wh; Charging: up to 27W USB-C PD; IP68」。",
+          "signals": [
+            "battery",
+            "mah",
+            "wh",
+            "charging",
+            "watt",
+            "ip68",
+            "ip67",
+            "fast charge"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "name": "保修与售后服务",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-WAR-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类",
+          "rule": "保修要写清期限、覆盖部件、是否国际保修、索赔流程与维修网点；只写「1-year warranty」不算完成。",
+          "why": "3C 客单价高，保修是购买决策的一部分；马来西亚消费者也可依 CPA 1999 主张默示保证，含糊条款不能排除法定权利。",
+          "fix": "写「1-year limited warranty (Malaysia). Covers manufacturing defects; excludes accidental damage. Claim at [service centre] with serial number.」",
+          "signals": [
+            "warranty period",
+            "limited warranty",
+            "coverage",
+            "claim",
+            "serial number"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection Act 1999（截至 2019-11-01 文本）：第 31–37 条默示保证、第 37 条维修与备件",
+            "url": "https://mysafe.kpdn.gov.my/img/portal/consumer-safety/599_Act_As_at_1_November_2019.pdf"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-WAR-02",
+          "severity_hint": "high",
+          "applies_to": "手机、电脑、平板、穿戴、耳机",
+          "rule": "要区分官方保修、授权经销商保修与水货（grey market）；给出序列号查询与授权服务商入口。",
+          "why": "3C 水货与平行进口常见，买家最怕「坏了没人修」；不写清渠道，价格再低也会被当成风险。",
+          "fix": "写「Authorised reseller list」与「Check warranty by serial number」；明确非授权渠道不享有本地保修。",
+          "signals": [
+            "authorised reseller",
+            "authorized reseller",
+            "grey market",
+            "serial",
+            "warranty check",
+            "service provider"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-WAR-03",
+          "severity_hint": "medium",
+          "applies_to": "手机、平板、笔记本、穿戴",
+          "rule": "维修/换机/备用机与 AppleCare 类延保要写清响应时效、覆盖范围与自付额，不要只放一个服务名。",
+          "why": "3C 售后承诺的可信度取决于时效与自付额；只写「AppleCare+ available」无法回答「坏了我等多久、要付多少」。",
+          "fix": "写「AppleCare+ extends coverage to 2 years, 2 accidental damage claims per year, service fee RMXX」；维修写 turnaround。",
+          "signals": [
+            "applecare",
+            "repair",
+            "replacement",
+            "turnaround",
+            "service fee",
+            "accidental damage"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-WAR-04",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "不要用「no refund」「no warranty」这类绝对免责话术覆盖法定默示保证；可写清商业保修与法定权利的边界。",
+          "why": "CPA 1999 第 31–37 条对可接受质量、适用性、维修与备件设有默示保证；绝对免责既不可执行，也会被消费者视为不信任信号。",
+          "fix": "写「This warranty does not affect your statutory rights under the Consumer Protection Act 1999」；退货政策单独写。",
+          "signals": [
+            "no refund",
+            "no warranty",
+            "statutory rights",
+            "consumer protection",
+            "refund policy"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection Act 1999（截至 2019-11-01 文本）：第 31–37 条默示保证、第 37 条维修与备件",
+            "url": "https://mysafe.kpdn.gov.my/img/portal/consumer-safety/599_Act_As_at_1_November_2019.pdf"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付、分期与 trade-in",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类，尤其中高客单价",
+          "rule": "结算区应展示本地支付方式：FPX 网银、Touch 'n Go eWallet、GrabPay、ShopeePay、Boost 与信用卡；只放信用卡会流失买家。",
+          "why": "FPX 与电子钱包是马来西亚电商主流支付方式；3C 客单价高，支付方式缺失对转化的影响比小家电更大。",
+          "fix": "在价格/加购区放支付图标行，写「FPX · Touch 'n Go · GrabPay · ShopeePay · Visa/Mastercard」。",
+          "signals": [
+            "fpx",
+            "touch 'n go",
+            "tng",
+            "grabpay",
+            "shopeepay",
+            "boost",
+            "visa",
+            "mastercard",
+            "payment"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "U.S. ITA Trade.gov：Malaysia eCommerce（支付与电商结构）",
+            "url": "https://www.trade.gov/country-commercial-guides/malaysia-ecommerce"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "价格用 RM + 两位小数，并写明是否含 SST/税费与运费；不要让买家到结算页才发现加价。",
+          "why": "马来西亚消费者对「标价与结账价不一致」非常敏感；3C 高单价下，税费与运费的突然加价最容易导致弃购。",
+          "fix": "写「RM4,399.00 (inclusive of SST)」；运费与安装费另列时，在价格旁标注「+ delivery from RMXX」。",
+          "signals": [
+            "rm",
+            "sst",
+            "tax",
+            "inclusive",
+            "delivery fee",
+            "shipping fee"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-PAY-03",
+          "severity_hint": "high",
+          "applies_to": "手机、电脑、平板、穿戴等可分期商品",
+          "rule": "0% 分期要写清最低消费、可选期数、参与银行与卡种；不要只写「0% interest」或只放银行图标。",
+          "why": "银行 EPP 是马来西亚 3C 的主要成交工具；Apple 自己的条款就写明最低 RM2,000、6/12/24 期、仅限 Visa/Mastercard 与参与银行。缺这些条件，买家会默认自己不符合。",
+          "fix": "写「0% interest for 6/12/24 months with participating banks; min. spend RM2,000; Visa/Mastercard credit cards only」，并链接银行条款。",
+          "signals": [
+            "0% interest",
+            "installment",
+            "instalment",
+            "monthly",
+            "participating banks",
+            "epp",
+            "24 months"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-PAY-04",
+          "severity_hint": "high",
+          "applies_to": "手机、平板、笔记本、穿戴",
+          "rule": "Trade-in 要写清合作方、估价与最终价差异、可抵扣范围、数据清除与资格条件；不要把最高估价写成保证价。",
+          "why": "Trade-in 是 3C 换机的核心决策点；Apple 首页给的是 RM650–RM5,450 的估价区间，并明确最终价取决于机型、年份与状况。只写「up to RM5,450」容易被理解为保证价。",
+          "fix": "写「Estimated RM650–RM5,450; final value depends on model, year and condition; provided by [partner]. Back up and erase your data before trade-in.」",
+          "signals": [
+            "trade in",
+            "trade-in",
+            "estimated",
+            "up to rm",
+            "buyback",
+            "recycle"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-PAY-05",
+          "severity_hint": "medium",
+          "applies_to": "手机、平板、穿戴（运营商渠道）",
+          "rule": "运营商合约机要写清合约期、 upfront 付款、月费、解锁状态与提前解约条款；不要只写「from RMXX/month」。",
+          "why": "马来西亚 3C 仍有相当比例通过 Maxis / CelcomDigi / U Mobile 等合约渠道成交；合约条款不清会产生投诉与退订。",
+          "fix": "写「24-month plan, RMXX upfront + RMXX/month, unlocked after contract」；标明是否含数据配套。",
+          "signals": [
+            "contract",
+            "maxis",
+            "celcom",
+            "digi",
+            "u mobile",
+            "unlocked",
+            "24-month"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送、退换与渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类",
+          "rule": "「Free shipping」必须写清门槛、西马/东马适用范围与时效；东马（沙巴、砂拉越）要单独说明加价与天数。",
+          "why": "东马依赖海运/空运并按邮编加价；3C 高单价商品如果免运费规则含糊，东马买家下单后才发现加价，退款与差评成本很高。",
+          "fix": "写「Free delivery for orders above RMXXX (Peninsular Malaysia). Sabah & Sarawak from RMXX, 7–14 working days.」",
+          "signals": [
+            "free delivery",
+            "free shipping",
+            "shipping",
+            "delivery",
+            "sabah",
+            "sarawak",
+            "east malaysia"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-LOG-02",
+          "severity_hint": "high",
+          "applies_to": "手机、电脑、平板、穿戴等高单价商品",
+          "rule": "高单价 3C 要说明保价、签收与承运商；不要默认「放门口」或让买家承担丢件风险。",
+          "why": "3C 是盗损与丢件的高风险品类；本地买家会看「谁送、丢件谁负责、要不要签收」来决定是否下单。",
+          "fix": "写「Insured delivery with signature required; shipped by [courier]」；提供运单查询入口与丢件处理流程。",
+          "signals": [
+            "insured",
+            "signature",
+            "courier",
+            "tracking",
+            "lost",
+            "damaged"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-LOG-03",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类",
+          "rule": "退货/退款要写清窗口、商品状态（未拆封/已激活）、退货运费与退款方式，并与配送说明放在同一信任路径。",
+          "why": "3C 退货争议多集中在「已激活/已拆封」与退款周期；只写「7-day return」而不写条件，会在售后变成纠纷。",
+          "fix": "写「7-day return for unopened items; activated devices follow warranty policy; refund within 14 working days to original payment method」。",
+          "signals": [
+            "return",
+            "returns",
+            "refund",
+            "exchange",
+            "unopened",
+            "activated",
+            "14 days"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection Act 1999（截至 2019-11-01 文本）：第 31–37 条默示保证、第 37 条维修与备件",
+            "url": "https://mysafe.kpdn.gov.my/img/portal/consumer-safety/599_Act_As_at_1_November_2019.pdf"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-LOG-04",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "有线下渠道的要写清 Apple Store / 授权经销商 / 自提点的可用性与库存查询；纯线上品牌则写清发货仓。",
+          "why": "3C 买家仍希望「先看真机再买」；有门店但不写，会浪费最强的信任资产。",
+          "fix": "写「Find a store / authorised reseller」并给库存查询；纯线上写「Ships from [warehouse], 1–2 working days to dispatch」。",
+          "signals": [
+            "store",
+            "find a store",
+            "reseller",
+            "pickup",
+            "availability",
+            "stock"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-LOG-05",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "订单状态与配送进度要可查；至少提供订单查询入口与客服兜底，不要只写「we will contact you」。",
+          "why": "3C 订单金额高，买家会反复查进度；没有自助查询会把客服压力放大，也降低信任。",
+          "fix": "页脚放「Order Status」；下单后给运单号与预计到达日，异常时主动通知。",
+          "signals": [
+            "order status",
+            "track order",
+            "dispatch",
+            "delivery status"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "认证、隐私与本地信任",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "含适配器/充电器的 3C 产品与无线设备",
+          "rule": "认证要按产品类型写对：电源适配器/充电器核对 ST COA 与 SIRIM，无线设备核对 MCMC 合规批准与标签；不能用「SIRIM certified」一句覆盖所有。",
+          "why": "ST 的 COA 清单包含适配器/充电器，MCMC 管通信设备；两类认证主管机关不同。写错认证类型会让专业买家直接质疑合规性。",
+          "fix": "按 SKU 写「SIRIM COA: [编号]」「MCMC Type Approval: [编号]」，并放标签图；没有取证就先删宣称。",
+          "signals": [
+            "sirim",
+            "coa",
+            "certification",
+            "certification label",
+            "compliance"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Suruhanjaya Tenaga：需 COA 的设备类别（含适配器/充电器）",
+            "url": "https://www.st.gov.my/what-are-categories-and-types-equipment-require-certificate-approval-coa"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类（网站收集个人资料）",
+          "rule": "涉及账号、下单、保修登记时，要有 PDPA 2010 隐私说明：收集哪些资料、用途、保存期限、联系人与查询/更正渠道；不要写「100% secure」。",
+          "why": "PDPA 2010（Act 709）对个人资料的收集、使用、披露与安全设有七项原则；3C 网站常收集手机号、地址、设备信息，缺隐私说明是合规与信任双重风险。",
+          "fix": "页脚放 Privacy Policy，写清 data controller、用途、第三方（物流/支付/trade-in 伙伴）与联系邮箱；cookie 同意单独做。",
+          "signals": [
+            "privacy",
+            "pdpa",
+            "personal data",
+            "cookie",
+            "data protection",
+            "100% secure"
+          ],
+          "source": {
+            "type": "official",
+            "title": "马来西亚个人资料保护局：PDPA 2010（Act 709）",
+            "url": "https://www.pdp.gov.my/en/main-page/?lang=en"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        },
+        {
+          "id": "MY-CE-TRUST-03",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类",
+          "rule": "页脚要有本地公司实体（SSM 注册名/编号）、地址、客服邮箱与电话；全球品牌可写本地子公司或授权经销商。",
+          "why": "3C 高单价交易需要可追责的主体；只有海外总部地址会让本地买家担心售后与法律救济。",
+          "fix": "写「[Sdn Bhd] (Company No. XXXXXX-X), [address], [email], [phone]」；跨境卖家写本地授权经销商。",
+          "signals": [
+            "sdn bhd",
+            "company no",
+            "ssm",
+            "registered address",
+            "contact us",
+            "distributor"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-TRUST-04",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "社会证明要可核对：真实评价、买家图、平台评分或媒体测评；不要编造评分，也不要把 Apple 级别的品牌资产当成 SME 的必备项。",
+          "why": "3C 买家会交叉核对评测与评价；空泛的「trusted by thousands」没有证据，反而降低可信度。Apple 的信任来自全球品牌与零售网络，中小企业不能照抄。",
+          "fix": "放 3–5 条可追溯评价（含型号/日期）、本地媒体测评链接或平台店铺评分；没有就明说「new brand」，不要编。",
+          "signals": [
+            "reviews",
+            "rating",
+            "trusted",
+            "testimonial",
+            "media review",
+            "award"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-TRUST-05",
+          "severity_hint": "medium",
+          "applies_to": "手机、电脑、平板、穿戴、电池类",
+          "rule": "有 trade-in / 回收承诺的，要写清合作方与电子废物处理渠道；不要空口写「carbon neutral」「zero waste」。",
+          "why": "马来西亚家庭电子废物只能交给 DOE 注册/授权的收集者；3C 品牌的回收承诺如果没有合作方与去向，容易被视为漂绿。",
+          "fix": "写「Trade in with [partner] / Recycle through DOE-registered collectors」，并给回收点查询；环保宣称要有可核对依据。",
+          "signals": [
+            "recycling",
+            "e-waste",
+            "carbon neutral",
+            "zero waste",
+            "environment"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Jabatan Alam Sekitar：家庭电子废物回收渠道",
+            "url": "https://ewaste.doe.gov.my/index.php/about/where-can-i-discharge-recycle-e-waste/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "本地零售商与中小品牌；全球品牌可调整",
+          "rule": "本地 3C 零售商应提供 WhatsApp 一键联系；全球品牌可以用官方热线/在线支持，但必须给出明确的人工入口与服务时间。",
+          "why": "WhatsApp 是马来西亚国民客服渠道；Apple 这类全球品牌用 1800 热线与在线支持也能成立，但首页只留一个「Contact」链接、不写时间与响应承诺，同样会流失买家。",
+          "fix": "本地商家放 wa.me 链接 + 服务时间（MYT）；全球品牌放 hotline/chat + 「Mon–Fri 9am–6pm MYT」与响应承诺。",
+          "signals": [
+            "whatsapp",
+            "wa.me",
+            "contact",
+            "chat",
+            "hotline",
+            "1800"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "DataReportal：Digital 2025 Malaysia（渠道与设备使用）",
+            "url": "https://datareportal.com/reports/digital-2025-malaysia"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-SVC-02",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "电话号码必须是完整可拨的本地号码（03-XXXXXXXX、01X-XXX XXXX 或 1-300/1800），不要留 7 位模板号。",
+          "why": "缺位号码等同模板占位符；3C 售后电话是信任信号，格式错误会让买家怀疑是假站。",
+          "fix": "写完整号码并加 tel: 链接；免费热线写 1-300-XX-XXXX 或 1800-XX-XXXX。",
+          "signals": [
+            "03-",
+            "1300",
+            "1-300",
+            "tel:",
+            "phone"
+          ],
+          "source": {
+            "type": "official",
+            "title": "MCMC：Numbering and Electronic Addressing Plan（号码格式）",
+            "url": "https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/NumberingAndElectronicAddrressingPlan_2.pdf"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "客服要给响应时效与服务时段，并考虑联邦/州属公共假日；不要只写「24/7」却没有渠道。",
+          "why": "3C 售后问题往往紧急（设备坏了影响工作/通讯）；没有响应承诺，买家会默认没人管。",
+          "fix": "写「Replies within 1 business day; Mon–Fri 9am–6pm MYT; closed on federal public holidays」。",
+          "signals": [
+            "response time",
+            "business day",
+            "opening hours",
+            "24/7",
+            "support hours",
+            "holiday"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-SVC-04",
+          "severity_hint": "low",
+          "applies_to": "全部 3C 品类",
+          "rule": "客服语言至少英文可通、马来语可接；中文客服是加分项，不要写成唯一渠道。",
+          "why": "3C 买家不一定懂中文；只提供中文客服会把大多数本地买家挡在门外。",
+          "fix": "写「Support in English & Bahasa Melayu」；中文作为附加语言单列。",
+          "signals": [
+            "support language",
+            "bahasa melayu",
+            "chinese",
+            "mandarin"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "品牌语气与本地化边界",
+      "source_sections": [
+        "Section 2",
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-BRAND-01",
+          "severity_hint": "medium",
+          "applies_to": "全球品牌与有全球统一视觉的 3C 品牌",
+          "rule": "全球统一的品牌语气可以保留，但价格、可购买性、配送与售后必须本地化；不要为了「本地化」改写全球 slogan。",
+          "why": "3C 的全球品牌资产来自一致的语气与产品命名；本地化做过头会显得不像同一个品牌。但交易信息不本地化，用户买不到、修不了。",
+          "fix": "保留全球 slogan 与产品名，把本地化预算放在价格、库存、配送、保修与支付上；马来语先覆盖交易信息。",
+          "signals": [
+            "slogan",
+            "global",
+            "worldwide",
+            "brand",
+            "malaysia"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-BRAND-02",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "全球 slogan 与产品名不要机翻；只翻译描述性文字，品牌名、系列名、功能名保持原文。",
+          "why": "机翻的 slogan 在 3C 领域尤其突兀（产品名被翻译后无法与评测/搜索对应）；本地买家会立即识别为「不认真做市场」。",
+          "fix": "产品名保留 iPhone、MacBook、AirPods；slogan 可保留英文并补一句本地语言解释，不要逐字直译。",
+          "signals": [
+            "tagline",
+            "translated",
+            "machine translation"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-BRAND-03",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类",
+          "rule": "「world's best」「No.1」「most accurate」这类最高级宣称必须有可核对依据；没有依据就改成可验证的具体表述。",
+          "why": "3C 是评测密集品类，最高级宣称最容易被对照测试打脸；马来西亚消费者保护法也禁止误导性陈述。",
+          "fix": "把「the best camera」改成「48MP main camera, 2x optical zoom」；保留最高级时给测试机构、样本与日期。",
+          "signals": [
+            "world's best",
+            "no.1",
+            "number one",
+            "most accurate",
+            "fastest",
+            "leading"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection Act 1999（截至 2019-11-01 文本）：第 31–37 条默示保证、第 37 条维修与备件",
+            "url": "https://mysafe.kpdn.gov.my/img/portal/consumer-safety/599_Act_As_at_1_November_2019.pdf"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-BRAND-04",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "节庆与送礼场景可以用 Raya / CNY / Deepavali，但不要把 3C 硬套进厨房、家庭聚餐或宗教叙事；3C 的本地化重点是「送礼/升级/以旧换新」。",
+          "why": "3C 的购买场景与厨房小家电不同；硬套家庭聚餐会显得不懂产品，也容易踩宗教与族群敏感点。",
+          "fix": "用「gift the upgrade」「trade in and upgrade」；节庆视觉用礼盒、家庭赠送场景，不碰宗教符号。",
+          "signals": [
+            "raya",
+            "cny",
+            "deepavali",
+            "gift",
+            "festive"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "MY-CE-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C 品类",
+          "rule": "首屏要回答「卖什么、为什么选它、下一步做什么」；产品 hero 可以极简，但 Buy / Learn more 必须成对出现。",
+          "why": "3C 首页常走品牌广告式极简；如果只有氛围图没有产品名与下一步，新买家不知道点哪里。Apple 的极简能成立，是因为产品名、Learn more、Buy 三件事都在首屏。",
+          "fix": "首屏保留产品名 + 一句差异点 + Learn more / Buy 两个 CTA；不要只放一句 slogan。",
+          "signals": [
+            "learn more",
+            "buy",
+            "shop",
+            "pre-order",
+            "discover"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "手机、电脑、平板、穿戴、耳机",
+          "rule": "规格要用可扫描的表格/对比，不要用长段落堆参数；关键差异（屏幕、芯片、电池、相机）要能一眼对比。",
+          "why": "3C 买家是参数型决策；长段落会把关键差异淹没，也会让移动端阅读成本过高。",
+          "fix": "做 3–5 行核心规格表 + 「Compare models」入口；把「为什么选这款」写成 3 条短句。",
+          "signals": [
+            "compare",
+            "specs",
+            "technical specifications",
+            "chip",
+            "camera",
+            "display"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 品类经验，非法规）",
+            "url": null
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "CTA 要明确、克制：Buy / Learn more / Trade in 优于「限时抢购」「最后机会」这类高压话术。",
+          "why": "3C 是高考虑品类，高压促销会降低品牌感，也容易与「全球品牌」语气冲突。",
+          "fix": "主 CTA 用 Buy / Learn more；促销单独放在 promo 区，写清期限与条件。",
+          "signals": [
+            "buy now",
+            "limited time",
+            "hurry",
+            "last chance",
+            "shop now"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 malaysia.md Section 3/4/6",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/malaysia.md"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "MY-CE-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "全部 3C 品类",
+          "rule": "首页可以不标价（品牌站常见），但必须能一步进入商店并看到 RM 价格；不要让「了解产品」与「购买」断开。",
+          "why": "Apple MY 首页不标产品价，但每个产品都有 Buy 入口，trade-in 也给了 RM 区间；品牌站不标价可以，买不到才是问题。",
+          "fix": "每个产品卡保留 Buy/Shop 链接；如果首页不标价，至少在 CTA 旁写「From RMXXXX」或「See price」。",
+          "signals": [
+            "from rm",
+            "see price",
+            "price list"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        },
+        {
+          "id": "MY-CE-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "全部 3C 品类",
+          "rule": "页脚要能直达 Order Status、Sales and Refunds、Privacy、Support；不要把这些藏在多层菜单里。",
+          "why": "3C 售后与退换是高频需求；页脚是用户最后寻找信任入口的地方，Apple 的页脚就把这些链接平铺出来。",
+          "fix": "页脚分「Shop / Support / Legal」三列，放 Order Status、Sales and Refunds、Privacy、Contact。",
+          "signals": [
+            "sales and refunds",
+            "legal"
+          ],
+          "source": {
+            "type": "benchmark",
+            "title": "Apple Malaysia 首页（内部基准样本，2026-11-14 抓取）",
+            "url": "https://www.apple.com/my/"
+          },
+          "accessed": "2026-11-14",
+          "confidence": "佐证"
+        }
+      ]
+    }
+  ]
+}

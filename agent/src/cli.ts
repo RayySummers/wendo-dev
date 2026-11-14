@@ -2,6 +2,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
+import { CategoryError } from "./categories.js";
 import { ConfigError, loadDotEnv } from "./config.js";
 import { FetchPageError } from "./tools/fetch-page.js";
 import { runDiagnosis } from "./pipeline.js";
@@ -19,6 +20,7 @@ const HELP = `文渡 Wendo 诊断 CLI（固定工具链 fetch_page → retrieve_
 
 选项：
   --tier <lite>            模型档位，11/15 演示版只开放 lite
+  --category <code>        诊断品类：small_appliances（默认）| consumer_electronics
   --out-dir <dir>          输出目录，默认 reports
   --slug <name>            文件名前缀，默认取域名；最终文件名附带日期
   --no-pdf                 只生成 JSON 与 HTML
@@ -33,6 +35,7 @@ const HELP = `文渡 Wendo 诊断 CLI（固定工具链 fetch_page → retrieve_
   WENDO_LLM_API_KEY        必填，模型网关密钥（也可写在 agent/.env）
   WENDO_LLM_BASE_URL       模型网关地址，默认 https://api.deepseek.com/v1
   WENDO_LLM_MODEL_LITE     Lite 档位映射的模型 ID，默认 deepseek-flash
+  WENDO_CATEGORY           诊断品类，默认 small_appliances（--category 优先）
   WENDO_PYTHON             Python 解释器，默认 python3
   WENDO_TYPST              Typst 可执行文件，默认 typst
 `;
@@ -70,6 +73,7 @@ async function main(): Promise<void> {
     allowPositionals: true,
     options: {
       tier: { type: "string", default: "lite" },
+      category: { type: "string", default: process.env.WENDO_CATEGORY ?? "small_appliances" },
       "out-dir": { type: "string", default: "reports" },
       slug: { type: "string" },
       "no-pdf": { type: "boolean", default: false },
@@ -104,6 +108,7 @@ async function main(): Promise<void> {
   const result = await runDiagnosis({
     url,
     tier: values.tier,
+    category: values.category,
     maxAttempts,
     timeoutMs: Number.isFinite(timeoutSeconds) ? timeoutSeconds * 1000 : undefined,
     onStage: (stage, detail) => {
@@ -171,6 +176,7 @@ async function main(): Promise<void> {
 
 main().catch((error: unknown) => {
   if (error instanceof ConfigError) die(error.message, [], 2);
+  if (error instanceof CategoryError) die(error.message, [], 2);
   if (error instanceof FetchPageError) die(error.message, [`错误码：${error.code}`], 3);
   if (error instanceof ReportGenerationError) die(error.message, error.details, 4);
   if (error instanceof PdfRenderError) {

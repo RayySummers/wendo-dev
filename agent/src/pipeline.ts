@@ -1,3 +1,4 @@
+import { resolveCategoryProfile } from "./categories.js";
 import { resolveLlmConfig, resolveTier } from "./config.js";
 import type { DiagnosisResult, FetchedPage, KbDigest, Report } from "./types.js";
 import { ReportSchema } from "./types.js";
@@ -29,6 +30,8 @@ export interface RunDiagnosisOptions {
   url: string;
   /** 业务代码只写 lite；pro/max 在这里会被拒绝。 */
   tier?: string;
+  /** 诊断品类代码；缺省 small_appliances。未知品类在抓取前就失败。 */
+  category?: string;
   fetch?: Omit<FetchPageOptions, "url">;
   maxAttempts?: number;
   timeoutMs?: number;
@@ -50,7 +53,8 @@ export interface TimedDiagnosis extends DiagnosisResult {
  */
 export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedDiagnosis> {
   const tier = resolveTier(options.tier ?? "lite");
-  // 先校验网关配置，缺 key 时在抓取前就失败，不浪费一次网络请求。
+  // 先校验品类与网关配置，缺 key / 品类未知时在抓取前就失败，不浪费一次网络请求。
+  const category = resolveCategoryProfile(options.category);
   resolveLlmConfig(tier);
   const started = Date.now();
 
@@ -60,9 +64,9 @@ export async function runDiagnosis(options: RunDiagnosisOptions): Promise<TimedD
   const fetchMs = Date.now() - fetchStart;
   options.onStage?.("fetch_page", `抓到 ${page.charCount} 字符（HTTP ${page.status}）`);
 
-  options.onStage?.("retrieve_kb", "马来西亚 × 小家电");
+  options.onStage?.("retrieve_kb", `马来西亚 × ${category.name}`);
   const retrieveStart = Date.now();
-  const kb = await retrieveKb({ pageText: page.text });
+  const kb = await retrieveKb({ pageText: page.text, category: category.code });
   const retrieveMs = Date.now() - retrieveStart;
   options.onStage?.("retrieve_kb", `${kb.dimensions.length} 个维度，${kb.totalHits} 个信号命中`);
 
