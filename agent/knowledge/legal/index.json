@@ -1,6 +1,6 @@
 {
   "version": "2026-11-14",
-  "updated_at": "2026-11-14T22:40:00+08:00",
+  "updated_at": "2026-11-14T23:30:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -156,18 +156,48 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "uk/SAMPLE_FINDINGS.md"
-    }
-  ],
-  "backlog": [
+    },
     {
       "market": "AU",
       "market_name": "澳大利亚",
-      "priority": 4,
-      "status": "not_started",
-      "scope": "Competition and Consumer Act 2010（ACL：s.18 误导性行为、s.29 虚假陈述）；Australian Consumer Law 价格与促销规则；Electrical Equipment Safety System (EESS) / RCM；Food Standards Code；Privacy Act 1988",
-      "notes": "联邦 + 州/领地差异；EESS 注册是电器准入重点",
-      "issue": "RAY-693"
-    },
+      "status": "v0.1",
+      "rules_count": 45,
+      "laws_count": 16,
+      "last_verified": "2026-11-14",
+      "rules_file": "au/rules.v0.1.json",
+      "readme": "au/README.md",
+      "sources": "au/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（ACL：s.18 误导性行为；s.29(1)(a)/(c)/(e)-(f)/(g)/(i)/(k)/(m) 虚假陈述；s.4 未来事项；s.33 性质/工艺；s.35 诱饵广告；s.32 返现/赠品）",
+        "价格与促销（ACL s.48 单一价格；ACCC Price displays 指引；划线价与 drip pricing）",
+        "商品说明与原产地（ACL s.255 安全港；ACCC Country of origin 指引）",
+        "消费者合同（ACL s.23 不公平条款；s.64 保证不得排除）",
+        "消费品安全与信息标准（ACL s.106 / s.136；纽扣/硬币电池 4 项强制标准）",
+        "电气准入（EESS 责任供应商与 Level 2/3 注册、RCM；ACMA 设备通用标准与标签；GEMS 注册与能效标签）",
+        "隐私告知（Privacy Act APP 1.3/1.4、APP 5；s.13G 罚则）",
+        "商业电子讯息（Spam Act s.16 同意、s.17 发送者身份、s.18 退订）"
+      ],
+      "known_gaps": [
+        "EESS 仅覆盖 IGA 参与辖区（抓取时 QLD/WA/VIC/TAS）；NSW/SA/ACT/NT 的本州电气制度未建规则",
+        "AS/NZS 3112 插头型式、AS/NZS 60335 系列、AS/NZS 4417.1/4417.2 为付费标准，未取得全文；插头未单列为规则",
+        "GEMS 产品类别清单未逐 SKU 映射（energyrating.gov.au 在本环境不可达）",
+        "食品接触材料未覆盖：未找到统一联邦标准，州食品法与 FSANZ Code 的分工未核",
+        "ACL 对境外卖家的适用与执法实践未核",
+        "2026 年新增的“不公平交易行为”类立法动向未检索；本版只依据 C2026C00486 合并文本",
+        "Privacy Act 的隐私侵权（statutory tort）与后续 tranche 2 改革未建模（非页面可观察）",
+        "OAIC 的 APP Guidelines 在本环境 403，未作为引文来源；只依据 Privacy Act 原文",
+        "Spam Act 的 penalty units 未折算澳元；Do Not Call Register 未收录",
+        "TGA 对“杀菌/消毒/抗菌/医疗级”声称的边界未研究",
+        "食品原产地标签（Country of Origin Food Labelling Information Standard 2016）仅适用食品，未收录",
+        "美妆/食品/玩具/纺织品等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-693",
+      "rules_version": "2026-11-14-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "au/SAMPLE_FINDINGS.md"
+    }
+  ],
+  "backlog": [
     {
       "market": "PH",
       "market_name": "菲律宾",
