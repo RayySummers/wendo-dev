@@ -16,9 +16,10 @@ agent/knowledge/legal/
 ├── index.json              # 机器可读索引：市场、状态、规则数、backlog
 ├── README.md               # 本文件：方法、字段、扩展流程
 ├── my/                     # 马来西亚（RAY-688 / RAY-689）
-│   ├── rules.v0.1.json     # 40 条规则（JSON）
+│   ├── rules.v0.1.json     # 45 条规则（JSON）
 │   ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
-│   └── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
+│   ├── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
+│   └── SAMPLE_FINDINGS.md  # 真实页面「规则→finding」样例与误报/漏报记录
 └── sg/                     # 新加坡（RAY-690）
     ├── rules.v0.1.json     # 22 条规则（JSON）
     ├── README.md
@@ -29,7 +30,7 @@ agent/knowledge/legal/
 
 | Stage | 市场 | 子单 | 状态 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 马来西亚 (MY) | RAY-688 / RAY-689 | v0.1（含 3C 数码） | v0.1 | 40 | 9 | 2026-11-14 | 通用广告 + 小家电 + 3C 数码；含电商披露、通讯设备认证、Halal、PDPA、食品接触 |
+| 1 | 马来西亚 (MY) | RAY-688 / RAY-689 | v0.1（定稿候选，待产品验收） | v0.1c | 45 | 9 | 2026-11-14 | 通用广告 + 小家电 + 3C 数码 + 电商披露（2024 条例）；含通讯设备认证、Halal、PDPA、陶瓷食品接触 |
 | 2 | 新加坡 (SG) | RAY-690 | baseline 已就绪 | v0.1 | 22 | 4 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / PDPA；食品与计量留 v0.2 |
 | 3 | 美国 (US) | RAY-691 | backlog | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
 | 4 | 英国 (UK) | RAY-692 | backlog | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
@@ -38,13 +39,13 @@ agent/knowledge/legal/
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
 > 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿。
-> RAY-688（MY v0.1 首单）与 RAY-689（MY 定稿单）范围重叠：3C 数码 6 条由 RAY-688 交付后并入 MY baseline；两单的验收口径需要产品/Jack 合并，避免重复复核。
+> RAY-688（MY v0.1 首单，3C 6 条）与 RAY-689（MY 定稿单）范围重叠：RAY-689 已在 RAY-688 的 40 条 baseline 上完成复核与定稿（45 条），两单验收口径按 RAY-689 执行，避免重复复核。
 
 ## 语言政策（2026-11-14 起）
 
 - 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
-- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 40 条与新加坡 v0.1 的 22 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本）。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条与新加坡 v0.1 的 22 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
 
 ## 规则字段
 
