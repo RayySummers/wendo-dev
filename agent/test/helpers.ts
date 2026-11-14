@@ -52,9 +52,22 @@ export function buildModelReport(kb: KbDigest): ModelReport {
   };
 }
 
+/** 市场就绪度 8 条检查的测试样本：覆盖全部四种状态，引用都取自 PAGE_TEXT。 */
+const MARKET_READINESS_FIXTURE = [
+  { checkId: "MY-MR-01", label: "英语变体一致性", status: "present" as const, quote: "Welcome to Example Store", why: "正文以英文呈现，未命中美式拼写清单。", fix: "保持英式拼写。", evidence: "整页可见文本 · 命中：英文正文" },
+  { checkId: "MY-MR-02", label: "货币与价格呈现", status: "needs_review" as const, quote: "Price RM99.00", why: "价格以 RM 展示，但没有含税/未税说明。", fix: "写明 Price inclusive of SST。", evidence: "商品主面板 · 命中：RM99.00" },
+  { checkId: "MY-MR-03", label: "计量单位（公制）", status: "present" as const, quote: "Price RM99.00", why: "规格使用公制单位。", fix: "保持公制写法。", evidence: "商品主面板 · 命中：公制" },
+  { checkId: "MY-MR-04", label: "电压与插头", status: "missing" as const, quote: "", why: "页面未展示电压与插头。", fix: "补 230V / 50Hz 与 Type G。", evidence: "商品主面板 · 电压命中 0" },
+  { checkId: "MY-MR-05", label: "本地联系方式", status: "present" as const, quote: "Call 03-123 4567", why: "页面给出本地电话。", fix: "补工作时间。", evidence: "整页可见文本 · 命中：本地电话" },
+  { checkId: "MY-MR-06", label: "配送、退换与保修", status: "needs_review" as const, quote: "Free shipping", why: "只有一句免运费，缺区域与时效。", fix: "写清西马/东马与时效。", evidence: "整页可见文本 · 命中：配送" },
+  { checkId: "MY-MR-07", label: "本地支付方式", status: "missing" as const, quote: "", why: "页面未列出支付方式。", fix: "列 FPX 与本地钱包。", evidence: "整页可见文本 · 支付方式 0 命中" },
+  { checkId: "MY-MR-08", label: "认证标志展示", status: "not_applicable" as const, quote: "", why: "本页不是商品详情页，认证展示不在本页范围。", fix: "本项不适用，无需改动。", evidence: "适用性判定：不适用" },
+].map((item) => ({ ...item, dimension: "market_readiness" as const }));
+
 export function buildReport(kb: KbDigest): Report {
   return {
     ...buildModelReport(kb),
+    market_readiness: MARKET_READINESS_FIXTURE,
     meta: {
       url: "https://example.com/",
       final_url: "https://example.com/",

@@ -49,7 +49,20 @@
     { "item": "首页无法判断的事项", "reason": "为什么仅凭这一页无法判断" }
   ],
   "dimensions": [
-    { "name": "语言与本地化表达", "status": "risk", "note": "一句话依据" }
+    { "name": "语言与本地化表达", "status": "risk", "note": "一句话依据" },
+    { "name": "市场就绪度", "status": "risk", "note": "市场就绪度 8 项页面检查：已展示 3 项、未展示 2 项、需复核 3 项。只看页面可见信息，不代表认证、税务或支付合规结论。" }
+  ],
+  "market_readiness": [
+    {
+      "checkId": "MY-MR-01",
+      "label": "英语变体一致性",
+      "status": "present",
+      "quote": "页面正文里的逐字片段",
+      "why": "为什么记这一条",
+      "fix": "怎么改",
+      "dimension": "market_readiness",
+      "evidence": "整页可见文本（排除导航/页脚标签） · 美式拼写命中 0、CJK 命中 0"
+    }
   ]
 }
 ```
@@ -70,6 +83,10 @@
 | `strengths` | array | 1–6 条，`quote` 同样逐字核对 |
 | `not_assessable` | array | 1–8 条，说明「首页看不到什么、为什么」 |
 | `dimensions` | array | 3–10 条，覆盖检索到的全部维度；`status` 为 `risk/ok/not_assessable` |
+| `market_readiness` | array? | 固定 8 条（`MY-MR-01`…`MY-MR-08`，允许 `not_applicable`）；代码侧产出，模型不生成 |
+| `market_readiness[].status` | string | `present/missing/needs_review/not_applicable`，不是风险等级 |
+| `market_readiness[].quote` | string | 页面原文；页面没展示时为空字符串，**不补写**；超长行截断后仍是原文子串 |
+| `market_readiness[].evidence` | string? | 代码侧取证范围与命中项，不是页面原文 |
 
 ## 界面可翻译性子检查（RAY-674）
 
@@ -128,6 +145,32 @@
   因此只在余量明显不足时报，证据里标「（估算）」。
 - 数量不到「首屏」：MY-UI-06 数的是**整页**可点元素，且没有同品类基线，判据取保守值。
 - IME 的运行时行为（组合期是否真的抢键）需要交互复核，静态只判「脚本里有没有 `isComposing` 守卫」。
+
+## 市场就绪度检查（RAY-697）
+
+市场就绪度（Layer 3）作为六维之一独立成章，v0.1 只做马来西亚的 8 条**页面就绪检查**：
+
+| checkId | 检查 | 取证范围 |
+|---|---|---|
+| `MY-MR-01` | 英语变体一致性 | 整页正文（排除导航/页脚标签） |
+| `MY-MR-02` | 货币与价格呈现（RM/MYR + 含税口径） | 商品主面板 |
+| `MY-MR-03` | 计量单位（公制，不混英制） | 商品主面板 |
+| `MY-MR-04` | 电压与插头（230V/50Hz + Type G） | 商品主面板 |
+| `MY-MR-05` | 本地联系方式（电话/地址/工作时间） | 整页（页脚也算） |
+| `MY-MR-06` | 配送、退换与保修 | 整页正文 |
+| `MY-MR-07` | 本地支付方式（FPX / 本地银行 / 本地钱包） | 整页正文 |
+| `MY-MR-08` | 认证标志展示（SIRIM / Safety Mark） | 整页 |
+
+- **代码侧、不经模型**：`src/market-readiness/analyze.ts` 在 pipeline 里跑，同一页两遍结果完全一致；
+  规则口径与误报处理见 `knowledge/market-readiness/my/README.md`、`SAMPLE_FINDINGS.md`。
+- **不进 risks、不计分**：8 条检查单独成章，只在 `dimensions` 里追加一行「市场就绪度」，
+  `note` 只写数量（已展示/未展示/需复核/不适用），不折算分数、不给 severity。
+- **四种状态**：`present`（写到了）/`missing`（没写，`quote` 为空）/`needs_review`（不完整）/
+  `not_applicable`（本页或本品类不涉及，必须写理由）。
+- **边界**：只记录是否展示，不核验认证真伪、不判断税务与支付合规；顶层 `not_assessable` 会追加
+  一条同样的能力边界说明。
+- **版式**：网页与 PDF 都在「诊断维度」之后、风险清单之前单独成章；`scripts/verify-parity.ts`
+  会把这一章的文本一起核对。
 
 ## 硬性约束
 

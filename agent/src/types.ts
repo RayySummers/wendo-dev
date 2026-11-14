@@ -1,5 +1,10 @@
 import { z } from "zod";
 import type { InterfaceSnapshot } from "./interface/types.js";
+import {
+  MARKET_READINESS_DIMENSION,
+  MARKET_READINESS_STATUSES,
+  type MarketReadinessFinding,
+} from "./market-readiness/types.js";
 
 export const SEVERITIES = ["high", "medium", "low"] as const;
 export type Severity = (typeof SEVERITIES)[number];
@@ -51,6 +56,22 @@ export const DimensionSchema = z.object({
   note: z.string().trim().min(2),
 });
 
+/**
+ * 市场就绪度（RAY-697）：代码侧固定 8 条页面检查，不走模型。
+ * `quote` 允许为空——页面没展示时留空，绝不补一段看起来像原文的句子。
+ */
+export const MarketReadinessFindingSchema = z.object({
+  checkId: z.string().regex(/^MY-MR-0[1-8]$/),
+  label: z.string().trim().min(2),
+  status: z.enum(MARKET_READINESS_STATUSES),
+  quote: z.string(),
+  why: z.string().trim().min(2),
+  fix: z.string().trim().min(2),
+  dimension: z.literal(MARKET_READINESS_DIMENSION),
+  /** 代码侧取证位置（检查范围、命中项），不是页面原文。 */
+  evidence: z.string().trim().min(2).optional(),
+});
+
 export const ReportMetaSchema = z.object({
   url: z.string().url(),
   final_url: z.string().url(),
@@ -88,10 +109,16 @@ export const ReportSchema = z.object({
    * 规则包要求这两类不做成缺陷（没 round-trip / 本轮只记录），所以单列，不进 risks。
    */
   interface_candidates: z.array(InterfaceCandidateSchema).optional(),
+  /** 市场就绪度 8 条页面检查；v0.1 固定 8 条，其中可以有 not_applicable。 */
+  market_readiness: z.array(MarketReadinessFindingSchema).length(8).optional(),
 });
 
 /** 模型只负责这五个字段；meta 由 pipeline 在代码侧补齐，避免模型编造 URL 与时间。 */
-export const ModelReportSchema = ReportSchema.omit({ meta: true, interface_candidates: true }).extend({
+export const ModelReportSchema = ReportSchema.omit({
+  meta: true,
+  interface_candidates: true,
+  market_readiness: true,
+}).extend({
   // 模型不产出来源标记与证据：这两项由界面信号在代码侧注入。
   risks: z.array(RiskCoreSchema).min(3).max(8),
 });
@@ -102,8 +129,10 @@ export type Strength = z.infer<typeof StrengthSchema>;
 export type NotAssessable = z.infer<typeof NotAssessableSchema>;
 export type Dimension = z.infer<typeof DimensionSchema>;
 export type InterfaceCandidateEntry = z.infer<typeof InterfaceCandidateSchema>;
+export type MarketReadinessEntry = z.infer<typeof MarketReadinessFindingSchema>;
 export type ReportMeta = z.infer<typeof ReportMetaSchema>;
 export type Report = z.infer<typeof ReportSchema>;
+export type { MarketReadinessFinding };
 export type ModelReport = z.infer<typeof ModelReportSchema>;
 
 export interface FetchedPage {
