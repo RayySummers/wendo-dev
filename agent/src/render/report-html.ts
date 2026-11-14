@@ -12,6 +12,19 @@ const STATUS_CLASS: Record<DimensionStatus, string> = {
   ok: "st-ok",
   not_assessable: "st-na",
 };
+/** 市场就绪度：四种状态只表示「页面有没有写到」，不是风险等级。 */
+const MR_STATUS_LABEL: Record<string, string> = {
+  present: "已展示",
+  missing: "未展示",
+  needs_review: "需复核",
+  not_applicable: "不适用",
+};
+const MR_STATUS_CLASS: Record<string, string> = {
+  present: "mr-present",
+  missing: "mr-missing",
+  needs_review: "mr-review",
+  not_applicable: "mr-na",
+};
 
 export function escapeHtml(value: string): string {
   return value
@@ -110,6 +123,44 @@ ${candidates}
   </section>`
     : "";
 
+  const marketChecks = report.market_readiness ?? [];
+  const marketSummary = marketChecks.length
+    ? `共 ${marketChecks.length} 项：已展示 ${marketChecks.filter((item) => item.status === "present").length}、` +
+      `未展示 ${marketChecks.filter((item) => item.status === "missing").length}、` +
+      `需复核 ${marketChecks.filter((item) => item.status === "needs_review").length}` +
+      (marketChecks.some((item) => item.status === "not_applicable")
+        ? `、不适用 ${marketChecks.filter((item) => item.status === "not_applicable").length}`
+        : "") +
+      "。"
+    : "";
+  const marketSection = marketChecks.length
+    ? `
+  <section>
+    <h2>市场就绪度（马来西亚）</h2>
+    <p class="hint">只看页面有没有把进入马来西亚市场所需的信息讲清楚：${escapeHtml(marketSummary)}
+      这里不判断认证真伪，也不构成税务、支付或合规结论。</p>
+${marketChecks
+  .map(
+    (item) => `
+    <article class="mr-item">
+      <div class="mr-head">
+        <span class="status ${MR_STATUS_CLASS[item.status] ?? "mr-na"}">${escapeHtml(MR_STATUS_LABEL[item.status] ?? item.status)}</span>
+        <h3>${escapeHtml(item.checkId)} · ${escapeHtml(item.label)}</h3>
+      </div>
+      ${
+        item.quote
+          ? `<blockquote>${escapeHtml(item.quote)}</blockquote>`
+          : `<p class="mr-empty">页面未展示这项内容，没有可引用的原文。</p>`
+      }
+      <div class="field"><span class="label">为什么记这一条</span><p>${escapeHtml(item.why)}</p></div>
+      <div class="field"><span class="label">怎么改</span><p>${escapeHtml(item.fix)}</p></div>
+      ${item.evidence ? `<p class="evidence">${escapeHtml(item.evidence)}</p>` : ""}
+    </article>`,
+  )
+  .join("\n")}
+  </section>`
+    : "";
+
   const notAssessable = report.not_assessable
     .map(
       (item) => `
@@ -167,6 +218,14 @@ ${candidates}
   .st-ok { background: #e8f5ec; color: #16794a; }
   .st-na { background: #eef0f4; color: #5b6472; }
   .sev-low { background: #eef0f4; color: #475467; }
+  .mr-item { border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin: 12px 0; break-inside: avoid; }
+  .mr-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+  .mr-head h3 { margin: 0; font-size: 14px; color: var(--dark); }
+  .mr-present { background: #e8f5ec; color: #16794a; }
+  .mr-missing { background: #fdecea; color: var(--danger); }
+  .mr-review { background: #fff4e5; color: var(--warn); }
+  .mr-na { background: #eef0f4; color: #5b6472; }
+  .mr-empty { margin: 8px 0 12px; padding: 10px 14px; border: 1px dashed var(--border); border-radius: 8px; color: var(--muted); font-size: 13px; }
   .risk { border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; margin: 16px 0; break-inside: avoid; }
   .risk-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
   .risk-head h3 { margin: 0; font-size: 16px; color: var(--dark); }
@@ -230,6 +289,8 @@ ${dimensions}
       </tbody>
     </table>
   </section>
+
+${marketSection}
 
   <section>
     <h2>风险与修改建议</h2>

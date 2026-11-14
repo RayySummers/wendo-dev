@@ -31,6 +31,9 @@
 #let status-label(s) = if s == "risk" { "存在风险" } else if s == "ok" { "表现良好" } else { "无法判断" }
 #let status-fg(s) = if s == "risk" { rgb("#b42318") } else if s == "ok" { rgb("#16794a") } else { rgb("#5b6472") }
 #let status-bg(s) = if s == "risk" { rgb("#fdecea") } else if s == "ok" { rgb("#e8f5ec") } else { rgb("#eef0f4") }
+#let mr-status-label(s) = if s == "present" { "已展示" } else if s == "missing" { "未展示" } else if s == "needs_review" { "需复核" } else { "不适用" }
+#let mr-status-fg(s) = if s == "present" { rgb("#16794a") } else if s == "missing" { rgb("#b42318") } else if s == "needs_review" { rgb("#b54708") } else { rgb("#5b6472") }
+#let mr-status-bg(s) = if s == "present" { rgb("#e8f5ec") } else if s == "missing" { rgb("#fdecea") } else if s == "needs_review" { rgb("#fff4e5") } else { rgb("#eef0f4") }
 
 #let chip(label, fill, color) = box(
   fill: fill,
@@ -118,6 +121,57 @@
   }
   v(7pt)
 }
+
+// ---------- 市场就绪度（RAY-697） ----------
+#let market-checks = report.at("market_readiness", default: ())
+#if market-checks.len() > 0 [
+  #section[市场就绪度（马来西亚）]
+  #let mr-count(status) = market-checks.filter(item => item.status == status).len()
+  #text(size: 8.8pt, fill: muted)[
+    只看页面有没有把进入马来西亚市场所需的信息讲清楚：共 #market-checks.len() 项，
+    已展示 #mr-count("present")、未展示 #mr-count("missing")、需复核 #mr-count("needs_review")。
+    不判断认证真伪，也不构成税务、支付或合规结论。
+  ]
+  #v(7pt)
+  #for item in market-checks {
+    block(breakable: false, width: 100%)[
+      #grid(
+        columns: (auto, 1fr),
+        align: (left, left),
+        column-gutter: 8pt,
+        [#chip(mr-status-label(item.status), mr-status-bg(item.status), mr-status-fg(item.status))],
+        [#text(size: 9.6pt, weight: "bold", fill: dark)[#item.checkId · #item.label]],
+      )
+      #v(3pt)
+      #if item.quote != "" {
+        block(
+          width: 100%,
+          fill: rgb("#f7f8fb"),
+          stroke: (left: 2.4pt + warm),
+          inset: (x: 9pt, y: 5pt),
+          radius: (right: 4pt),
+        )[
+          #text(font: quote-font, size: 9.4pt, fill: rgb("#2b2f36"), item.quote)
+        ]
+      } else {
+        text(size: 9pt, fill: muted)[页面未展示这项内容，没有可引用的原文。]
+      }
+      #v(4pt)
+      #field-label[为什么记这一条]
+      #v(1pt)
+      #text(size: 9.2pt, item.why)
+      #v(4pt)
+      #field-label[怎么改]
+      #v(1pt)
+      #text(size: 9.2pt, item.fix)
+      #if item.at("evidence", default: none) != none {
+        v(4pt)
+        text(font: mono-font, size: 8pt, fill: rgb("#3d4552"), item.evidence)
+      }
+    ]
+    v(9pt)
+  }
+]
 
 // ---------- 风险与修改建议 ----------
 #section[风险与修改建议]

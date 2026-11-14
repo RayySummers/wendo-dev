@@ -49,6 +49,17 @@ export function reportTexts(report: Report): ReportText[] {
       { label: `strengths[${index}].why`, value: strength.why },
     );
   });
+  (report.market_readiness ?? []).forEach((item, index) => {
+    items.push(
+      { label: `market_readiness[${index}].label`, value: item.label },
+      { label: `market_readiness[${index}].quote`, value: item.quote },
+      { label: `market_readiness[${index}].why`, value: item.why },
+      { label: `market_readiness[${index}].fix`, value: item.fix },
+    );
+    if (item.evidence) {
+      items.push({ label: `market_readiness[${index}].evidence`, value: item.evidence });
+    }
+  });
   (report.interface_candidates ?? []).forEach((candidate, index) => {
     items.push(
       { label: `interface_candidates[${index}].quote`, value: candidate.quote },
