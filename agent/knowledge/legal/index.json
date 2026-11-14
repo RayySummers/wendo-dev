@@ -1,6 +1,6 @@
 {
   "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "updated_at": "2026-11-15T00:30:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,18 +195,45 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
-    }
-  ],
-  "backlog": [
+    },
     {
       "market": "PH",
       "market_name": "菲律宾",
-      "priority": 5,
-      "status": "not_started",
-      "scope": "Consumer Act of the Philippines (RA 7394)；Philippine Standards / ICC 与 PS 认证（DTI-BPS）；FDA 化妆品/食品；Data Privacy Act 2012 (RA 10173)；广告规则（AdBoard，如有官方来源）",
-      "notes": "英语为官方语言之一；部分规则为菲律宾语/英语双语，需确认官方英文版本",
-      "issue": "RAY-694"
-    },
+      "status": "v0.1",
+      "rules_count": 28,
+      "laws_count": 9,
+      "last_verified": "2026-11-14",
+      "rules_file": "ph/rules.v0.1.json",
+      "readme": "ph/README.md",
+      "sources": "ph/SOURCES.md",
+      "coverage": [
+        "通用广告与特别声称（CPA Art. 50(a)/(b)/(h)、110、111、115、123）",
+        "比较价格 90 天/4 周基准（CPA Art. 111(a)）",
+        "标签与语言（CPA Art. 76/77；DAO 01:2008 s.2/s.3/s.6：英文或菲语平行翻译、进口商 PH 地址、保修、投诉台地址）",
+        "价格标示与促销许可（CPA Art. 81、116）",
+        "电气产品强制认证 PS/ICC（RA 4109 s.6；BPS 21 类家用电器清单、PS/ICC 标志；DAO 02:2007 s.3.3/s.5.3）",
+        "互联网交易披露（ITA 2023 s.23(a)、s.23(c)(1)、s.29(b)）",
+        "隐私告知（DPA 2012 s.11、s.16(b)、s.25(a)）"
+      ],
+      "known_gaps": [
+        "生效日未逐条核对政府公报：RA 10173 用 2012-09-09、RA 11967 用 2023-12-20（由过渡期倒推）、DAO 01:2008 用 2008-01-21、DAO 02:2007 用 2007-07-07",
+        "DAO 01:2008 是否被后续 DTI 标签规则修订/取代未核",
+        "NPC 的 DPA IRR 与 Circular 未取得（privacy.gov.ph 403），隐私规则只依据 DPA 原文",
+        "ITA IRR（JAO 24-03）未取得（ecommerce.dti.gov.ph TLS 失败）；s.29(e) 罚款档位文字有重复，需核对",
+        "BPS 21 类家电清单的逐项 DAO/PNS 依据未映射；空气炸锅、洗碗机、净水器、扫地机器人是否受覆盖未核",
+        "跨境直邮/平台卖家的 ICC 持证主体未确认（PH 进口商 vs 境外卖家）",
+        "FDA 对电器抗菌/UV/健康声称的边界未研究（另开子单）",
+        "AdBoard / Philippine Advertising Code（行业自律）未收录",
+        "DOE 能源标签与地方政府许可未覆盖",
+        "美妆/食品/玩具等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-694",
+      "rules_version": "2026-11-14-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "ph/SAMPLE_FINDINGS.md"
+    }
+  ],
+  "backlog": [
     {
       "market": "CA",
       "market_name": "加拿大",
