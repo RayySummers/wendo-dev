@@ -1,6 +1,6 @@
 {
   "version": "2026-11-14",
-  "updated_at": "2026-11-14T15:30:00+08:00",
+  "updated_at": "2026-11-14T16:10:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -8,8 +8,8 @@
       "market": "MY",
       "market_name": "马来西亚",
       "status": "v0.1",
-      "rules_count": 34,
-      "laws_count": 7,
+      "rules_count": 40,
+      "laws_count": 9,
       "last_verified": "2026-11-14",
       "rules_file": "my/rules.v0.1.json",
       "readme": "my/README.md",
@@ -18,18 +18,21 @@
         "通用广告与消费者保护（CPA 1999 / TDA 2011）",
         "电商信息披露（CP(ETT) Regs 2012）",
         "小家电电气准入（Electricity Regs 1994）",
+        "3C 数码通讯设备认证与标签（CMA 1998 / TSR 2000）",
         "Halal 认证与标识（Halal Order 2011）",
         "隐私告知（PDPA 2010）",
         "食品接触材料（Food Regs 1985）"
       ],
       "known_gaps": [
-        "CMA 1998 s.233 未收录（未取得可核对全文）",
-        "PDPA s.12B 数据泄露通知未收录",
+        "CMA 1998 最新合并文本未取得：s.239 罚则在 Act A1743（2025）后是否变动待核",
+        "TSR 2000 官网合并文本与 2025 指南引述的 reg.16 版本不一致（罚则 / (d) 标签项），需取最新修订",
+        "PDPA s.12B 数据泄露通知未收录（非页面可观察项）",
         "Food Regs reg.28 陶瓷器皿未单列",
         "价格管制法、计量法未覆盖",
+        "充电类 3C（移动电源/充电器）是否属 Electricity Regs reg.97 受管制设备待核",
         "美妆/食品/玩具等品类特殊规则未覆盖"
       ],
-      "issue": "RAY-689"
+      "issue": "RAY-688 / RAY-689"
     },
     {
       "market": "SG",

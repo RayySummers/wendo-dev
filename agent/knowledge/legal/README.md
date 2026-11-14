@@ -15,11 +15,11 @@
 agent/knowledge/legal/
 ├── index.json              # 机器可读索引：市场、状态、规则数、backlog
 ├── README.md               # 本文件：方法、字段、扩展流程
-├── my/                     # 马来西亚
-│   ├── rules.v0.1.json     # 34 条规则（JSON）
+├── my/                     # 马来西亚（RAY-688 / RAY-689）
+│   ├── rules.v0.1.json     # 40 条规则（JSON）
 │   ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
 │   └── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
-└── sg/                     # 新加坡
+└── sg/                     # 新加坡（RAY-690）
     ├── rules.v0.1.json     # 22 条规则（JSON）
     ├── README.md
     └── SOURCES.md
@@ -29,7 +29,7 @@ agent/knowledge/legal/
 
 | Stage | 市场 | 子单 | 状态 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 马来西亚 (MY) | RAY-689 | baseline 已就绪 | v0.1 | 34 | 7 | 2026-11-14 | 通用广告 + 小家电；含电商披露、Halal、PDPA、食品接触 |
+| 1 | 马来西亚 (MY) | RAY-688 / RAY-689 | v0.1（含 3C 数码） | v0.1 | 40 | 9 | 2026-11-14 | 通用广告 + 小家电 + 3C 数码；含电商披露、通讯设备认证、Halal、PDPA、食品接触 |
 | 2 | 新加坡 (SG) | RAY-690 | baseline 已就绪 | v0.1 | 22 | 4 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / PDPA；食品与计量留 v0.2 |
 | 3 | 美国 (US) | RAY-691 | backlog | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
 | 4 | 英国 (UK) | RAY-692 | backlog | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
@@ -38,22 +38,21 @@ agent/knowledge/legal/
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
 > 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿。
-
-> 德国 (DE)、日本 (JP) 已按 2026-11-14 的范围修正移出：文渡目前只做 de facto official language 为英语的市场，不再收集德语/日语法条。
+> RAY-688（MY v0.1 首单）与 RAY-689（MY 定稿单）范围重叠：3C 数码 6 条由 RAY-688 交付后并入 MY baseline；两单的验收口径需要产品/Jack 合并，避免重复复核。
 
 ## 语言政策（2026-11-14 起）
 
 - 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
-- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 34 条与新加坡 v0.1 的 22 条均为英文引文。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 40 条与新加坡 v0.1 的 22 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本）。
 
 ## 规则字段
 
 | 字段 | 必填 | 说明 |
 | --- | --- | --- |
 | `id` | 是 | `<市场>-<主题>-<序号>`，如 `MY-ADV-01`；全库唯一 |
-| `market` | 是 | `MY` / `US` / `DE` / `JP` |
-| `category` | 是 | `通用` / `小家电` / `食品` / `美妆` / `通用/电商` … |
+| `market` | 是 | `MY` / `SG` / `US` / `UK` / `AU` / `PH` / `CA` |
+| `category` | 是 | `通用` / `通用/电商` / `小家电` / `3C 数码` / `食品` / `美妆` … |
 | `law_name` | 是 | 原文名 + 中文/英文名 |
 | `law_short` | 否 | 报告里用的简称 |
 | `article` | 是 | 条/款/节，精确到子项 |
@@ -61,7 +60,7 @@ agent/knowledge/legal/
 | `source_id` | 是 | 对应 `SOURCES.md` 的编号 |
 | `official_url` | 是 | 官方/政府域名直链；非官方托管时必须在 `official_url_note` 说明 |
 | `source_tier` | 否 | 见 `SOURCES.md` 的分级 |
-| `language` | 是 | `en` / `ms` / `de` / `ja` |
+| `language` | 是 | `en`（官方英文原文或译本）；仅非英文原文时标 `official_english_unavailable` 并在 `notes` 说明 |
 | `effective_date` | 是 | 条文生效日（ISO）；修订另注 |
 | `last_verified` | 是 | 本次核对官方原文的日期（ISO） |
 | `rule_type` | 是 | 禁止 / 必须披露 / 需事前批准 / 需 substantiation / 罚则 |

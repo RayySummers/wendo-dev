@@ -27,6 +27,10 @@
 | S6 | Personal Data Protection Act 2010 (Act 709)，2026 年英文重印本（含 Act A1727 修订） | PDP 官网，英文，102 页 | https://www.pdp.gov.my/wp-content/uploads/2026/10/Akta-709-cetakan-semula-2026-BI.pdf | `act709_en.pdf` | `765d4a480248f9dcfc6ee0387e1d2df3a55ecf110b6a9c781be06bc8e6fdcfea` |
 | S7 | Food Regulations 1985 (P.U.(A) 437/1985)，更新至 2026-08（P.U.(A) 48/2026） | MOH FSQ 官网，英文，165 页 | https://hq.moh.gov.my/fsq/xs/dl.php?filename=Food+Regulation+1985+Updated+August+2026+PU+A+48-2026_1.pdf | `food_regs_1985.pdf` | `3eaccf7e2a26564b8bbfee182cbcbc486c0c4526510fa6fe2b5f8b31bb7d45e6` |
 | S8 | Trade Descriptions (Certification and Marking of Halal) (Amendment) Order 2023 (P.U.(A) 288/2023) | AGC LOM，英文，43 页 | https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/1863283/PUA288_2023.pdf | `halal_amend_2023.pdf` | `bbbd028e2ba20d49acf94f5a592a8fe604a7d53b2e7a9369edfe05c607a6e733` |
+| S9 | Communications and Multimedia Act 1998 (Act 588) | MCMC 托管英文重印本（含 A1220/2004），2006 年版，约 300 页 | https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/Act588bi_1.pdf | `act588_mcmc.pdf` | `7ffd7d255e0aa3398c9b00ec5355afc0da0a87f1245eeb2464ccd04e135ae554` |
+| S10 | Communications and Multimedia (Technical Standards) Regulations 2000 (P.U.(A) 124/2000) | MCMC 官网法例页（按条分页，含 P.U.(A) 89/2001、261/2001 修订），取回 reg.14/16/17/22 全文 | https://www.mcmc.gov.my/en/commons/viewdetail?docid=1008（reg.14: docid=1022；reg.16: 1024；reg.17: 1025；reg.22: 1030） | `tsr2000_regs_excerpt.txt` | `55682f275b780fdedb79ccb10faae2a73ceb90d908f466ca7976aa9dab9141aa` |
+| S11 | Guidelines for Online Shopping Platform, Merchant and Consumer in Electronic Commerce for Communications Equipment（MCMC，2025-07-31） | MCMC 官网 PDF，25 页 | https://www.mcmc.gov.my/skmmgovmy/media/General/pdf2/Guidelines-for-Online-Shopping-Platform-Merchant-and-Consumer-in-Electronic-Commerce-for-Communications-Equipment.pdf | `mcmc_ecommerce_guideline_2025.pdf` | `fc1ec83ba5dc27051964fec7daee11a2b8af0ca5856fcf65640e161c484aca76` |
+| S12 | Guide to MCMC Label（MCMC 消费者手册） | MCMC 官网 PDF，含 MCMC label 说明与罚则表述 | https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/Guide-to-MCMC-Label-Handbook.pdf | `guide_mcmc_label.pdf` | `b6e86b117691def231bb667f92071482796848ae69628e089212136f8d689fec` |
 
 ### 交叉核对来源（不直接支撑 `verbatim_excerpt`）
 
@@ -39,6 +43,10 @@
 | ST FAQ: How do I apply for a CoA? | 核对 CoA 申请流程与 ST-SIRIM 标签的实务说法 | https://www.st.gov.my/how-do-i-apply-certificate-approval-coa |
 | ST FAQ: equipment requiring CoA | 核对受管制设备类别（家电、低压设备） | https://www.st.gov.my/what-are-categories-and-types-equipment-require-certificate-approval-coa |
 | PDPA 指引（7 项原则） | 交叉核对 s.7 告知内容 | https://www.pdp.gov.my/jpdpv2/wp-content/uploads/2023/04/7-PRINSIP-PERLINDUNGAN-DATA-PERIBADI-WEB.pdf |
+| MCMC 通讯设备认证标签页 | 核对「认证后须带 MCMC label」与标签核验方式 | https://mcmc.gov.my/en/communications-equipment/certification-label |
+| MCMC FAQ：消费者使用未认证设备的罚则 | 核对 reg.16 罚则上限（RM300,000／3 年） | https://www.mcmc.gov.my/en/sectors/broadcasting/faqs/communications-equipment-certification/penalties/wi-l-l-consumers-be-penal-ised-i-f-they-buy-an |
+| mylaw.my: CMA 1998 s.239 转录 | 与 S9 逐句比对 s.239 措辞（仅作线索，未作为引文来源） | https://mylaw.my/legislation/akta-komunikasi-dan-multimedia-1998/section-239 |
+| P.U.(B) 61/2025：Act A1743 生效日公告 | 确认《Communications and Multimedia (Amendment) Act 2025》自 2025-02-11 生效（s.92、s.112 除外）；SHA-256 `d96e8c72db30b42658231294c1e0a5e9c072ae7ab6321e6018e7f3973bae3b0b` | https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/2685090/PUB%2061.pdf |
 
 ## 交叉核对记录
 
@@ -49,6 +57,9 @@
 5. **Halal Order 2011**：英文引文取自 S5（马来西亚政府 WTO TBT 通知附件，含 2012 年修订后的 "food and goods" 措辞），并与马来文公报扫描件逐条核对条号与结构。para.5(2) 的 2023 年 "and logo" 修订以 S8 为准。
 6. **PDPA 2010**：S6 为 PDP 官网 2026 年英文重印本；核对 s.5(2)、s.7、s.12A 及英马两版一致性。Act A1727 的生效表：2025-01-01 / 2025-04-01 / 2025-06-01。
 7. **Food Regulations 1985**：S7 为 MOH FSQ 更新至 2026-08 的英文版；核对 reg.10、reg.27、reg.28、reg.397。
+8. **CMA 1998**：S9 为 MCMC 托管的英文重印本；核对了 s.16（条例可订明最高 RM300,000／3 年罚则）、s.239、s.242（一般罚则 RM100,000／2 年）。s.239(1)(c) 措辞与 mylaw.my 的 LOM 转录一致；该转录仅用于比对，未作为 `official_url`。S9 是 2006 年版（含 A1220/2004），**未含** Act A1743（2025-02-11 生效）的修订，s.239 罚则是否变动未核 → MY-3C-04 标 `confidence: medium`。
+9. **TSR 2000**：S10 取回 reg.14/16/17/22 的 MCMC 法例页原文；与 S11 指南 5.1 逐条引述比对：reg.14、reg.16(1)(a)-(c)、reg.17(1)、reg.22(1)(a) 措辞一致。**差异**：S11 指南 5.1.2 引述的 reg.16(1)(d)「未附认证标志」与 4.12 的 RM300,000／3 年罚则，在 S10 的官网合并文本中均不存在 → 已在 MY-3C-02 的 `penalty_or_note` 与 README open question #9 标注，报告不引用单一罚则数字。
+10. **MCMC label**：S12 与 S11 4.4-4.5 一致（MCMC logo + SLP ID；实体贴标/镭雕/印刷或 e-label）；S12 文本称罚则为「RM100,000 或监禁六个月」，与 S11／FAQ 的 RM300,000／3 年不一致，属手册未更新 → 以 S11 与 FAQ 为准并保留差异记录。
 
 ## 未能取得 / 未采用的官方来源
 
@@ -56,7 +67,8 @@
 | --- | --- | --- |
 | KPDN 官网（www.kpdn.gov.my、mysafe.kpdn.gov.my） | 本环境 TLS 连接被重置（`SSL_ERROR_SYSCALL`），HTTPS/HTTP、TLS 1.2 均失败 | 改用 AGC 公报扫描件（S3）与 WTO 通知英文文本（S5）；规则文本可核对，但 `official_url` 不是 KPDN 直链 |
 | AGC LOM 的 act-detail / subsid 页面 | 页面依赖动态 token 与加密 JSON，无法稳定取得 P.U.(A) 直链 | 采用已知的 AGC `outputaktap`/`outputp` PDF 直链；未取得的 P.U.(A) 以公报扫描件/WTO 通知替代 |
-| AGC LOM 的 Act 588（CMA 1998）全文 | MCMC 页面只有目录；LOM 直链未定位 | 本版未收录 CMA 1998 s.233（见 `README.md` 的 backlog） |
+| AGC LOM 的 Act 588（CMA 1998）全文 | LOM 直链未定位；改用 MCMC 托管的英文重印本（S9） | S9 为 2006 年版，未含 Act A1743（2025）修订；s.239 罚则需按最新版复核（MY-3C-04 confidence=medium） |
+| Act A1743《Communications and Multimedia (Amendment) Act 2025》合并文本 | 未取得 AGC 直链；仅从公报 P.U.(B) 61/2025 确认 2025-02-11 生效（s.92、s.112 除外） | 无法确认 s.239 罚则是否被改动；已在 README open question #6 登记 |
 | 联邦公报门户 efederalgazette.agc.gov.my | DNS/连接失败 | 无影响，主要公报已由 AGC PDF 覆盖 |
 | mylaw.my / lawplayer.com / Malaysian Bar 文章 | 商业数据库/二手解读 | 仅用于定位条文与交叉核对，未作为规则来源 |
 
