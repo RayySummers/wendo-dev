@@ -27,15 +27,17 @@ agent/knowledge/legal/
 
 ## 当前状态
 
-| 市场 | 优先级 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
-| --- | --- | --- | --- | --- | --- | --- |
-| 马来西亚 (MY) | live | v0.1 | 34 | 7 | 2026-11-14 | 通用广告 + 小家电；含电商披露、Halal、PDPA、食品接触 |
-| 新加坡 (SG) | 1 | v0.1 | 22 | 4 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / PDPA；食品与计量留 v0.2 |
-| 美国 (US) | 2 | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
-| 英国 (UK) | 3 | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
-| 澳大利亚 (AU) | 4 | — | — | — | — | ACL / EESS-RCM / Food Standards / Privacy Act |
-| 菲律宾 (PH) | 5 | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
-| 加拿大 (CA) | 6 | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+| Stage | 市场 | 子单 | 状态 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 马来西亚 (MY) | RAY-689 | baseline 已就绪 | v0.1 | 34 | 7 | 2026-11-14 | 通用广告 + 小家电；含电商披露、Halal、PDPA、食品接触 |
+| 2 | 新加坡 (SG) | RAY-690 | baseline 已就绪 | v0.1 | 22 | 4 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / PDPA；食品与计量留 v0.2 |
+| 3 | 美国 (US) | RAY-691 | backlog | — | — | — | — | 联邦优先；FTC / 16 CFR / FPLA / Lanham / FDA / CPSC |
+| 4 | 英国 (UK) | RAY-692 | backlog | — | — | — | — | CPRs / BPRs / CRA 2015 / 电气安全 / UK GDPR |
+| 5 | 澳大利亚 (AU) | RAY-693 | backlog | — | — | — | — | ACL / EESS-RCM / Food Standards / Privacy Act |
+| 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
+| 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+
+> 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿。
 
 > 德国 (DE)、日本 (JP) 已按 2026-11-14 的范围修正移出：文渡目前只做 de facto official language 为英语的市场，不再收集德语/日语法条。
 

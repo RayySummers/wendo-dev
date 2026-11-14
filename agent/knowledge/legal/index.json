@@ -28,7 +28,8 @@
         "Food Regs reg.28 陶瓷器皿未单列",
         "价格管制法、计量法未覆盖",
         "美妆/食品/玩具等品类特殊规则未覆盖"
-      ]
+      ],
+      "issue": "RAY-689"
     },
     {
       "market": "SG",
@@ -51,7 +52,8 @@
         "DNC 与短信营销",
         "GST 价格展示",
         "CPSR 风险等级逐 SKU 分类"
-      ]
+      ],
+      "issue": "RAY-690"
     }
   ],
   "backlog": [
@@ -61,7 +63,8 @@
       "priority": 2,
       "status": "not_started",
       "scope": "联邦层面：FTC Act s.5（不公平/欺骗性行为）、16 CFR Part 255（代言与推荐指南）、16 CFR Part 260（绿色指南）、16 CFR Part 323（Made in USA 标签规则）、Fair Packaging and Labeling Act、Lanham Act s.43(a)、FDA 化妆品标签、CPSC 消费品安全",
-      "notes": "州级（加州 Prop 65、加州 ACP 等）另列 backlog；US 的 substantiation 体系与 MY 差异大，需单独设计 decision_level"
+      "notes": "州级（加州 Prop 65、加州 ACP 等）另列 backlog；US 的 substantiation 体系与 MY 差异大，需单独设计 decision_level",
+      "issue": "RAY-691"
     },
     {
       "market": "UK",
@@ -69,7 +72,8 @@
       "priority": 3,
       "status": "not_started",
       "scope": "Consumer Protection from Unfair Trading Practices Regulations 2008；Business Protection from Misleading Marketing Regulations 2008；Consumer Rights Act 2015（s.11 误导性行为）；ASA/CAP Code（行业自律，标 guideline）；Electrical Equipment (Safety) Regulations 2016；UKCA/CE 过渡；GDPR/DPA 2018",
-      "notes": "英语原文；注意北爱尔兰与 EU 规则并行"
+      "notes": "英语原文；注意北爱尔兰与 EU 规则并行",
+      "issue": "RAY-692"
     },
     {
       "market": "AU",
@@ -77,7 +81,8 @@
       "priority": 4,
       "status": "not_started",
       "scope": "Competition and Consumer Act 2010（ACL：s.18 误导性行为、s.29 虚假陈述）；Australian Consumer Law 价格与促销规则；Electrical Equipment Safety System (EESS) / RCM；Food Standards Code；Privacy Act 1988",
-      "notes": "联邦 + 州/领地差异；EESS 注册是电器准入重点"
+      "notes": "联邦 + 州/领地差异；EESS 注册是电器准入重点",
+      "issue": "RAY-693"
     },
     {
       "market": "PH",
@@ -85,7 +90,8 @@
       "priority": 5,
       "status": "not_started",
       "scope": "Consumer Act of the Philippines (RA 7394)；Philippine Standards / ICC 与 PS 认证（DTI-BPS）；FDA 化妆品/食品；Data Privacy Act 2012 (RA 10173)；广告规则（AdBoard，如有官方来源）",
-      "notes": "英语为官方语言之一；部分规则为菲律宾语/英语双语，需确认官方英文版本"
+      "notes": "英语为官方语言之一；部分规则为菲律宾语/英语双语，需确认官方英文版本",
+      "issue": "RAY-694"
     },
     {
       "market": "CA",
@@ -93,7 +99,8 @@
       "priority": 6,
       "status": "not_started",
       "scope": "Competition Act（虚假/误导性陈述）；Consumer Packaging and Labelling Act；Canada Consumer Product Safety Act；Electrical safety（CSA/ULC，省际差异）；PIPEDA；Quebec 法语宪章（Bill 96）另标",
-      "notes": "Quebec/French 问题单独标注；联邦与省分层"
+      "notes": "Quebec/French 问题单独标注；联邦与省分层",
+      "issue": "RAY-695"
     }
   ],
   "out_of_scope": [
@@ -130,5 +137,46 @@
       "human_review": "整体印象、公平性、安全性等语境判断，必须人工/律师复核"
     },
     "review_policy": "review_required=true 的规则必须人工复核后才能进入报告结论；confidence=medium 的规则需在报告中标注不确定性。"
+  },
+  "program": {
+    "parent_issue": "RAY-685",
+    "structure": "一个国家/地区一个子单，按 stage 1-7 串行；RAY-685 只保留总纲、字段规范与索引。",
+    "country_issues": [
+      {
+        "stage": 1,
+        "market": "MY",
+        "issue": "RAY-689"
+      },
+      {
+        "stage": 2,
+        "market": "SG",
+        "issue": "RAY-690"
+      },
+      {
+        "stage": 3,
+        "market": "US",
+        "issue": "RAY-691"
+      },
+      {
+        "stage": 4,
+        "market": "UK",
+        "issue": "RAY-692"
+      },
+      {
+        "stage": 5,
+        "market": "AU",
+        "issue": "RAY-693"
+      },
+      {
+        "stage": 6,
+        "market": "PH",
+        "issue": "RAY-694"
+      },
+      {
+        "stage": 7,
+        "market": "CA",
+        "issue": "RAY-695"
+      }
+    ]
   }
 }
