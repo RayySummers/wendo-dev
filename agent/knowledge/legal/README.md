@@ -55,6 +55,11 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── lk/                     # 斯里兰卡（LK）
+│   ├── rules.v0.1.json     # 28 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── bd/                     # 孟加拉国（BD）
 │   ├── rules.v0.1.json     # 28 条规则（JSON）
 │   ├── README.md
@@ -65,13 +70,48 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── kw/                     # 科威特（KW）
+│   ├── rules.v0.1.json     # 24 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── om/                     # 阿曼（OM）
 │   ├── rules.v0.1.json     # 40 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── bh/                     # 巴林（BH）
+│   ├── rules.v0.1.json     # 31 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── jo/                     # 约旦（JO）
+│   ├── rules.v0.1.json     # 30 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── tz/                     # 坦桑尼亚（TZ）
+│   ├── rules.v0.1.json     # 28 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── gh/                     # 加纳（GH）
 │   ├── rules.v0.1.json     # 33 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── bn/                     # 文莱（BN）
+│   ├── rules.v0.1.json     # 40 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── nz/                     # 新西兰（NZ）
+│   ├── rules.v0.1.json     # 31 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── mt/                     # 马耳他（MT）
+│   ├── rules.v0.1.json     # 54 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
@@ -108,19 +148,19 @@ agent/knowledge/legal/
 | 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 孟加拉国（BD） | Tier 2（medium） | RAY-729 | v0.1 | 28 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 卡塔尔（QA） | Tier 2（medium） | RAY-730 | v0.1 | 35 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 科威特（KW） | Tier 2（medium） | RAY-731 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿曼（OM） | Tier 2（medium） | RAY-732 | v0.1 | 40 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 巴林（BH） | Tier 2（medium） | RAY-733 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 巴林（BH） | Tier 2（medium） | RAY-733 | v0.1 | 31 / 8 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 埃及（EG） | Tier 2（medium） | RAY-734 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 约旦（JO） | Tier 2（medium） | RAY-735 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 约旦（JO） | Tier 2（medium） | RAY-735 | v0.1 | 30 / 2 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | v0.1 | 33 / 10 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 文莱（BN） | Tier 2（medium） | RAY-738 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 新西兰（NZ） | Tier 3（low） | RAY-739 | v0.1 | 31 / 7 | 2026-11-17 | 已落地；FTA s 9 无刑事罚金、插头须 AS/NZS 3112、SDoC 义务在境内进口商；coverage 与 known_gaps 见 index.json |
-| 马耳他（MT） | Tier 3（low） | RAY-740 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 文莱（BN） | Tier 2（medium） | RAY-738 | v0.1 | 40 / 11 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 新西兰（NZ） | Tier 3（low） | RAY-739 | v0.1 | 31 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 马耳他（MT） | Tier 3（low） | RAY-740 | v0.1 | 54 / 11 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 英国（UK） | 非一带一路（低） | RAY-692 | v0.1 | 43 / 15 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 澳大利亚（AU） | 非一带一路（低） | RAY-693 | v0.1 | 45 / 16 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
