@@ -148,7 +148,7 @@ agent/knowledge/legal/
 | 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 孟加拉国（BD） | Tier 2（medium） | RAY-729 | v0.1 | 28 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 卡塔尔（QA） | Tier 2（medium） | RAY-730 | v0.1 | 35 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | — | 已落地；coverage 与 known_gaps 见 index.json |
