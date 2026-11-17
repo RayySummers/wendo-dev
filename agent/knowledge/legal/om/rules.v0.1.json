@@ -31,7 +31,8 @@
     {
       "id": "OM-ADV-01",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 20",
@@ -71,7 +72,8 @@
     {
       "id": "OM-ADV-02",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 4",
@@ -96,7 +98,8 @@
     {
       "id": "OM-ADV-03",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 6",
@@ -120,7 +123,8 @@
     {
       "id": "OM-ADV-04",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 31",
@@ -154,7 +158,8 @@
     {
       "id": "OM-ADV-05",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 35",
@@ -188,7 +193,8 @@
     {
       "id": "OM-ADV-06",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 36",
@@ -221,7 +227,8 @@
     {
       "id": "OM-ADV-07",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 28",
@@ -249,7 +256,8 @@
     {
       "id": "OM-ADV-08",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 19(2)",
@@ -284,7 +292,8 @@
     {
       "id": "OM-ADV-09",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 19(8)",
@@ -321,7 +330,8 @@
     {
       "id": "OM-ADV-10",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 19(10)",
@@ -356,7 +366,8 @@
     {
       "id": "OM-ADV-11",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 7",
@@ -388,7 +399,8 @@
     {
       "id": "OM-ADV-12",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 29",
@@ -421,7 +433,8 @@
     {
       "id": "OM-ADV-13",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 21",
@@ -446,7 +459,8 @@
     {
       "id": "OM-ADV-14",
       "market": "OM",
-      "category": "通用/小家电",
+      "product_scope": ["通用", "小家电"],
+      "category_legacy": "通用/小家电",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 19 (first sentence)",
@@ -483,7 +497,8 @@
     {
       "id": "OM-LBL-01",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 19",
@@ -507,7 +522,8 @@
     {
       "id": "OM-LBL-02",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 5",
@@ -532,7 +548,8 @@
     {
       "id": "OM-LBL-03",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 22(4)",
@@ -556,7 +573,8 @@
     {
       "id": "OM-LBL-04",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 23",
@@ -580,7 +598,8 @@
     {
       "id": "OM-LBL-05",
       "market": "OM",
-      "category": "家居用品/小家电",
+      "product_scope": ["家居用品", "小家电"],
+      "category_legacy": "家居用品/小家电",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 25 + Appendix 1",
@@ -605,7 +624,8 @@
     {
       "id": "OM-LBL-06",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 12",
@@ -630,7 +650,8 @@
     {
       "id": "OM-PRD-01",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 3",
@@ -654,7 +675,8 @@
     {
       "id": "OM-PRD-02",
       "market": "OM",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Executive Regulations of the Consumer Protection Law (Ministerial Decision 77/2017) 消费者保护法实施条例（部长决定 77/2017）",
       "law_short": "CPR 2017",
       "article": "Art. 21",
@@ -678,7 +700,8 @@
     {
       "id": "OM-PRD-03",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 22",
@@ -713,7 +736,8 @@
     {
       "id": "OM-PRD-04",
       "market": "OM",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LV",
       "article": "Art. 1 / Manufacturer obligations 1 and 5",
@@ -743,7 +767,8 @@
     {
       "id": "OM-PRD-05",
       "market": "OM",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LV",
       "article": "Manufacturer obligations 11; Importer obligations 7",
@@ -768,7 +793,8 @@
     {
       "id": "OM-PRD-06",
       "market": "OM",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LV",
       "article": "Manufacturer obligations 6 and 13",
@@ -792,7 +818,8 @@
     {
       "id": "OM-PRD-07",
       "market": "OM",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LV",
       "article": "Importer obligations 3 and 6",
@@ -816,7 +843,8 @@
     {
       "id": "OM-PRD-08",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 27",
@@ -840,7 +868,8 @@
     {
       "id": "OM-PRD-09",
       "market": "OM",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LV",
       "article": "Manufacturer obligations 12",
@@ -864,7 +893,8 @@
     {
       "id": "OM-PEN-01",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 40",
@@ -889,7 +919,8 @@
     {
       "id": "OM-PEN-02",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 39",
@@ -913,7 +944,8 @@
     {
       "id": "OM-PEN-03",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 41",
@@ -937,7 +969,8 @@
     {
       "id": "OM-PEN-04",
       "market": "OM",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law (Royal Decree 66/2014) 消费者保护法（苏丹诏令 66/2014）",
       "law_short": "CPL 2014",
       "article": "Art. 46",
@@ -961,7 +994,8 @@
     {
       "id": "OM-PRV-01",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 19",
@@ -985,7 +1019,8 @@
     {
       "id": "OM-PRV-02",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 11",
@@ -1017,7 +1052,8 @@
     {
       "id": "OM-PRV-03",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 13",
@@ -1042,7 +1078,8 @@
     {
       "id": "OM-PRV-04",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 20",
@@ -1069,7 +1106,8 @@
     {
       "id": "OM-PRV-05",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 21",
@@ -1097,7 +1135,8 @@
     {
       "id": "OM-PRV-06",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 23",
@@ -1127,7 +1166,8 @@
     {
       "id": "OM-PRV-07",
       "market": "OM",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law (Royal Decree 6/2022) 个人数据保护法（苏丹诏令 6/2022）",
       "law_short": "PDPL",
       "article": "Art. 22",

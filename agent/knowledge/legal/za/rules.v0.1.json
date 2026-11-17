@@ -10,7 +10,8 @@
     {
       "id": "ZA-ADV-01",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.29(1)(b)",
@@ -35,7 +36,8 @@
     {
       "id": "ZA-ADV-02",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(1)(a)",
@@ -60,7 +62,8 @@
     {
       "id": "ZA-ADV-03",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(1)(b)",
@@ -85,7 +88,8 @@
     {
       "id": "ZA-ADV-04",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(3)(b)(i)",
@@ -128,7 +132,8 @@
     {
       "id": "ZA-ADV-05",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(3)(b)(ii)",
@@ -164,7 +169,8 @@
     {
       "id": "ZA-ADV-06",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(3)(b)(iii)",
@@ -193,7 +199,8 @@
     {
       "id": "ZA-ADV-07",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(3)(f)",
@@ -229,7 +236,8 @@
     {
       "id": "ZA-ADV-08",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.30(1)",
@@ -260,7 +268,8 @@
     {
       "id": "ZA-ADV-09",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.41(3)(a)",
@@ -299,7 +308,8 @@
     {
       "id": "ZA-ADV-10",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.40(1)",
@@ -323,7 +333,8 @@
     {
       "id": "ZA-ADV-11",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.31(1)",
@@ -355,7 +366,8 @@
     {
       "id": "ZA-ADV-12",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.32(1)",
@@ -379,7 +391,8 @@
     {
       "id": "ZA-DIS-01",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.22(1)-(2)",
@@ -404,7 +417,8 @@
     {
       "id": "ZA-DIS-02",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.23(3)",
@@ -428,7 +442,8 @@
     {
       "id": "ZA-DIS-03",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.23(6)",
@@ -452,7 +467,8 @@
     {
       "id": "ZA-DIS-04",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.24(2)(a)",
@@ -476,7 +492,8 @@
     {
       "id": "ZA-DIS-05",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.24(2)(b)",
@@ -500,7 +517,8 @@
     {
       "id": "ZA-DIS-06",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.25(1)",
@@ -530,7 +548,8 @@
     {
       "id": "ZA-DIS-07",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.26(2)-(3)",
@@ -554,7 +573,8 @@
     {
       "id": "ZA-DIS-08",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.33(3)",
@@ -578,7 +598,8 @@
     {
       "id": "ZA-DIS-09",
       "market": "ZA",
-      "category": "家居用品",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008；Consumer Protection Act: Regulations (GN R.293 of 1 April 2011) 消费者保护法实施条例",
       "law_short": "CPA / CPA Regs",
       "article": "s.24(4)-(5)；Regs reg.6(1)(a)(i)",
@@ -609,7 +630,8 @@
     {
       "id": "ZA-ADV-13",
       "market": "ZA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008；Consumer Protection Act: Regulations (GN R.293 of 1 April 2011) 消费者保护法实施条例",
       "law_short": "CPA / CPA Regs",
       "article": "s.36；Regs reg.11(3)",
@@ -641,7 +663,8 @@
     {
       "id": "ZA-ECT-01",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Communications and Transactions Act 25 of 2002 电子通信与交易法 25/2002",
       "law_short": "ECTA",
       "article": "s.43(1)",
@@ -666,7 +689,8 @@
     {
       "id": "ZA-ECT-02",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Communications and Transactions Act 25 of 2002 电子通信与交易法 25/2002",
       "law_short": "ECTA",
       "article": "s.43(2)-(3)",
@@ -691,7 +715,8 @@
     {
       "id": "ZA-ECT-03",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Communications and Transactions Act 25 of 2002 电子通信与交易法 25/2002",
       "law_short": "ECTA",
       "article": "s.44(1)-(3)",
@@ -716,7 +741,8 @@
     {
       "id": "ZA-ECT-04",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Communications and Transactions Act 25 of 2002 电子通信与交易法 25/2002",
       "law_short": "ECTA",
       "article": "s.46(1)-(3)",
@@ -747,7 +773,8 @@
     {
       "id": "ZA-ECT-05",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Communications and Transactions Act 25 of 2002 电子通信与交易法 25/2002",
       "law_short": "ECTA",
       "article": "s.45(1)",
@@ -778,7 +805,8 @@
     {
       "id": "ZA-ECT-06",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Communications and Transactions Act 25 of 2002 电子通信与交易法 25/2002",
       "law_short": "ECTA",
       "article": "s.48",
@@ -808,7 +836,8 @@
     {
       "id": "ZA-PRV-01",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Protection of Personal Information Act 4 of 2013 个人信息保护法 4/2013",
       "law_short": "POPIA",
       "article": "s.18(1)-(2)",
@@ -833,7 +862,8 @@
     {
       "id": "ZA-PRV-02",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Protection of Personal Information Act 4 of 2013 个人信息保护法 4/2013",
       "law_short": "POPIA",
       "article": "s.69(1)-(2)",
@@ -864,7 +894,8 @@
     {
       "id": "ZA-PRV-03",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Protection of Personal Information Act 4 of 2013 个人信息保护法 4/2013",
       "law_short": "POPIA",
       "article": "s.69(4)",
@@ -889,7 +920,8 @@
     {
       "id": "ZA-PRV-04",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Protection of Personal Information Act 4 of 2013 个人信息保护法 4/2013",
       "law_short": "POPIA",
       "article": "s.72(1)",
@@ -913,7 +945,8 @@
     {
       "id": "ZA-PRV-05",
       "market": "ZA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Protection of Personal Information Act 4 of 2013 个人信息保护法 4/2013",
       "law_short": "POPIA",
       "article": "s.19(1)",
@@ -943,7 +976,8 @@
     {
       "id": "ZA-ACC-01",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "National Regulator for Compulsory Specifications Act 5 of 2008 强制规范国家监管局法 5/2008",
       "law_short": "NRCS Act",
       "article": "s.14(1)-(2)",
@@ -968,7 +1002,8 @@
     {
       "id": "ZA-ACC-02",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "National Regulator for Compulsory Specifications Act 5 of 2008 强制规范国家监管局法 5/2008",
       "law_short": "NRCS Act",
       "article": "s.15(1)-(3)",
@@ -993,7 +1028,8 @@
     {
       "id": "ZA-ACC-03",
       "market": "ZA",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Electronic Communications Act 36 of 2005 电子通信法 36/2005",
       "law_short": "ECA",
       "article": "s.35(1)",
@@ -1029,7 +1065,8 @@
     {
       "id": "ZA-ACC-04",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Legal Metrology Act 9 of 2014 法定计量法 9/2014",
       "law_short": "LMA",
       "article": "s.34(4)-(6)",
@@ -1054,7 +1091,8 @@
     {
       "id": "ZA-ACC-05",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Legal Metrology Act 9 of 2014 法定计量法 9/2014",
       "law_short": "LMA",
       "article": "s.35(1)",
@@ -1090,7 +1128,8 @@
     {
       "id": "ZA-QUA-01",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.56(2)-(3)",
@@ -1120,7 +1159,8 @@
     {
       "id": "ZA-QUA-02",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.51(1)(b)",
@@ -1152,7 +1192,8 @@
     {
       "id": "ZA-QUA-03",
       "market": "ZA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection Act 68 of 2008 消费者保护法 68/2008",
       "law_short": "CPA",
       "article": "s.49(1)-(5)",

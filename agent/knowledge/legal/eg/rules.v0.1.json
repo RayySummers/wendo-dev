@@ -15,7 +15,8 @@
     {
       "id": "EG-ADV-01",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 9 (chapeau and item 1)",
@@ -56,7 +57,8 @@
     {
       "id": "EG-ADV-02",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 9(2)",
@@ -97,7 +99,8 @@
     {
       "id": "EG-ADV-03",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 9(4)",
@@ -137,7 +140,8 @@
     {
       "id": "EG-ADV-04",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 9(8)",
@@ -175,7 +179,8 @@
     {
       "id": "EG-ADV-05",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 9(10) and (11)",
@@ -210,7 +215,8 @@
     {
       "id": "EG-ADV-06",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 13",
@@ -242,7 +248,8 @@
     {
       "id": "EG-ADV-07",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 14",
@@ -274,7 +281,8 @@
     {
       "id": "EG-LANG-01",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 5 (first paragraph)",
@@ -299,7 +307,8 @@
     {
       "id": "EG-LANG-02",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 5 (second paragraph)",
@@ -324,7 +333,8 @@
     {
       "id": "EG-LANG-03",
       "market": "EG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 6 (first paragraph)",
@@ -349,7 +359,8 @@
     {
       "id": "EG-LABEL-01",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 4",
@@ -381,7 +392,8 @@
     {
       "id": "EG-LABEL-02",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 10",
@@ -406,7 +418,8 @@
     {
       "id": "EG-PRICE-01",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 7",
@@ -439,7 +452,8 @@
     {
       "id": "EG-SAFE-01",
       "market": "EG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 3",
@@ -473,7 +487,8 @@
     {
       "id": "EG-SAFE-02",
       "market": "EG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 19",
@@ -498,7 +513,8 @@
     {
       "id": "EG-WARR-01",
       "market": "EG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 21",
@@ -529,7 +545,8 @@
     {
       "id": "EG-WARR-02",
       "market": "EG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 22",
@@ -560,7 +577,8 @@
     {
       "id": "EG-WARR-03",
       "market": "EG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 34",
@@ -590,7 +608,8 @@
     {
       "id": "EG-ECOM-01",
       "market": "EG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 37",
@@ -620,7 +639,8 @@
     {
       "id": "EG-ECOM-02",
       "market": "EG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 40 (first and second paragraphs)",
@@ -650,7 +670,8 @@
     {
       "id": "EG-PRIV-01",
       "market": "EG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 181 of 2018 Promulgating the Consumer Protection Act（消费者保护法）",
       "law_short": "CPA 2018",
       "article": "Art. 29",
@@ -681,7 +702,8 @@
     {
       "id": "EG-IMP-01",
       "market": "EG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Ministerial Decree No. 43 of 2016 on the rules regulating registration of eligible factories to export their products to the Arab Republic of Egypt（对埃及出口的合格工厂登记规则）",
       "law_short": "Decree 43/2016",
       "article": "Art. 1 + Schedule item 17",
@@ -706,7 +728,8 @@
     {
       "id": "EG-IMP-02",
       "market": "EG",
-      "category": "家居用品",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品",
       "law_name": "Ministerial Decree No. 43 of 2016 on the rules regulating registration of eligible factories to export their products to the Arab Republic of Egypt（对埃及出口的合格工厂登记规则）",
       "law_short": "Decree 43/2016",
       "article": "Art. 1 + Schedule items 11 and 15",
@@ -731,7 +754,8 @@
     {
       "id": "EG-IMP-03",
       "market": "EG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Ministerial Decree No. 44 of 2019 amending the schedule of commodities under Decree No. 43 of 2016（第 43/2016 号部长令商品清单修订）",
       "law_short": "Decree 44/2019",
       "article": "Art. 1 (new Schedule item 29)",
@@ -756,7 +780,8 @@
     {
       "id": "EG-3C-01",
       "market": "EG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Telecommunication Regulation Law No. 10 of 2003（电信监管法）",
       "law_short": "Telecom Law 2003",
       "article": "Art. 48",
@@ -792,7 +817,8 @@
     {
       "id": "EG-3C-02",
       "market": "EG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Major Updates on Type Approval Procedure（型号核准程序重要更新，2025-03-24）",
       "law_short": "TRA TA Updates 2025",
       "article": "2025-03-24 update, items 1 and 7",
@@ -817,7 +843,8 @@
     {
       "id": "EG-3C-03",
       "market": "EG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Major Updates on Type Approval Procedure（型号核准程序重要更新，2025-03-24）",
       "law_short": "TRA TA Updates 2025",
       "article": "2025-03-24 update, items 2 and 4",
@@ -842,7 +869,8 @@
     {
       "id": "EG-PRIV-02",
       "market": "EG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 151 of 2020 Promulgating the Personal Data Protection Law（个人数据保护法）",
       "law_short": "PDPL 2020",
       "article": "Art. 2",
@@ -876,7 +904,8 @@
     {
       "id": "EG-PRIV-03",
       "market": "EG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 151 of 2020 Promulgating the Personal Data Protection Law（个人数据保护法）",
       "law_short": "PDPL 2020",
       "article": "Art. 3(1)",
@@ -908,7 +937,8 @@
     {
       "id": "EG-MKT-01",
       "market": "EG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 151 of 2020 Promulgating the Personal Data Protection Law（个人数据保护法）",
       "law_short": "PDPL 2020",
       "article": "Art. 17",
@@ -943,7 +973,8 @@
     {
       "id": "EG-MKT-02",
       "market": "EG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 151 of 2020 Promulgating the Personal Data Protection Law（个人数据保护法）",
       "law_short": "PDPL 2020",
       "article": "Art. 18(3)",

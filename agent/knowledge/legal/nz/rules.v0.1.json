@@ -9,7 +9,8 @@
  "rules": [
   {
    "id": "NZ-ADV-01",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 9",
@@ -34,7 +35,8 @@
   },
   {
    "id": "NZ-ADV-02",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 10",
@@ -59,7 +61,8 @@
   },
   {
    "id": "NZ-ADV-03",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 12A(1)-(3)",
@@ -103,7 +106,8 @@
   },
   {
    "id": "NZ-ADV-04",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 13(a)",
@@ -128,7 +132,8 @@
   },
   {
    "id": "NZ-ADV-05",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 13(d)",
@@ -163,7 +168,8 @@
   },
   {
    "id": "NZ-ADV-06",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 13(e)",
@@ -201,7 +207,8 @@
   },
   {
    "id": "NZ-ADV-07",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 13(g)",
@@ -235,7 +242,8 @@
   },
   {
    "id": "NZ-ADV-08",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 13(i)",
@@ -271,7 +279,8 @@
   },
   {
    "id": "NZ-ADV-09",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 13(j)",
@@ -304,7 +313,8 @@
   },
   {
    "id": "NZ-ADV-10",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 19(1)",
@@ -336,7 +346,8 @@
   },
   {
    "id": "NZ-ADV-11",
-   "category": "通用/电商",
+   "product_scope": ["通用"],
+   "category_legacy": "通用/电商",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 28B(2)",
@@ -361,7 +372,8 @@
   },
   {
    "id": "NZ-ADV-12",
-   "category": "通用/电商",
+   "product_scope": ["通用"],
+   "category_legacy": "通用/电商",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 46L(1)",
@@ -386,7 +398,8 @@
   },
   {
    "id": "NZ-DESC-01",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Consumer Guarantees Act 1993 消费者保障法 1993",
    "law_short": "CGA 1993",
    "article": "s 9(1)",
@@ -411,7 +424,8 @@
   },
   {
    "id": "NZ-DESC-02",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Consumer Guarantees Act 1993 消费者保障法 1993",
    "law_short": "CGA 1993",
    "article": "s 7(1)(h), (ha), (i)",
@@ -445,7 +459,8 @@
   },
   {
    "id": "NZ-DESC-03",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Consumer Guarantees Act 1993 消费者保障法 1993",
    "law_short": "CGA 1993",
    "article": "s 43(1)",
@@ -478,7 +493,8 @@
   },
   {
    "id": "NZ-MET-01",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Weights and Measures Act 1987 度量衡法 1987",
    "law_short": "WMA 1987",
    "article": "s 10",
@@ -519,7 +535,8 @@
   },
   {
    "id": "NZ-MET-02",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Weights and Measures Act 1987 度量衡法 1987",
    "law_short": "WMA 1987",
    "article": "s 16A(2)",
@@ -549,7 +566,8 @@
   },
   {
    "id": "NZ-SAFE-01",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 30(1)",
@@ -574,7 +592,8 @@
   },
   {
    "id": "NZ-SAFE-02",
-   "category": "通用",
+   "product_scope": ["通用"],
+   "category_legacy": "通用",
    "law_name": "Fair Trading Act 1986 公平交易法 1986",
    "law_short": "FTA 1986",
    "article": "s 31(5)",
@@ -599,7 +618,8 @@
   },
   {
    "id": "NZ-ELEC-01",
-   "category": "小家电",
+   "product_scope": ["小家电"],
+   "category_legacy": "小家电",
    "law_name": "Electricity (Safety) Regulations 2010 电力（安全）条例 2010",
    "law_short": "ESR 2010",
    "article": "reg 80(1)",
@@ -624,7 +644,8 @@
   },
   {
    "id": "NZ-ELEC-02",
-   "category": "小家电",
+   "product_scope": ["小家电"],
+   "category_legacy": "小家电",
    "law_name": "Electricity (Safety) Regulations 2010 电力（安全）条例 2010",
    "law_short": "ESR 2010",
    "article": "reg 23(1)(a)",
@@ -657,7 +678,8 @@
   },
   {
    "id": "NZ-ELEC-03",
-   "category": "小家电",
+   "product_scope": ["小家电"],
+   "category_legacy": "小家电",
    "law_name": "Electricity (Safety) Regulations 2010 电力（安全）条例 2010",
    "law_short": "ESR 2010",
    "article": "reg 23(1)(e)",
@@ -691,7 +713,8 @@
   },
   {
    "id": "NZ-ELEC-04",
-   "category": "小家电",
+   "product_scope": ["小家电"],
+   "category_legacy": "小家电",
    "law_name": "Electricity (Safety) Regulations 2010 电力（安全）条例 2010",
    "law_short": "ESR 2010",
    "article": "reg 82(1)",
@@ -723,7 +746,8 @@
   },
   {
    "id": "NZ-ELEC-05",
-   "category": "小家电",
+   "product_scope": ["小家电"],
+   "category_legacy": "小家电",
    "law_name": "Electricity (Safety) Regulations 2010 电力（安全）条例 2010",
    "law_short": "ESR 2010",
    "article": "reg 83(2)",
@@ -748,7 +772,8 @@
   },
   {
    "id": "NZ-EMC-01",
-   "category": "3C 数码",
+   "product_scope": ["3C数码"],
+   "category_legacy": "3C 数码",
    "law_name": "Radiocommunications (EMC Standards) Notice 2019 无线电通信（电磁兼容标准）公告 2019",
    "law_short": "EMC Notice 2019",
    "article": "cl 5(a)",
@@ -773,7 +798,8 @@
   },
   {
    "id": "NZ-EMC-02",
-   "category": "3C 数码",
+   "product_scope": ["3C数码"],
+   "category_legacy": "3C 数码",
    "law_name": "Radiocommunications (EMC Standards) Notice 2019 无线电通信（电磁兼容标准）公告 2019",
    "law_short": "EMC Notice 2019",
    "article": "cl 5(b)",
@@ -798,7 +824,8 @@
   },
   {
    "id": "NZ-PRV-01",
-   "category": "隐私/营销",
+   "product_scope": ["通用"],
+   "category_legacy": "隐私/营销",
    "law_name": "Privacy Act 2020 隐私法 2020",
    "law_short": "Privacy Act 2020",
    "article": "s 4(1)(b)",
@@ -823,7 +850,8 @@
   },
   {
    "id": "NZ-PRV-02",
-   "category": "隐私/营销",
+   "product_scope": ["通用"],
+   "category_legacy": "隐私/营销",
    "law_name": "Privacy Act 2020 隐私法 2020",
    "law_short": "Privacy Act 2020",
    "article": "IPP 3(1)",
@@ -848,7 +876,8 @@
   },
   {
    "id": "NZ-PRV-03",
-   "category": "隐私/营销",
+   "product_scope": ["通用"],
+   "category_legacy": "隐私/营销",
    "law_name": "Privacy Act 2020 隐私法 2020",
    "law_short": "Privacy Act 2020",
    "article": "IPP 12(1)(a)",
@@ -873,7 +902,8 @@
   },
   {
    "id": "NZ-SPAM-01",
-   "category": "营销",
+   "product_scope": ["通用"],
+   "category_legacy": "营销",
    "law_name": "Unsolicited Electronic Messages Act 2007 未经请求电子讯息法 2007",
    "law_short": "UEMA 2007",
    "article": "s 9(1)",
@@ -904,7 +934,8 @@
   },
   {
    "id": "NZ-SPAM-02",
-   "category": "营销",
+   "product_scope": ["通用"],
+   "category_legacy": "营销",
    "law_name": "Unsolicited Electronic Messages Act 2007 未经请求电子讯息法 2007",
    "law_short": "UEMA 2007",
    "article": "s 11(1)(a)",

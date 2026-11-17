@@ -11,7 +11,8 @@
     {
       "id": "JO-ADV-01",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(A)",
@@ -44,7 +45,8 @@
     {
       "id": "JO-ADV-02",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(A)(1)",
@@ -79,7 +81,8 @@
     {
       "id": "JO-ADV-03",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(A)(2)",
@@ -116,7 +119,8 @@
     {
       "id": "JO-ADV-04",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(A)(4)",
@@ -151,7 +155,8 @@
     {
       "id": "JO-ADV-05",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(A)(5)",
@@ -186,7 +191,8 @@
     {
       "id": "JO-ADV-06",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(A)(6)",
@@ -219,7 +225,8 @@
     {
       "id": "JO-ADV-07",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 8(B)",
@@ -254,7 +261,8 @@
     {
       "id": "JO-ADV-08",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 4(E)",
@@ -280,7 +288,8 @@
     {
       "id": "JO-ADV-09",
       "market": "JO",
-      "category": "通用/小家电/3C 数码",
+      "product_scope": ["通用", "小家电", "3C数码"],
+      "category_legacy": "通用/小家电/3C 数码",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 4(B)",
@@ -316,7 +325,8 @@
     {
       "id": "JO-PRD-01",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 3(A)(2)",
@@ -342,7 +352,8 @@
     {
       "id": "JO-PRD-02",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 3(A)(3)",
@@ -368,7 +379,8 @@
     {
       "id": "JO-PRD-03",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 3(A)(7)",
@@ -394,7 +406,8 @@
     {
       "id": "JO-PRD-04",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 3(B)",
@@ -420,7 +433,8 @@
     {
       "id": "JO-PRD-05",
       "market": "JO",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 6(A)(1)",
@@ -454,7 +468,8 @@
     {
       "id": "JO-PRD-06",
       "market": "JO",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 6(A)(2)",
@@ -487,7 +502,8 @@
     {
       "id": "JO-PRD-07",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 6(A)(3)",
@@ -513,7 +529,8 @@
     {
       "id": "JO-PRD-08",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 6(B)(2)",
@@ -539,7 +556,8 @@
     {
       "id": "JO-PRD-09",
       "market": "JO",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 5(A)",
@@ -574,7 +592,8 @@
     {
       "id": "JO-PRD-10",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 21",
@@ -608,7 +627,8 @@
     {
       "id": "JO-PRD-11",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 22",
@@ -634,7 +654,8 @@
     {
       "id": "JO-PRD-12",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Law No. 7 of 2017 消费者保护法（2017 年第 7 号）",
       "law_short": "CPL 2017",
       "article": "Article 25(A)",
@@ -660,7 +681,8 @@
     {
       "id": "JO-PRV-01",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 9",
@@ -690,7 +712,8 @@
     {
       "id": "JO-PRV-02",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 5(A)(3)",
@@ -721,7 +744,8 @@
     {
       "id": "JO-PRV-03",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 5(A)(1)-(2)",
@@ -746,7 +770,8 @@
     {
       "id": "JO-PRV-04",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 8(C)",
@@ -776,7 +801,8 @@
     {
       "id": "JO-PRV-05",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 8(F)",
@@ -808,7 +834,8 @@
     {
       "id": "JO-PRV-06",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 14(A)(3)",
@@ -840,7 +867,8 @@
     {
       "id": "JO-PRV-07",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 11(A)",
@@ -869,7 +897,8 @@
     {
       "id": "JO-PRV-08",
       "market": "JO",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 7(A)-(B)",
@@ -894,7 +923,8 @@
     {
       "id": "JO-PRV-09",
       "market": "JO",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Personal Data Protection Law No. 24 of 2023 个人数据保护法（2023 年第 24 号）",
       "law_short": "PDPL 2023",
       "article": "Article 22(A)",
