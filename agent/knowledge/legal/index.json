@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T15:10:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,6 +195,43 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "KE",
+      "market_name": "肯尼亚",
+      "status": "v0.1",
+      "rules_count": 34,
+      "laws_count": 9,
+      "last_verified": "2026-11-17",
+      "rules_file": "ke/rules.v0.1.json",
+      "readme": "ke/README.md",
+      "sources": "ke/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPA 2012 s.12 十八项虚假/误导/欺骗性表示、s.13 显失公平、s.15 禁止不公平行为、s.92 一般罚则）",
+        "消费者合同（CPA s.5 合理可销售品质与 s.5(3) 排除担保条款无效、s.31(2) 互联网协议接受/更正、s.16 撤销与赔偿）",
+        "价格指示（TDA Cap. 505 s.4：现价低于实际、原价/建议零售价的 6 个月与 28 天推定、举证责任倒置）",
+        "商品说明与原产地（TDA s.3、s.7 进口原产地标示、s.8 说明事项、s.9 不假但误导）",
+        "包装标签（WMA 1999 规则 r.3 公制、r.4 净重、r.7 制造商/进口商/通用名/净含量与英/斯语言、r.8 数量声明不得用约数）",
+        "计量与净含量（WMA Cap. 513 s.40 短量、s.42 少于标示）",
+        "标准与进口准入（Standards Act Cap. 496 s.9(2) 强制标准、s.10(6) 标准标志许可、VoC Order 2005 PVoC/CoC）",
+        "通信设备型式核准（KICA 设备条例 2010 reg.12(2) CA 标签、reg.17 许可证、reg.24 罚则）",
+        "隐私告知（DPA 2019 s.29 收集前告知清单、s.25(b)/s.26(a) 透明性与知情权；s.63 行政罚款）"
+      ],
+      "known_gaps": [
+        "CPA 生效日：文首仅载「By Notice」，官方公报未取得；暂用二手来源一致的 2013-03-14",
+        "CPA s.12 的罚则路径未定：s.15 未设罚金，能否按 s.92 一般罚则处罚需律师意见/判例",
+        "Consumer Protection (General) Regulations 未找到，s.31(1)/s.36 的 prescribed information 无法建清单式规则",
+        "KEBS 强制标准清单与对应 KS 标准号未取得（kebs.org TLS 证书错误，官网不可达）",
+        "PVoC 适用 HS 编码/品类清单未取得，KE-CERT-04 无法判断 SKU 是否在清单内",
+        "WMA 1999 规则 r.3(1) 附表范围未逐 SKU 核对；WMA s.63 一般罚则金额未摘录",
+        "Data Protection (General) Regulations 2021 未核对",
+        "CA 已核准设备清单未抓取，KE-CERT-06 需逐型号比对",
+        "郡级（county）法规、广告业自律守则未覆盖；食品/美妆/玩具等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-727",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "ke/SAMPLE_FINDINGS.md"
     }
   ],
   "backlog": [
