@@ -2,7 +2,7 @@
   "version": "2026-11-17",
   "updated_at": "2026-11-17T15:45:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
-  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
+  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。埃及（EG）为显式例外：官方语言为阿拉伯语、英语为商务通用语；CPA 2018 等有官方英译本，PDPL 2020 无官方英文版本，4 条以阿拉伯语原文收录并标 official_english_unavailable。",
   "markets": [
     {
       "market": "MY",
@@ -510,18 +510,50 @@
       "tier": "tier2",
       "priority": "medium",
       "sort_order": 16,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-734 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 31,
+      "laws_count": 6,
+      "last_verified": "2026-11-17",
+      "rules_file": "eg/rules.v0.1.json",
+      "readme": "eg/README.md",
+      "sources": "eg/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPA 2018：Art. 9 误导要素、Art. 13 公共秩序、Art. 14 竞赛报送）",
+        "语言义务（CPA Art. 5/6：广告、数据、合同与商品标签须有阿拉伯语）",
+        "标签/价格/发票（CPA Art. 4/7/10/18）",
+        "安全/保修/售后（CPA Art. 3/19/21/22/34：2 年保修、30 天退换、维修中心与备件）",
+        "远程合同（CPA Art. 37/40：11 项披露 + 14 天撤销权）",
+        "进口登记（Decree 43/2016 附表 11/15/17；Decree 44/2019 第 29 类手机）",
+        "电信设备型号核准与阿语手册（Telecom Law 2003 Art. 48；TRA 2025 更新）",
+        "隐私与电子营销（PDPL 2020 Art. 2/3(1)/17/18(3)，阿拉伯语原文）"
       ],
-      "issue": "RAY-734"
+      "known_gaps": [
+        "CPA 实施细则（PM Decree 822/2019）无官方英文文本：Art. 4/6/10/18/37 的具体数据项未逐项核对",
+        "埃及广告标准（CPA Art. 1(6) 引用的 Egyptian standard specifications for advertising requirements）未定位标准号/文本",
+        "EOS 强制标准清单与 ES 1781（IEC 60335-1 采纳）全文未取得；小家电标准符合性只能判需证明",
+        "能效标签要求未取得官方文本，未建规则",
+        "PDPL 实施细则（MCIT Decision 81/2025，2025-11）未取得：告知内容、DPO 登记、许可门槛待补",
+        "PDPL 无官方英文版本：4 条为阿拉伯语原文，confidence=medium，需当地律师复核",
+        "GOEIC 附表 HS 归类未逐 SKU 映射（如 8516.60、8509.40 是否落入第 17 类）",
+        "品牌自营 D2C 站是否构成 CPA 第三章的远程合同待定",
+        "CPA Art. 5 对 B2B/英文出口目录的适用性待定",
+        "罚则只有上限区间，未收集量刑/CPA 和解/执法优先级数据",
+        "是否存在独立电子商务法未核实；本版以 CPA 第三章为依据",
+        "媒体/广告监管机构（如 Supreme Council for Media Regulation）的广告准则未覆盖"
+      ],
+      "issue": "RAY-734",
+      "sample_findings": "eg/SAMPLE_FINDINGS.md",
+      "onboarding": "eg/ONBOARDING.md",
+      "language_mix": {
+        "en": 27,
+        "official_english_unavailable": 4
+      },
+      "decision_mix": {
+        "rule_level": 23,
+        "substantiation": 4,
+        "human_review": 4
+      },
+      "review_required": 20
     },
     {
       "market": "JO",
@@ -809,6 +841,7 @@
       "effective_date",
       "last_verified",
       "rule_type",
+      "decision_level",
       "claim_pattern",
       "requirement",
       "evidence_needed",
