@@ -1,8 +1,8 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T15:20:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
-  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
+  "language_policy": "只收官方英文原文或官方英文译本。默认面向 de facto official language 为英语的市场；2026-11-17 起允许「官方语言非英语、但英语为商务通用语」的市场（首例阿曼），该类市场仍只用官方英文原文或官方英文译本，无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
     {
       "market": "MY",
@@ -195,6 +195,41 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "OM",
+      "market_name": "阿曼",
+      "status": "v0.1",
+      "rules_count": 40,
+      "laws_count": 3,
+      "last_verified": "2026-11-17",
+      "rules_file": "om/rules.v0.1.json",
+      "readme": "om/README.md",
+      "sources": "om/SOURCES.md",
+      "adoption": "om/ADOPTION.md",
+      "sample_findings": "om/SAMPLE_FINDINGS.md",
+      "coverage": [
+        "通用广告与消费者保护（CPL 66/2014：Art. 20 误导性广告、Art. 4 广告事前批准、Art. 6 CR 号、Art. 21 宗教习俗）",
+        "促销与价格（CPL Art. 31；条例 Art. 35/36：促销与折扣事前批准、促销前后售价、销售发票）",
+        "商品说明与标签、语言义务（CPL Art. 5/19/24；条例 Art. 12/22/23/25）",
+        "认证与准入（GSO BD-142004-01 低压电器 G-Mark、DoC、阿语说明书；CPL Art. 3/22；条例 Art. 21）",
+        "缺陷与召回（CPL Art. 27；GSO 制造商义务 12）",
+        "隐私告知与数据主体权利（PDPL 6/2022：Arts. 11/13/19/20/21/23/22）"
+      ],
+      "known_gaps": [
+        "广告事前批准（CPL Art. 4）与促销审批（Art. 31 / 条例 35-36）的适用范围未细化：是否覆盖品牌自建站、社交贴文、平台 listing 待核",
+        "实施条例 77/2017 经 2022 年第 1 号、2023 年第 1 号部长决定修订，另有 2026 年 5 月删除原第 45-52 条处罚条款的报道（二手）；Arts. 20/21/35/36 未逐条双语复核",
+        "PDPL 经 RD 68/2026 替换 Arts. 2/3/7/10/14/15/22/25/27（新告知内容并入 Art. 10）；该修订无官方英文译本，隐私告知规则缺口",
+        "PDPL 实施条例（MD 34/2024）仅阿语，同意程序/DPO/跨境保障细则无法用英文引文覆盖",
+        "TRA 电信设备型号核准未建规则：tra.gov.om 被 WAF 拦截，未取得官方英文文本（3C 数码缺口）",
+        "MOCIIP / DGSM 官网不可达：OS 标准清单、进口登记、MS-LV 计划（2025-11-20 生效 / 2026-02-13 强制）未核实",
+        "GSO 低压电器法规在阿曼的国内执行通告未取得；OM-PRD-04 的 2016-07-01 生效日为二手执行日常用值",
+        "能源效率标签、食品接触材料、阿语 claim_pattern 词表、支付/分期披露（Layer 3）未覆盖"
+      ],
+      "issue": "RAY-732",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "language_note": "阿语为官方语言；40 条均使用官方英文原文或官方英文译本；其中 OM-PRV-07 的英文译本对应 2022 年文本，2026 年修订仅有阿语，已在 notes 标注"
     }
   ],
   "backlog": [
