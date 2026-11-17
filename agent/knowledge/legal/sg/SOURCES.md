@@ -26,6 +26,8 @@
 | SG8 | Weights and Measures Regulations 2005（S 844/2005） | in force 2025-07-01 | 26 | https://sso.agc.gov.sg/SL/WMA1975-S844-2005?DocDate=20250630&ViewType=Pdf | `sg_wma_regs2005.pdf` | `0a885927c2fa8cdee536aaff9edb21e6a9bb9c61471c08912800a61f1382b80a` |
 | SG9 | Goods and Services Tax (General) Regulations 1993 | in force 2026-09-21 | 229 | https://sso.agc.gov.sg/SL/GSTA1993-RG1?DocDate=20260918&ViewType=Pdf | `sg_gst_regs.pdf` | `6679ff01fb9bd433569da4a3e30041656518fcd38e9d2fb518003a3dedff9ea4` |
 | SG10 | Spam Control Act 2007 | SSO 2020 Ed.，in force 2022-04-01 | 18 | https://sso.agc.gov.sg/Act/SCA2007?ViewType=Pdf | `sg_sca2007.pdf` | `c6df0f722793c586da472b26285b45194b8761b171600ea9359971e746985ab0` |
+| SG11 | Telecommunications (Dealers) Regulations（Cap. 323, Rg 6） | 2004 Ed.，in force 2023-09-01 | 30 | https://sso.agc.gov.sg/SL/TA1999-RG6?ViewType=Pdf | `sg_dealers_regs.pdf` | `5da9ce9096497c3464b063173178fdafce87ad955d4c3cec7bcb6e3d91269328` |
+| SG12 | Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011（No. S 113/2011） | 合并文本 in force 2025-07-01（S 430/2025） | 5 | https://sso.agc.gov.sg/SL/CPTDSRA1975-S113-2011?ViewType=Pdf | `sg_cgsr2011.pdf` | `5035e9732810375bab983f56af62a88fd903898da11502d7a89ce1730ab533fa` |
 
 ### 监控来源（尚未作为规则引文）
 
@@ -57,6 +59,24 @@
 10. **Price Control Act 1950（核对后未引用）**：s.7 的「展示价目表」只适用于 price-regulated goods（由 Price Controller 定价的商品），s.8 只是授权 Controller 另行命令。新加坡的含 GST 标价义务来自 **GST (General) Regulations reg.77**，不是 Price Control Act；这一点与「价格展示=价格管制法」的直觉不同，已写入 README 关键发现。
 11. **GST (General) Regulations（SG9）**：核对 reg.77(1)-(3)、reg.78（豁免申请）；reg.77(1) 要求标价含税，reg.77(2) 要求含税价与不含税价并列时含税价不低显著度；IRAS 指引确认「未遵守可罚最高 S$5,000」。
 12. **Spam Control Act 2007（SG10）**：核对 s.2（electronic address / instant messaging account 定义）、s.3、s.4A、s.6（批量门槛）、s.11、s.12、s.13、s.14、Second Schedule paras 2(1)-(9)、3(1)-(3)；para 3(3) 的即时通讯豁免由 Act 40/2020 于 2021-02-01 加入。
+13. **Telecommunications (Dealers) Regulations（SG11，2026-11-17 新增）**：核对 reg.20(1)-(8)、reg.20A、reg.24、Second Schedule paras 1、2、7、8、9；确认 reg.20(1) 把「设备型号须经 IMDA 注册」写成牌照条件，且 reg.24 的罪行清单**不含** reg.20/20A/Sch2 para 8（所以不能写成刑事罚则）；Sch2 para 8(d) 的印刷版在 (iii) 之后重复编号为 (d)，引文以 `...` 略去该编号错位处，只保留可核对的文字。
+14. **Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011（SG12，2026-11-17 新增）**：核对 reg.2（Category 1/2、consumer goods 定义、The Schedule 排除清单）、reg.3(1)-(4)、reg.4(a)-(b)；S 430/2025 于 2025-07-01 把 reg.3(4) 罚则改为首次 S$2,000/12 个月、再犯 S$10,000/2 年；reg.3(2) 的公告须在英文、马来文、中文、泰米尔文四种日报各一份刊登（监管机关义务，未单列为供应商规则）。
+
+## 2026-11-17 复核记录（RAY-720 接入评估）
+
+- 目的：为「新加坡能否开放」提供可复现的证据，确认 2026-11-14 的 36 条仍与官方文本一致，并补 6 条缺口规则。
+- 方法：重下全部来源 PDF → 比对 SHA-256 → `pdftotext -layout` 抽文本 → 逐条回查 `verbatim_excerpt`（42 条，含新增 6 条）。
+- 结果：**42/42 条 0 处不匹配**；SG1-SG10 的 SHA-256 与 2026-11-14 记录**全部一致**，说明这 10 部法规文本在这 3 天内未变；SG11/SG12 各下载两次（不同浏览器会话），两次哈希一致。
+- 未计入「不匹配」的唯一差异是 WMA s.19(2)：引文跨页，PDF 在两页之间插入了页眉/页脚，去掉页眉页脚后逐字一致。
+- 状态页核对：SSO 上 **SFA 1973** 与 **FSSA 2025** 在 2026-11-17 均显示 `Current version`；FSSA 全文仍返回 202（WAF），**s.395 废除 SFA 的生效状态未确认**，open question #4 保留。
+- 样品页重新抓取：Mayer SG（页面 A，2026-11-17）与 Xiaomi SG（页面 C，新样例）见 `SAMPLE_FINDINGS.md`；页面 A 的 HTML 哈希变化来自动态注入内容，正文关键项（Safety Mark 240769-11、6.5L、62% Off）未变。
+
+| 来源 | 2026-11-17 重下结果 | 与 2026-11-14 记录 |
+| --- | --- | --- |
+| SG1-SG10 | 200 / `application/pdf`，哈希见上表 | 一致（10/10） |
+| SG11 Dealers Regs | 200，`5da9ce90…9328`（两次一致） | 新增 |
+| SG12 CGSR 2011 | 200，`5035e973…33fa`（两次一致） | 新增 |
+| SG-M1 FSSA 2025 | 202，空响应 | 仍未取得 |
 
 ## 未取得 / 未采用
 
@@ -67,11 +87,14 @@
 | ASAS Singapore Code of Advertising Practice | 行业自律，非法律 | 未收录；如产品需要可另标 `guideline` |
 | 律所/商业数据库解读 | 二手 | 仅用于定位条文，未作为来源 |
 | IRAS 关于 OVR（海外供应商注册）的细节 | 未逐页核对 | GST 规则只覆盖境内应税人的标价义务，跨境低价值货物另议 |
+| IMDA 设备注册数据库（逐型号查询） | 需注册账号/交互查询，未抓取 | SG-APP-07/08/09 只能核对「页面是否展示注册号/标签」；型号是否已注册、注册是否在 5 年有效期内需人工在 IMDA 系统核对 |
+| CGSR 的 Consumer Protection (Consumer Goods Safety Requirements) Information Booklet | 未取得逐品类标准清单 | SG-APP-10 只能写到「须符合 ISO/IEC/CEN/ASTM 或区域/国家标准」，具体品类对应哪份标准待核 |
+| Food Safety and Security Act 2025（SG-M1）全文 | 2026-11-17 再次尝试仍返回 202（WAF），未取到 | 无法核对 s.395 废除 SFA 的生效状态；SFA 在 SSO 上仍显示 Current version（见 2026-11-17 复核记录） |
 
 ## 复核方法（可复现）
 
-1. 用带浏览器 UA 的请求下载 SSO PDF：`curl -A '<Chrome UA>' '<URL>' -o <file>.pdf`；SSO 前面有 AWS WAF，纯 `curl` 默认 UA 会得到 403，命中 JS 挑战时返回 `202` 空响应——此时改用无头浏览器打开任一 SSO 法条页通过挑战，再用同一会话请求 PDF（本库 2026-11-14 即如此取得 SG8/SG9）。
-2. 重新计算 SHA-256 并与上表比对；SSO 的 `in force from` 日期会随修订变化，若日期变了，说明文本已更新，需重新逐条比对引文。
-3. 用 `pdftotext -layout` 抽文本后逐条回查：先去掉 SSO 页眉页脚（`Informal Consolidation …`、`20xx Ed.`、页码），再只保留字母数字做比对（消除换行/连字符/标点差异），`...` 分隔的引文按片段逐段回查。本次 **36/36 条 0 处不匹配**。本地 PDF 副本只用于核验，未入仓。
+1. 用带浏览器 UA 的请求下载 SSO PDF：`curl -A '<Chrome UA>' '<URL>' -o <file>.pdf`；SSO 前面有 AWS WAF，纯 `curl` 默认 UA 会得到 403，命中 JS 挑战时返回 `202` 空响应。2026-11-17 的稳定做法：无头 Chromium（Playwright）打开任一 SSO 法条页并等 6-8 秒让挑战脚本跑完，再用同一 context 的 `request.get(<PDF URL>)` 取流；`goto` 本身返回 202 也不影响，页面标题正常即说明挑战已过。SG1-SG10 用 `curl` 直接取（全部 200），SG11/SG12 走浏览器会话。
+2. 重新计算 SHA-256 并与上表比对；SSO 的 `in force from` 日期会随修订变化，若日期变了，说明文本已更新，需重新逐条比对引文。SG11/SG12 各下载两次（不同会话），两次 SHA-256 一致。
+3. 用 `pdftotext -layout` 抽文本后逐条回查：先去掉 SSO 页眉页脚（`Informal Consolidation …`、`20xx Ed.`、页码、跨页重复的法规名），再只保留字母数字做比对（消除换行/连字符/标点差异），`...` 分隔的引文按片段逐段回查。2026-11-17 复核：**42/42 条 0 处不匹配**。本地 PDF 副本只用于核验，未入仓。
 4. 优先核对附表（CPFTA Second Schedule / CPSR First Schedule / Food Regs 的限额）是否新增或调整。
 5. 任何新规则必须同时具备：官方 URL、条文号、英文短引、`effective_date`、`last_verified`。

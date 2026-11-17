@@ -106,3 +106,78 @@
 - 本次未改 `claim_pattern` 的匹配逻辑（规则库只提供线索，匹配器由产品侧实现）。
 - 新增规则后被真实页面命中的：`SG-FOOD-01`、`SG-FOOD-02`、`SG-PRICE-01`、`SG-MET-03`、`SG-ADV-09`，说明食品接触/计量/价格三块缺口确实会在小家电页面出现。
 - `SG-PRICE-02`、`SG-MET-01`、`SG-MKT-01/02`、`SG-PRIV-05~08` 在这两个页面未触发，属正常（需要并列含税价、非公制单位、批量讯息或营销发送才会命中）。
+
+---
+
+## 2026-11-17 复核与新增样例（RAY-720）
+
+### 页面 A 复抓（Mayer SG，用于确认旧 findings 仍成立）
+
+| 项目 | 2026-11-14 | 2026-11-17 |
+| --- | --- | --- |
+| URL | https://mayer.sg/products/mayer-6-5l-ceramic-air-fryer | 同左 |
+| HTTP | 200 | 200 |
+| HTML | 384,715 bytes / `0b255193…b840` | 377,031 bytes / `36208f72…da1` |
+| 可见文本 | 4,770 字符 | 3,869 字符 |
+
+HTML 哈希与文本长度变化来自评价/推荐模块的动态注入；**正文关键项未变**：`Safety Mark : 240769-11`、`Gross Capacity : 6.5L`、`Net Weight : 3.8KGS`、`S$ 119.00`、`S$ 319.00`、`62% Off!`、`Ceramic coating basket`。上表 #1-#8 的 findings 与误报/漏报结论继续成立，未发现需要撤回的条目。
+
+### 页面 C（新样例，3C 数码）
+
+| 项目 | 内容 |
+| --- | --- |
+| URL | https://www.xiaomi.com/sg/product/redmi-buds-6-pro/ |
+| 页面 | Xiaomi 新加坡 — Redmi Buds 6 Pro（蓝牙耳机） |
+| 取回时间 | 2026-11-17 14:40（UTC+8） |
+| HTTP | 200 |
+| 原始 HTML | 134,737 bytes；SHA-256 `d4bc6ab91787375e585092a784d56a42db1c4756c664d599567d4872a861d082` |
+| 可见文本 | 11,931 字符（`BeautifulSoup` 去 script/style 后） |
+| 抓取方式 | `curl` 静态 HTML（服务端渲染；页面为产品介绍页，「Buy Now」跳转购买，无标价） |
+
+原文摘录：
+
+> Elevate every beat
+> Certified Hi-Res Audio with LDAC
+> Up to 55dB active noise cancellation with multi-level adjustments*
+> Built-in dimensional audio with head tracking*
+> IP54 …
+> *Active noise cancellation test data provided by the National Institute of Metrology, China.
+> *IP54 water-resistance test: The earbuds passed the test conducted by TÜV SÜD Certification and Testing (China) …
+
+### 页面 C 的 findings
+
+| # | 规则 | 观察 | 判定层级 | 置信度 | 报告写法（建议） |
+| --- | --- | --- | --- | --- | --- |
+| 9 | `SG-APP-07` reg.20(1) | 页面在售蓝牙耳机（`Bluetooth`、`LDAC`、无线连接），属新加坡无线电通信设备；全文无 IMDA 注册号、无注册声明、无包装/标签图。 | rule_level（需核实） | high | 页面在售蓝牙耳机。按新加坡《电信（经销商）条例》reg.20(1)，该型号须先经 IMDA 注册才可销售；请提供 IMDA 注册号与有效期（注册 5 年）。**页面未展示不等于未注册，需在 IMDA 系统核实。** |
+| 10 | `SG-APP-08` Sch2 para 8(a)/(e) | 页面未展示 IMDA 合规标签，也无说明书/包装的标签照片。 | rule_level（需核实） | medium | 已注册设备在展示或要约销售前须在设备、说明书或包装上贴 IMDA 指定标签；请提供标签照片与注册号，核对是否覆盖本型号。 |
+| 11 | `SG-ADV-02` s.4(b) | 「Certified Hi-Res Audio with LDAC」使用了认证类表述，页面未给出认证机构、证书编号或适用型号。 | substantiation | high | 页面使用「Certified Hi-Res Audio」的认证表述；按 CPFTA s.4(b)，认证类声称需有依据。请提供认证机构（如 Japan Audio Society 的 Hi-Res Audio 认证）、证书编号与覆盖型号。 |
+| 12 | `SG-ADV-03` Sch2 item 1 | 「Up to 55dB active noise cancellation」为性能声称；页面同时给出测试来源（National Institute of Metrology, China）与限定条件（特定频段、分别测试），属较规范的披露。 | substantiation（方向正确） | medium | 性能数据已注明测试机构与条件，方向正确；仍需索取检测报告（方法、样品、频段）确认「55dB」与「up to」的口径一致。 |
+| 13 | `SG-ADV-02` s.4(b) | 「IP54」旁注明由 TÜV SÜD Certification and Testing (China) 测试，属可核对的第三方测试披露。 | substantiation（方向正确） | medium | IP54 声称已给出测试机构；核对报告编号与型号即可，不必作为高风险项。 |
+
+合计新增 5 条 findings：准入 2 条（均需核实，不得推断未注册）、认证/性能 substantiation 2 条（1 条需补证书、1 条披露较规范）、第三方测试 1 条（正向）。
+
+### 页面 C：误报（naive 关键词匹配）
+
+把 `claim_pattern` 直接对整页文本做子串匹配，页面 C 命中 **18 条**规则；人工复核后只有 **3 条**能转成 finding（#9、#11、#12/#13）。典型误报：
+
+| 规则 | 命中词 | 实际上下文 | 原因 |
+| --- | --- | --- | --- |
+| `SG-APP-01` | `iron` | 「test equipment and **environ**ment」 | 未做词边界，`iron` 命中 `environment` |
+| `SG-ADV-12` | `ce` | 「experien**ce**」「differen**ce**」 | 两字母词无边界，几乎必然误命中 |
+| `SG-ADV-01` | `100%` | 「batteries charged to **100%**」 | 测试条件，不是商品性能声称 |
+| `SG-ADV-08` | `free` | 「ad-**free** music」「Spotify Premium for **free**」 | 第三方促销，不是本商品赠品 |
+| `SG-FOOD-02` | `ceramic` | 「Piezoelectric **ceramic** driver」 | 压电陶瓷发声单元，不接触食物 |
+| `SG-APP-10` | `iso` | 「compar**iso**n」 | 未做词边界 |
+| `SG-MET-03` | `volume` | 「**volume** adjusted to 50%」 | 音量，不是容量 |
+| `SG-ADV-05` | `new` | 「new Spotify Premium users」 | 促销对象，不是商品新旧 |
+
+**结论（更新）**：`claim_pattern` 的噪声在 3C 页面比小家电页面更高（18 命中 → 3 有效），接入前必须：① 词边界 + 实体消歧；② 只取商品主面板、规格表与包装信息；③ 两字母/短词（`ce`、`ul`、`iso`、`l.`）默认关闭子串匹配。
+
+### 页面 C：漏报
+
+| 情况 | 说明 | 建议 |
+| --- | --- | --- |
+| IMDA 注册状态 | 页面不展示注册号时，`SG-APP-07` 只能给「需核实」，无法自动判定 | 接入 IMDA 设备注册查询（按型号/注册号），或要求商家上传注册记录 |
+| 无标价 | 页面为产品介绍页，无价格区块，`SG-PRICE-01/02` 无法评估 | 换用零售 listing 页（如 Harvey Norman / Courts）复测价格类规则 |
+| 电池/充电器准入 | 耳机充电盒、充电器可能同时属 CPSR 受管制电气产品，但页面未单列配件型号 | 需要 SKU 级配件清单；当前只记录为观察项 |
+| 「Buy Now」跳转页 | 实际成交页在另一个域名，页面信息可能不一致 | 抓取链路需跟随到结算/商品详情页，并记录跳转链 |

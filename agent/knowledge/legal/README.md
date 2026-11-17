@@ -20,11 +20,12 @@ agent/knowledge/legal/
 │   ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
 │   ├── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
 │   └── SAMPLE_FINDINGS.md  # 真实页面「规则→finding」样例与误报/漏报记录
-├── sg/                     # 新加坡（RAY-690）
-│   ├── rules.v0.1.json     # 36 条规则（JSON）
+├── sg/                     # 新加坡（RAY-690 / RAY-720）
+│   ├── rules.v0.1.json     # 42 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
-│   └── SAMPLE_FINDINGS.md
+│   ├── SAMPLE_FINDINGS.md
+│   └── MARKET_READINESS.md # 一页接入建议（RAY-720）
 ├── us/                     # 美国（RAY-691）
 │   ├── rules.v0.1.json     # 35 条规则（JSON）
 │   ├── README.md
@@ -47,14 +48,15 @@ agent/knowledge/legal/
 | Stage | 市场 | 子单 | 状态 | 版本 | 规则数 | 法规数 | 最后核验 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | 马来西亚 (MY) | RAY-688 / RAY-689 | v0.1（定稿候选，待产品验收） | v0.1c | 45 | 9 | 2026-11-14 | 通用广告 + 小家电 + 3C 数码 + 电商披露（2024 条例）；含通讯设备认证、Halal、PDPA、陶瓷食品接触 |
-| 2 | 新加坡 (SG) | RAY-690 | v0.1（定稿候选，待产品验收） | v0.1b | 36 | 8 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / 食品接触 / 计量 / GST 标价 / PDPA(DNC) / Spam Control |
+| 2 | 新加坡 (SG) | RAY-690 / RAY-720 | v0.1c（接入评估完成，待产品验收） | v0.1c | 42 | 10 | 2026-11-17 | CPFTA / CPTDSRA / CPSR Safety Mark / **IMDA 设备注册** / **CGSR 家居安全** / 食品接触 / 计量 / GST 标价 / PDPA(DNC) / Spam Control（含退订声明英文义务） |
 | 3 | 美国 (US) | RAY-691 | v0.1（定稿候选，待产品验收） | v0.1 | 35 | 20 | 2026-11-14 | 联邦优先；FTC §5 + Endorsement/Green/Review Guides + FPLA + CPSA + FCC + FDCA §409 + Magnuson-Moss + CAN-SPAM；州级另列 backlog |
 | 4 | 英国 (UK) | RAY-692 | v0.1（定稿候选，待产品验收） | v0.1 | 43 | 15 | 2026-11-14 | DMCCA 2024（CPRs 2008 已于 2025-04-06 废止）+ CRA 2015 + EESR/Plugs/GPSR/EMC/Radio/WEEE/Batteries + PMO + UK GDPR/PECR + BPRs + CAP；CE 与 UKCA 在 GB 并行 |
 | 5 | 澳大利亚 (AU) | RAY-693 | v0.1（定稿候选，待产品验收） | v0.1 | 45 | 16 | 2026-11-14 | ACL（s.18 无罚金；罚则上限 $100m/3x/30%）+ EESS（仅 QLD/WA/VIC/TAS 参与；海外公司不能当 Responsible Supplier）+ ACMA/GEMS + 纽扣电池 4 项标准 + APP/Spam Act；ACCC 指引 5 份 |
 | 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
-> 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿（MY 45 条、SG 36 条均已定稿）。
+> 2026-11-17 SG v0.1c（RAY-720）：36 → 42 条 / 10 部法规。补 3C 数码（Telecommunications (Dealers) Regulations reg.20(1) 设备注册、Sch2 para 8(a)/(d)/(e) 标签与反向禁止）、家居通用安全（CGSR 2011 reg.3/reg.4）、语言义务（SCA Sch2 para 2(4) 退订声明须英文）。重下 12 份官方 PDF，SG1-SG10 的 SHA-256 与 2026-11-14 全部一致，42/42 条引文 0 处不匹配。结论：**有条件可开放**，见 `sg/MARKET_READINESS.md`。
+> 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿（MY 45 条、SG 36 条均已定稿；SG 于 RAY-720 更新为 42 条）。
 > RAY-688（MY v0.1 首单，3C 6 条）与 RAY-689（MY 定稿单）范围重叠：RAY-689 已在 RAY-688 的 40 条 baseline 上完成复核与定稿（45 条），两单验收口径按 RAY-689 执行，避免重复复核。
 > 2026-11-14 UK v0.1（RAY-692）：**CPRs 2008 已于 2025-04-06 废止**，英国不公平商业行为规则迁入 DMCCA 2024 Part 4 Chapter 1；CMA 可直接罚款（s.182(6)：£300,000 或全球营业额 10%）。CE 标志在 GB 继续与 UKCA 并行被承认（SI 2024/696）。
 > 2026-11-14 AU v0.1（RAY-693）：ACL **s.18 不在 s.224 的罚金清单内**（无民事罚金，救济为禁令/损害赔偿）；法人罚金上限为 **$100,000,000** 或获益 3 倍或违规期营业额 30%（s.224(3A)，旧资料常写 $50m）。电气准入不是全澳一套：**EESS 的 IGA 签署方抓取时为 QLD / WA / VIC / TAS**，NSW/SA/ACT/NT 另有本州制度；EESS 要求责任供应商为澳/新实体，**海外公司不能直接注册**，且不允许 agent。纽扣/硬币电池 4 项强制标准自 **2022-06-22** 起适用；信息标准 s.14（平台描述加警示）只是建议条款。
@@ -63,7 +65,7 @@ agent/knowledge/legal/
 
 - 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
-- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条、新加坡 v0.1 的 36 条与美国 v0.1 的 35 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条、新加坡 v0.1 的 42 条与美国 v0.1 的 35 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
 
 ## 规则字段
 
