@@ -24,7 +24,8 @@ agent/knowledge/legal/
 │   ├── rules.v0.1.json     # 36 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
-│   └── SAMPLE_FINDINGS.md
+│   ├── SAMPLE_FINDINGS.md
+│   └── MARKET_READINESS.md # 一页接入建议（RAY-720）
 ├── us/                     # 美国（RAY-691）
 │   ├── rules.v0.1.json     # 35 条规则（JSON）
 │   ├── README.md
@@ -80,7 +81,7 @@ agent/knowledge/legal/
 
 - 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
-- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条、新加坡 v0.1 的 36 条与美国 v0.1 的 35 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
+- 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条、新加坡 v0.1 的 42 条与美国 v0.1 的 35 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
 
 ## 规则字段
 
