@@ -5,7 +5,7 @@
 
 ## 这不是什么
 
-- 不是法律意见，不输出"合法/违法/保证通过"。
+- 不是法律意见，不对合规状态作终局判断。
 - 不是"全球广告法"模板；每个市场单独建库，不互相套用。
 - 不是诊断规则本身。诊断规则（`agent/knowledge/my/index.json`）与本库解耦，接入需产品确认。
 
@@ -35,11 +35,17 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-└── au/                     # 澳大利亚（RAY-693）
-    ├── rules.v0.1.json     # 45 条规则（JSON）
+├── au/                     # 澳大利亚（RAY-693）
+│   ├── rules.v0.1.json     # 45 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+└── bd/                     # 孟加拉国（RAY-729）
+    ├── rules.v0.1.json     # 28 条规则（JSON）
     ├── README.md
     ├── SOURCES.md
-    └── SAMPLE_FINDINGS.md
+    ├── SAMPLE_FINDINGS.md
+    └── ONBOARDING.md       # 一页接入建议
 ```
 
 ## 当前状态
@@ -51,6 +57,7 @@ agent/knowledge/legal/
 | 3 | 美国 (US) | RAY-691 | v0.1（定稿候选，待产品验收） | v0.1 | 35 | 20 | 2026-11-14 | 联邦优先；FTC §5 + Endorsement/Green/Review Guides + FPLA + CPSA + FCC + FDCA §409 + Magnuson-Moss + CAN-SPAM；州级另列 backlog |
 | 4 | 英国 (UK) | RAY-692 | v0.1（定稿候选，待产品验收） | v0.1 | 43 | 15 | 2026-11-14 | DMCCA 2024（CPRs 2008 已于 2025-04-06 废止）+ CRA 2015 + EESR/Plugs/GPSR/EMC/Radio/WEEE/Batteries + PMO + UK GDPR/PECR + BPRs + CAP；CE 与 UKCA 在 GB 并行 |
 | 5 | 澳大利亚 (AU) | RAY-693 | v0.1（定稿候选，待产品验收） | v0.1 | 45 | 16 | 2026-11-14 | ACL（s.18 无罚金；罚则上限 $100m/3x/30%）+ EESS（仅 QLD/WA/VIC/TAS 参与；海外公司不能当 Responsible Supplier）+ ACMA/GEMS + 纽扣电池 4 项标准 + APP/Spam Act；ACCC 指引 5 份 |
+| 二梯队 | 孟加拉国 (BD) | RAY-729 | v0.1（定稿候选，待产品验收） | v0.1 | 28 | 3 + 1 清单 | 2026-11-17 | CRPA 2009（虚假广告/标签罚则/价格/计量/过期/安全）+ BSTI Ordinance 1985（s.19/s.24/s.30）+ BSTI 315 项强制认证清单（小家电/电池/UPS/插头）+ Sale of Goods Act 1930（s.15/s.16）；BTRC/PDP/Digital Commerce/IPO 2026-29 英文文本未取得，未建规则 |
 | 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
@@ -59,9 +66,12 @@ agent/knowledge/legal/
 > 2026-11-14 UK v0.1（RAY-692）：**CPRs 2008 已于 2025-04-06 废止**，英国不公平商业行为规则迁入 DMCCA 2024 Part 4 Chapter 1；CMA 可直接罚款（s.182(6)：£300,000 或全球营业额 10%）。CE 标志在 GB 继续与 UKCA 并行被承认（SI 2024/696）。
 > 2026-11-14 AU v0.1（RAY-693）：ACL **s.18 不在 s.224 的罚金清单内**（无民事罚金，救济为禁令/损害赔偿）；法人罚金上限为 **$100,000,000** 或获益 3 倍或违规期营业额 30%（s.224(3A)，旧资料常写 $50m）。电气准入不是全澳一套：**EESS 的 IGA 签署方抓取时为 QLD / WA / VIC / TAS**，NSW/SA/ACT/NT 另有本州制度；EESS 要求责任供应商为澳/新实体，**海外公司不能直接注册**，且不允许 agent。纽扣/硬币电池 4 项强制标准自 **2022-06-22** 起适用；信息标准 s.14（平台描述加警示）只是建议条款。
 
-## 语言政策（2026-11-14 起）
+> 2026-11-17 BD v0.1（RAY-729）：BD 为第二梯队（一带一路优先）市场，不占用原 1-7 stage 串行顺序。28 条规则覆盖 CRPA 2009、BSTI Ordinance 1985、BSTI 315 项强制认证清单、Sale of Goods Act 1930；`rule_level` 19 / `substantiation` 2 / `human_review` 7，`review_required=true` 20 条。四个领域（BTRC 电信设备、PDP Act 2026、Digital Commerce Guidelines 2021、Import Policy Order 2026-2029）因无官方英文文本未建规则，详见 `bd/README.md` 与 `bd/ONBOARDING.md`。
 
-- 只做官方语言为英语的市场；规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
+## 语言政策（2026-11-14 起，2026-11-17 修订）
+
+- 优先做官方语言为英语的市场；对官方语言非英语、但法律/商务文本有官方英文版本的市场（如 BD），规则库的 `verbatim_excerpt` 一律使用**官方英文原文或官方英文译本**。
+- 2026-11-17 BD v0.1（RAY-729）：孟加拉国立法原文以孟加拉文为准，英语为商务通用语。本版只录入已取得**官方英文文本**的 4 部/套法规/清单（CRPA 2009 的 Authentic English Text、BSTI Ordinance 1985 的 Bangladesh Code 英文文本、BSTI 315 项英文清单、Sale of Goods Act 1930 的 bdlaws 英文页）。BTRC、PDP Act 2026、Digital Commerce Guidelines 2021、Import Policy Order 2026-2029 未取得官方英文文本，**未建规则**，列入 `bd/README.md` 的 open questions；不得用二手翻译补洞。
 - 没有官方英文版本的条文，标 `official_english_unavailable`，不得用商业数据库或二手翻译冒充法条。
 - 马来文/其他语言版本仅用于交叉核对，不作为引文来源；马来西亚 v0.1 的 45 条、新加坡 v0.1 的 36 条与美国 v0.1 的 35 条均为英文引文（MY 的 Halal 用 WTO TBT 通知所附官方英文文本；MY 的 ETT 2024 用 AGC 公报内的官方英文对照文本）。
 
@@ -70,7 +80,7 @@ agent/knowledge/legal/
 | 字段 | 必填 | 说明 |
 | --- | --- | --- |
 | `id` | 是 | `<市场>-<主题>-<序号>`，如 `MY-ADV-01`；全库唯一 |
-| `market` | 是 | `MY` / `SG` / `US` / `UK` / `AU` / `PH` / `CA` |
+| `market` | 是 | `MY` / `SG` / `US` / `UK` / `AU` / `BD` / `PH` / `CA` |
 | `category` | 是 | `通用` / `通用/电商` / `小家电` / `3C 数码` / `食品` / `美妆` … |
 | `law_name` | 是 | 原文名 + 中文/英文名 |
 | `law_short` | 否 | 报告里用的简称 |
@@ -117,7 +127,7 @@ agent/knowledge/legal/
 ## 与报告接入的边界
 
 - 报告新增独立「合规风险」章节，按 high/medium/low 排序；每条含：观察到什么、为什么可能有问题、需要什么证据/找谁核实。
-- 不出现"合法/违法/保证通过"；high 级默认加"需专业审核"。
+- 不作终局合规判断；high 级默认加"需专业审核"。
 - 页面缺失认证信息只能写"页面未展示，需向商家核实"，不得推断"未认证"。
 - 报告与 PDF 均保留"基于公开法规的自动筛查，不构成法律意见"声明（措辞由产品定稿）。
 
