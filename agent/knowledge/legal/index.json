@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T14:53:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,6 +195,40 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "SA",
+      "market_name": "沙特阿拉伯",
+      "status": "v0.1",
+      "rules_count": 34,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "sa/rules.v0.1.json",
+      "readme": "sa/README.md",
+      "sources": "sa/SOURCES.md",
+      "coverage": [
+        "电子广告（ECL Art.10-12：广告＝合同内容、广告必载信息、虚假/误导禁止、1 日整改）",
+        "电商信息披露（ECL Art.6/7/8：主体与 CR、含税含运费总价、保修、逐项发票）",
+        "3C 数码准入（通信与信息技术法 M/106 + CST RT12：设备许可、DoC、CoC、海关放行、沙特 CR 主体门槛、CST 标签）",
+        "产品安全（SASO《产品安全法》指南：不安全产品禁止、制造商/分销商义务、符合性标志；指南级）",
+        "隐私告知（PDPL Art.5/7/11/12/13/20/36）"
+      ],
+      "known_gaps": [
+        "《消费者保护法》现行有效版本的官方英文文本未取得（mc.gov.sa 在本环境不可达）→ 一般广告/虚假宣传/绝对化用语/折扣真实性无规则；ECL Art.11 只覆盖电子广告",
+        "2026-11-10 内阁批准的新《消费者保护法》（76 条、罚则上限 800 万里亚尔、公布后 180 日生效、取代三部现行法）仅见新闻稿摘要，未直接抓取核实；生效后本库消费者保护部分需迁移",
+        "阿拉伯文标签/说明书义务的来源（《商业数据法》、SASO 技术法规原文）只有阿拉伯文版本 → 语言义务按 official_english_unavailable 处理，未建规则",
+        "SASO《合格评定模式总条例》与 SABER 的 PCoC/SCoC 流程仅有阿拉伯文 → 产品安全 6 条停在指南级（confidence=medium, review_required=true）",
+        "SFDA/GSO 食品接触材料限值与检测方法未取得英文文本 → 小家电食品接触只有「需证明」级",
+        "能效标签（SEEC/SASO）对电炸锅/电水壶等小家电的适用性未核",
+        "PDPL 实施条例英文版未取得 → 同意形式、跨境传输、DPO 等细则无法落地",
+        "claim_pattern 只收英文触发词；阿拉伯文匹配（如 ضمان 兼指「保修」与「确保」）误报率高，留 v0.2",
+        "美妆/食品/玩具等品类特殊规则未覆盖；支付/物流/退换属 Layer 3 未覆盖"
+      ],
+      "issue": "RAY-723",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "sa/SAMPLE_FINDINGS.md",
+      "access_recommendation": "conditional_open: 电商披露 / 3C 准入 / 隐私告知 / 产品安全（指南级）可出 finding；一般广告宣称与阿拉伯文语言义务不可出；报告须标「需专业审核」"
     }
   ],
   "backlog": [
