@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T15:20:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,6 +195,54 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "ZA",
+      "market_name": "南非",
+      "status": "v0.1",
+      "rules_count": 41,
+      "laws_count": 7,
+      "last_verified": "2026-11-17",
+      "rules_file": "za/rules.v0.1.json",
+      "readme": "za/README.md",
+      "sources": "za/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPA 68/2008：s.29 营销一般标准、s.41(1)(a)-(b) 虚假/误导/夸大陈述、s.41(3) 具体类型、s.30 诱饵广告、s.31 默认加入、s.32 直销告知、s.40 不合良心行为）",
+        "价格与商品说明（CPA s.23 展示价与最低价、s.24 商品说明与涂改、s.25 翻新/平行进口告示、s.26 交易记录九项）",
+        "原产地说明（CPA s.24(4)-(5) + Regs reg.6：仅纺织/服装/鞋/皮革；家电不在指定范围）",
+        "促销竞赛（CPA s.36 + Regs reg.11(3)：不得强制中奖者让渡肖像/参加营销）",
+        "语言义务（CPA s.22 平实语言；s.40(2) 无法理解协议语言）",
+        "电商披露与冷却期（ECTA 25/2002 第 7 章：s.43(1) 十七项网站披露、s.43(2)-(3) 下单前复核与 14 日撤销、s.44 七日冷却期、s.45 未请求商业讯息、s.46 三十日履行、s.47-48 选法条款与权利不可排除）",
+        "隐私与电子直销（POPIA 4/2013：s.18 收集告知、s.19 安保措施、s.69 电子直销 opt-in 与身份/退订、s.72 跨境传输）",
+        "认证与准入（NRCS Act 5/2008 s.14 强制规范与授权书 LOA、s.15 扣留/召回/退运；ECA 36/2005 s.35(1) ICASA 型号核准）",
+        "计量单位（LMA 9/2014 s.34(4) 进口商品 SI 等值标示、s.35(1) 广告计量单位）",
+        "质量与合同条款（CPA s.56 六个月默示保证、s.51(1)(b) 禁止剥夺法定权利、s.49 责任限制条款的显著提示）"
+      ],
+      "known_gaps": [
+        "ICASA 型号核准的程序细则与 ECA s.35(2) 豁免清单未取得（icasa.org.za 在本环境 TLS 与 HTTP 均不可达）",
+        "NRCS 强制规范清单（VC 编号）与最新公告未取得：官网 Compulsory Specifications 页面为空壳，规则只写到「适用强制规范的商品」",
+        "SANS 60335 系列（家电安全）为付费标准，未取得全文；规则不细化技术要求",
+        "CPA 与 ECTA 无官方合并文本（consolidation），本版依据签署版公报，可能存在版本滞后",
+        "LMA 与 ECA 的生效公告未取得，effective_date 暂记公报日/全面生效日，confidence=medium（5 条）",
+        "s.24(4) 指定商品是否扩及家电未核；本版依 Regs reg.6/reg.7 判定为仅纺织/服装/鞋/皮革与 GMO",
+        "CPA s.34（促销优惠内容要求）未收，仅覆盖 s.36 的一点；列 v0.2",
+        "缺「认证信息披露缺失」的 disclosure-gap 规则：页面未展示 LOA/SABS/℮ 时无法触发",
+        "能效标示（部分家电强制）未建规则，未取得官方来源",
+        "3C 数码仅 1 条（ICASA 型号核准），无线/电池/充电器类强制要求未覆盖",
+        "省级/市级消费者条例、ARB 广告自律准则未纳入",
+        "医疗/杀菌类声称与卫生部管辖的边界未研究"
+      ],
+      "issue": "RAY-726",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "za/SAMPLE_FINDINGS.md",
+      "decision_level_counts": {
+        "rule_level": 32,
+        "substantiation": 4,
+        "human_review": 5
+      },
+      "review_required_count": 23,
+      "notes": "线上交易优先适用 ECTA 第 7 章、线下与直销适用 CPA（CPA s.16/23/26/33 各有一处明文让位）；南非法不要求特定语种，只有 s.22 的平实语言效果标准。"
     }
   ],
   "backlog": [
