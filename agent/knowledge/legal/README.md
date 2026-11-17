@@ -191,3 +191,19 @@ agent/knowledge/legal/
 - 高频变动项：Halal 附表二、PDPA 的 DPO/泄露通知、ST 管制设备清单、各市场罚则上限。
 - 建议每季度重跑一次 `SOURCES.md` 的 SHA-256；法规更新时新建版本文件并更新 `index.json`。
 - 本库由研究角色维护；接入诊断规则、改报告措辞由产品/工程决定。
+
+## 新增市场流程（2026-11-17 定）
+
+多人多单并行时，每个 PR 都改 `index.json` 与总 README 会连环冲突。约定改成：
+
+1. **新增国家的 PR 只提交**：`<cc>/rules.v0.1.json`、`<cc>/README.md`、`<cc>/SOURCES.md`、`<cc>/SAMPLE_FINDINGS.md`；
+   **不要手改** `index.json`、也不要手改本文件的目录树与状态表。
+2. 合并后在 master 上跑一次：
+
+   ```bash
+   python3 agent/knowledge/legal/scripts/sync_index.py
+   ```
+
+   脚本会按各国 rules 文件重建 `index.json` 的 `status` / `rules_count` / `rules_file` 等字段，
+   并重画本文件的目录树与状态表。`laws_count` 若已有值则保留（早期按法规族人工归并过）。
+3. 提交前自检：`python3 agent/knowledge/legal/scripts/sync_index.py --check`，退出码 0 才算一致。
