@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T16:00:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,6 +195,40 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "GH",
+      "market_name": "加纳",
+      "status": "v0.1",
+      "rules_count": 33,
+      "laws_count": 11,
+      "last_verified": "2026-11-17",
+      "rules_file": "gh/rules.v0.1.json",
+      "readme": "gh/README.md",
+      "sources": "gh/SOURCES.md",
+      "coverage": [
+        "电商信息披露与消费者救济（ETA 2008 Act 772：s.47 十项披露、14 日取消权、s.50 未经请求电子通讯）",
+        "通用商品标签与英文义务（L.I. 1541：附表一覆盖家电/3C/家居，r.3 十项、r.4(3) 英文、r.9 到港 28 日补标）",
+        "家居化学品标签与注册（PHA 851 s.113/s.118/s.148；FDA 标签指南 2013：内容、英文、危险符号）",
+        "认证与准入（GSA Act 2022 s.33(2) 强制性标准；EasyPASS CoC；NCA 型式批准与标记；L.I. 1815 能效）",
+        "语言义务三条（L.I. 1541 r.4(3)、FDA 指南 3.1.5、NCA TA 19.3(e)）",
+        "隐私告知与营销（DPA 2012 Act 843：s.23、s.27(1)(2)、s.28(1)、s.40(1)）"
+      ],
+      "known_gaps": [
+        "加纳无统一消费者保护法：Consumer Protection Bill 自 2014 年提出仍未通过；PNDCL 306 官方文本未取得（GhaLII/lawsghana 403），本版不引用",
+        "GSA 强制性标准清单与公报通告未取得，GH-CERT-01 只能条件式表达",
+        "L.I. 1541 为 1992 年规则，是否仍为 GSA 现行执行口径未核",
+        "L.I. 1958（冰箱）与 L.I. 2353（LED/自镇流灯）条文未取得，能效仅覆盖空调/自镇流荧光灯（L.I. 1815）",
+        "EasyPASS 执行机构可能已由 Bureau Veritas 改为 GSA（2026-07 二手报道），GSA 官网无公告，标 medium",
+        "NCA 2026 年终端设备技术规格征求意见结果未核，2015 指南可能更新",
+        "DPC 登记范围与域外适用指引未取得",
+        "PHA 851 Part 7 逐条罚则数额未折算；净含量/计量（W&M Act 1975）未建规则",
+        "食品/美妆/玩具等特殊品类未覆盖"
+      ],
+      "issue": "RAY-737",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "gh/SAMPLE_FINDINGS.md"
     }
   ],
   "backlog": [
