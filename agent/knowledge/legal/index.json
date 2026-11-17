@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T23:00:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,6 +195,41 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "NG",
+      "market_name": "尼日利亚",
+      "status": "v0.1",
+      "rules_count": 26,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "ng/rules.v0.1.json",
+      "readme": "ng/README.md",
+      "sources": "ng/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（FCCPA 2018：s.114 plain language、s.115 价格、s.116 trade description、s.117 二手/翻新、s.123 一般营销标准、s.124 胁迫与不公平手段、s.125 虚假表述与跨境责任链、s.126 检测与证言）",
+        "广告事前审批（ARCON vetting / Certificate of Approval，guideline 级）",
+        "商品说明与标签可追溯（FCCPA s.134）、危险品公告与撤回（s.135）",
+        "认证与准入：SONCAP（Product Certificate / SONCAP Certificate / Default 费率）、SONMELS 能效标签、NCC Equipment Type Approval",
+        "隐私告知与同意（NDPA 2023：s.24 原则、s.25 处理依据、s.26 同意、s.27 收集前告知、s.44 重要控制者登记、s.48 罚则上限）"
+      ],
+      "known_gaps": [
+        "ARCON Act 2022 正文（A719-A771）未取得：官网只有 gazette 前置页，ARCON 规则停留在 vetting 页面（无条文号、无罚则）",
+        "SON Act 2015 全文未取得：SONCAP / SONMELS 规则均为 guideline 级，SON 的处罚条款未收录",
+        "NCC Type Approval Regulations 2024 全文未取得：型式认可的罚则与代理要求未核",
+        "FCCPA 2018 只有扫描件且 OCR 文本层不可用：15 条引文按页面图像转录（gazette_page 记录页码），无法机器校验",
+        "SONCAP 受管制 HS 清单由 CISS/CBN 动态增删，未取得全量清单，无法逐 SKU 判断是否受管制",
+        "SONMELS Regulations 2026 仍为征求意见稿：Phase I/II 强制日期可能调整",
+        "价格货币：s.115(2) 要求以奈拉标价，跨境 USD/CNY 标价是否满足未找到监管口径",
+        "「data controller of major importance」认定门槛未取得 NDPC 指引全文，NG-PRV-05 为 medium",
+        "NDPR 2019 与 NDPA 2023 的衔接未核实，未收录 NDPR 条文",
+        "计量/净含量、州级（如 Lagos）消费者保护规则、行业自律准则（Nigerian Code of Advertising）未覆盖",
+        "食品/美妆/玩具等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-725",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "ng/SAMPLE_FINDINGS.md"
     }
   ],
   "backlog": [
@@ -294,6 +329,12 @@
         "stage": 7,
         "market": "CA",
         "issue": "RAY-695"
+      },
+      {
+        "stage": 8,
+        "market": "NG",
+        "issue": "RAY-725",
+        "note": "一带一路优先梯队；不属原 stage 1-7 序列"
       }
     ]
   }

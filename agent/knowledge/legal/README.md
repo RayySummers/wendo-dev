@@ -35,11 +35,18 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-└── au/                     # 澳大利亚（RAY-693）
-    ├── rules.v0.1.json     # 45 条规则（JSON）
+├── au/                     # 澳大利亚（RAY-693）
+│   ├── rules.v0.1.json     # 45 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   ├── SAMPLE_FINDINGS.md
+│   └── verify_excerpts.py
+└── ng/                     # 尼日利亚（RAY-725）
+    ├── rules.v0.1.json     # 26 条规则（JSON）
     ├── README.md
     ├── SOURCES.md
-    └── SAMPLE_FINDINGS.md
+    ├── SAMPLE_FINDINGS.md
+    └── verify_excerpts.py
 ```
 
 ## 当前状态
@@ -53,7 +60,9 @@ agent/knowledge/legal/
 | 5 | 澳大利亚 (AU) | RAY-693 | v0.1（定稿候选，待产品验收） | v0.1 | 45 | 16 | 2026-11-14 | ACL（s.18 无罚金；罚则上限 $100m/3x/30%）+ EESS（仅 QLD/WA/VIC/TAS 参与；海外公司不能当 Responsible Supplier）+ ACMA/GEMS + 纽扣电池 4 项标准 + APP/Spam Act；ACCC 指引 5 份 |
 | 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+| 8 | 尼日利亚 (NG) | RAY-725 | v0.1（定稿候选，待产品验收） | v0.1 | 26 | 5 | 2026-11-17 | FCCPA 2018（s.114-117/122-127/134-135）+ FCCPC 行政处罚条例 2020 + NDPA 2023 + ARCON vetting + SONCAP/SONMELS + NCC 型式认可；FCCPA 只有扫描件，15 条引文按页面图像转录 |
 
+> 2026-11-17 NG v0.1（RAY-725）：尼日利亚按**一带一路优先**补入（不属原 stage 1-7 序列）。核心法 FCCPA 2018 的官方 gazette 只有扫描件且 OCR 文本层损坏（`goods→gods`、`manufacturer→hranufacturer`），15 条引文改为在页面图像上逐字转录并在 `gazette_page` 记录页码；ARCON Act 2022 正文、SON Act 2015、NCC Type Approval Regulations 2024 均未取得全文，对应规则降级为 `guideline` 并标 `review_required`。
 > 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿（MY 45 条、SG 36 条均已定稿）。
 > RAY-688（MY v0.1 首单，3C 6 条）与 RAY-689（MY 定稿单）范围重叠：RAY-689 已在 RAY-688 的 40 条 baseline 上完成复核与定稿（45 条），两单验收口径按 RAY-689 执行，避免重复复核。
 > 2026-11-14 UK v0.1（RAY-692）：**CPRs 2008 已于 2025-04-06 废止**，英国不公平商业行为规则迁入 DMCCA 2024 Part 4 Chapter 1；CMA 可直接罚款（s.182(6)：£300,000 或全球营业额 10%）。CE 标志在 GB 继续与 UKCA 并行被承认（SI 2024/696）。
