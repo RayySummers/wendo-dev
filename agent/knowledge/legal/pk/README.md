@@ -5,7 +5,7 @@
 
 ## Executive Summary
 
-- **巴基斯坦没有一部全国统一的消费者保护法。** 联邦层是《Competition Act, 2010》的 s.10（欺骗性营销，全国适用）与《Islamabad Consumers Protection Act, 1995》（仅首都区）；省层旁遮普、信德各有一部消费者保护法，两者的第 21 条是**几乎逐字相同**的 11 项误导性表示清单——这也是本库能用一个规则集覆盖多数市场的原因。
+- **巴基斯坦没有一部全国统一的消费者保护法。** 联邦层是《Competition Act, 2010》的 s.10（欺骗性营销，全国适用）与《Islamabad Consumers Protection Act, 1995》（仅首都区，s.2(f) 列举 14 项不公平交易行为）；省层信德《SCPA 2014》s.21 是 11 项误导性表示清单，与旁遮普《PCPA 2005》s.21 **几乎逐字相同**。旁遮普法本版**未收录**：省政府站点（punjabcode / punjablaws / pcpc.punjab.gov.pk）在本环境被网络层阻断，FAOLEX 属二手汇编已按要求弃用，见 open questions 3。
 - **最强抓手是 Competition Act s.10(2)(b) 里的 `lacking a reasonable basis`。** 它把「夸大」直接变成「举证」问题：无依据的信息本身即可能构成欺骗性营销，无需证明有人被误导。
 - **准入是两套彼此独立的制度**：PSQCA 的 PS 强制认证（PSQCA Act 1996 s.14 + SRO 附表，清单含电熨斗 PS:185、微波炉 PS:5254、舒适风扇 PS:1、自镇流 LED 灯 PS:5252、插头插座 PS IEC 60884-1）与 NEECA 的风扇能效标签（S.R.O. 411(I)/2024，2024-03-20 起强制，`seller` 定义明确包含线上销售）。
 - **3C 数码的头号阻塞项是 PTA 型号核准（type approval）。** `pta.gov.pk` 在本环境 TLS 握手失败，本次**未取得**《Pakistan Telecommunication (Re-Organization) Act, 1996》与 PTA 型号核准规例的官方原文，因此 3C 品类在 v0.1 **不具备开放条件**。
@@ -13,16 +13,16 @@
 - **语言义务是负向结论（0 条规则）。** 宪法 Art. 251 只规定乌尔都语为国家语言、英语可继续用于公务；未找到要求电商商品页使用乌尔都语的通用成文法义务（食品、烟草等特殊品类不属本单范围）。
 - **罚则量级差一个数量级**：竞争法上限 7,500 万卢比或年营业额 10%；省消费者法上限 2 年监禁 / 10 万卢比；PSQCA s.22 是**不少于** 5 万卢比（下限罚金，写法与其他条款相反）。
 - **页面能判什么**：价格与折扣、绝对化/排名/认证类表述、保修条款文本、规格数字与描述一致性——可判；「是否已取得 PS 认证」「是否已做 PTA 核准」——不可从页面反推，只能写「页面未展示，需向商家核实」。
-- 规则 35 条 / 官方来源 13 个 / 最后核验 2026-11-17；`review_required=true` 28 条。
+- 规则 35 条 / 官方来源 12 个（全部为 `.gov.pk`）/ 最后核验 2026-11-17；`review_required=true` 29 条。
 
 ## 覆盖矩阵
 
 | 主题 | 规则 | 主要依据 | decision_level | 可否从页面判定 |
 | --- | --- | --- | --- | --- |
 | 通用反误导（全国） | PK-ADV-01 ~ 06 | Competition Act 2010 s.10、s.38 | rule_level 4 / substantiation 1 / human_review 1 | 可（比较与价格需补充数据） |
-| 首都区消费者保护 | PK-CON-01 ~ 08 | ICPA 1995 s.2(f)、s.7、s.9 | rule_level 6 / substantiation 1 / human_review 3 | 可（s.7 需「造成损失」要件） |
-| 旁遮普省 | PK-PB-01 ~ 07 | PCPA 2005 s.20、s.21、s.22、s.32 | rule_level 4 / human_review 3 | 可（退换政策线上适用方式待确认） |
-| 信德省 | PK-SD-01 ~ 02 | SCPA 2014 s.21、s.33 | rule_level 2 | 可 |
+| 首都区消费者保护 | PK-CON-01 ~ 12 | ICPA 1995 s.2(f)（10 项分条）、s.7、s.9 | rule_level 8 / substantiation 1 / human_review 3 | 可（s.7 需「造成损失」要件；s.2(f)(xiv) 对电商属类推） |
+| 信德省 | PK-SD-01 ~ 05 | SCPA 2014 s.21(a)(f)(j)(k)、s.33 | rule_level 3 / human_review 2 | 可（保修与原产地需人工判断） |
+| 旁遮普省 | 0 条 | PCPA 2005 — 来源不可达，本版未收录 | — | **未覆盖（见 open questions 3）** |
 | 强制认证（小家电/3C） | PK-STD-01 ~ 07 | PSQCA Act 1996 s.10/11/14/22 + SRO 46(KE)/2020 + 强制清单 | rule_level 7 | 部分：标志误用可判；是否已认证不可判 |
 | 能效标签（风扇） | PK-ENE-01 ~ 03 | SRO 411(I)/2024 reg.3、reg.4(7) | rule_level 2 / substantiation 1 | 部分：标签可观察，注册号需核 |
 | 商品说明 | PK-SOG-01 ~ 02 | Sale of Goods Act 1930 s.15、s.16(1) | rule_level 1 / human_review 1 | 可（需实物对照） |
@@ -32,11 +32,11 @@
 
 ## 接入建议（一页）
 
-**规则构成。** 35 条：`rule_level` 25 条（71%）、`substantiation` 3 条（9%）、`human_review` 7 条（20%）。`review_required=true` 28 条（80%）。
+**规则构成。** 35 条：`rule_level` 25 条（71%）、`substantiation` 3 条（9%）、`human_review` 7 条（20%）。`review_required=true` 29 条（83%）。
 
-**必须人工审的 7 条。** 集中在三类判断：价格是否真实（PK-CON-05、PK-PB-05）、比较是否公平（PK-ADV-03）、退换/保修条款是否构成误导（PK-PB-04、PK-PB-06）、用途是否被合理依赖（PK-SOG-02）。这 7 条不得进入自动结论，报告只能给「需人工/律师复核」。
+**必须人工审的 7 条。** 集中在四类判断：价格是否真实（PK-CON-05）、比较或贬低是否基于可核事实（PK-ADV-03、PK-CON-10）、保修条款是否构成误导与原产地是否一致（PK-SD-04、PK-SD-05）、用途是否被合理依赖（PK-SOG-02）。这 7 条不得进入自动结论，报告只能给「需人工/律师复核」。
 
-**结构性检查（`claim_pattern` 为空，不能靠词表）。** PK-ADV-05（罚则）、PK-STD-03/04/06/07（认证与标志）、PK-ENE-01/02（能效标签）、PK-CON-08、PK-PB-07、PK-SD-02（罚则）。这些需要看 CM Licence 编号、SRO 清单条目、标签实物/图片，不能靠文本匹配命中。
+**结构性检查（`claim_pattern` 为空，不能靠词表）。** PK-ADV-05（罚则）、PK-STD-03/04/06/07（认证与标志）、PK-ENE-01/02（能效标签）、PK-CON-08、PK-SD-02（罚则）。这些需要看 CM Licence 编号、SRO 清单条目、标签实物/图片，不能靠文本匹配命中。
 
 **分品类开放条件。**
 
@@ -47,7 +47,7 @@
 | 3C 数码 | **不建议开放** | PTA 型号核准规例与 PT(Re-Org) Act 1996 s.29 未取得官方原文；且 3C 的 PECA/数据类问题无成文法告知义务。开放前需补：PTA type approval + 标签要求 + 频段/IMEI 规则。 |
 | 美妆/食品/玩具 | 不开放 | 本单范围外（需 PSQCA 食品/化妆品强制标准与 DRAP 规则）。 |
 
-**严重度映射建议。** `high`：页面明示「已获 PS 认证 / PTA 核准 / 政府批准」但无法出示（PK-CON-02、PK-CON-03）；`medium`：无依据的绝对化与排名（PK-ADV-06）、划线价无历史（PK-CON-05）；`low`：结构性缺失（认证信息未展示、退换政策位置不显著）。所有 `high` 默认加「需专业审核」。
+**严重度映射建议。** `high`：页面明示「已获 PS 认证 / PTA 核准 / 政府批准」但无法出示（PK-CON-02、PK-CON-03、PK-SD-03）；`medium`：无依据的绝对化与排名（PK-ADV-06）、划线价无历史（PK-CON-05）；`low`：结构性缺失（认证信息未展示、退换政策位置不显著）。所有 `high` 默认加「需专业审核」。
 
 **单页 finding 上限建议 4 条**，按 high → medium → low 排序；同类词表命中合并为一条，避免「一个形容词一条 finding」。
 
@@ -59,7 +59,7 @@
 
 **价格与折扣**
 
-> 页面显示「【现价】 / 划线价 【原价】 / 【X】% OFF」。根据旁遮普《Consumer Protection Act, 2005》s.22(2) 与《Islamabad Consumers Protection Act, 1995》s.2(f)(viii)，以特定价格招揽却无法在合理期间按该价格供货，或就商品通常售价误导公众，均可能构成不公平交易。请提供该 SKU 过去 30/60 天的实际成交价与促销排期。**需人工复核。**
+> 页面显示「【现价】 / 划线价 【原价】 / 【X】% OFF」。根据《Islamabad Consumers Protection Act, 1995》s.2(f)(viii)（首都区）与信德《Consumer Protection Act, 2014》s.21（就价格作误导性表示），就商品通常售价误导公众可能构成不公平交易；《Competition Act, 2010》s.10(2)(b) 另覆盖「缺乏合理依据」的价格信息。请提供该 SKU 过去 30/60 天的实际成交价与促销排期。**需人工复核。**（买家位于旁遮普时，适用条文待补——见 open questions 3。）
 
 **认证与准入**
 
@@ -81,7 +81,7 @@
 
 ### 1. 联邦层没有统一消费者保护法，省法是主体
 
-`Islamabad Consumers Protection Act, 1995` 的适用范围只有伊斯兰堡首都区（s.1(2)）。真正覆盖人口的是省法：旁遮普 2005、信德 2014（Sindh Act No. XVII of 2015）。两省第 21 条的 11 项清单结构一致（kind/standard/quality/grade/quantity/composition/style/model、history、services、skill、time of manufacture、sponsorship/approval/performance、new/reconditioned、seller affiliation、necessity for well-being、guarantee/right/remedy、place of origin）。**结论：规则可按「省法同构」复用，但适用范围必须按销售发生地标注**，不能把旁遮普条文写成「巴基斯坦法律」。
+`Islamabad Consumers Protection Act, 1995` 的适用范围只有伊斯兰堡首都区（s.1(2)）。真正覆盖人口的是省法：信德 2014（Sindh Act No. XVII of 2015）本版已收录 5 条；旁遮普 2005 本版**未收录**——省政府站点（punjabcode / punjablaws / pcpc.punjab.gov.pk）在本环境 TLS 握手被重置，而 FAOLEX 属二手汇编、已按验收意见弃用。已知两省第 21 条的 11 项清单结构一致（kind/standard/quality/grade/quantity/composition/style/model、history、services、skill、time of manufacture、sponsorship/approval/performance、new/reconditioned、seller affiliation、necessity for well-being、guarantee/right/remedy、place of origin），因此**规则逻辑可复用，但适用条文必须按销售发生地标注**：本版任何 finding 都不得把信德条文写成「巴基斯坦法律」，也不得为旁遮普买家引用未收录的 PCPA 条文。
 
 ### 2. `lacking a reasonable basis` 是本库的核心机制
 
@@ -125,7 +125,7 @@ PT(Re-Organization) Act 1996 s.29 与 PTA 型号核准规例是 3C 的准入基�
 
 1. **PTA 型号核准**：PT(Re-Org) Act 1996 s.29 与 PTA 型号核准规例的官方全文未取得（`pta.gov.pk` TLS 不可达、Wayback 离线）。3C 开放前必须补。
 2. **PSQCA 强制清单与 SRO 的逐条对应**：清单页 120+ 项，本次只核到 s.14 授权层面；需逐条比对 SRO 46(KE)/2020、44(KE)/2018、48(KE)/2018、117(KE)/2016 等。
-3. **旁遮普 2025 年修正案**：Pb. Act LIV of 2025 是否修改 s.21/s.22/s.32 未核到；本库引文来自 FAOLEX 存档版本（省政府站点 TLS 不可达）。
+3. **旁遮普省整省未收录（本版最大缺口）**：`punjabcode.punjab.gov.pk`、`punjablaws.gov.pk`、`pcpc.punjab.gov.pk` 在本环境均表现为 TCP 可连、TLS 握手被重置（`SSL_ERROR_SYSCALL`），无法取得 `.gov.pk` 官方原文。FAOLEX 版本属二手汇编，已按验收意见弃用（7 条 Punjab 规则同批移除）。补齐路径：换一个可访问 punjab.gov.pk 的网络出口，取 `PCPA 2005` 合并文本（含 Pb. Act LIV of 2025 修正案）后按现有 7 条骨架重建。
 4. **s.20 退换政策对纯线上交易的适用方式**：条文写「sign at the point of purchase」，线上如何满足需律师意见。
 5. **ICPA s.7 的「造成损失」要件**：单独页面表述是否足以构成，判例未检索。
 6. **KP（开伯尔-普赫图赫瓦）与俾路支省法**：KP Code 站点不可达；KP 现行法为 1997 年法案（经 2005/2015 修订），未取得官方文本。四省覆盖不完整是本版最大范围缺口。
@@ -145,4 +145,5 @@ PT(Re-Organization) Act 1996 s.29 与 PTA 型号核准规例是 3C 的准入基�
 
 ## 版本记录
 
-- 2026-11-17 v0.1（RAY-724）：首版 35 条；13 个官方来源；1 个真实页面跑通；3C 未开放（PTA 缺证）；语言/隐私为负向结论。
+- 2026-11-17 v0.1（RAY-724）：首版 35 条；12 个官方来源（全部 `.gov.pk`）；1 个真实页面跑通；3C 未开放（PTA 缺证）；语言/隐私为负向结论。
+- 2026-11-17 v0.1 修订（验收意见）：移除 7 条以 FAOLEX（二手汇编）为引文的旁遮普规则，替换为 4 条首都区 ICPA s.2(f)(ii)/(xi)/(xiii)/(xiv) 与 3 条信德 SCPA s.21(f)/(j)/(k)；旁遮普省列入 open questions 3。规则总数仍为 35，`review_required` 28 → 29。

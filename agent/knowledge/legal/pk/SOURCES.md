@@ -4,7 +4,7 @@
 
 > 语言政策：巴基斯坦宪法 Art. 251(2) 规定英语可继续用于公务，联邦与省级立法、公报、监管机关网站均有官方英文版本。本库引文一律取官方英文原文，不使用律所文章、商业数据库或二手翻译。
 
-> 适用地域：巴基斯坦为联邦制。Competition Act 2010、PSQCA Act 1996、Sale of Goods Act 1930 适用于全巴基斯坦；Islamabad Consumers Protection Act 1995 仅适用伊斯兰堡首都区；旁遮普、信德两省消费者保护法仅在各自省内适用。规则中已就每条注明。
+> 适用地域：巴基斯坦为联邦制。Competition Act 2010、PSQCA Act 1996、Sale of Goods Act 1930 适用于全巴基斯坦；Islamabad Consumers Protection Act 1995 仅适用伊斯兰堡首都区；信德省消费者保护法仅在信德省内适用。**旁遮普省本版无规则**（来源不可达，见 `not_found` 与 README open questions 3）。规则中已就每条注明适用范围。
 
 ## 来源分级
 
@@ -13,8 +13,7 @@
 | `official_statute` | 联邦/省议会法案文本（Pakistan Code、省司法机关/省法务部门发布的合并文本） | 是 |
 | `official_subsidiary` | 依母法发布的规例/公告（SRO、Gazette 公报） | 是 |
 | `official_regulator` | PSQCA / NEECA 官网的指引、清单、FAQ | 是（指引类标 `guideline`，不能替代法条） |
-| `official_text_repository` | FAOLEX（联合国粮农组织法律库）存档的成员国法律全文 | 是，但须在 `official_url_note` 说明非政府域名 |
-| `secondary` | 律所文章、商业数据库、行业报告 | 否，仅作线索（本版未使用） |
+| `secondary` | 律所文章、商业数据库、二手法律汇编（含 FAOLEX 等非政府托管的汇编） | 否，仅作线索；v0.1 验收后已从引文来源中全部移除 |
 
 ## 主来源
 
@@ -25,7 +24,6 @@
 | PK1 | Competition Act, 2010（竞争法） | Pakistan Code 发布文本（未标合并版本号） | 294,557 | https://pakistancode.gov.pk/pdffiles/administratore1b5ab79c2c1975670e6aa7fe57e57d6.pdf | `competition2010.pdf` | `26fa4eef08472c85ac0b784e4536c9a5fb94af8b1f51e562d3c533c57fe5e947` |
 | PK2 | Pakistan Standards and Quality Control Authority Act, 1996（PSQCA 法） | Pakistan Code 发布文本 | 291,066 | https://pakistancode.gov.pk/pdffiles/administratorbf3c739041f23d1715243047f9bab24c.pdf | `psqca1996.pdf` | `89fe473a21ad66a0ddbb908c6b9fc06081bda474fba57b7a79a3f1c3ddfb4f45` |
 | PK3 | Islamabad Consumers Protection Act, 1995（首都区消费者保护法） | 文首标注「Updated till 3.8.2022」 | 239,502 | https://pakistancode.gov.pk/pdffiles/administratorbc4daf1cd281f7808ceb417c316f18ea.pdf | `icpa1995.pdf` | `1b4eb0ba3040e2f2caad8563c4b671890db5a98653edf02fd71fb89952f90cf2` |
-| PK4 | Punjab Consumer Protection Act, 2005（Pb. Act II of 2005） | FAOLEX 存档全文；2025 年修正案未并入（见 open questions 3） | 190,976 | https://faolex.fao.org/docs/pdf/pak195698.pdf | `pak195698.pdf` | `350f8a312107e5afa4e5d7c9a5fdb6feddae06e1ac58efd9f80f1b155b8d2210` |
 | PK5 | Sindh Consumer Protection Act, 2014（Sindh Act No. XVII of 2015；文首「Amendment up to date: Sindh Act No. XXIX of 2023」） | 信德司法学院（Sindh Judicial Academy）更新版 | 1,219,223 | https://sja.gos.pk/assets/Updated_Laws/Sindh%20Consumer%20Protection%20Act%2C%202014.pdf | `SindhConsumerProtectionActC14.pdf` | `700b9e166973a155f3f8265ec92d459b3aa6c603e913fce90b7441ff13631ea6` |
 | PK6 | Sale of Goods Act, 1930（货物买卖法） | Pakistan Code 发布文本 | 395,246 | https://pakistancode.gov.pk/pdffiles/administrator03eadfb5474bfa7c9e45ab4558d5a926.pdf | `sog1930.pdf` | `ac89374529aa0d4929fa1feb5fefc6106c0513187dfde2d8b05ce9042e2a5fd8` |
 | PK7 | Constitution of the Islamic Republic of Pakistan（宪法，Art. 251） | Pakistan Code 发布文本 | 1,184,244 | https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf | `constitution.pdf` | `bd0caf96b8ea2b257e7dd5d70684fba71b70e41e7c64720314d9ba619b4009e9` |
@@ -47,9 +45,8 @@
 
 | 范围 | 核对方式 | 结果 |
 | --- | --- | --- |
-| PK1–PK6 + PK8（31 条引文） | `pdftotext -layout` / HTML 可见文本抽取后逐条字符串匹配（归一化空白/引号/连字符），脚本随库提供：`python3 verify_excerpts.py --sources <dir>` | 31/31 命中，0 处不匹配 |
+| PK1/PK2/PK3/PK5/PK6 + PK8（31 条引文） | `pdftotext -layout` / HTML 可见文本抽取后逐条字符串匹配（归一化空白/引号/连字符），脚本随库提供：`python3 verify_excerpts.py --sources <dir>` | 31/31 命中，0 处不匹配 |
 | PK9（1 条）、PK10（3 条） | 扫描件：200 dpi 转图 → Tesseract OCR 定位 → **人工逐字读图复核**（见下「OCR 说明」） | 4/4 与图像一致 |
-| PK8（1 条） | HTML 表格 176 项解析，取「Electric irons for household or similar use. / PS:185」行 | 命中 |
 
 > PK7（宪法）、PK11/PK12（PSQCA 概述与执法页）、PK13（NEECA FAQ）不承载规则引文，仅用于背景与负向结论（语言义务、强制认证口径），故不参与引文比对。
 
@@ -64,7 +61,7 @@
 | 目标 | 现象 | 处理 |
 | --- | --- | --- |
 | `www.pta.gov.pk`（PTA 型号核准规例、Type Approval Procedures、Terminal Equipment 清单） | TLS 握手失败（`SSL_ERROR_SYSCALL`），HTTP 亦被重置 | `web.archive.org` 返回「Temporarily Offline」；本次**放弃**，登记为 open question 1，3C 品类不开放 |
-| `punjabcode.punjab.gov.pk` / `punjablaws.gov.pk`（旁遮普省法典） | TLS 握手失败 / 连接被重置 | 改用 FAOLEX 存档全文（PK4），并在 `official_url_note` 说明；2025 年修正案未核 |
+| `punjabcode.punjab.gov.pk` / `punjablaws.gov.pk` / `pcpc.punjab.gov.pk`（旁遮普省法典与消费者保护委员会） | TCP 可连、TLS 握手被重置（`SSL_ERROR_SYSCALL`），HTTP 亦不可用 | 曾以 FAOLEX 存档全文代替，**v0.1 验收时判定为二手汇编并弃用**：7 条旁遮普规则同批移除，改由首都区 ICPA 与信德 SCPA 同构条文替代；旁遮普列入 `not_found` |
 | `www.commerce.gov.pk`（Import Policy Order 2022） | 403 Forbidden（含 PDF 直链） | `tipp.gov.pk` 仅取到 S.R.O. 750(I)/2025；IPO 2022 标签条款未取得，登记为 open question 7 |
 | `www.ccp.gov.pk`（竞争委员会指引） | TLS 握手失败 | 未使用；规则只依据 Competition Act 原文 |
 | `kpcode.kp.gov.pk`（KP 省法典，含 KP Consumer Protection Act 1997） | TLS 握手失败，HTTP 301 后仍不可达 | 未建 KP 规则，登记为 open question 6 |
@@ -72,13 +69,14 @@
 
 ## 未取得来源（`not_found`）
 
-1. Prevention of Electronic Crimes Act, 2016（PECA）全文 — Pakistan Code 未收录，`moitt.gov.pk` 未检索到正文。
-2. Pakistan Telecommunication (Re-Organization) Act, 1996 与 PTA 型号核准规例 / 设备清单。
-3. Import Policy Order, 2022（SRO 545(I)/2022）标签条款。
-4. KP Consumer Protection Act, 1997（经 KP Act II of 2005、XVII of 2015 修订）官方合并文本。
-5. Balochistan Consumer Protection 相关省法。
-6. PS:185、PS:253、PS:5254 等 PS 标准正文（付费/受限；官网部分 PDF 链接错配，如 PS IEC 60669-1 指向油漆刷标准文档）。
-7. NEECA PELR 附表 V 的罚金数额（扫描件表格未转录）。
+1. Punjab Consumer Protection Act, 2005（含 Pb. Act LIV of 2025 修正案）— 省政府三个站点在本环境 TLS 握手被重置，无 `.gov.pk` 可引文本；FAOLEX 版本已弃用。
+2. Prevention of Electronic Crimes Act, 2016（PECA）全文 — Pakistan Code 未收录，`moitt.gov.pk` 未检索到正文。
+3. Pakistan Telecommunication (Re-Organization) Act, 1996 与 PTA 型号核准规例 / 设备清单。
+4. Import Policy Order, 2022（SRO 545(I)/2022）标签条款。
+5. KP Consumer Protection Act, 1997（经 KP Act II of 2005、XVII of 2015 修订）官方合并文本。
+6. Balochistan Consumer Protection 相关省法。
+7. PS:185、PS:253、PS:5254 等 PS 标准正文（付费/受限；官网部分 PDF 链接错配，如 PS IEC 60669-1 指向油漆刷标准文档）。
+8. NEECA PELR 附表 V 的罚金数额（扫描件表格未转录）。
 
 ## 复现命令
 
@@ -96,7 +94,6 @@ curl -sSLk -A "$UA" -o sog1930.pdf        https://pakistancode.gov.pk/pdffiles/a
 curl -sSLk -A "$UA" -o constitution.pdf   https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf
 
 # 省法
-curl -sSLk -A "$UA" -o pak195698.pdf      https://faolex.fao.org/docs/pdf/pak195698.pdf
 curl -sSLk -A "$UA" -o SindhConsumerProtectionActC14.pdf "https://sja.gos.pk/assets/Updated_Laws/Sindh%20Consumer%20Protection%20Act%2C%202014.pdf"
 
 # 公告与规例（扫描件）

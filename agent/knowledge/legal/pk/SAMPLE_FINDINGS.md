@@ -22,20 +22,20 @@
 | 指标 | 数量 |
 | --- | --- |
 | 规则总数 | 35 |
-| 被 `claim_pattern` 触发的规则 | 13 |
-| 触发次数 | 58 |
+| 被 `claim_pattern` 触发的规则 | 11 |
+| 触发次数 | 47 |
 | 进入 finding 的条目 | 4（1 medium、2 low-medium、1 low） |
 | 判为误报的触发簇 | 6 |
 | 转为「需向商家核实」的结构性检查 | 3（PS 标志 / CM Licence / 能效标签不适用） |
 | 明确不可观察 | 2（实物铭牌、包装标签） |
 
-> 结论：词表触发只能当线索。58 次触发里只有 4 条值得进入报告，绝大多数是**关联推荐位**（页面底部「Related Products」里其他商品的文案）与**页面控件文字**（`Quantity`、`Model`、`Return`、`Sale`）。`decision_level` 与 `review_required` 是控制误报的主要工具；`claim_pattern` 为空的结构性规则必须看证书编号与实物，不能靠文本匹配。
+> 结论：词表触发只能当线索。47 次触发里只有 4 条值得进入报告，绝大多数是**关联推荐位**（页面底部「Related Products」里其他商品的文案）与**页面控件文字**（`Quantity`、`Model`、`Return`、`Sale`）。`decision_level` 与 `review_required` 是控制误报的主要工具；`claim_pattern` 为空的结构性规则必须看证书编号与实物，不能靠文本匹配。
 
 ## Findings（进入报告）
 
 ### F1 · 「30% OFF / Rs.10,000.00 → Rs.6,999.00」的参考价没有基准说明
 
-- 规则：`PK-CON-05`（ICPA s.2(f)(viii)）、`PK-PB-05`（PCPA s.22(2)）、`PK-ADV-02`（Competition Act s.10(2)(b)）
+- 规则：`PK-CON-05`（ICPA s.2(f)(viii)）、`PK-ADV-02`（Competition Act s.10(2)(b)）
 - 页面信号（原文）：
   > "30% OFF … Regular price Save -30% Rs.6,999.00 Rs.10,000.00 Regular price Rs.6,999.00"
 - 判断：`human_review`。页面同时展示现价、划线价与折扣率，但未说明 Rs.10,000.00 是否为本 SKU 在巴基斯坦渠道近期实际成交价、持续了多久、覆盖多少库存。仅凭页面无法判断，需价格历史。
@@ -57,12 +57,12 @@
 
 ### F3 · 标题写「Official Warranty」，正文只写「2 years warranty」，未写承担主体
 
-- 规则：`PK-PB-04`（PCPA s.21(j)）、`PK-CON-04`（ICPA s.2(f)(vi)）、`PK-CON-02`（ICPA s.2(f)(iii)，「official」暗示官方/授权）
+- 规则：`PK-SD-04`（SCPA s.21(j)）、`PK-CON-04`（ICPA s.2(f)(vi)）、`PK-CON-02`（ICPA s.2(f)(iii)，「official」暗示官方/授权）
 - 页面信号（原文）：
   > "…Capacity With Official Warranty" / "220-240V 50/60 1850-2200W 2 years warranty"
 - 判断：`human_review`。巴基斯坦市场「official warranty」通常指品牌方（此处 Anex）保修，但页面未写明保修主体、覆盖范围、索赔流程与除外条款，也未说明是本地保修还是需寄回。若实际由店铺自行承担，「official」可能构成误导。
 - 报告写法：
-  > 页面标题写「Official Warranty」，正文写「2 years warranty」，但未说明保修由品牌方还是零售商承担、覆盖哪些部件、如何索赔。根据旁遮普《Consumer Protection Act, 2005》s.21(j)，就担保的存在、排除或效果作误导性表示属禁止情形。请提供完整保修条款与授权证明。**需人工复核。**
+  > 页面标题写「Official Warranty」，正文写「2 years warranty」，但未说明保修由品牌方还是零售商承担、覆盖哪些部件、如何索赔。根据信德《Consumer Protection Act, 2014》s.21(j) 与《Islamabad Consumers Protection Act, 1995》s.2(f)(vi)，就担保的存在、排除或效果作误导性表示属禁止情形；买家位于旁遮普时适用条文待补（见 README open questions 3）。请提供完整保修条款与授权证明。**需人工复核。**
 - 需要的证据：品牌授权书、保修卡样本、售后条款页面。
 - 严重度：low-medium（`review_required=true`）。
 
@@ -80,8 +80,8 @@
 
 | # | 触发簇 | 命中规则 | 为什么是误报 | 处理 |
 | --- | --- | --- | --- | --- |
-| 1 | 关联推荐位的「High Quality Watch / New Collection / Sale」 | PK-CON-01、PK-PB-01、PK-PB-03、PK-PB-05 | 文本属于页面底部「Related Products」中的**其他商品**（手表、数据线、充电宝），不是本 SKU 的描述 | 建议匹配前裁剪 `Related Products` / `Recently Viewed` 区块；本版在 SAMPLE 中人工剔除 |
-| 2 | 控件文字 `Quantity`、`Model`、`Return`、`Sale` | PK-PB-01、PK-SD-01、PK-PB-06、PK-PB-05 | 「Quantity:」是购买数量选择器，「Return」是「Shipping and Return」标签页标题 | 词表对 ≤6 字母的通用词应要求上下文（如 `model` 后接型号串）；`return policy` 才是有效短语 |
+| 1 | 关联推荐位的「High Quality Watch / New Collection / Sale」 | PK-CON-01、PK-CON-09、PK-SD-01 | 文本属于页面底部「Related Products」中的**其他商品**（手表、数据线、充电宝），不是本 SKU 的描述 | 建议匹配前裁剪 `Related Products` / `Recently Viewed` 区块；本版在 SAMPLE 中人工剔除 |
+| 2 | 控件文字 `Quantity`、`Model`、`Return`、`Delivery` | PK-SD-01、PK-SD-04、PK-CON-12 | 「Quantity:」是购买数量选择器，「Return」是「Shipping and Return」标签页标题，「Delivery Time」是物流说明 | 词表对 ≤6 字母的通用词应要求上下文（如 `model` 后接型号串）；`return policy` 才是有效短语 |
 | 3 | 规格表里的 `10000 mAh`、`PB-10` | PK-SOG-01 | 属关联推荐位的充电宝参数，不是电水壶参数 | 同 #1，需先做区块裁剪 |
 | 4 | 「★★★★★」五星图形 | 无规则命中 | 没有评论条数、没有评论内容；不构成可判定的声称 | 记录为**漏报候选**（见下），暂不建规则 |
 | 5 | `Auto shutoff with boil-dry protection` | PK-ADV-02 | 属产品功能描述，且是电水壶的标准安全设计；页面无需为每个功能附检测报告 | 保留在 `claim_pattern` 但降级：仅在**无任何规格/认证信息**的页面上升级为 finding |
@@ -99,9 +99,10 @@
 
 ## 词表调参记录
 
-- 首轮（35 条规则、未加安全类词）：触发 12 条规则 / 52 次命中。
-- 第二轮：向 `PK-ADV-02` 增补 `boil-dry`、`auto shutoff`、`bpa free`、`food grade`、`double insulation`、`shockproof`；向 `PK-ADV-06` 增补 `trusted by`、`award winning`。触发升至 13 条规则 / 58 次命中，新增命中全部落在误报簇 #5，说明**这类功能词对 finding 的边际价值低**，保留是为了在「无规格页」上兜底。
-- 未采用的方案：给 `quality`、`new`、`model`、`sale` 这类高频通用词加白名单。原因：白名单会掩盖真实的翻新机/二手未标注问题（PK-PB-03），宁可依赖区块裁剪 + 人工复核。
+- v0.1 初版（35 条，含 7 条旁遮普法）：12 条规则 / 52 次命中；加安全类词后 13 条 / 58 次。
+- 验收修订版（移除 7 条旁遮普规则、加 4 条 ICPA 与 3 条信德规则，仍为 35 条）：11 条规则 / 47 次命中。减少的命中来自被移除的 `warranty`/`return`/`sale` 类旁遮普规则重复计数，finding 结论不变。
+- 向 `PK-ADV-02` 增补 `boil-dry`、`auto shutoff`、`bpa free`、`food grade`、`double insulation`、`shockproof`；向 `PK-ADV-06` 增补 `trusted by`、`award winning`，新增命中全部落在误报簇 #5，说明**这类功能词对 finding 的边际价值低**，保留是为了在「无规格页」上兜底。
+- 未采用的方案：给 `quality`、`new`、`model`、`sale` 这类高频通用词加白名单。原因：白名单会掩盖真实的翻新机/二手未标注问题（PK-CON-09），宁可依赖区块裁剪 + 人工复核。
 
 ## 复现
 

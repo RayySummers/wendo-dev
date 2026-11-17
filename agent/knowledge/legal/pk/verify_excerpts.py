@@ -28,7 +28,6 @@ SOURCE_FILES = {
     "PK1": "competition2010.pdf",
     "PK2": "psqca1996.pdf",
     "PK3": "icpa1995.pdf",
-    "PK4": "pak195698.pdf",
     "PK5": "SindhConsumerProtectionActC14.pdf",
     "PK6": "sog1930.pdf",
     "PK7": "constitution.pdf",

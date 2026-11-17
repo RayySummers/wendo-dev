@@ -201,32 +201,31 @@
       "market_name": "巴基斯坦",
       "status": "v0.1",
       "rules_count": 35,
-      "laws_count": 9,
+      "laws_count": 8,
       "last_verified": "2026-11-17",
       "rules_file": "pk/rules.v0.1.json",
       "readme": "pk/README.md",
       "sources": "pk/SOURCES.md",
       "coverage": [
         "通用反误导（Competition Act 2010 s.10：价格/性质/产地/性能/质量；含 lacking a reasonable basis；罚则 s.38(2)(a)）",
-        "首都区消费者保护（ICPA 1995 s.2(f) 14 项不公平交易行为 + s.7 虚假广告 + s.9 罚则）",
-        "旁遮普省（PCPA 2005 s.21 十一项误导性表示 + s.22 诱饵广告 + s.20 退换政策披露 + s.32 罚则）",
-        "信德省（SCPA 2014 s.21 + s.33）",
+        "首都区消费者保护（ICPA 1995 s.2(f) 14 项不公平交易行为中的 10 项 + s.7 虚假广告 + s.9 罚则）",
+        "信德省（SCPA 2014 s.21(a)(f)(j)(k) + s.33）",
         "强制认证与 PS 标志（PSQCA Act 1996 s.10/11/14/22 + S.R.O. 46(KE)/2020 + 强制清单）",
         "风扇能效标签（S.R.O. 411(I)/2024：MEPS、能源标签、公开声称责任；seller 含线上销售）",
         "商品说明（Sale of Goods Act 1930 s.15 凭说明买卖 / s.16(1) 合理适合用途）"
       ],
       "known_gaps": [
+        "旁遮普省未收录（PCPA 2005）：punjabcode / punjablaws / pcpc.punjab.gov.pk 在本环境 TLS 握手被重置，无 .gov.pk 可引文本；FAOLEX 二手汇编已弃用",
         "3C 数码未开放：PTA 型号核准（PT(Re-Org) Act 1996 s.29 与 PTA 规例）未取得官方原文（pta.gov.pk TLS 不可达、Wayback 离线）",
         "PSQCA 强制清单（176 项）与各 SRO 的逐条对应未核；仅核到 s.14 授权层面",
-        "旁遮普 2025 年修正案（Pb. Act LIV of 2025）是否修改 s.21/s.22/s.32 未核（省政府站点 TLS 不可达，引文取 FAOLEX 存档版）",
         "KP 与俾路支省消费者保护法未收录（KP Code 站点不可达）",
         "Import Policy Order 2022 标签条款未取得（commerce.gov.pk 403）",
         "PECA 2016 全文未取得：隐私告知无成文法义务，本版不建规则（负向结论）",
         "语言义务为负向结论（宪法 Art. 251 不构成商品页乌尔都语义务），本版 0 条",
         "PS 标准正文（PS:185/253/5254 等）为付费/受限，未作引文来源",
         "NEECA PELR 附表 V 罚金数额未转录（扫描件竖排表格）",
-        "食品接触、化妆品/DRAP、玩具、纺织品、PEMRA 广播广告守则未覆盖",
-        "三个法案（ICPA 1995 / PSQCA Act 1996 / SCPA 2014）未印生效日：effective_date 为年度占位，见 rules.v0.1.json 的 date_policy"
+        "三个法案（ICPA 1995 / PSQCA Act 1996 / SCPA 2014）未印生效日：effective_date 为年度占位，见 rules.v0.1.json 的 date_policy",
+        "食品接触、化妆品/DRAP、玩具、纺织品、PEMRA 广播广告守则未覆盖"
       ],
       "issue": "RAY-724",
       "rules_version": "2026-11-17-v0.1",
@@ -242,7 +241,9 @@
         "small_appliances": "conditional",
         "home_living": "yes",
         "consumer_electronics": "no"
-      }
+      },
+      "review_required_count": 29,
+      "sources_count": 12
     }
   ],
   "backlog": [
