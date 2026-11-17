@@ -4,15 +4,16 @@
 Usage:
     python3 verify_excerpts.py --sources /path/to/kw-sources
 
-The sources directory must contain the files named in SOURCES.md.  PDFs are
-converted with `pdftotext -layout`; the two CITRA documents are scanned images,
-so they are OCR'd once with `pdftoppm` + `tesseract` and cached as
-`<name>.ocr.txt` (the same files used when the rules were authored).
+All sources are on Kuwaiti official domains (pai.gov.kw / ksm.pai.gov.kw /
+citra.gov.kw).  HTML pages are stripped to text; the two CITRA documents are
+scanned images, so they are OCR'd once with `pdftoppm` + `tesseract` and cached
+as `<name>.ocr.txt` (the same files used when the rules were authored).
 
 Exits non-zero if any excerpt does not match, so a re-download can be checked
 without reading the rules by hand.
 """
 import argparse
+import html
 import json
 import os
 import re
@@ -21,15 +22,26 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 
+# source_id -> (filename, kind)  kind: html | ocr
 SOURCE_FILES = {
-    "KW1": ("kucas_guidelines.pdf", False),
-    "KW2": ("18_5441_00_x.pdf", False),
-    "KW3": ("kws_22_8136.pdf", False),
-    "KW4": ("22_8552_00_e.pdf", False),
-    "KW5": ("22_8170_00_e.pdf", False),
-    "KW6": ("citra_type_approval.pdf", True),
-    "KW7": ("User_Protection_and_Privacy_Rules_Regulation.pdf", True),
+    "KW1": ("pai_std_9532.html", "html"),
+    "KW2": ("pai_std_19142.html", "html"),
+    "KW3": ("pai_std_19143.html", "html"),
+    "KW4": ("pai_std_19144.html", "html"),
+    "KW5": ("pai_announcement.html", "html"),
+    "KW6": ("AboutTabek.aspx", "html"),
+    "KW7": ("QMRules.aspx", "html"),
+    "KW8": ("citra_type_approval.pdf", "ocr"),
+    "KW9": ("User_Protection_and_Privacy_Rules_Regulation.pdf", "ocr"),
 }
+
+
+def html_text(raw):
+    raw = re.sub(r"(?is)<(script|style|noscript|svg)[^>]*>.*?</\1>", " ", raw)
+    raw = re.sub(r"(?s)<[^>]+>", " ", raw)
+    raw = html.unescape(raw)
+    raw = re.sub(r"&#(\d+);", lambda m: chr(int(m.group(1))), raw)
+    return raw
 
 
 def normalise(text):
@@ -41,33 +53,33 @@ def normalise(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def read_source(path, needs_ocr, workdir):
+def read_ocr(path, workdir):
     base = os.path.splitext(os.path.basename(path))[0]
-    if needs_ocr:
-        txt = os.path.join(workdir, base + ".ocr.txt")
-        if not os.path.exists(txt):
-            pages = os.path.join(workdir, base + ".pages")
-            os.makedirs(pages, exist_ok=True)
-            subprocess.run(["pdftoppm", "-r", "200", "-png", path, os.path.join(pages, "p")], check=True)
-            chunks = []
-            for img in sorted(os.listdir(pages)):
-                if not img.endswith(".png"):
-                    continue
-                out = os.path.join(pages, img[:-4])
-                subprocess.run(["tesseract", os.path.join(pages, img), out, "-l", "eng", "--psm", "3"],
-                               check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                with open(out + ".txt", encoding="utf-8", errors="ignore") as fh:
-                    chunks.append(fh.read())
-            with open(txt, "w", encoding="utf-8") as fh:
-                fh.write("\n".join(chunks))
-        with open(txt, encoding="utf-8", errors="ignore") as fh:
-            return normalise(fh.read())
-
-    txt = os.path.splitext(path)[0] + ".txt"
+    txt = os.path.join(workdir, base + ".ocr.txt")
     if not os.path.exists(txt):
-        subprocess.run(["pdftotext", "-layout", path, txt], check=True)
+        pages = os.path.join(workdir, base + ".pages")
+        os.makedirs(pages, exist_ok=True)
+        subprocess.run(["pdftoppm", "-r", "200", "-png", path, os.path.join(pages, "p")], check=True)
+        chunks = []
+        for img in sorted(os.listdir(pages)):
+            if not img.endswith(".png"):
+                continue
+            out = os.path.join(pages, img[:-4])
+            subprocess.run(["tesseract", os.path.join(pages, img), out, "-l", "eng", "--psm", "3"],
+                           check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            with open(out + ".txt", encoding="utf-8", errors="ignore") as fh:
+                chunks.append(fh.read())
+        with open(txt, "w", encoding="utf-8") as fh:
+            fh.write("\n".join(chunks))
     with open(txt, encoding="utf-8", errors="ignore") as fh:
         return normalise(fh.read())
+
+
+def read_source(path, kind, workdir):
+    if kind == "html":
+        with open(path, encoding="utf-8", errors="ignore") as fh:
+            return normalise(html_text(fh.read()))
+    return read_ocr(path, workdir)
 
 
 def main():
@@ -85,13 +97,13 @@ def main():
         if sid not in SOURCE_FILES:
             failures.append((rule["id"], f"no source mapping for {sid}"))
             continue
-        name, ocr = SOURCE_FILES[sid]
+        name, kind = SOURCE_FILES[sid]
         path = os.path.join(args.sources, name)
         if not os.path.exists(path):
             failures.append((rule["id"], f"missing source file {name}"))
             continue
         if sid not in cache:
-            cache[sid] = read_source(path, ocr, args.sources)
+            cache[sid] = read_source(path, kind, args.sources)
         if normalise(rule["verbatim_excerpt"]) not in cache[sid]:
             failures.append((rule["id"], rule["verbatim_excerpt"][:80]))
 
