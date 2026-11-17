@@ -1,12 +1,15 @@
 /**
- * 合规与风险 v0.1（马来西亚）规则加载与可判定子集。
+ * 合规与风险 v0.1 的可判定子集（目前只覆盖马来西亚）。
  *
- * 唯一数据源：`agent/knowledge/legal/my/rules.v0.1.json`（RAY-689 定稿，45 条 / 9 部法规）。
- * 本文件**不改规则内容、不新增法条**，只做两件事：
+ * 规则库加载与市场校验在 `compliance/library.ts`；本文件**不改规则内容、不新增法条**，
+ * 只做两件事：
  *
- * 1. 原样加载规则库，供 finding 引用 `law_name` / `article` / `official_url` / `last_verified`；
- * 2. 声明 v0.1「哪些规则可以被页面文本判定」，以及每条规则的取证范围与严重程度。
- *    没有出现在下面的规则一律进 `not_assessable`，附原因，不硬凑覆盖率。
+ * 1. 声明 v0.1「哪些规则可以被页面文本判定」，以及每条规则的取证范围与严重程度；
+ * 2. 没有出现在下面的规则一律进 `not_assessable`，附原因，不硬凑覆盖率。
+ *
+ * RAY-754 起按市场区分：MY 有 matcher，其他市场只加载规则库、不套用 MY 的法条
+ * （见 `analyze.ts` 的 `notAssessedAnalysis`）。新增市场判定器时，为该国单独声明
+ * matcher 与跳过原因，不要复用 MY 的规则 id。
  *
  * 口径（与 RAY-684 / RAY-696 / RAY-698 对齐）：
  * - `decision_level` 一律取规则库的值，代码不升级、不降级；
@@ -14,62 +17,18 @@
  * - `substantiation` 只写「需要证明」，`human_review` 明确标「需人工判断」。
  */
 
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import type { Severity } from "../types.js";
-import type { ComplianceConfidence, ComplianceSkipReason, DecisionLevel } from "./types.js";
+import type { ComplianceSkipReason, DecisionLevel } from "./types.js";
+import { myLegalLibrary, type LegalRule, type LegalRulesFile } from "./library.js";
 
-export interface LegalRule {
-  id: string;
-  market: string;
-  category: string;
-  law_name: string;
-  law_short: string;
-  article: string;
-  article_type: string;
-  source_id: string;
-  official_url: string;
-  source_tier: string;
-  language: string;
-  effective_date: string;
-  last_verified: string;
-  rule_type: string;
-  decision_level: DecisionLevel;
-  claim_pattern: string[];
-  requirement: string;
-  evidence_needed: string;
-  penalty_or_note: string;
-  verbatim_excerpt: string;
-  confidence: ComplianceConfidence;
-  review_required: boolean;
-  notes?: string;
-}
+export type { LegalRule, LegalRulesFile } from "./library.js";
 
-interface RulesFile {
-  schema_version: string;
-  market: string;
-  market_name: string;
-  version: string;
-  scope: string;
-  last_verified: string;
-  review_policy: string;
-  rules: LegalRule[];
-}
-
-const RULES_PATH = fileURLToPath(new URL("../../knowledge/legal/my/rules.v0.1.json", import.meta.url));
-
-let cached: RulesFile | undefined;
-
-/** 读规则库；文件缺失/结构不对时直接抛错——不允许在缺规则的情况下静默出报告。 */
-export function loadMyRules(): RulesFile {
-  if (cached) return cached;
-  const raw = readFileSync(RULES_PATH, "utf8");
-  const parsed = JSON.parse(raw) as RulesFile;
-  if (!Array.isArray(parsed.rules) || parsed.rules.length === 0) {
-    throw new Error(`合规规则库为空：${RULES_PATH}`);
-  }
-  cached = parsed;
-  return parsed;
+/**
+ * 读 MY 规则库（兼容 RAY-698 的既有调用）。RAY-754 起，市场路径由
+ * `compliance/library.ts` 按 `legal/index.json` 解析，不再写死 `knowledge/legal/my`。
+ */
+export function loadMyRules(): LegalRulesFile {
+  return myLegalLibrary().raw;
 }
 
 export function myRules(): LegalRule[] {

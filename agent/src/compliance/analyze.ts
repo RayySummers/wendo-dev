@@ -2,8 +2,10 @@
  * 合规与风险 v0.1（马来西亚）代码侧规则判定。
  *
  * 设计口径（与 RAY-684 / RAY-696 / RAY-698 对齐）：
- * - 只读 `agent/knowledge/legal/my/rules.v0.1.json`；法条、条文号、官方 URL、核验日期
- *   全部来自规则库，代码不写死任何法条，也不凭记忆补。
+ * - 规则库按市场加载（RAY-754：`legal/index.json` → `legal/<cc>/rules.v0.1.json`）；
+ *   法条、条文号、官方 URL、核验日期全部来自该市场的规则库，代码不写死任何法条。
+ * - v0.1 的可判定子集只覆盖马来西亚；其他市场只加载并核对规则库，显式标「未评估」，
+ *   绝不把 MY 的 matcher 套到别国页面。
  * - 三档判定沿用规则库的 `decision_level`，不改写：规则直判 / 需事实核实 / 需人工判断。
  * - 同一页同一规则只出一条；同一句触发多条规则时合并成一张卡，各法条写进 evidence。
  * - 取证范围优先商品主面板（价格/SKU 锚点），导航、推荐位、页脚链接标签不参与取证。
@@ -13,13 +15,13 @@
  */
 
 import type { Risk, Severity } from "../types.js";
+import { resolveMarket, type MarketInfo } from "../market.js";
 import { findProductPanel, isSubstantiveLine } from "../market-readiness/analyze.js";
+import { loadLegalLibrary, type LegalLibrary } from "./library.js";
 import {
   COMPLIANCE_MATCHERS,
   COMPLIANCE_SKIP_REASONS,
-  myRules,
   ruleById,
-  rulesVersion,
   uncoveredRuleIds,
 
   type ComplianceMatcher,
@@ -56,6 +58,9 @@ interface Line {
 }
 
 export interface ComplianceAnalysis {
+  /** 本次分析请求的市场（规则库与 finding 都只属于该市场）。 */
+  market: string;
+  marketName: string;
   findings: ComplianceFinding[];
   counts: {
     total: number;
@@ -525,7 +530,54 @@ function claimFinding(candidate: Candidate): ComplianceFinding {
 
 /* ------------------------------------------------------------------- 主入口 */
 
-export function analyzeCompliance(input: ComplianceInput): ComplianceAnalysis {
+export interface ComplianceOptions {
+  /** 目标市场代码；缺省 MY。未知市场直接失败，不回退。 */
+  market?: string;
+}
+
+/**
+ * 非 MY 市场的显式降级：规则库已加载并核对过市场，但 v0.1 没有该国的可判定子集。
+ * 不套用 MY 的 matcher，不生成任何 finding，也不把「没查」写成「没问题」。
+ */
+function notAssessedAnalysis(market: MarketInfo, library: LegalLibrary): ComplianceAnalysis {
+  const reason = `${market.name}规则库 ${library.rules.length} 条（${library.version}）已加载，但 agent 侧尚未建立该市场的可判定子集；本版不输出该市场的合规 finding，也不据此判断合规。`;
+  return {
+    market: market.code,
+    marketName: market.name,
+    findings: [],
+    counts: {
+      total: 0,
+      high: 0,
+      medium: 0,
+      low: 0,
+      rule_level: 0,
+      substantiation: 0,
+      human_review: 0,
+      reviewRequired: 0,
+    },
+    dispositions: library.rules.map((rule) => ({
+      ruleId: rule.id,
+      decisionLevel: rule.decision_level,
+      outcome: "not_assessable" as const,
+      reason,
+    })),
+    boundaryNote: {
+      item: `合规与风险（${market.name}）的判定范围`,
+      reason,
+    },
+    skipReasons: [],
+    assessedRuleCount: 0,
+    libraryRuleCount: library.rules.length,
+    libraryVersion: library.version,
+  };
+}
+
+export function analyzeCompliance(input: ComplianceInput, options: ComplianceOptions = {}): ComplianceAnalysis {
+  const market = resolveMarket(options.market);
+  const library = loadLegalLibrary(market);
+  // RAY-754：MY 之外的市场先显式降级，绝不把 MY 法条写进别国报告。
+  if (market.code !== "MY") return notAssessedAnalysis(market, library);
+
   const lines = toLines(input.text);
   const panel = findProductPanel(input.text, lines);
 
@@ -654,21 +706,23 @@ export function analyzeCompliance(input: ComplianceInput): ComplianceAnalysis {
     reviewRequired: capped.filter((item) => item.reviewRequired).length,
   };
 
-  const libraryRuleCount = myRules().length;
+  const libraryRuleCount = library.rules.length;
   const assessedRuleCount = COMPLIANCE_MATCHERS.length;
 
   return {
+    market: market.code,
+    marketName: market.name,
     findings: capped,
     counts,
     dispositions,
     boundaryNote: {
       item: `合规与风险（${COMPLIANCE_DIMENSION_NAME}）的判定范围`,
-      reason: `马来西亚规则库 ${libraryRuleCount} 条中，本版对页面文本可判定的 ${assessedRuleCount} 条已跑（规则直判 ${counts.rule_level}、需事实核实 ${counts.substantiation}、需人工判断 ${counts.human_review}）。其余条目属证书核验、主体或平台义务，不生成 finding，也不据此判断合规。`,
+      reason: `${market.name}规则库 ${libraryRuleCount} 条中，本版对页面文本可判定的 ${assessedRuleCount} 条已跑（规则直判 ${counts.rule_level}、需事实核实 ${counts.substantiation}、需人工判断 ${counts.human_review}）。其余条目属证书核验、主体或平台义务，不生成 finding，也不据此判断合规。`,
     },
     skipReasons: COMPLIANCE_SKIP_REASONS,
     assessedRuleCount,
     libraryRuleCount,
-    libraryVersion: rulesVersion(),
+    libraryVersion: library.version,
   };
 }
 
@@ -679,6 +733,13 @@ export function complianceDimension(analysis: ComplianceAnalysis): {
   note: string;
 } {
   const { counts } = analysis;
+  if (!analysis.assessedRuleCount) {
+    return {
+      name: COMPLIANCE_DIMENSION_NAME,
+      status: "not_assessable",
+      note: `${analysis.marketName}规则库 ${analysis.libraryRuleCount} 条（${analysis.libraryVersion}）已加载，但本版判定器尚未覆盖该市场；本次不做合规筛查，也不据此判断合规。`,
+    };
+  }
   if (!counts.total) {
     return {
       name: COMPLIANCE_DIMENSION_NAME,
@@ -703,6 +764,9 @@ export function complianceDimension(analysis: ComplianceAnalysis): {
 /** 便于 CLI 打印的一行摘要。 */
 export function complianceSummary(analysis: ComplianceAnalysis): string {
   const { counts } = analysis;
+  if (!analysis.assessedRuleCount) {
+    return `合规筛查未覆盖${analysis.marketName}：规则库 ${analysis.libraryRuleCount} 条已加载，本版判定器只覆盖马来西亚`;
+  }
   return `合规规则命中 ${counts.total} 条：规则直判 ${counts.rule_level}、需事实核实 ${counts.substantiation}、需人工判断 ${counts.human_review}；需专业审核 ${counts.reviewRequired}`;
 }
 

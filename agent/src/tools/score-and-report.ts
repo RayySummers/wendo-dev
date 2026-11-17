@@ -30,20 +30,23 @@ export class ReportGenerationError extends Error {
   }
 }
 
-const SYSTEM_PROMPT = `你是「文渡 Wendo」的文化适配诊断引擎，为粤港澳大湾区中小型轻工企业出海做落地页诊断。
+function systemPrompt(marketName: string): string {
+  return `你是「文渡 Wendo」的文化适配诊断引擎，为粤港澳大湾区中小型轻工企业出海做落地页诊断。
 你的读者是企业里负责出海内容的运营负责人：他们要能直接照着改文案，而不是读一篇分析报告。
+本次诊断的目标市场是${marketName}；所有适配判断都以该市场的知识库为准，不要套用其他市场。
 
 硬性规则：
 1. 只使用【页面正文】与【知识库】中的信息。不得编造页面没有出现的功能、认证、评价、价格、物流承诺或客服渠道。
 2. 每条风险的 quote 必须是【页面正文】里逐字出现的片段：直接复制，不要改写、不要翻译、不要用省略号、不要跨行拼接两处文本。quote 至少 8 个字符，不要只引用一个数字或单个词；优先复制完整短语或句子。代码会逐字核对，核对失败整份报告作废。
 3. 输出 3–6 条风险，按严重程度从高到低排列。只保留能从页面正文举证的条目。
 4. 不输出任何分数、百分比、星级、打分或综合评级。dimensions 只用 risk / ok / not_assessable 三种状态。
-5. summary、why、fix、note 用简体中文；quote 保留页面原文语言（英文/马来文）。
+5. summary、why、fix、note 用简体中文；quote 保留页面原文语言。
 6. strengths 必须给出页面原文引用；not_assessable 写清「首页无法判断什么、为什么无法判断」。
-7. 知识库里的建议是编辑判断，不要写成马来西亚法规；没有页面证据时放进 not_assessable。
+7. 知识库里的建议是编辑判断，不要写成${marketName}法规；没有页面证据时放进 not_assessable。
 8. 只输出一个 JSON 对象：不要 Markdown 代码块，不要前后解释，不要注释。
 9. 不要判断字号、宽度、溢出、截断、断词、层级通道这类界面实现问题：这些由代码侧的界面信号单独检查并在报告里另行标注。你只依据【页面正文】与【知识库】判断内容与表达。
 10. 严格按【样本信息】里的品类口径诊断：只使用该品类的知识库规则，不要套用其他品类的专属规则（例如 3C 数码不要判断食品接触、halal、厨房场景；小家电不要判断系统兼容、运营商合约）。语言、支付、物流、退换、客服等共用规则按页面证据正常使用。`;
+}
 
 function buildRuleBlock(dimensions: KbDimension[]): string {
   return dimensions
@@ -93,7 +96,7 @@ ${excerpts}
     {
       "severity": "high | medium | low",
       "quote": "页面正文里的逐字片段",
-      "why": "为什么这在马来西亚市场是问题（用知识库依据，不要空泛）",
+      "why": "为什么这在${kb.marketName}市场是问题（用知识库依据，不要空泛）",
       "fix": "具体怎么改：给出可直接使用的文案或做法"
     }
   ],
@@ -135,7 +138,7 @@ function buildModel(tier: TierConfig, modelId: string): Model<"openai-completion
   };
 }
 
-function createAgent(tier: TierConfig, modelId: string): Agent {
+function createAgent(tier: TierConfig, modelId: string, marketName: string): Agent {
   const llm = resolveLlmConfig(tier);
   const model = buildModel(tier, modelId);
   const provider = createProvider({
@@ -155,7 +158,7 @@ function createAgent(tier: TierConfig, modelId: string): Agent {
   }
 
   return new Agent({
-    initialState: { systemPrompt: SYSTEM_PROMPT, model: resolved },
+    initialState: { systemPrompt: systemPrompt(marketName), model: resolved },
     streamFn: models.streamSimple.bind(models),
   });
 }
@@ -324,7 +327,7 @@ export async function scoreAndReport(
   const { page, kb, tier } = options;
   const maxAttempts = options.maxAttempts ?? 2;
   const timeoutMs = options.timeoutMs ?? resolveLlmConfig(tier).timeoutMs;
-  const agent = createAgent(tier, resolveLlmConfig(tier).modelId);
+  const agent = createAgent(tier, resolveLlmConfig(tier).modelId, kb.marketName);
 
   const usage: TokenUsage = {
     inputTokens: 0,

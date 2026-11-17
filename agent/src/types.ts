@@ -214,6 +214,9 @@ export interface KbDigest {
   /** 品类口径说明：哪些规则适用、哪些规则属于其他品类、不得套用。 */
   scope?: string;
   version: string;
+  /** 该国法规规则库版本与条数（RAY-754）；规则库缺失时 retrieve_kb 已失败。 */
+  legalVersion?: string;
+  legalRuleCount?: number;
   dimensions: KbDimension[];
   totalHits: number;
   excerpts: KbExcerpt[];

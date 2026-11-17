@@ -72,7 +72,8 @@
 | 字段 | 类型 | 约束 |
 |---|---|---|
 | `meta` | object | 由 pipeline 在代码侧补齐，模型不生成 |
-| `meta.generated_at` | string | 马来西亚时间（UTC+8），ISO 8601 |
+| `meta.market` / `meta.market_name` | string | 请求市场（`WENDO_MARKET`），代码与名称读 `knowledge/legal/index.json`，不从知识库文件反推 |
+| `meta.generated_at` | string | 请求市场的本地时间，带显式 ISO 偏移（MY `+08:00`、AE `+04:00` 等） |
 | `meta.tier` | string | 只可能是 `Lite`（11/15 演示版） |
 | `summary` | string | 简体中文，≥ 10 字符 |
 | `risks` | array | 3–16 条（模型 3–8 条内容风险 + 合规条目最多 6 条），按严重程度排序；`severity` 为 `high/medium/low` |
@@ -83,12 +84,12 @@
 | `strengths` | array | 1–6 条，`quote` 同样逐字核对 |
 | `not_assessable` | array | 1–10 条，说明「首页看不到什么、为什么」；含两条能力边界（市场就绪度 / 合规） |
 | `dimensions` | array | 3–10 条，覆盖检索到的全部维度；`status` 为 `risk/ok/not_assessable` |
-| `market_readiness` | array? | 固定 8 条（`MY-MR-01`…`MY-MR-08`，允许 `not_applicable`）；代码侧产出，模型不生成 |
+| `market_readiness` | array? | 固定 8 条（`MY-MR-01`…`MY-MR-08`，允许 `not_applicable`）；代码侧产出，模型不生成。**v0.1 只覆盖 MY**，其他市场省略该数组，维度行写 `not_assessable` |
 | `market_readiness[].status` | string | `present/missing/needs_review/not_applicable`，不是风险等级 |
 | `market_readiness[].quote` | string | 页面原文；页面没展示时为空字符串，**不补写**；超长行截断后仍是原文子串 |
 | `market_readiness[].evidence` | string? | 代码侧取证范围与命中项，不是页面原文 |
 | `risks[].dimension` | string? | 六维之一；合规条目固定为 `compliance`（RAY-698） |
-| `risks[].law_name` | string? | 法规全名，取自 `knowledge/legal/my/rules.v0.1.json`，代码不写死 |
+| `risks[].law_name` | string? | 法规全名，取自请求市场的 `knowledge/legal/<cc>/rules.v0.1.json`，代码不写死 |
 | `risks[].article` | string? | 条文号，例如 `s.10(1)(h)`、`reg.4(1)-(2)` |
 | `risks[].decision_level` | string? | `rule_level` / `substantiation` / `human_review`，沿用规则库，代码不改写 |
 | `risks[].review_required` | boolean? | `true` 时网页与 PDF 显示「需专业审核」；high 级与 `human_review` 默认 true |
@@ -181,8 +182,11 @@
 
 ## 合规与风险判定（RAY-698）
 
-合规与风险（Layer 4）v0.1 只接马来西亚，只消费 `knowledge/legal/my/rules.v0.1.json`
-（45 条 / 9 部法规），由 `src/compliance/analyze.ts` 在 pipeline 里**代码侧**判定，不经模型：
+合规与风险（Layer 4）v0.1 的判定子集只覆盖马来西亚：MY 消费
+`knowledge/legal/my/rules.v0.1.json`（45 条 / 9 部法规），由 `src/compliance/analyze.ts`
+在 pipeline 里**代码侧**判定，不经模型。RAY-754 起规则库按 `legal/<cc>/rules.v0.1.json`
+加载并核对市场；其他市场只加载规则库、显式标 `not_assessable`，**不套用 MY 的法条**，
+直到该国判定子集就绪。具体：
 
 - **三档判定**：`rule_level`（页面要素直接对应法条）/ `substantiation`（只写「需要证明」）/
   `human_review`（需人工判断）。层级只来自规则库，代码不升级也不降级。
@@ -198,9 +202,11 @@
   `evidence`；跨层级不合并（否则会吞掉其中一档），各自成条并互相引用。
 - **不在报告里下判决**：输出不含「合法 / 违法 / 保证通过 / 已认证」；缺席类检查（国语版本、
   隐私告知）只写「页面未展示」，且一律 `review_required: true`。
-- **版式**：网页与 PDF 都在「市场就绪度」之后单独成章「合规与风险（马来西亚）」，
+- **版式**：网页与 PDF 都在「市场就绪度」之后单独成章「合规与风险（<市场名>）」，
   章节开头固定「基于公开法规的自动筛查，不构成法律意见」；`risks` 里仍带全部合规条目，
   由前端 / 渲染器按 `dimension` 分章，不再重复出现在风险清单。
+- **非 MY 市场**：章节标题与能力边界说明改用请求市场名；没有该国 finding 时不写
+  「没问题」，维度行写「本版判定器尚未覆盖」。法规名、监管机构、官方 URL 绝不从 MY 规则库借用。
 
 ## 硬性约束
 

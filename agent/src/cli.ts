@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import { parseArgs } from "node:util";
 import { CategoryError } from "./categories.js";
 import { ConfigError, loadDotEnv } from "./config.js";
+import { MarketError } from "./market.js";
 import { FetchPageError } from "./tools/fetch-page.js";
 import { runDiagnosis } from "./pipeline.js";
 import { ReportGenerationError } from "./tools/score-and-report.js";
@@ -20,6 +21,7 @@ const HELP = `文渡 Wendo 诊断 CLI（固定工具链 fetch_page → retrieve_
 
 选项：
   --tier <lite>            模型档位，11/15 演示版只开放 lite
+  --market <code>          目标市场代码，默认 MY；未知市场或缺知识库直接失败
   --category <code>        诊断品类：small_appliances（默认）| consumer_electronics
   --out-dir <dir>          输出目录，默认 reports
   --slug <name>            文件名前缀，默认取域名；最终文件名附带日期
@@ -35,7 +37,10 @@ const HELP = `文渡 Wendo 诊断 CLI（固定工具链 fetch_page → retrieve_
   WENDO_LLM_API_KEY        必填，模型网关密钥（也可写在 agent/.env）
   WENDO_LLM_BASE_URL       模型网关地址，默认 https://api.deepseek.com/v1
   WENDO_LLM_MODEL_LITE     Lite 档位映射的模型 ID，默认 deepseek-flash
+  WENDO_MARKET             目标市场代码，默认 MY（--market 优先）
   WENDO_CATEGORY           诊断品类，默认 small_appliances（--category 优先）
+  WENDO_KNOWLEDGE_DIR      知识库根目录，默认 agent/knowledge
+  WENDO_LEGAL_DIR          合规规则库目录，默认 <knowledge>/legal
   WENDO_PYTHON             Python 解释器，默认 python3
   WENDO_TYPST              Typst 可执行文件，默认 typst
 `;
@@ -46,13 +51,10 @@ function die(message: string, details: string[] = [], code = 1): never {
   process.exit(code);
 }
 
-function malaysiaDate(iso: string): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Kuala_Lumpur",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(iso));
+/** 文件名日期取报告里的本地日期（meta.generated_at 已按市场时区生成）。 */
+function reportDate(iso: string): string {
+  const match = /^\d{4}-\d{2}-\d{2}/.exec(iso);
+  return match?.[0] ?? iso.slice(0, 10);
 }
 
 function defaultSlug(url: string): string {
@@ -73,6 +75,7 @@ async function main(): Promise<void> {
     allowPositionals: true,
     options: {
       tier: { type: "string", default: "lite" },
+      market: { type: "string", default: process.env.WENDO_MARKET ?? "MY" },
       category: { type: "string", default: process.env.WENDO_CATEGORY ?? "small_appliances" },
       "out-dir": { type: "string", default: "reports" },
       slug: { type: "string" },
@@ -108,6 +111,7 @@ async function main(): Promise<void> {
   const result = await runDiagnosis({
     url,
     tier: values.tier,
+    market: values.market,
     category: values.category,
     maxAttempts,
     timeoutMs: Number.isFinite(timeoutSeconds) ? timeoutSeconds * 1000 : undefined,
@@ -122,7 +126,7 @@ async function main(): Promise<void> {
   });
 
   const { report } = result;
-  const date = malaysiaDate(report.meta.generated_at);
+  const date = reportDate(report.meta.generated_at);
   const base = `${values.slug ?? defaultSlug(report.meta.final_url)}-${date.replace(/-/g, "")}`;
   const outDir = resolve(process.cwd(), values["out-dir"] ?? "reports");
   await mkdir(outDir, { recursive: true });
@@ -175,6 +179,11 @@ async function main(): Promise<void> {
 }
 
 main().catch((error: unknown) => {
+  if (error instanceof MarketError) {
+    // 未知市场/索引缺失是配置或入参问题（2）；知识库缺失/内容不一致是部署数据问题（6）。
+    const dataError = error.code === "market_kb_missing" || error.code === "market_rules_mismatch";
+    die(`${error.code}：${error.message}`, error.details, dataError ? 6 : 2);
+  }
   if (error instanceof ConfigError) die(error.message, [], 2);
   if (error instanceof CategoryError) die(error.message, [], 2);
   if (error instanceof FetchPageError) die(error.message, [`错误码：${error.code}`], 3);

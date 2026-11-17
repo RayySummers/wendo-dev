@@ -4,11 +4,33 @@
 并按同一份 JSON 渲染网页与 Typst PDF。
 
 ```
-fetch_page (Scrapling + 界面信号) → retrieve_kb (马来西亚 × 小家电) → score_and_report (Pi)
+fetch_page (Scrapling + 界面信号) → retrieve_kb (市场 × 品类，默认 MY × 小家电) → score_and_report (Pi)
 ```
 
 三步由 `src/pipeline.ts` 按顺序驱动，agent 不参与规划，也不能跳过、改序或自由调用工具。
 这是 RAY-657 的实现，服务于 RAY-655「Wendo MVP 11/15 演示版」。
+
+## 市场参数（RAY-754）
+
+`WENDO_MARKET`（或 `--market`）决定检索哪个国家的知识库，默认 `MY`。市场代码、中文名与
+规则文件路径都读 `knowledge/legal/index.json`，代码里不再写死「马来西亚」：
+
+- 检索：`knowledge/<cc>/<country>.md` + `knowledge/<cc>/<品类索引>` + `<品类规则原文>`；
+- 法规：`knowledge/legal/<cc>/rules.v0.1.json`（`retrieve_kb` 阶段就加载并核对市场）；
+- 报告：`meta.market` / `meta.market_name` 写请求市场，`meta.generated_at` 用该国时区。
+
+失败语义（不回退 MY）：
+
+| 错误码 | 退出码 | 含义 |
+|---|---|---|
+| `market_unsupported` | 2 | 市场代码不在 `legal/index.json` 里 |
+| `market_kb_missing` | 6 | 该国知识库缺文件；stderr 逐条列出缺哪几个 |
+| `market_rules_mismatch` | 6 | 知识库或规则库的 `market` 与请求市场不一致 |
+
+**当前只有 MY 有国家知识库**；SG / AE / US 等已收录法规规则库的市场，在补齐
+`knowledge/<cc>/` 之前会以 `market_kb_missing` 失败，这是预期行为，不要用 MY 内容代替。
+`market_readiness` 的 8 条检查与合规判定子集目前也只覆盖 MY：其他市场会显式写成
+`not_assessable`，不会把 RM / FPX / 马来西亚法条写进别国报告。
 
 ## 界面可翻译性信号（RAY-674）
 
@@ -75,6 +97,7 @@ npm run diagnose -- https://bears.com.my/ --slug bear-malaysia
 npm run diagnose -- <url> --no-pdf        # 只出 JSON + HTML
 npm run diagnose -- <url> --json          # 给后端集成的 JSON 结果（含 token 用量）
 npm run diagnose -- <url> --debug         # 打印每次校验失败的具体问题
+npm run diagnose -- <url> --market SG     # 目标市场（等价于 WENDO_MARKET=SG）
 ```
 
 ## 模型档位
@@ -107,6 +130,10 @@ WENDO_LLM_MODEL_LITE=group/deepseek-pool
 | `WENDO_LLM_CONTEXT_WINDOW` | `1048576` | 模型上下文窗口 |
 | `WENDO_LLM_MAX_TOKENS` | `32768` | 单次输出上限 |
 | `WENDO_LLM_TIMEOUT_MS` | `180000` | 单次模型调用超时 |
+| `WENDO_MARKET` | `MY` | 目标市场代码；`--market` 优先，未知/缺知识库直接失败 |
+| `WENDO_CATEGORY` | `small_appliances` | 诊断品类；`--category` 优先 |
+| `WENDO_KNOWLEDGE_DIR` | `agent/knowledge` | 知识库根目录（测试或外置数据时用） |
+| `WENDO_LEGAL_DIR` | `<knowledge>/legal` | 合规规则库目录，与 wendo-server 共用同一约定 |
 | `WENDO_PYTHON` | `python3` | Scrapling 使用的解释器 |
 | `WENDO_TYPST` | `typst` | Typst 可执行文件 |
 
@@ -115,7 +142,8 @@ WENDO_LLM_MODEL_LITE=group/deepseek-pool
 ```
 agent/
 ├─ src/
-│  ├─ pipeline.ts            固定工具链编排 + meta 注入
+│  ├─ pipeline.ts            固定工具链编排 + 市场/元数据注入
+│  ├─ market.ts              市场解析、知识库前置检查、时区
 │  ├─ config.ts              档位映射、网关配置、.env 读取
 │  ├─ types.ts               zod 报告 schema
 │  ├─ interface/             界面可翻译性信号：规则包、判定、报告合并
@@ -132,10 +160,12 @@ agent/
 │  ├─ interface_signals.py   CSS 层叠 + 继承 + 尺寸归一，输出样式快照
 │  ├─ interface-report.ts    只需抓取就能预览界面信号的 CLI
 │  └─ verify-parity.ts       逐字段核对网页与 PDF
-├─ knowledge/my/
-│  ├─ malaysia.md            团队国家知识库（来自 wendo-knowledge-base）
-│  ├─ small-appliances.md    小家电品类补充规则
-│  └─ index.json             结构化规则（retrieve_kb 的检索源）
+├─ knowledge/
+│  ├─ <cc>/                  按市场分目录（当前只有 my/）
+│  │  ├─ <country>.md        团队国家知识库（来自 wendo-knowledge-base）
+│  │  ├─ small-appliances.md 小家电品类补充规则
+│  │  └─ index.json          结构化规则（retrieve_kb 的检索源）
+│  └─ legal/<cc>/rules.v0.1.json  合规规则库（26 个市场已收录）
 ├─ report.typ                Typst 模板（只读报告 JSON）
 ├─ reports/                  演示样本与导出物
 └─ test/                     node:test 测试
@@ -158,6 +188,7 @@ agent/
 | 3 | fetch_page 失败（HTTP 错误、正文过短、超时） |
 | 4 | score_and_report 失败（模型错误、校验失败） |
 | 5 | Typst 编译失败（JSON 与 HTML 已写出） |
+| 6 | 市场知识库缺失或内容不一致（`market_kb_missing` / `market_rules_mismatch`） |
 
 ## 与账号 / credit / 前端衔接
 

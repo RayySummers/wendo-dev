@@ -142,7 +142,7 @@ ${candidates}
   const complianceSection = complianceRisks.length
     ? `
   <section>
-    <h2>合规与风险（马来西亚）</h2>
+    <h2>合规与风险（${escapeHtml(report.meta.market_name)}）</h2>
     <p class="hint">基于公开法规的自动筛查，不构成法律意见。共 ${complianceRisks.length} 条：
       规则直判 ${complianceCounts.rule_level}、需事实核实 ${complianceCounts.substantiation}、
       需人工判断 ${complianceCounts.human_review}，其中 ${complianceCounts.review} 条需专业审核。
@@ -185,8 +185,8 @@ ${complianceRisks
   const marketSection = marketChecks.length
     ? `
   <section>
-    <h2>市场就绪度（马来西亚）</h2>
-    <p class="hint">只看页面有没有把进入马来西亚市场所需的信息讲清楚：${escapeHtml(marketSummary)}
+    <h2>市场就绪度（${escapeHtml(report.meta.market_name)}）</h2>
+    <p class="hint">只看页面有没有把进入${escapeHtml(report.meta.market_name)}市场所需的信息讲清楚：${escapeHtml(marketSummary)}
       这里不判断认证真伪，也不构成税务、支付或合规结论。</p>
 ${marketChecks
   .map(
@@ -365,7 +365,7 @@ ${notAssessable}
 
 ${candidatesSection}
 
-  <p class="note">本报告基于该页面单页公开内容与 Wendo 马来西亚知识库自动生成，不构成法律或合规意见；认证、法规与平台政策请以官方口径为准。报告只描述可核对的页面证据，不使用评分。</p>
+  <p class="note">本报告基于该页面单页公开内容与 Wendo ${escapeHtml(report.meta.market_name)}知识库自动生成，不构成法律或合规意见；认证、法规与平台政策请以官方口径为准。报告只描述可核对的页面证据，不使用评分。</p>
 </main>
 </body>
 </html>

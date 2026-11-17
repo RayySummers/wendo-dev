@@ -136,10 +136,10 @@
 // ---------- 市场就绪度（RAY-697） ----------
 #let market-checks = report.at("market_readiness", default: ())
 #if market-checks.len() > 0 [
-  #section[市场就绪度（马来西亚）]
+  #section[市场就绪度（#(meta.market_name)）]
   #let mr-count(status) = market-checks.filter(item => item.status == status).len()
   #text(size: 8.8pt, fill: muted)[
-    只看页面有没有把进入马来西亚市场所需的信息讲清楚：共 #market-checks.len() 项，
+    只看页面有没有把进入#(meta.market_name)市场所需的信息讲清楚：共 #market-checks.len() 项，
     已展示 #mr-count("present")、未展示 #mr-count("missing")、需复核 #mr-count("needs_review")。
     不判断认证真伪，也不构成税务、支付或合规结论。
   ]
@@ -241,7 +241,7 @@
 
 // ---------- 合规与风险（RAY-698） ----------
 #if compliance-risks.len() > 0 [
-  #section[合规与风险（马来西亚）]
+  #section[合规与风险（#(meta.market_name)）]
   #let dc-count(level) = compliance-risks.filter(item => item.at("decision_level", default: "") == level).len()
   #let review-count = compliance-risks.filter(item => item.at("review_required", default: false)).len()
   #text(size: 8.8pt, fill: muted)[
@@ -371,6 +371,6 @@
 #line(length: 100%, stroke: 0.5pt + border)
 #v(5pt)
 #text(size: 7.6pt, fill: faint)[
-  本报告基于该页面单页公开内容与 Wendo 马来西亚知识库自动生成，不构成法律或合规意见；
+  本报告基于该页面单页公开内容与 Wendo #(meta.market_name)知识库自动生成，不构成法律或合规意见；
   认证、法规与平台政策请以官方口径为准。报告只描述可核对的页面证据，不使用评分。
 ]
