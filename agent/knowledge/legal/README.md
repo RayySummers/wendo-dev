@@ -154,19 +154,19 @@ agent/knowledge/legal/
 | 菲律宾（PH） | Tier 1（high） | RAY-721（legacy RAY-694） | v0.1 | 37 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿联酋（AE） | Tier 1（high） | RAY-722 | v0.1 | 33 / 6 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 沙特阿拉伯（SA） | Tier 1（high） | RAY-723 | v0.1 | 34 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 巴基斯坦（PK） | Tier 1（high） | RAY-724 | v0.1 | 35 / 9 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 巴基斯坦（PK） | Tier 1（high） | RAY-724 | v0.1 | 35 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 孟加拉国（BD） | Tier 2（medium） | RAY-729 | v0.1 | 28 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 卡塔尔（QA） | Tier 2（medium） | RAY-730 | v0.1 | 35 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿曼（OM） | Tier 2（medium） | RAY-732 | v0.1 | 40 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 巴林（BH） | Tier 2（medium） | RAY-733 | v0.1 | 31 / 8 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 巴林（BH） | Tier 2（medium） | RAY-733 | v0.1 | 31 / 8 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 埃及（EG） | Tier 2（medium） | RAY-734 | v0.1 | 31 / 6 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 约旦（JO） | Tier 2（medium） | RAY-735 | v0.1 | 30 / 2 | — | 已落地；coverage 与 known_gaps 见 index.json |
-| 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 约旦（JO） | Tier 2（medium） | RAY-735 | v0.1 | 30 / 2 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | v0.1 | 28 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | v0.1 | 33 / 10 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 文莱（BN） | Tier 2（medium） | RAY-738 | v0.1 | 40 / 11 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 新西兰（NZ） | Tier 3（low） | RAY-739 | v0.1 | 31 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |

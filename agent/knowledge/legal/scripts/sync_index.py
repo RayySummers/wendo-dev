@@ -28,7 +28,12 @@ def load_rules(cc: str):
         return None
     with open(path, encoding="utf-8") as fh:
         data = json.load(fh)
-    return data.get("rules", data)
+    rules = data.get("rules", data)
+    last = data.get("last_verified") if isinstance(data, dict) else None
+    if not last:
+        dates = [r.get("last_verified") for r in rules if r.get("last_verified")]
+        last = max(dates) if dates else None
+    return rules, last
 
 
 def sync_index(check: bool) -> list[str]:
@@ -38,11 +43,12 @@ def sync_index(check: bool) -> list[str]:
     changed = 0
     for m in idx["markets"]:
         cc = m["market"].lower()
-        rules = load_rules(cc)
-        if rules is None:
+        loaded = load_rules(cc)
+        if loaded is None:
             if m.get("rules_count"):
                 problems.append(f"{m['market']}: index 记为已落地，但没有 rules 文件")
             continue
+        rules, last_verified = loaded
         laws = len({r.get("law_name") for r in rules if r.get("law_name")})
         want = {
             "status": "v0.1",
@@ -54,6 +60,8 @@ def sync_index(check: bool) -> list[str]:
         # laws_count 早期是按「法规族」人工归并的（与 law_name 去重数不等），只在空值时填。
         if not m.get("laws_count"):
             want["laws_count"] = laws
+        if last_verified:
+            want["last_verified"] = last_verified
         for k, v in want.items():
             if m.get(k) != v:
                 problems.append(f"{m['market']}.{k}: {m.get(k)!r} → {v!r}")
