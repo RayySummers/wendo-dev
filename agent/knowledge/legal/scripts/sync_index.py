@@ -5,6 +5,9 @@
 约定改为：**新增国家只提交 rules / README / SOURCES / SAMPLE_FINDINGS，不动 index.json 与总 README**，
 合并后在 master 上跑一次本脚本，由它统一重建。
 
+字段约定：`open`（市场是否对产品开放）由人显式声明，不参与重建。
+脚本只做校验——缺失或非布尔时置 `false` 并记入 problems，绝不由 `tier` 或规则数反推开放状态。
+
 用法：
     python3 agent/knowledge/legal/scripts/sync_index.py            # 重建并写入
     python3 agent/knowledge/legal/scripts/sync_index.py --check    # 只检查，不一致就非零退出
@@ -42,6 +45,12 @@ def sync_index(check: bool) -> list[str]:
     problems: list[str] = []
     changed = 0
     for m in idx["markets"]:
+        # open 是产品开关，只能由人显式声明：这里只补默认值并报错，不从 tier / rules_count 推断。
+        # 必须早于 load_rules() 的 continue，否则没有 rules 文件的市场（如 CA）会漏检。
+        if not isinstance(m.get("open"), bool):
+            problems.append(f"{m['market']}.open: {m.get('open')!r} → False（必须是显式布尔，缺失或类型错误时默认不开放）")
+            m["open"] = False
+            changed += 1
         cc = m["market"].lower()
         loaded = load_rules(cc)
         if loaded is None:
