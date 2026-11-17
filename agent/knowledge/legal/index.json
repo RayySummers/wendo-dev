@@ -1,8 +1,8 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T16:00:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
-  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
+  "language_policy": "优先收录 de facto official language 为英语的市场；英语仅为联系语言的市场（如 LK）在「议会/主管机关发布官方英文文本或官方英文译本」且只用该文本的前提下可收录，须在该市场条目的 language_note 说明。只用官方英文原文或官方英文译本；无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
     {
       "market": "MY",
@@ -195,6 +195,44 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "LK",
+      "market_name": "斯里兰卡",
+      "status": "v0.1",
+      "rules_count": 28,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "lk/rules.v0.1.json",
+      "readme": "lk/README.md",
+      "sources": "lk/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CAA Act 2003 s.30 误导性行为；s.31(a)-(g) 七类虚假表示）",
+        "价格标示（CAA s.10(1)(a) 指令、s.11 高于标价、s.26(1) 价格告示）",
+        "标签（CAA s.10(1)(a)/s.10(4)）",
+        "商品说明与默示担保（CAA s.32(1)(c)）",
+        "罚则（CAA s.60(5)：法人初犯 1 万–10 万卢比）",
+        "隐私告知（PDPA 2022 s.11 + Schedule V 1(a)(c)(f)(h)(i)(j)(k)；2025-03-18 施行）",
+        "计量（Measurement Act 1995 s.12 公制单位、s.42 虚假数量声明、s.51(4) 预包装标示）",
+        "标准与强制认证准入（SLSI Act 1984 s.20(1) 强制认证标志命令、s.23 许可与符合性）",
+        "电信设备准入（Telecom Act 1991 s.21(1)(a) 许可、s.5(q) 类型核准）"
+      ],
+      "known_gaps": [
+        "CAA 依 s.10(1)(a) 发布的标签/价格标示指令清单未取得（caa.gov.lk 在本环境 TLS 不可达）",
+        "SLSI 强制认证命令清单与 SLS 标准目录未取得（slsi.lk Cloudflare 挑战）",
+        "TRCSL 类型核准规则与 Vendors Licence Rules No. 1 of 2001 全文未取得",
+        "Measurement Act s.1 施行日指定令、s.51 特定预包装商品清单未取得",
+        "CAA Act 2003–2026 修正案是否上调 s.60(5) 罚则未逐年核对",
+        "语言义务：未发现非食品消费品的三语法定要求；CAA 指令/SLS 标准/进口条例是否有语言要求未核",
+        "电商信息披露法源未定（ETA 2006 经全文核对无相关条款）",
+        "PDPA Schedule V 其余 7 项（1(b)(d)(e)(g)(l)(m)）未收录",
+        "食品接触材料、平台责任、美妆/食品/玩具等品类未覆盖"
+      ],
+      "issue": "RAY-728",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "lk/SAMPLE_FINDINGS.md",
+      "language_note": "英语为联系语言（宪法第 22 条），非官方语言；议会官网同时发布该法案的英文文本，按官方英文文本/官方英文译本使用（CAA Act s.25 仅规定僧伽罗与泰米尔文本冲突时以僧伽罗文本为准），符合只收官方英文原文或官方译本的要求。"
     }
   ],
   "backlog": [
