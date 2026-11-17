@@ -195,18 +195,50 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
-    }
-  ],
-  "backlog": [
+    },
     {
       "market": "PH",
       "market_name": "菲律宾",
-      "priority": 5,
-      "status": "not_started",
-      "scope": "Consumer Act of the Philippines (RA 7394)；Philippine Standards / ICC 与 PS 认证（DTI-BPS）；FDA 化妆品/食品；Data Privacy Act 2012 (RA 10173)；广告规则（AdBoard，如有官方来源）",
-      "notes": "英语为官方语言之一；部分规则为菲律宾语/英语双语，需确认官方英文版本",
-      "issue": "RAY-694"
-    },
+      "status": "v0.1",
+      "rules_count": 37,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "ph/rules.v0.1.json",
+      "readme": "ph/README.md",
+      "sources": "ph/SOURCES.md",
+      "coverage": [
+        "通用广告与欺骗性行为（RA 7394 Art. 110 虚假/误导广告与遗漏重大事实；Art. 50(a)(b)(c)(h)(i)(j) 六类列举；Art. 52 不公平/不合情理行为）",
+        "特别声称的证实（Art. 115：功效、安全、环保节能、第三方认证四类分开建条）",
+        "价格与促销（Art. 111 比较价 90 天/4 周；Art. 81 价签与不得高于标示价；Art. 82 比索与分计价；Art. 116 促销许可；Art. 118 促销期间与评选标准披露）",
+        "标签与说明（Art. 76 禁止分销不合规包装；Art. 77 八项最低标签项与显著度；Art. 78 PS 标志限于已认证产品）",
+        "强制认证准入（DTI-BPS PS/ICC：未加贴标志不得分销；PS 可授予外国制造商、ICC 只能由菲律宾进口商申请）",
+        "线上交易披露（ITA 2023 s.23：比索标价、首页身份与联系方式、手册语言 Filipino and/or English、收据）",
+        "域外适用与执法（ITA s.5 最低联系；s.15 下架令；s.16 黑名单；s.29 行政罚款）",
+        "隐私告知与罚则（DPA s.16(b) 八项告知 + 例外；s.11/s.12 原则与正当依据；s.26 罚则）"
+      ],
+      "known_gaps": [
+        "NTC 型号核准（type approval）未取得官方文本：ntc.gov.ph 全站 Cloudflare 403，WiFi/蓝牙类 3C 的准入是 v0.1 实质缺口",
+        "BPS 强制认证的部门行政令（DAO）正文未逐份取得；PH-CERT-01/02 只落到 BPS 制度说明页（article_type=guideline）",
+        "BPS 产品计数自相矛盾（制度页称 87 项，清单页列至 111 项），未调和",
+        "ITA 生效日两口径（报纸日 2023-12-08 → 2023-12-23；公报日 2023-12-18 → 2024-01-02），本库取前者",
+        "ITA s.29(e) 三档罚款均写“second offense”，s.29(d)(1) 下限高于上限，s.23(f)(1) 有“(10”排印错误：均照录不补正",
+        "s.23(c)/(h) 义务明确但未被 s.29(e) 罚则条款列举，罚则路径待律师意见",
+        "食品接触材料（电饭锅内胆、搅拌杯、咖啡机管路）未覆盖；BPS 清单未见相关条目，FDA 侧未查",
+        "能效标识（DOE）未覆盖；PH-ADV-17 只处理“节能声称”层面",
+        "计量与净含量法定公差未取得；RA 7394 的 IRR（DTI DAO）未取得，Art. 79 的额外标签项可能扩大义务",
+        "RA 7394 无 effectivity clause，本库按 15 日规则推为 1992-06-30（推断，非原文）",
+        "NTC/NPC 通告、地方政府（LGU）层面的促销许可与标价规定未覆盖",
+        "美妆/食品/玩具/医疗器械等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-721",
+      "planned_issue": "RAY-694",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "ph/SAMPLE_FINDINGS.md",
+      "verify_script": "ph/verify_excerpts.py"
+    }
+  ],
+  "backlog": [
     {
       "market": "CA",
       "market_name": "加拿大",
@@ -288,7 +320,8 @@
       {
         "stage": 6,
         "market": "PH",
-        "issue": "RAY-694"
+        "issue": "RAY-721",
+        "planned_issue": "RAY-694"
       },
       {
         "stage": 7,

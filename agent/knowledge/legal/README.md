@@ -35,11 +35,17 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-└── au/                     # 澳大利亚（RAY-693）
-    ├── rules.v0.1.json     # 45 条规则（JSON）
+├── au/                     # 澳大利亚（RAY-693）
+│   ├── rules.v0.1.json     # 45 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+└── ph/                     # 菲律宾（RAY-721，原计划 RAY-694）
+    ├── rules.v0.1.json     # 37 条规则（JSON）
     ├── README.md
     ├── SOURCES.md
-    └── SAMPLE_FINDINGS.md
+    ├── SAMPLE_FINDINGS.md
+    └── verify_excerpts.py  # 引文逐条比对脚本
 ```
 
 ## 当前状态
@@ -51,13 +57,14 @@ agent/knowledge/legal/
 | 3 | 美国 (US) | RAY-691 | v0.1（定稿候选，待产品验收） | v0.1 | 35 | 20 | 2026-11-14 | 联邦优先；FTC §5 + Endorsement/Green/Review Guides + FPLA + CPSA + FCC + FDCA §409 + Magnuson-Moss + CAN-SPAM；州级另列 backlog |
 | 4 | 英国 (UK) | RAY-692 | v0.1（定稿候选，待产品验收） | v0.1 | 43 | 15 | 2026-11-14 | DMCCA 2024（CPRs 2008 已于 2025-04-06 废止）+ CRA 2015 + EESR/Plugs/GPSR/EMC/Radio/WEEE/Batteries + PMO + UK GDPR/PECR + BPRs + CAP；CE 与 UKCA 在 GB 并行 |
 | 5 | 澳大利亚 (AU) | RAY-693 | v0.1（定稿候选，待产品验收） | v0.1 | 45 | 16 | 2026-11-14 | ACL（s.18 无罚金；罚则上限 $100m/3x/30%）+ EESS（仅 QLD/WA/VIC/TAS 参与；海外公司不能当 Responsible Supplier）+ ACMA/GEMS + 纽扣电池 4 项标准 + APP/Spam Act；ACCC 指引 5 份 |
-| 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
+| 6 | 菲律宾 (PH) | RAY-721（原计划 RAY-694） | v0.1（定稿候选，待产品验收） | v0.1 | 37 | 5 | 2026-11-17 | RA 7394（1992 罚则未修订）+ ITA 2023（域外适用 / 单方下架令 / 行政罚款）+ BPS PS-ICC 清单制 + DPA 八项告知与例外；英语即可，无菲律宾语强制 |
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
 > 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿（MY 45 条、SG 36 条均已定稿）。
 > RAY-688（MY v0.1 首单，3C 6 条）与 RAY-689（MY 定稿单）范围重叠：RAY-689 已在 RAY-688 的 40 条 baseline 上完成复核与定稿（45 条），两单验收口径按 RAY-689 执行，避免重复复核。
 > 2026-11-14 UK v0.1（RAY-692）：**CPRs 2008 已于 2025-04-06 废止**，英国不公平商业行为规则迁入 DMCCA 2024 Part 4 Chapter 1；CMA 可直接罚款（s.182(6)：£300,000 或全球营业额 10%）。CE 标志在 GB 继续与 UKCA 并行被承认（SI 2024/696）。
 > 2026-11-14 AU v0.1（RAY-693）：ACL **s.18 不在 s.224 的罚金清单内**（无民事罚金，救济为禁令/损害赔偿）；法人罚金上限为 **$100,000,000** 或获益 3 倍或违规期营业额 30%（s.224(3A)，旧资料常写 $50m）。电气准入不是全澳一套：**EESS 的 IGA 签署方抓取时为 QLD / WA / VIC / TAS**，NSW/SA/ACT/NT 另有本州制度；EESS 要求责任供应商为澳/新实体，**海外公司不能直接注册**，且不允许 agent。纽扣/硬币电池 4 项强制标准自 **2022-06-22** 起适用；信息标准 s.14（平台描述加警示）只是建议条款。
+> 2026-11-17 PH v0.1（RAY-721，原计划 RAY-694）：菲律宾消费者法的罚则仍是 **1992 年原值**（RA 7394 Art. 60：P500–P10,000 / 5 个月–1 年；Art. 123：P500–P5,000）。**RA 11449（2019）标题含“提高消费者法罚则”，实为修改 RA 8484（Access Devices Regulation Act of 1998），与消费者法无关**——本版已纠正这一常见误引。真正的执法杠杆是 **RA 11967（Internet Transactions Act 2023）**：s.5 明示域外适用（minimum contacts，无本地实体亦可被追责）、s.15 单方下架令（最长 30 天，48 小时内可要求听证）、s.29 行政罚款（首犯 P20,000–P100,000，第三次起至 P1,000,000）与 s.16 公开黑名单。语言义务比 MY 轻：RA 7394 Art. 77 不限定标签语言，ITA s.23(c)(1) 只要求 “Filipino **and/or** English”，**纯英文即可**。准入按 BPS 的**产品清单**判定（111 项：电风扇/电饭锅/微波炉/冰箱/空调/插头/插座/延长线/断路器/LED 灯；**USB 充电器与移动电源未列入**），不能用“小家电都要认证”一刀切；PS 许可证可发给外国制造商，ICC 只能由菲律宾进口商申请。法条原文改取 **Supreme Court E-Library**（elibrary.judiciary.gov.ph），因 officialgazette.gov.ph / dti.gov.ph / privacy.gov.ph / ntc.gov.ph 对本环境全站 Cloudflare 403；NTC 型号核准因此成为 v0.1 的实质缺口。
 
 ## 语言政策（2026-11-14 起）
 
