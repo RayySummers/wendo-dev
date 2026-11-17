@@ -51,7 +51,7 @@
 | 1 | `BD-APPL-01` + `BD-CERT-01`/`02` | 商品为 1.5L 家用电热水壶，属于 BSTI 315 项清单第 310 项（BDS 253:1990）；整页可见文本未出现 BSTI、CM、Standard Mark、许可证号或 b mark。 | rule_level | medium | 页面未展示该电热水壶的 BSTI CM 许可证号或标准标志；需向商家索取制造商/进口商的 CM 证书/许可证并核对型号。页面缺失不等于未认证，不得推断“未认证”。**需专业审核。** |
 | 2 | `BD-ADV-01` | 页面写“lowest price”“best price”“original Xiaomi”；同时显示 3,500৳、划线 4,200৳、Regular Price 3,780৳，参考价不一致（4,200 ≠ 3,780）。 | human_review | medium | 页面使用绝对化价格表述，且划线价与 Regular Price 不一致，可能影响消费者对折扣的判断。按 CRPA 2009 s.44，若表述虚假或不实并使买家受骗，存在合规风险（上限 1 年/20 万塔卡）。是否构成“欺骗”需结合价格历史与上下文，**需专业审核**。 |
 | 3 | `BD-SOG-01` | 页面声称“food-grade 304 stainless-steel”“1.5L”“1500W”，但无材质单、迁移测试报告或第三方检测报告。 | human_review | medium | 商品描述含材质/容量/功率声称，但页面未提供可核对依据。按 Sale of Goods Act 1930 s.15，商品应与描述相符；建议索取规格书与检测报告。本报告只判“需要证明”，不判真假。 |
-| 4 | `BD-APPL-01` + `BD-CERT-02` | 页面以“dry-boil protection”“auto shut-off”“steam sensor”为主要安全卖点，但无 BDS 253:1990 检测报告、CM 证书或召回/事故记录。 | rule_level | medium | 该产品须符合 BDS 253:1990 并取得 BSTI CM 许可；页面以安全功能为卖点但未展示检测报告或证书。需向商家索取制造商/进口商的 BDS 253 检测报告与 CM 证书；不能仅凭页面声称判断安全性。**需专业审核。** |
+| 4 | `BD-APPL-01` | 页面以“dry-boil protection”“auto shut-off”“steam sensor”为主要安全卖点，但无 BDS 253:1990 检测报告、CM 证书或召回/事故记录。 | rule_level | medium | 该产品须符合 BDS 253:1990 并取得 BSTI CM 许可；页面以安全功能为卖点但未展示检测报告或证书。需向商家索取制造商/进口商的 BDS 253 检测报告与 CM 证书；不能仅凭页面声称判断安全性。**需专业审核。** |
 | 5 | `BD-PRICE-01` | 产品页显示商品价格与 Regular Price，但未显示运费、手续费或预计送达时间；页脚只有“Online Delivery”链接。 | human_review | medium | 页面未在商品页展示运费/预计送达；需核实结算页与配送政策。按 CRPA 2009 s.38 的价目表展示义务，线上页面是否构成“shop or organization”的显著位置存在解释空间，**需专业审核**。 |
 
 合计：5 条 findings（1 条认证展示、1 条广告/价格、1 条描述证据、1 条安全声称、1 条价格/交付披露）。
