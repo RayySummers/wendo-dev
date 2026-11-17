@@ -1,6 +1,6 @@
 {
   "version": "2026-11-17",
-  "updated_at": "2026-11-17T15:45:00+08:00",
+  "updated_at": "2026-11-17T16:05:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -624,18 +624,41 @@
       "tier": "tier3",
       "priority": "low",
       "sort_order": 22,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-740 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 54,
+      "laws_count": 11,
+      "last_verified": "2026-11-17",
+      "rules_file": "mt/rules.v0.1.json",
+      "readme": "mt/README.md",
+      "sources": "mt/SOURCES.md",
+      "coverage": [
+        "通用广告与不公平商业行为（Cap. 378 arts. 51B–51F：不公平/误导行为/误导性遗漏/侵略性行为；First Schedule 黑名单 2/5/6/7/17/18/19/20；Second Schedule 罚则）",
+        "价格与折扣（S.L. 378.09 regs. 4/5/5A/9：标价、单位价、配送费、30 天先前价、€150–€2,000 罚则）",
+        "电商/远程销售披露（S.L. 378.17 reg. 5(1) 清单、reg. 7 举证责任、reg. 9(2) 下单按钮、reg. 9(3) 配送限制与支付方式）",
+        "商品说明与追溯（LVD regs. 6(7)(8)、8(4)；GPSR arts. 9(5)(6)(7)；GPSR art. 19 线上报价四项信息）",
+        "认证与准入（LVD CE/DoC；RED CE/DoC/通用充电器标签；S.L. 427.51 BS 1363 英式插头；Cap. 427 art. 26/32(2) 罚则）",
+        "语言义务（宪法 art. 5(2) 马耳他语与英语同为官方语言；S.L. 378.17 reg. 5(1) 至少一种官方语言；产品端 S.L. 427.34 reg. 8(5)、S.L. 427.41 reg. 12(4)(a)、S.L. 427.106 reg. 3 须马耳他语或英语）",
+        "隐私告知与 Cookie（GDPR arts. 12(1)/13(1)(2)/83(5)；S.L. 586.01 reg. 5(1) 同意前置）"
       ],
-      "issue": "RAY-740"
+      "known_gaps": [
+        "MCA 是否另有无线电设备型式批准/注册未取得官方说明；3C 无线品准入只落到 RED CE/DoC（S.L. 399.40 是频谱 general authorisation）",
+        "能效标签未建规则：现行框架为 Regulation (EU) 2017/1369 及各品类授权条例，马耳他 S.L. 427.24 仍转置已废止的 2010/30/EU；需逐品类映射",
+        "GPSR 与 LVD/RED 在具体 SKU 上的边界未逐项核（如通用充电器范围的 Schedule VIII 比对）",
+        "Cap. 378 合并文本标注至 Act XXIV of 2023 与 L.N. 212 of 2023；2024–2026 年修订未逐条核",
+        "MCCAA 线上销售执法口径无公开案例库，罚则只写上限",
+        "「免费/赠品」边界（First Schedule 20 vs 买一送一、赠品运费）未细拆，留 v0.2",
+        "订阅/会员制（滤芯、延保）的提醒义务未覆盖",
+        "DSA (EU) 2022/2065 对在线市场的义务未建规则（平台侧不在本库范围）",
+        "马耳他语 claim_pattern 未建，仅收英文触发词；马耳他语页面会漏匹配",
+        "Cookie 同意层无法从服务端 HTML 判断，MT-PRV-05 需浏览器实测；样例页面该项无结论",
+        "《消费者事务法》art. 83 商业保证声明语言义务未收录（Act I of 2022 替换后生效日无法从合并文本确定，且保修实体规则属 Layer 3）",
+        "纺织品、食品接触材料、RoHS（S.L. 427.57）未覆盖"
+      ],
+      "issue": "RAY-740",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "mt/SAMPLE_FINDINGS.md",
+      "market_readiness": "mt/MARKET_READINESS.md"
     },
     {
       "market": "US",
