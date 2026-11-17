@@ -70,6 +70,11 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── bn/                     # 文莱（BN）
+│   ├── rules.v0.1.json     # 40 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── us/                     # 美国（US）
 │   ├── rules.v0.1.json     # 35 条规则（JSON）
 │   ├── README.md
@@ -113,7 +118,7 @@ agent/knowledge/legal/
 | 约旦（JO） | Tier 2（medium） | RAY-735 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 文莱（BN） | Tier 2（medium） | RAY-738 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 文莱（BN） | Tier 2（medium） | RAY-738 | v0.1 | 40 / 11 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 新西兰（NZ） | Tier 3（low） | RAY-739 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 马耳他（MT） | Tier 3（low） | RAY-740 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
