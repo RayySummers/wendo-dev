@@ -1,6 +1,6 @@
 {
   "version": "2026-11-17",
-  "updated_at": "2026-11-17T15:45:00+08:00",
+  "updated_at": "2026-11-17T15:57:49+08:00",
   "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -619,18 +619,39 @@
       "tier": "tier3",
       "priority": "low",
       "sort_order": 21,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-739 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 31,
+      "laws_count": 7,
+      "last_verified": "2026-11-17",
+      "rules_file": "nz/rules.v0.1.json",
+      "readme": "nz/README.md",
+      "sources": "nz/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（FTA 1986：s 9 / s 10 / s 12A / s 13(a)(d)(e)(g)(i)(j) / s 19）",
+        "网上经营者身份披露（FTA s 28B）与标准格式合同不公平条款（s 46L、s 26A/26B）",
+        "商品说明与可接受质量（CGA 1993：s 7 / s 9 / s 43）",
+        "计量与数量：只准公制、标示数量不得短少（WMA 1987 s 10 / s 16A）",
+        "产品安全标准与不安全商品公告（FTA s 29-s 31、s 33 进口禁令）",
+        "电气准入：必须 electrically safe、电压标示、AS/NZS 3112 插头、虚假安全标志、SDoC（ESR 2010 reg 23 / 80 / 82 / 83）",
+        "电磁兼容：适用标准与合规等级（EMC Standards Notice 2019 cl 5）",
+        "隐私告知与跨境披露（Privacy Act 2020 s 4(1)(b)、IPP 3、IPP 12）",
+        "商业电子讯息：同意、发送者身份、退订（UEMA 2007 s 9-s 11）"
       ],
-      "issue": "RAY-739"
+      "known_gaps": [
+        "英语不是法定官方语言（仅毛利语为官方语言）；无一般性商品标签语言强制，标签语言风险只能经 FTA s 9 间接处理",
+        "AS/NZS 60335 / AS/NZS 3112 / CISPR 32 等为付费标准，只引法规转致，不引标准原文",
+        "Radiocommunications (Compliance) Notice 2013 No. 2 未取得：EMC 合规等级 1/2/3 的具体义务未落成规则",
+        "WorkSafe 的 declared medium risk 清单未取得：NZ-ELEC-05 的适用前提无法在库内判定",
+        "能效标签（Energy Efficiency (Energy Using Products) Regulations 2002）未映射：文件内多个 Part 重排条号，存在引用歧义",
+        "纺织纤维成分信息标准（Consumer Information Standards (Fibre Content Labelling) Regulations 2000）未逐品类核对",
+        "食品接触材料、玩具、化妆品属范围外；WEEE/电池/包装押金未覆盖",
+        "FTA s 21（无意图供货即收款）与预售模式的关系未研究；s 12A(3) 例外边界无公开指引",
+        "价格声称对排版敏感：划线价 + 折扣百分比需结构化探测，词表会漏报（见 SAMPLE_FINDINGS）"
+      ],
+      "issue": "RAY-739",
+      "sample_findings": "nz/SAMPLE_FINDINGS.md",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review"
     },
     {
       "market": "MT",
