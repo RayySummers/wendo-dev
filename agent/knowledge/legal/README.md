@@ -88,7 +88,7 @@ agent/knowledge/legal/
 | 字段 | 必填 | 说明 |
 | --- | --- | --- |
 | `id` | 是 | `<市场>-<主题>-<序号>`，如 `MY-ADV-01`；全库唯一 |
-| `market` | 是 | `MY` / `SG` / `US` / `UK` / `AU` / `PH` / `CA` |
+| `market` | 是 | `MY` / `SG` / `US` / `UK` / `AU` / `AE` / `PH` / `CA` |
 | `category` | 是 | `通用` / `通用/电商` / `小家电` / `3C 数码` / `食品` / `美妆` … |
 | `law_name` | 是 | 原文名 + 中文/英文名 |
 | `law_short` | 否 | 报告里用的简称 |
