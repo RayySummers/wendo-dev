@@ -1,7 +1,7 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
-  "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T14:30:00+08:00",
+  "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
     {
@@ -37,7 +37,10 @@
       "issue": "RAY-688 / RAY-689",
       "rules_version": "2026-11-14-v0.1c",
       "acceptance_status": "pending_product_review",
-      "sample_findings": "my/SAMPLE_FINDINGS.md"
+      "sample_findings": "my/SAMPLE_FINDINGS.md",
+      "tier": "live",
+      "priority": "high",
+      "sort_order": 1
     },
     {
       "market": "SG",
@@ -71,10 +74,395 @@
         "ASAS 广告行为准则（行业自律）未收录",
         "美妆/食品/玩具等品类特殊规则未覆盖"
       ],
-      "issue": "RAY-690",
+      "issue": "RAY-720",
       "rules_version": "2026-11-14-v0.1b",
       "acceptance_status": "pending_product_review",
-      "sample_findings": "sg/SAMPLE_FINDINGS.md"
+      "sample_findings": "sg/SAMPLE_FINDINGS.md",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 2,
+      "legacy_issue": "RAY-690"
+    },
+    {
+      "market": "PH",
+      "market_name": "菲律宾",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 3,
+      "status": "in_review",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-721 in_review）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-721",
+      "legacy_issue": "RAY-694"
+    },
+    {
+      "market": "AE",
+      "market_name": "阿联酋",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 4,
+      "status": "in_review",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-722 in_review）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-722"
+    },
+    {
+      "market": "SA",
+      "market_name": "沙特阿拉伯",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 5,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-723 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-723"
+    },
+    {
+      "market": "PK",
+      "market_name": "巴基斯坦",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 6,
+      "status": "in_progress",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-724 in_progress）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-724"
+    },
+    {
+      "market": "NG",
+      "market_name": "尼日利亚",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 7,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-725 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-725"
+    },
+    {
+      "market": "ZA",
+      "market_name": "南非",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 8,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-726 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-726"
+    },
+    {
+      "market": "KE",
+      "market_name": "肯尼亚",
+      "tier": "tier1",
+      "priority": "high",
+      "sort_order": 9,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-727 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-727"
+    },
+    {
+      "market": "LK",
+      "market_name": "斯里兰卡",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 10,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-728 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-728"
+    },
+    {
+      "market": "BD",
+      "market_name": "孟加拉国",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 11,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-729 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-729"
+    },
+    {
+      "market": "QA",
+      "market_name": "卡塔尔",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 12,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-730 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-730"
+    },
+    {
+      "market": "KW",
+      "market_name": "科威特",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 13,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-731 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-731"
+    },
+    {
+      "market": "OM",
+      "market_name": "阿曼",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 14,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-732 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-732"
+    },
+    {
+      "market": "BH",
+      "market_name": "巴林",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 15,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-733 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-733"
+    },
+    {
+      "market": "EG",
+      "market_name": "埃及",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 16,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-734 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-734"
+    },
+    {
+      "market": "JO",
+      "market_name": "约旦",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 17,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-735 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-735"
+    },
+    {
+      "market": "TZ",
+      "market_name": "坦桑尼亚",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 18,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-736 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-736"
+    },
+    {
+      "market": "GH",
+      "market_name": "加纳",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 19,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-737 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-737"
+    },
+    {
+      "market": "BN",
+      "market_name": "文莱",
+      "tier": "tier2",
+      "priority": "medium",
+      "sort_order": 20,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-738 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-738"
+    },
+    {
+      "market": "NZ",
+      "market_name": "新西兰",
+      "tier": "tier3",
+      "priority": "low",
+      "sort_order": 21,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-739 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-739"
+    },
+    {
+      "market": "MT",
+      "market_name": "马耳他",
+      "tier": "tier3",
+      "priority": "low",
+      "sort_order": 22,
+      "status": "todo",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地（RAY-740 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      ],
+      "issue": "RAY-740"
     },
     {
       "market": "US",
@@ -114,7 +502,10 @@
       "issue": "RAY-691",
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
-      "sample_findings": "us/SAMPLE_FINDINGS.md"
+      "sample_findings": "us/SAMPLE_FINDINGS.md",
+      "tier": "non_bri",
+      "priority": "low",
+      "sort_order": 23
     },
     {
       "market": "UK",
@@ -155,7 +546,10 @@
       "issue": "RAY-692",
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
-      "sample_findings": "uk/SAMPLE_FINDINGS.md"
+      "sample_findings": "uk/SAMPLE_FINDINGS.md",
+      "tier": "non_bri",
+      "priority": "low",
+      "sort_order": 24
     },
     {
       "market": "AU",
@@ -194,29 +588,32 @@
       "issue": "RAY-693",
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
-      "sample_findings": "au/SAMPLE_FINDINGS.md"
-    }
-  ],
-  "backlog": [
-    {
-      "market": "PH",
-      "market_name": "菲律宾",
-      "priority": 5,
-      "status": "not_started",
-      "scope": "Consumer Act of the Philippines (RA 7394)；Philippine Standards / ICC 与 PS 认证（DTI-BPS）；FDA 化妆品/食品；Data Privacy Act 2012 (RA 10173)；广告规则（AdBoard，如有官方来源）",
-      "notes": "英语为官方语言之一；部分规则为菲律宾语/英语双语，需确认官方英文版本",
-      "issue": "RAY-694"
+      "sample_findings": "au/SAMPLE_FINDINGS.md",
+      "tier": "non_bri",
+      "priority": "low",
+      "sort_order": 25
     },
     {
       "market": "CA",
       "market_name": "加拿大",
-      "priority": 6,
-      "status": "not_started",
-      "scope": "Competition Act（虚假/误导性陈述）；Consumer Packaging and Labelling Act；Canada Consumer Product Safety Act；Electrical safety（CSA/ULC，省际差异）；PIPEDA；Quebec 法语宪章（Bill 96）另标",
-      "notes": "Quebec/French 问题单独标注；联邦与省分层",
+      "tier": "non_bri",
+      "priority": "low",
+      "sort_order": 26,
+      "status": "backlog",
+      "rules_count": 0,
+      "laws_count": 0,
+      "last_verified": null,
+      "rules_file": null,
+      "readme": null,
+      "sources": null,
+      "coverage": [],
+      "known_gaps": [
+        "规则库尚未落地；RAY-695 backlog"
+      ],
       "issue": "RAY-695"
     }
   ],
+  "backlog": [],
   "out_of_scope": [
     {
       "market": "DE",
@@ -257,44 +654,124 @@
     "review_policy": "review_required=true 的规则必须人工复核后才能进入报告结论；confidence=medium 的规则需在报告中标注不确定性。"
   },
   "program": {
-    "parent_issue": "RAY-685",
-    "structure": "一个国家/地区一个子单，按 stage 1-7 串行；RAY-685 只保留总纲、字段规范与索引。",
-    "country_issues": [
-      {
-        "stage": 1,
-        "market": "MY",
-        "issue": "RAY-689"
-      },
-      {
-        "stage": 2,
-        "market": "SG",
-        "issue": "RAY-690"
-      },
-      {
-        "stage": 3,
-        "market": "US",
-        "issue": "RAY-691"
-      },
-      {
-        "stage": 4,
-        "market": "UK",
-        "issue": "RAY-692"
-      },
-      {
-        "stage": 5,
-        "market": "AU",
-        "issue": "RAY-693"
-      },
-      {
-        "stage": 6,
-        "market": "PH",
-        "issue": "RAY-694"
-      },
-      {
-        "stage": 7,
-        "market": "CA",
-        "issue": "RAY-695"
-      }
-    ]
-  }
+    "structure": "MY live；BRI 21 国按 tier1/2/3 一国一单（RAY-720~RAY-740）；US/UK/AU/CA 保留但降为最后（non_bri）。",
+    "belt_and_road_priority": {
+      "tier1": [
+        "SG",
+        "PH",
+        "AE",
+        "SA",
+        "PK",
+        "NG",
+        "ZA",
+        "KE"
+      ],
+      "tier2": [
+        "LK",
+        "BD",
+        "QA",
+        "KW",
+        "OM",
+        "BH",
+        "EG",
+        "JO",
+        "TZ",
+        "GH",
+        "BN"
+      ],
+      "tier3": [
+        "NZ",
+        "MT"
+      ]
+    },
+    "non_bri_legacy": [
+      "US",
+      "UK",
+      "AU",
+      "CA"
+    ],
+    "rule": "每个市场落地后，同步该 market 的 rules_count / laws_count / last_verified / known_gaps。"
+  },
+  "not_opened": [
+    {
+      "market": "PG",
+      "market_name": "巴布亚新几内亚",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "FJ",
+      "market_name": "斐济",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "JM",
+      "market_name": "牙买加",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "TT",
+      "market_name": "特立尼达和多巴哥",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "GY",
+      "market_name": "圭亚那",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "BB",
+      "market_name": "巴巴多斯",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "ZM",
+      "market_name": "赞比亚",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "ZW",
+      "market_name": "津巴布韦",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "RW",
+      "market_name": "卢旺达",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "BW",
+      "market_name": "博茨瓦纳",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "NA",
+      "market_name": "纳米比亚",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "MW",
+      "market_name": "马拉维",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "SL",
+      "market_name": "塞拉利昂",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "LR",
+      "market_name": "利比里亚",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "GM",
+      "market_name": "冈比亚",
+      "reason": "经济体量过小，暂不单独建库"
+    },
+    {
+      "market": "CM",
+      "market_name": "喀麦隆",
+      "reason": "经济体量过小，暂不单独建库"
+    }
+  ]
 }
