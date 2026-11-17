@@ -55,6 +55,11 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── lk/                     # 斯里兰卡（LK）
+│   ├── rules.v0.1.json     # 28 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── bd/                     # 孟加拉国（BD）
 │   ├── rules.v0.1.json     # 28 条规则（JSON）
 │   ├── README.md
@@ -65,13 +70,48 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── kw/                     # 科威特（KW）
+│   ├── rules.v0.1.json     # 24 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── om/                     # 阿曼（OM）
 │   ├── rules.v0.1.json     # 40 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── bh/                     # 巴林（BH）
+│   ├── rules.v0.1.json     # 31 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── jo/                     # 约旦（JO）
+│   ├── rules.v0.1.json     # 30 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── tz/                     # 坦桑尼亚（TZ）
+│   ├── rules.v0.1.json     # 28 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── gh/                     # 加纳（GH）
 │   ├── rules.v0.1.json     # 33 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── bn/                     # 文莱（BN）
+│   ├── rules.v0.1.json     # 40 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── nz/                     # 新西兰（NZ）
+│   ├── rules.v0.1.json     # 31 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── mt/                     # 马耳他（MT）
+│   ├── rules.v0.1.json     # 54 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
@@ -108,23 +148,25 @@ agent/knowledge/legal/
 | 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 孟加拉国（BD） | Tier 2（medium） | RAY-729 | v0.1 | 28 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 卡塔尔（QA） | Tier 2（medium） | RAY-730 | v0.1 | 35 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 科威特（KW） | Tier 2（medium） | RAY-731 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿曼（OM） | Tier 2（medium） | RAY-732 | v0.1 | 40 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 巴林（BH） | Tier 2（medium） | RAY-733 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 巴林（BH） | Tier 2（medium） | RAY-733 | v0.1 | 31 / 8 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 埃及（EG） | Tier 2（medium） | RAY-734 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 约旦（JO） | Tier 2（medium） | RAY-735 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 约旦（JO） | Tier 2（medium） | RAY-735 | v0.1 | 30 / 2 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | v0.1 | 28 / 5 | — | 已落地；coverage 与 known_gaps 见 index.json |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | v0.1 | 33 / 10 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 文莱（BN） | Tier 2（medium） | RAY-738 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 新西兰（NZ） | Tier 3（low） | RAY-739 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 马耳他（MT） | Tier 3（low） | RAY-740 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 文莱（BN） | Tier 2（medium） | RAY-738 | v0.1 | 40 / 11 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 新西兰（NZ） | Tier 3（low） | RAY-739 | v0.1 | 31 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 马耳他（MT） | Tier 3（low） | RAY-740 | v0.1 | 54 / 11 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 英国（UK） | 非一带一路（低） | RAY-692 | v0.1 | 43 / 15 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 澳大利亚（AU） | 非一带一路（低） | RAY-693 | v0.1 | 45 / 16 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 加拿大（CA） | 非一带一路（低） | RAY-695 | backlog | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+
+> 2026-11-17 MT v0.1（RAY-740）：马耳他是欧盟成员国，英语与马耳他语同为官方语言（宪法 art. 5(2)），**商品页用英语即满足「至少一种官方语言」**（S.L. 378.17 reg. 5(1)），不存在强制马耳他语版本；真正会踩的是产品端——说明书/安全信息/标签必须「马耳他语或英语」二选一（S.L. 427.106 reg. 3、S.L. 427.34 reg. 8(5)、S.L. 427.41 reg. 12(4)(a)）。价格上最锋利的一条是 **S.L. 378.09 reg. 5A**：降价必须标「先前价格」，且取降价前 ≥30 天内的最低价，**以 RRP 作划线价不满足**。电商页面另受 GPSR art. 19 约束（制造商名址、欧盟负责人名址、可识别产品的信息与图片、安全警示四项）。认证走 LVD（CE + DoC）与 RED（CE + DoC + 通用充电器标签），未找到马耳他单独的逐型号型式批准；插头为 **BS 1363 英式三脚 13A 带保险丝**（S.L. 427.51 reg. 5(3)(b)）。54 条：rule_level 40 / substantiation 9 / human_review 5，review_required 14。样例页面（homemate.com.mt 空气炸锅）跑通 6 条 finding，并记录 4 条误报（`free`/`safe` 命中导航、`Limited Stock` 误判、把产品义务当页面义务）与 3 条漏报（Cookie 实测、说明书语言、能效标签）。
 
 > 2026-11-17 KE v0.1（RAY-727）：CPA 2012 s.12 的十八项列举覆盖很广，但 **s.12 本身没有罚金**，只能落到 s.92 一般罚则（≤100 万肯先令/3 年），且 s.12 是否属「offence」文本未明示——报告不要写具体罚款金额。真正的价格抓手在 **TDA s.4(3)(a)(ii)**：原价/划线价被推定为「此前 6 个月内连续 ≥28 天以该价销售」，**举证责任在卖家**。标签语言是 **英文或斯瓦希里语二选一**（WMA 1999 规则 r.7(2)(a)），不是必须双语，且义务对象是包装不是网页；**公制强制**（r.3(2)）与**肯尼亚进口商名称地址**（r.7(1)(iii)）是跨境卖家最常见的两个缺口。认证分两套：KEBS 标准标志许可（Standards Act s.10(6)）与进口符合性验证 PVoC/CoC（VoC Order 2005），3C 另需 **CA 型式核准与标签**（KICA 设备条例 2010 reg.12(2)，reg.24 刑责 ≤30 万肯先令/3 年）。肯尼亚法律网对自动化客户端返回 403/WAF，本库经 Wayback 对同一官方 URL 的原始快照取件并锁定 SHA-256（可复现）。
 
