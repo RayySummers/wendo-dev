@@ -1,6 +1,6 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T07:40:00+00:00",
   "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -195,6 +195,43 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "TZ",
+      "market_name": "坦桑尼亚",
+      "status": "v0.1",
+      "rules_count": 28,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "tz/rules.v0.1.json",
+      "readme": "tz/README.md",
+      "sources": "tz/SOURCES.md",
+      "coverage": [
+        "通用广告与误导行为（FCA 2003 / Cap. 285：s.15 误导性行为；s.16(a)(c)(e)(f)(g)(i)(k) 虚假陈述；s.18 性质/工艺/特征/适用性/数量）",
+        "价格与促销（FCA s.17 现金总价、s.22(1) 诱饵广告、s.23 收款不供货）",
+        "产品安全与产品信息（FCA s.49(1) 消费品安全标准/不安全商品、s.50(1) 消费品信息标准）",
+        "商品说明与原产地（Merchandise Marks Cap. 85 s.12 虚假标识、s.16(b) 进口原产地标注、s.27 假冒商品广告）",
+        "标准与准入（Standards Act Cap. 130 s.18(4) 标准标志许可、s.19 符合性声明须经 TBS 核实、s.20(6)/(7) 强制标准与标志许可）",
+        "3C 通信设备型号核准（EPOCA Equipment Regs 2020 reg.5 型号核准、reg.12 核准标签、reg.26 12 个月保修、reg.27(1) 罚则；GN 886/2024 未触及）",
+        "隐私告知与数据合规（PDPA 2022 / Cap. 44 s.14(1) 注册、s.22(2)(3) 法定目的、s.23(2) 收集前告知、s.31/32 跨境传输）"
+      ],
+      "known_gaps": [
+        "各法原始生效日未取得：OCPD 合并本把生效条款标为 [Omitted]，effective_date 按合并版适用起点 2025-07-31 标注",
+        "PDPA 生效通知 GN 395B-1 of 2023 原件未取得：effective_date=2023-05-01 待核",
+        "TBS 强制标准清单未取得：TZ-STD-01/TZ-STD-04 只能判「需核实适用标准」",
+        "FCA s.51 公告的消费品安全/信息标准清单未取得：TZ-SAFE-01/TZ-SAFE-02 适用前提待核",
+        "TBS 进口符合性评定（PVoC）机制的条例原文未取得，未建规则",
+        "商品页/标签的斯瓦希里语义务：未找到成文条款，未建规则（与 MY ETT 2024 的国语义务不同）",
+        "桑给巴尔（Zanzibar）标准与消费者制度未研究，本版仅覆盖大陆",
+        "TCRA 型号核准指引交叉核对失败（503 / JS 渲染），仅由条例条文支撑",
+        "TanzLII 镜像 403，第三方文本比对缺一路",
+        "平台责任、罚则执法实践与判例未检索",
+        "食品/美妆/玩具等特殊品类未覆盖；支付/物流/退换属 Layer 3 不覆盖"
+      ],
+      "issue": "RAY-736",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "tz/SAMPLE_FINDINGS.md"
     }
   ],
   "backlog": [
