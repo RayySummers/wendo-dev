@@ -1,6 +1,6 @@
 {
   "version": "2026-11-17",
-  "updated_at": "2026-11-17T14:30:00+08:00",
+  "updated_at": "2026-11-17T15:45:00+08:00",
   "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
   "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
   "markets": [
@@ -47,7 +47,7 @@
       "market_name": "新加坡",
       "status": "v0.1",
       "rules_count": 42,
-      "laws_count": 10,
+      "laws_count": 11,
       "last_verified": "2026-11-17",
       "rules_file": "sg/rules.v0.1.json",
       "readme": "sg/README.md",
@@ -95,19 +95,40 @@
       "tier": "tier1",
       "priority": "high",
       "sort_order": 3,
-      "status": "in_review",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
+      "status": "v0.1",
+      "rules_count": 37,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "ph/rules.v0.1.json",
+      "readme": "ph/README.md",
+      "sources": "ph/SOURCES.md",
+      "coverage": [
+        "通用广告与欺骗性行为（RA 7394 Art. 110 虚假/误导广告与遗漏重大事实；Art. 50(a)(b)(c)(h)(i)(j) 六类列举；Art. 52 不公平/不合情理行为）",
+        "特别声称的证实（Art. 115：功效、安全、环保节能、第三方认证四类分开建条）",
+        "价格与促销（Art. 111 比较价 90 天/4 周；Art. 81 价签与不得高于标示价；Art. 82 比索与分计价；Art. 116 促销许可；Art. 118 促销期间与评选标准披露）",
+        "标签与说明（Art. 76 禁止分销不合规包装；Art. 77 八项最低标签项与显著度；Art. 78 PS 标志限于已认证产品）",
+        "强制认证准入（DTI-BPS PS/ICC：未加贴标志不得分销；PS 可授予外国制造商、ICC 只能由菲律宾进口商申请）",
+        "线上交易披露（ITA 2023 s.23：比索标价、首页身份与联系方式、手册语言 Filipino and/or English、收据）",
+        "域外适用与执法（ITA s.5 最低联系；s.15 下架令；s.16 黑名单；s.29 行政罚款）",
+        "隐私告知与罚则（DPA s.16(b) 八项告知 + 例外；s.11/s.12 原则与正当依据；s.26 罚则）"
+      ],
       "known_gaps": [
-        "规则库尚未落地（RAY-721 in_review）；落地后同步 rules_count / last_verified / known_gaps"
+        "NTC 型号核准（type approval）未取得官方文本：ntc.gov.ph 全站 Cloudflare 403，WiFi/蓝牙类 3C 的准入是 v0.1 实质缺口",
+        "BPS 强制认证的部门行政令（DAO）正文未逐份取得；PH-CERT-01/02 只落到 BPS 制度说明页（article_type=guideline）",
+        "BPS 产品计数自相矛盾（制度页称 87 项，清单页列至 111 项），未调和",
+        "ITA 生效日两口径（报纸日 2023-12-08 → 2023-12-23；公报日 2023-12-18 → 2024-01-02），本库取前者",
+        "ITA s.29(e) 三档罚款均写“second offense”，s.29(d)(1) 下限高于上限，s.23(f)(1) 有“(10”排印错误：均照录不补正",
+        "s.23(c)/(h) 义务明确但未被 s.29(e) 罚则条款列举，罚则路径待律师意见",
+        "食品接触材料（电饭锅内胆、搅拌杯、咖啡机管路）未覆盖；BPS 清单未见相关条目，FDA 侧未查",
+        "能效标识（DOE）未覆盖；PH-ADV-17 只处理“节能声称”层面",
+        "计量与净含量法定公差未取得；RA 7394 的 IRR（DTI DAO）未取得，Art. 79 的额外标签项可能扩大义务",
+        "RA 7394 无 effectivity clause，本库按 15 日规则推为 1992-06-30（推断，非原文）",
+        "NTC/NPC 通告、地方政府（LGU）层面的促销许可与标价规定未覆盖",
+        "美妆/食品/玩具/医疗器械等品类特殊规则未覆盖"
       ],
       "issue": "RAY-721",
-      "legacy_issue": "RAY-694"
+      "legacy_issue": "RAY-694",
+      "sample_findings": "ph/SAMPLE_FINDINGS.md"
     },
     {
       "market": "AE",
@@ -115,18 +136,39 @@
       "tier": "tier1",
       "priority": "high",
       "sort_order": 4,
-      "status": "in_review",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-722 in_review）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 33,
+      "laws_count": 6,
+      "last_verified": "2026-11-17",
+      "rules_file": "ae/rules.v0.1.json",
+      "readme": "ae/README.md",
+      "sources": "ae/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPL 2020：第 17 条虚假数据/误导广告；第 8 条价格；第 21 条不公平条款；实施条例第 8 条欺骗性描述要素）",
+        "促销与折扣事前许可（CPL 第 18 条；实施条例第 31 条折扣告知与差价返还）",
+        "阿拉伯语义务（CPL 第 26 条数据/广告/合同；第 25(1) 条电商信息；第 8(4) 条发票）",
+        "媒体法广告规则（第 20 条广告须标明广告属性、不得违反内容标准；第 23 条行政罚款）",
+        "商品说明与标签（实施条例第 3 条 8 项清单、第 4 条安装与箱内清单；CPL 第 7 条）",
+        "标准符合性与准入（CPL 第 20 条；TDRA 通信设备型号批准 Level 1–3）",
+        "电商信息披露（2023 年第 14 号法令：价格/费用/条款公开、执照与地址公开、营销拒收权）",
+        "隐私告知（PDPL 2021：第 13(2) 条处理前告知、第 6 条同意质量与撤回、第 4 条同意原则；电商法第 10 条数据不得擅自交易）"
       ],
-      "issue": "RAY-722"
+      "known_gaps": [
+        "ECAS 注册与 ECAS 标志、G-Mark 的官方流程原文未取得（MoIAT 站点证书过期、服务页 404）；认证与准入只写到 CPL 第 20 条",
+        "阿联酋强制性标准清单（UAE.S/GSO，含 IEC 60335 系列）未逐项核对，未把品类与标准号写死",
+        "电商法罚则（2025 年第 200 号内阁决议）未取得原文，电商条目只写“由该决议规定”",
+        "PDPL 第 26 条授权的行政处罚附表未取得，隐私条目不含金额",
+        "PDPL 实施条例（Executive Regulations）版本未核定，本版只引 PDPL 原文",
+        "媒体法实施条例（2024 年第 68 号内阁决议）与 2025 年第 42 号违规罚则决议未取得英文全文",
+        "促销许可由各酋长国主管机关签发，跨酋长国线上销售的许可归属与互认未核",
+        "阿拉伯语义务在“品牌名/型号/技术参数”层面的适用边界无官方英文指引，按“整页无阿语即缺口”处理并留人工",
+        "DIFC（DP Law 2020）与 ADGM（Data Protection Regulations 2021）独立数据制度未建库",
+        "各酋长国地方规则（迪拜 DED/迪拜市技术指引）未逐条核对",
+        "TDRA 型号批准的罚则条文未取得",
+        "食品/美妆/玩具/医疗器械等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-722",
+      "sample_findings": "ae/SAMPLE_FINDINGS.md"
     },
     {
       "market": "SA",
@@ -134,18 +176,33 @@
       "tier": "tier1",
       "priority": "high",
       "sort_order": 5,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-723 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 34,
+      "laws_count": 5,
+      "last_verified": "2026-11-17",
+      "rules_file": "sa/rules.v0.1.json",
+      "readme": "sa/README.md",
+      "sources": "sa/SOURCES.md",
+      "coverage": [
+        "电子广告（ECL Art.10-12：广告＝合同内容、广告必载信息、虚假/误导禁止、1 日整改）",
+        "电商信息披露（ECL Art.6/7/8：主体与 CR、含税含运费总价、保修、逐项发票）",
+        "3C 数码准入（通信与信息技术法 M/106 + CST RT12：设备许可、DoC、CoC、海关放行、沙特 CR 主体门槛、CST 标签）",
+        "产品安全（SASO《产品安全法》指南：不安全产品禁止、制造商/分销商义务、符合性标志；指南级）",
+        "隐私告知（PDPL Art.5/7/11/12/13/20/36）"
       ],
-      "issue": "RAY-723"
+      "known_gaps": [
+        "《消费者保护法》现行有效版本的官方英文文本未取得（mc.gov.sa 在本环境不可达）→ 一般广告/虚假宣传/绝对化用语/折扣真实性无规则；ECL Art.11 只覆盖电子广告",
+        "2026-11-10 内阁批准的新《消费者保护法》（76 条、罚则上限 800 万里亚尔、公布后 180 日生效、取代三部现行法）仅见新闻稿摘要，未直接抓取核实；生效后本库消费者保护部分需迁移",
+        "阿拉伯文标签/说明书义务的来源（《商业数据法》、SASO 技术法规原文）只有阿拉伯文版本 → 语言义务按 official_english_unavailable 处理，未建规则",
+        "SASO《合格评定模式总条例》与 SABER 的 PCoC/SCoC 流程仅有阿拉伯文 → 产品安全 6 条停在指南级（confidence=medium, review_required=true）",
+        "SFDA/GSO 食品接触材料限值与检测方法未取得英文文本 → 小家电食品接触只有「需证明」级",
+        "能效标签（SEEC/SASO）对电炸锅/电水壶等小家电的适用性未核",
+        "PDPL 实施条例英文版未取得 → 同意形式、跨境传输、DPO 等细则无法落地",
+        "claim_pattern 只收英文触发词；阿拉伯文匹配（如 ضمان 兼指「保修」与「确保」）误报率高，留 v0.2",
+        "美妆/食品/玩具等品类特殊规则未覆盖；支付/物流/退换属 Layer 3 未覆盖"
+      ],
+      "issue": "RAY-723",
+      "sample_findings": "sa/SAMPLE_FINDINGS.md"
     },
     {
       "market": "PK",
@@ -172,18 +229,35 @@
       "tier": "tier1",
       "priority": "high",
       "sort_order": 7,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-725 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 26,
+      "laws_count": 7,
+      "last_verified": "2026-11-17",
+      "rules_file": "ng/rules.v0.1.json",
+      "readme": "ng/README.md",
+      "sources": "ng/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（FCCPA 2018：s.114 plain language、s.115 价格、s.116 trade description、s.117 二手/翻新、s.123 一般营销标准、s.124 胁迫与不公平手段、s.125 虚假表述与跨境责任链、s.126 检测与证言）",
+        "广告事前审批（ARCON vetting / Certificate of Approval，guideline 级）",
+        "商品说明与标签可追溯（FCCPA s.134）、危险品公告与撤回（s.135）",
+        "认证与准入：SONCAP（Product Certificate / SONCAP Certificate / Default 费率）、SONMELS 能效标签、NCC Equipment Type Approval",
+        "隐私告知与同意（NDPA 2023：s.24 原则、s.25 处理依据、s.26 同意、s.27 收集前告知、s.44 重要控制者登记、s.48 罚则上限）"
       ],
-      "issue": "RAY-725"
+      "known_gaps": [
+        "ARCON Act 2022 正文（A719-A771）未取得：官网只有 gazette 前置页，ARCON 规则停留在 vetting 页面（无条文号、无罚则）",
+        "SON Act 2015 全文未取得：SONCAP / SONMELS 规则均为 guideline 级，SON 的处罚条款未收录",
+        "NCC Type Approval Regulations 2024 全文未取得：型式认可的罚则与代理要求未核",
+        "FCCPA 2018 只有扫描件且 OCR 文本层不可用：15 条引文按页面图像转录（gazette_page 记录页码），无法机器校验",
+        "SONCAP 受管制 HS 清单由 CISS/CBN 动态增删，未取得全量清单，无法逐 SKU 判断是否受管制",
+        "SONMELS Regulations 2026 仍为征求意见稿：Phase I/II 强制日期可能调整",
+        "价格货币：s.115(2) 要求以奈拉标价，跨境 USD/CNY 标价是否满足未找到监管口径",
+        "「data controller of major importance」认定门槛未取得 NDPC 指引全文，NG-PRV-05 为 medium",
+        "NDPR 2019 与 NDPA 2023 的衔接未核实，未收录 NDPR 条文",
+        "计量/净含量、州级（如 Lagos）消费者保护规则、行业自律准则（Nigerian Code of Advertising）未覆盖",
+        "食品/美妆/玩具等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-725",
+      "sample_findings": "ng/SAMPLE_FINDINGS.md"
     },
     {
       "market": "ZA",
@@ -191,18 +265,41 @@
       "tier": "tier1",
       "priority": "high",
       "sort_order": 8,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-726 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 41,
+      "laws_count": 7,
+      "last_verified": "2026-11-17",
+      "rules_file": "za/rules.v0.1.json",
+      "readme": "za/README.md",
+      "sources": "za/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPA 68/2008：s.29 营销一般标准、s.41(1)(a)-(b) 虚假/误导/夸大陈述、s.41(3) 具体类型、s.30 诱饵广告、s.31 默认加入、s.32 直销告知、s.40 不合良心行为）",
+        "价格与商品说明（CPA s.23 展示价与最低价、s.24 商品说明与涂改、s.25 翻新/平行进口告示、s.26 交易记录九项）",
+        "原产地说明（CPA s.24(4)-(5) + Regs reg.6：仅纺织/服装/鞋/皮革；家电不在指定范围）",
+        "促销竞赛（CPA s.36 + Regs reg.11(3)：不得强制中奖者让渡肖像/参加营销）",
+        "语言义务（CPA s.22 平实语言；s.40(2) 无法理解协议语言）",
+        "电商披露与冷却期（ECTA 25/2002 第 7 章：s.43(1) 十七项网站披露、s.43(2)-(3) 下单前复核与 14 日撤销、s.44 七日冷却期、s.45 未请求商业讯息、s.46 三十日履行、s.47-48 选法条款与权利不可排除）",
+        "隐私与电子直销（POPIA 4/2013：s.18 收集告知、s.19 安保措施、s.69 电子直销 opt-in 与身份/退订、s.72 跨境传输）",
+        "认证与准入（NRCS Act 5/2008 s.14 强制规范与授权书 LOA、s.15 扣留/召回/退运；ECA 36/2005 s.35(1) ICASA 型号核准）",
+        "计量单位（LMA 9/2014 s.34(4) 进口商品 SI 等值标示、s.35(1) 广告计量单位）",
+        "质量与合同条款（CPA s.56 六个月默示保证、s.51(1)(b) 禁止剥夺法定权利、s.49 责任限制条款的显著提示）"
       ],
-      "issue": "RAY-726"
+      "known_gaps": [
+        "ICASA 型号核准的程序细则与 ECA s.35(2) 豁免清单未取得（icasa.org.za 在本环境 TLS 与 HTTP 均不可达）",
+        "NRCS 强制规范清单（VC 编号）与最新公告未取得：官网 Compulsory Specifications 页面为空壳，规则只写到「适用强制规范的商品」",
+        "SANS 60335 系列（家电安全）为付费标准，未取得全文；规则不细化技术要求",
+        "CPA 与 ECTA 无官方合并文本（consolidation），本版依据签署版公报，可能存在版本滞后",
+        "LMA 与 ECA 的生效公告未取得，effective_date 暂记公报日/全面生效日，confidence=medium（5 条）",
+        "s.24(4) 指定商品是否扩及家电未核；本版依 Regs reg.6/reg.7 判定为仅纺织/服装/鞋/皮革与 GMO",
+        "CPA s.34（促销优惠内容要求）未收，仅覆盖 s.36 的一点；列 v0.2",
+        "缺「认证信息披露缺失」的 disclosure-gap 规则：页面未展示 LOA/SABS/℮ 时无法触发",
+        "能效标示（部分家电强制）未建规则，未取得官方来源",
+        "3C 数码仅 1 条（ICASA 型号核准），无线/电池/充电器类强制要求未覆盖",
+        "省级/市级消费者条例、ARB 广告自律准则未纳入",
+        "医疗/杀菌类声称与卫生部管辖的边界未研究"
+      ],
+      "issue": "RAY-726",
+      "sample_findings": "za/SAMPLE_FINDINGS.md"
     },
     {
       "market": "KE",
@@ -210,18 +307,37 @@
       "tier": "tier1",
       "priority": "high",
       "sort_order": 9,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-727 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 34,
+      "laws_count": 9,
+      "last_verified": "2026-11-17",
+      "rules_file": "ke/rules.v0.1.json",
+      "readme": "ke/README.md",
+      "sources": "ke/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPA 2012 s.12 十八项虚假/误导/欺骗性表示、s.13 显失公平、s.15 禁止不公平行为、s.92 一般罚则）",
+        "消费者合同（CPA s.5 合理可销售品质与 s.5(3) 排除担保条款无效、s.31(2) 互联网协议接受/更正、s.16 撤销与赔偿）",
+        "价格指示（TDA Cap. 505 s.4：现价低于实际、原价/建议零售价的 6 个月与 28 天推定、举证责任倒置）",
+        "商品说明与原产地（TDA s.3、s.7 进口原产地标示、s.8 说明事项、s.9 不假但误导）",
+        "包装标签（WMA 1999 规则 r.3 公制、r.4 净重、r.7 制造商/进口商/通用名/净含量与英/斯语言、r.8 数量声明不得用约数）",
+        "计量与净含量（WMA Cap. 513 s.40 短量、s.42 少于标示）",
+        "标准与进口准入（Standards Act Cap. 496 s.9(2) 强制标准、s.10(6) 标准标志许可、VoC Order 2005 PVoC/CoC）",
+        "通信设备型式核准（KICA 设备条例 2010 reg.12(2) CA 标签、reg.17 许可证、reg.24 罚则）",
+        "隐私告知（DPA 2019 s.29 收集前告知清单、s.25(b)/s.26(a) 透明性与知情权；s.63 行政罚款）"
       ],
-      "issue": "RAY-727"
+      "known_gaps": [
+        "CPA 生效日：文首仅载「By Notice」，官方公报未取得；暂用二手来源一致的 2013-03-14",
+        "CPA s.12 的罚则路径未定：s.15 未设罚金，能否按 s.92 一般罚则处罚需律师意见/判例",
+        "Consumer Protection (General) Regulations 未找到，s.31(1)/s.36 的 prescribed information 无法建清单式规则",
+        "KEBS 强制标准清单与对应 KS 标准号未取得（kebs.org TLS 证书错误，官网不可达）",
+        "PVoC 适用 HS 编码/品类清单未取得，KE-CERT-04 无法判断 SKU 是否在清单内",
+        "WMA 1999 规则 r.3(1) 附表范围未逐 SKU 核对；WMA s.63 一般罚则金额未摘录",
+        "Data Protection (General) Regulations 2021 未核对",
+        "CA 已核准设备清单未抓取，KE-CERT-06 需逐型号比对",
+        "郡级（county）法规、广告业自律守则未覆盖；食品/美妆/玩具等品类特殊规则未覆盖"
+      ],
+      "issue": "RAY-727",
+      "sample_findings": "ke/SAMPLE_FINDINGS.md"
     },
     {
       "market": "LK",
@@ -248,18 +364,37 @@
       "tier": "tier2",
       "priority": "medium",
       "sort_order": 11,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-729 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 28,
+      "laws_count": 4,
+      "last_verified": "2026-11-17",
+      "rules_file": "bd/rules.v0.1.json",
+      "readme": "bd/README.md",
+      "sources": "bd/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CRPA 2009：s.44 虚假广告、s.50 假货、s.37 标签罚则、s.38 价目表、s.40 固定价、s.45 交付、s.46/s.48 计量、s.51 过期、s.43/s.52 安全、s.55/s.56 罚则）",
+        "价格与计量展示（CRPA 2009 s.38/s.40/s.46/s.48）",
+        "BSTI 强制认证与标准标志（BSTI Ordinance 1985 s.19/s.24/s.2(2)；315 项强制认证清单）",
+        "小家电（家用电热水壶 BDS 253:1990、电熨斗 BDS IEC 60311:2018、电风扇 BDS 818:1998、微波炉 BDS IEC 60705:2008）",
+        "3C 配件（一次电池 BDS IEC 60086、UPS BDS IEC 62040-3:2022、插头/插座/转换器 BDS IEC 60884）",
+        "销售合同默示条件（Sale of Goods Act 1930 s.15 描述相符、s.16(1) 用途适合、s.16(2) 商销品质）"
       ],
-      "issue": "RAY-729"
+      "known_gaps": [
+        "BTRC 电信设备型号核准/技术接受证书（BTR Act 2001 及 BTRC 指南仅有孟加拉文）",
+        "个人数据保护法 2026（PDP Act 2026，Act No. 63 of 2026）仅有孟加拉文，隐私告知未建规则",
+        "Digital Commerce Operation Guidelines 2021 官方英文文本未取得，电商披露未建规则",
+        "Import Policy Order 2026-2029 仅有孟加拉文，进口标签/原产地/语言义务未建规则",
+        "非食品商品的孟加拉语标签义务未找到一般性官方英文规定",
+        "BSTI 各产品 SRO 与 BDS 标准全文未取得；产品清单为英文汇总表，具体型号/HS 范围需复核",
+        "比较广告、网红/付费软文、促销倒计时、环保声称未覆盖",
+        "能效标签、RoHS、电子废弃物、包装未覆盖",
+        "CRPA s.37 的前置标签义务未逐产品映射",
+        "CRPA s.38 对线上商品页的适用存在解释空间，未核",
+        "执法/mobile court 罚款实践无公开样本；罚则只写上限",
+        "食品/美妆/玩具等特殊品类未覆盖"
+      ],
+      "issue": "RAY-729",
+      "sample_findings": "bd/SAMPLE_FINDINGS.md"
     },
     {
       "market": "QA",
@@ -267,18 +402,35 @@
       "tier": "tier2",
       "priority": "medium",
       "sort_order": 12,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-730 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 35,
+      "laws_count": 7,
+      "last_verified": "2026-11-17",
+      "rules_file": "qa/rules.v0.1.json",
+      "readme": "qa/README.md",
+      "sources": "qa/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPL 2008 Art. 6/7/13/24，罚则 Art. 18）",
+        "阿拉伯语信息义务（CPL 2008 Art. 17：Art. 7/8/11 信息须以阿拉伯语呈现）",
+        "价格与发票（CPL 2008 Art. 8/10）",
+        "缺陷召回与保修责任（CPL 2008 Art. 5/9/14/16）",
+        "电商信息披露（电商法 2010 Art. 51/53/54/55/56/57/58/59）",
+        "隐私告知与直接营销（PDPPL 2016 Art. 4/9/13/14/22/23）",
+        "3C 数码型号核准与标签（电信法 2006/2017 Art. 55；CRA 型号核准指南；Wi-Fi 6E 类许可）",
+        "小家电 G-Mark 与阿拉伯语安全信息（GSO BD-142004-01 Art. 4/17(10)/18(1)）"
       ],
-      "issue": "RAY-730"
+      "known_gaps": [
+        "2012 年第 68 号《执行条例》无官方英文文本：标签 7 项（原产国、进口商、生产日期/保质期等）与阿拉伯语发票未编码，v0.1 最大缺口",
+        "CPL 2008 的 2018 年第 7 号法修订未反映在 Al Meezan 英文快照：罚则与 Art. 18 bis 现行版本待核",
+        "GSO 英文本自述 Non-official Translation；卡塔尔以 QS/MOCI 通告落地的细节未取得英文文本，G-Mark 三条 confidence=medium",
+        "CRA 型号核准现行流程已迁 e-Spectrum，2011 指南与现行申请流程的差异未逐条核对",
+        "PDPPL 的部长决定（权利行使程序、隐私政策、泄露通知时限）未取得",
+        "阿拉伯语标签只能要求截图核实，不能凭英文页判定未履行 Art. 17",
+        "QS 标准全文多为付费/阿拉伯文，G-Mark 测试标准清单未逐项建立",
+        "食品接触材料、纺织品、化学品未覆盖；无公开处罚案例库，罚则只写上限"
+      ],
+      "issue": "RAY-730",
+      "sample_findings": "qa/SAMPLE_FINDINGS.md"
     },
     {
       "market": "KW",
@@ -305,18 +457,33 @@
       "tier": "tier2",
       "priority": "medium",
       "sort_order": 14,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-732 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 40,
+      "laws_count": 4,
+      "last_verified": "2026-11-17",
+      "rules_file": "om/rules.v0.1.json",
+      "readme": "om/README.md",
+      "sources": "om/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPL 66/2014：Art. 20 误导性广告、Art. 4 广告事前批准、Art. 6 CR 号、Art. 21 宗教习俗）",
+        "促销与价格（CPL Art. 31；条例 Art. 35/36：促销与折扣事前批准、促销前后售价、销售发票）",
+        "商品说明与标签、语言义务（CPL Art. 5/19/24；条例 Art. 12/22/23/25）",
+        "认证与准入（GSO BD-142004-01 低压电器 G-Mark、DoC、阿语说明书；CPL Art. 3/22；条例 Art. 21）",
+        "缺陷与召回（CPL Art. 27；GSO 制造商义务 12）",
+        "隐私告知与数据主体权利（PDPL 6/2022：Arts. 11/13/19/20/21/23/22）"
       ],
-      "issue": "RAY-732"
+      "known_gaps": [
+        "广告事前批准（CPL Art. 4）与促销审批（Art. 31 / 条例 35-36）的适用范围未细化：是否覆盖品牌自建站、社交贴文、平台 listing 待核",
+        "实施条例 77/2017 经 2022 年第 1 号、2023 年第 1 号部长决定修订，另有 2026 年 5 月删除原第 45-52 条处罚条款的报道（二手）；Arts. 20/21/35/36 未逐条双语复核",
+        "PDPL 经 RD 68/2026 替换 Arts. 2/3/7/10/14/15/22/25/27（新告知内容并入 Art. 10）；该修订无官方英文译本，隐私告知规则缺口",
+        "PDPL 实施条例（MD 34/2024）仅阿语，同意程序/DPO/跨境保障细则无法用英文引文覆盖",
+        "TRA 电信设备型号核准未建规则：tra.gov.om 被 WAF 拦截，未取得官方英文文本（3C 数码缺口）",
+        "MOCIIP / DGSM 官网不可达：OS 标准清单、进口登记、MS-LV 计划（2025-11-20 生效 / 2026-02-13 强制）未核实",
+        "GSO 低压电器法规在阿曼的国内执行通告未取得；OM-PRD-04 的 2016-07-01 生效日为二手执行日常用值",
+        "能源效率标签、食品接触材料、阿语 claim_pattern 词表、支付/分期披露（Layer 3）未覆盖"
+      ],
+      "issue": "RAY-732",
+      "sample_findings": "om/SAMPLE_FINDINGS.md"
     },
     {
       "market": "BH",

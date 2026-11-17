@@ -15,28 +15,72 @@
 agent/knowledge/legal/
 ├── index.json              # 机器可读索引：26 个市场、梯队、状态、规则数、roadmap
 ├── README.md               # 本文件：方法、字段、扩展流程
-├── my/                     # 马来西亚（RAY-688 / RAY-689）
+├── my/                     # 马来西亚（MY）
 │   ├── rules.v0.1.json     # 45 条规则（JSON）
-│   ├── README.md           # 人工阅读版：关键发现、覆盖矩阵、open questions
-│   ├── SOURCES.md          # 官方来源清单 + SHA-256 + 交叉核对记录
-│   └── SAMPLE_FINDINGS.md  # 真实页面「规则→finding」样例与误报/漏报记录
-├── sg/                     # 新加坡（RAY-720 / legacy RAY-690）
-│   ├── rules.v0.1.json     # 36 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
-│   ├── SAMPLE_FINDINGS.md
-│   └── MARKET_READINESS.md # 一页接入建议（RAY-720）
-├── us/                     # 美国（RAY-691）
+│   └── SAMPLE_FINDINGS.md
+├── sg/                     # 新加坡（SG）
+│   ├── rules.v0.1.json     # 42 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── ph/                     # 菲律宾（PH）
+│   ├── rules.v0.1.json     # 37 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── ae/                     # 阿联酋（AE）
+│   ├── rules.v0.1.json     # 33 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── sa/                     # 沙特阿拉伯（SA）
+│   ├── rules.v0.1.json     # 34 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── ng/                     # 尼日利亚（NG）
+│   ├── rules.v0.1.json     # 26 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── za/                     # 南非（ZA）
+│   ├── rules.v0.1.json     # 41 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── ke/                     # 肯尼亚（KE）
+│   ├── rules.v0.1.json     # 34 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── bd/                     # 孟加拉国（BD）
+│   ├── rules.v0.1.json     # 28 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── qa/                     # 卡塔尔（QA）
 │   ├── rules.v0.1.json     # 35 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-├── uk/                     # 英国（RAY-692）
+├── om/                     # 阿曼（OM）
+│   ├── rules.v0.1.json     # 40 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── us/                     # 美国（US）
+│   ├── rules.v0.1.json     # 35 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+├── uk/                     # 英国（UK）
 │   ├── rules.v0.1.json     # 43 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-├── au/                     # 澳大利亚（RAY-693）
+└── au/                     # 澳大利亚（AU）
 │   ├── rules.v0.1.json     # 45 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
@@ -50,20 +94,20 @@ agent/knowledge/legal/
 
 | 市场 | 梯队 | 子单 | 状态 | 规则/法规 | 最后核验 | 说明 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 马来西亚（MY） | live | RAY-688 / RAY-689 | v0.1 | 45 / 9 | 2026-11-14 | 通用广告 + 小家电 + 3C + 电商披露（2024）+ Halal/PDPA/食品接触 |
-| 新加坡（SG） | Tier 1（high） | RAY-720（legacy RAY-690） | v0.1 | 36 / 8 | 2026-11-14 | CPFTA / CPTDSRA / CPSR Safety Mark / 食品接触 / 计量 / GST / PDPA(DNC) / Spam |
-| 菲律宾（PH） | Tier 1（high） | RAY-721（legacy RAY-694） | in_review | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 阿联酋（AE） | Tier 1（high） | RAY-722 | in_review | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 沙特阿拉伯（SA） | Tier 1（high） | RAY-723 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 马来西亚（MY） | live | RAY-688 / RAY-689 | v0.1 | 45 / 9 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 新加坡（SG） | Tier 1（high） | RAY-720（legacy RAY-690） | v0.1 | 42 / 11 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 菲律宾（PH） | Tier 1（high） | RAY-721（legacy RAY-694） | v0.1 | 37 / 5 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 阿联酋（AE） | Tier 1（high） | RAY-722 | v0.1 | 33 / 6 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 沙特阿拉伯（SA） | Tier 1（high） | RAY-723 | v0.1 | 34 / 5 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
 | 巴基斯坦（PK） | Tier 1（high） | RAY-724 | in_progress | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 尼日利亚（NG） | Tier 1（high） | RAY-725 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 南非（ZA） | Tier 1（high） | RAY-726 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 肯尼亚（KE） | Tier 1（high） | RAY-727 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
 | 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 孟加拉国（BD） | Tier 2（medium） | RAY-729 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 卡塔尔（QA） | Tier 2（medium） | RAY-730 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 孟加拉国（BD） | Tier 2（medium） | RAY-729 | v0.1 | 28 / 4 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 卡塔尔（QA） | Tier 2（medium） | RAY-730 | v0.1 | 35 / 7 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
 | 科威特（KW） | Tier 2（medium） | RAY-731 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 阿曼（OM） | Tier 2（medium） | RAY-732 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 阿曼（OM） | Tier 2（medium） | RAY-732 | v0.1 | 40 / 4 | 2026-11-17 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
 | 巴林（BH） | Tier 2（medium） | RAY-733 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 埃及（EG） | Tier 2（medium） | RAY-734 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 约旦（JO） | Tier 2（medium） | RAY-735 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
@@ -72,9 +116,9 @@ agent/knowledge/legal/
 | 文莱（BN） | Tier 2（medium） | RAY-738 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 新西兰（NZ） | Tier 3（low） | RAY-739 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 马耳他（MT） | Tier 3（low） | RAY-740 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 联邦 FTC §5 / Endorsement / Green / Review / FPLA / CPSA / FCC / FDCA / Magnuson-Moss |
-| 英国（UK） | 非一带一路（低） | RAY-692 | v0.1 | 43 / 15 | 2026-11-14 | DMCCA 2024 / CRA 2015 / EESR / GPSR / UK GDPR / PECR / BPRs |
-| 澳大利亚（AU） | 非一带一路（低） | RAY-693 | v0.1 | 45 / 16 | 2026-11-14 | ACL / EESS / ACMA / GEMS / 电池标准 / APP / Spam Act |
+| 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 英国（UK） | 非一带一路（低） | RAY-692 | v0.1 | 43 / 15 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
+| 澳大利亚（AU） | 非一带一路（低） | RAY-693 | v0.1 | 45 / 16 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
 | 加拿大（CA） | 非一带一路（低） | RAY-695 | backlog | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
 
 > 2026-11-17 KE v0.1（RAY-727）：CPA 2012 s.12 的十八项列举覆盖很广，但 **s.12 本身没有罚金**，只能落到 s.92 一般罚则（≤100 万肯先令/3 年），且 s.12 是否属「offence」文本未明示——报告不要写具体罚款金额。真正的价格抓手在 **TDA s.4(3)(a)(ii)**：原价/划线价被推定为「此前 6 个月内连续 ≥28 天以该价销售」，**举证责任在卖家**。标签语言是 **英文或斯瓦希里语二选一**（WMA 1999 规则 r.7(2)(a)），不是必须双语，且义务对象是包装不是网页；**公制强制**（r.3(2)）与**肯尼亚进口商名称地址**（r.7(1)(iii)）是跨境卖家最常见的两个缺口。认证分两套：KEBS 标准标志许可（Standards Act s.10(6)）与进口符合性验证 PVoC/CoC（VoC Order 2005），3C 另需 **CA 型式核准与标签**（KICA 设备条例 2010 reg.12(2)，reg.24 刑责 ≤30 万肯先令/3 年）。肯尼亚法律网对自动化客户端返回 403/WAF，本库经 Wayback 对同一官方 URL 的原始快照取件并锁定 SHA-256（可复现）。
