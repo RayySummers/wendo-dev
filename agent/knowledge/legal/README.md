@@ -35,11 +35,17 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-└── au/                     # 澳大利亚（RAY-693）
-    ├── rules.v0.1.json     # 45 条规则（JSON）
+├── au/                     # 澳大利亚（RAY-693）
+│   ├── rules.v0.1.json     # 45 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+└── jo/                     # 约旦（RAY-735）— 阿拉伯语官方文本 + PDP 英译
+    ├── rules.v0.1.json     # 30 条规则（JSON）
     ├── README.md
     ├── SOURCES.md
-    └── SAMPLE_FINDINGS.md
+    ├── SAMPLE_FINDINGS.md
+    └── verify_excerpts.py  # 引文回查脚本（容忍 PDF 连字错位）
 ```
 
 ## 当前状态
@@ -53,10 +59,12 @@ agent/knowledge/legal/
 | 5 | 澳大利亚 (AU) | RAY-693 | v0.1（定稿候选，待产品验收） | v0.1 | 45 | 16 | 2026-11-14 | ACL（s.18 无罚金；罚则上限 $100m/3x/30%）+ EESS（仅 QLD/WA/VIC/TAS 参与；海外公司不能当 Responsible Supplier）+ ACMA/GEMS + 纽扣电池 4 项标准 + APP/Spam Act；ACCC 指引 5 份 |
 | 6 | 菲律宾 (PH) | RAY-694 | backlog | — | — | — | — | RA 7394 / BPS ICC-PS / DPA 2012 |
 | 7 | 加拿大 (CA) | RAY-695 | backlog | — | — | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+| 8 | 约旦 (JO) | RAY-735 | v0.1（定稿候选，待产品验收） | v0.1 | 30 | 2 | 2026-11-17 | CPL 2017（阿拉伯文原文，官方无英译）+ PDP 2023（MoDEE 官方英译）；**语言义务/标签格式/电气与能效准入未建条**（JSMO/TRC/EMRC 不可达）；建议 pilot |
 
 > 2026-11-14 结构调整：RAY-685 收为**总纲/索引**；一个国家/地区一个子单，按 stage 1-7 串行验收，不合并。MY/SG 的 `my/`、`sg/` 文件作为对应子单的 baseline，由子单复核后定稿（MY 45 条、SG 36 条均已定稿）。
 > RAY-688（MY v0.1 首单，3C 6 条）与 RAY-689（MY 定稿单）范围重叠：RAY-689 已在 RAY-688 的 40 条 baseline 上完成复核与定稿（45 条），两单验收口径按 RAY-689 执行，避免重复复核。
 > 2026-11-14 UK v0.1（RAY-692）：**CPRs 2008 已于 2025-04-06 废止**，英国不公平商业行为规则迁入 DMCCA 2024 Part 4 Chapter 1；CMA 可直接罚款（s.182(6)：£300,000 或全球营业额 10%）。CE 标志在 GB 继续与 UKCA 并行被承认（SI 2024/696）。
+> 2026-11-17 JO v0.1（RAY-735）：约旦官方公报为阿拉伯文，**没有官方英文版《消费者保护法》**；按子单特批，21 条以阿拉伯文原文入参并标 `official_english_unavailable`（引文按标准正字法转录、逐条对照页面图像），仅《个人数据保护法》2023 使用 MoDEE 官方英译本。语言政策见 `index.json` 的 `language_policy`。
 > 2026-11-14 AU v0.1（RAY-693）：ACL **s.18 不在 s.224 的罚金清单内**（无民事罚金，救济为禁令/损害赔偿）；法人罚金上限为 **$100,000,000** 或获益 3 倍或违规期营业额 30%（s.224(3A)，旧资料常写 $50m）。电气准入不是全澳一套：**EESS 的 IGA 签署方抓取时为 QLD / WA / VIC / TAS**，NSW/SA/ACT/NT 另有本州制度；EESS 要求责任供应商为澳/新实体，**海外公司不能直接注册**，且不允许 agent。纽扣/硬币电池 4 项强制标准自 **2022-06-22** 起适用；信息标准 s.14（平台描述加警示）只是建议条款。
 
 ## 语言政策（2026-11-14 起）

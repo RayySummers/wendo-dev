@@ -1,8 +1,8 @@
 {
-  "version": "2026-11-14",
-  "updated_at": "2026-11-14T23:30:00+08:00",
-  "description": "文渡合规规则库索引（Layer 4）。只收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引。",
-  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。",
+  "version": "2026-11-17",
+  "updated_at": "2026-11-17T15:40:00+08:00",
+  "description": "文渡合规规则库索引（Layer 4）。优先收录官方英文原文或官方英文译本，规则可追溯到条文与原文短引；无官方英文版的市场（如约旦）按 official_english_unavailable 标注后收录官方原文。",
+  "language_policy": "默认只收 de facto official language 为英语的市场，只用官方英文原文或官方英文译本；无英文官方版本的条目标 official_english_unavailable，不用二手翻译。2026-11-17 起按子单特批收录约旦（JO）：官方文本为阿拉伯语，21 条以阿拉伯文原文入参并标 official_english_unavailable，仅 PDP 2023 使用官方英译本。",
   "markets": [
     {
       "market": "MY",
@@ -195,6 +195,41 @@
       "rules_version": "2026-11-14-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "au/SAMPLE_FINDINGS.md"
+    },
+    {
+      "market": "JO",
+      "market_name": "约旦",
+      "status": "v0.1",
+      "rules_count": 30,
+      "laws_count": 2,
+      "last_verified": "2026-11-17",
+      "rules_file": "jo/rules.v0.1.json",
+      "readme": "jo/README.md",
+      "sources": "jo/SOURCES.md",
+      "coverage": [
+        "广告与消费者保护（CPL 2017 Art 8(A) 六类误导、Art 8(B) 有害/来源不明商品、Art 4(B)(E)）",
+        "消费者权利与信息披露（CPL 2017 Art 3(A)(2)(3)(7)、Art 3(B)）",
+        "商品说明与缺陷商品（CPL 2017 Art 6(A) 安全/技术规则/宣称特性、Art 6(B)(2) 虚假或隐瞒重要信息）",
+        "售后与备件（CPL 2017 Art 5(A)）",
+        "不公平合同条款（CPL 2017 Art 21 弃权条款无效、Art 22 不公平条款）",
+        "隐私告知与同意（PDP 2023 Art 9 告知内容、Art 5 同意条件、Art 8(C)(F)、Art 14(A)(3) 营销）",
+        "罚则（CPL Art 25(A)；PDP Art 22(A)）"
+      ],
+      "known_gaps": [
+        "语言义务与产品标签格式未覆盖：JSMO 技术法规无可达官方原文（jsmo.gov.jo TLS 连接被重置）",
+        "电气安全/能效/无线设备型式认可未覆盖：JSMO、EMRC、TRC 站点不可达；仅有 CPL Art 6(A)(2) 的原则性要求",
+        "2023 年《消费者保护指令》（OG 5879，2023-08-31）全文未取得；二手报道的售后 1 年/5 年期限未采信",
+        "CPL 2017 是否经修正、部内 PDF 是否为最新合并文本未证实（官方公报站点不可达）",
+        "PDP 的实施条例（Bylaws）与委员会指令未取得",
+        "Art 22(B) 的 8 类推定不公平条款未逐项拆条，留人工清单",
+        "电商专项披露规则未发现独立立法；CPL Art 3/8 对电商页面的适用边界待律师确认",
+        "食品/美妆/玩具等品类特殊规则未覆盖"
+      ],
+      "language_note": "约旦官方立法语言为阿拉伯语，公报无英文版；21 条标 official_english_unavailable，引文为阿拉伯文原文；仅 PDP 2023 使用 MoDEE 官方英译本（9 条）。",
+      "issue": "RAY-735",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "jo/SAMPLE_FINDINGS.md"
     }
   ],
   "backlog": [
@@ -294,6 +329,11 @@
         "stage": 7,
         "market": "CA",
         "issue": "RAY-695"
+      },
+      {
+        "stage": 8,
+        "market": "JO",
+        "issue": "RAY-735"
       }
     ]
   }
