@@ -70,6 +70,11 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
+├── nz/                     # 新西兰（NZ）
+│   ├── rules.v0.1.json     # 31 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
 ├── us/                     # 美国（US）
 │   ├── rules.v0.1.json     # 35 条规则（JSON）
 │   ├── README.md
@@ -114,7 +119,7 @@ agent/knowledge/legal/
 | 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 文莱（BN） | Tier 2（medium） | RAY-738 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
-| 新西兰（NZ） | Tier 3（low） | RAY-739 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
+| 新西兰（NZ） | Tier 3（low） | RAY-739 | v0.1 | 31 / 7 | 2026-11-17 | 已落地；FTA s 9 无刑事罚金、插头须 AS/NZS 3112、SDoC 义务在境内进口商；coverage 与 known_gaps 见 index.json |
 | 马耳他（MT） | Tier 3（low） | RAY-740 | todo | — | — | 未开始；落地后同步 index 的 rules_count / last_verified / known_gaps |
 | 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
 | 英国（UK） | 非一带一路（低） | RAY-692 | v0.1 | 43 / 15 | 2026-11-14 | 已落地，PR 已合；coverage 与 known_gaps 见 index.json |
