@@ -28,7 +28,7 @@ SOURCE_FILES = {
     "PK1": "competition2010.pdf",
     "PK2": "psqca1996.pdf",
     "PK3": "icpa1995.pdf",
-    "PK4": "pak195698.pdf",
+    "PK4": "punjablaws_477_20250810.html",
     "PK5": "SindhConsumerProtectionActC14.pdf",
     "PK6": "sog1930.pdf",
     "PK7": "constitution.pdf",
@@ -43,7 +43,18 @@ SCANNED = {"PK9": "sro46_47_2020.pdf", "PK10": "sro411_2024.pdf"}
 
 
 def html_text(path):
-    raw = open(path, "rb").read().decode("utf-8", "ignore")
+    raw = open(path, "rb").read()
+    # punjablaws.gov.pk/laws/477.html is a Word export in cp1252; decoding it as
+    # UTF-8 with errors="ignore" silently drops the en dash (0x96) and makes the
+    # s.21 excerpt look like a mismatch. Try UTF-8 strictly, then fall back.
+    for encoding in ("utf-8", "cp1252", "latin-1"):
+        try:
+            raw = raw.decode(encoding)
+            break
+        except UnicodeDecodeError:
+            continue
+    else:
+        raw = raw.decode("utf-8", "ignore")
     try:
         from bs4 import BeautifulSoup
         soup = BeautifulSoup(raw, "html.parser")

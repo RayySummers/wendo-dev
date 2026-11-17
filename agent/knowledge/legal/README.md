@@ -154,7 +154,7 @@ agent/knowledge/legal/
 | 菲律宾（PH） | Tier 1（high） | RAY-721（legacy RAY-694） | v0.1 | 37 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿联酋（AE） | Tier 1（high） | RAY-722 | v0.1 | 33 / 6 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 沙特阿拉伯（SA） | Tier 1（high） | RAY-723 | v0.1 | 34 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 巴基斯坦（PK） | Tier 1（high） | RAY-724 | v0.1 | 35 / 9 | — | 已落地；coverage 与 known_gaps 见 index.json |
+| 巴基斯坦（PK） | Tier 1（high） | RAY-724 | v0.1 | 35 / 9 | 2026-11-17 | 已落地；旁遮普 7 条引文取官方页 Wayback 2025-08-10 快照（7/7 核对）；coverage 与 known_gaps 见 index.json |
 | 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |

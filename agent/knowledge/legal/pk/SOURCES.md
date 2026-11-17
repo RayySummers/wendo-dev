@@ -13,8 +13,8 @@
 | `official_statute` | 联邦/省议会法案文本（Pakistan Code、省司法机关/省法务部门发布的合并文本） | 是 |
 | `official_subsidiary` | 依母法发布的规例/公告（SRO、Gazette 公报） | 是 |
 | `official_regulator` | PSQCA / NEECA 官网的指引、清单、FAQ | 是（指引类标 `guideline`，不能替代法条） |
-| `official_text_repository` | FAOLEX（联合国粮农组织法律库）存档的成员国法律全文 | 是，但须在 `official_url_note` 说明非政府域名 |
-| `secondary` | 律所文章、商业数据库、行业报告 | 否，仅作线索（本版未使用） |
+| `official_archive_snapshot` | 官方 `.gov.pk` 页面的 Wayback 存档快照（仅在该官方站点从当前网络不可达时使用） | 是，但须同时记录官方 URL、快照时间戳与快照 SHA-256，并在 `official_url_note` 说明 |
+| `secondary` | 律所文章、商业数据库、二手法律汇编（含 FAOLEX 等非政府托管的汇编） | 否，仅作线索；不得作为 `verbatim_excerpt` 的来源 |
 
 ## 主来源
 
@@ -25,7 +25,7 @@
 | PK1 | Competition Act, 2010（竞争法） | Pakistan Code 发布文本（未标合并版本号） | 294,557 | https://pakistancode.gov.pk/pdffiles/administratore1b5ab79c2c1975670e6aa7fe57e57d6.pdf | `competition2010.pdf` | `26fa4eef08472c85ac0b784e4536c9a5fb94af8b1f51e562d3c533c57fe5e947` |
 | PK2 | Pakistan Standards and Quality Control Authority Act, 1996（PSQCA 法） | Pakistan Code 发布文本 | 291,066 | https://pakistancode.gov.pk/pdffiles/administratorbf3c739041f23d1715243047f9bab24c.pdf | `psqca1996.pdf` | `89fe473a21ad66a0ddbb908c6b9fc06081bda474fba57b7a79a3f1c3ddfb4f45` |
 | PK3 | Islamabad Consumers Protection Act, 1995（首都区消费者保护法） | 文首标注「Updated till 3.8.2022」 | 239,502 | https://pakistancode.gov.pk/pdffiles/administratorbc4daf1cd281f7808ceb417c316f18ea.pdf | `icpa1995.pdf` | `1b4eb0ba3040e2f2caad8563c4b671890db5a98653edf02fd71fb89952f90cf2` |
-| PK4 | Punjab Consumer Protection Act, 2005（Pb. Act II of 2005） | FAOLEX 存档全文；2025 年修正案未并入（见 open questions 3） | 190,976 | https://faolex.fao.org/docs/pdf/pak195698.pdf | `pak195698.pdf` | `350f8a312107e5afa4e5d7c9a5fdb6feddae06e1ac58efd9f80f1b155b8d2210` |
+| PK4 | Punjab Consumer Protection Act, 2005（Pb. Act II of 2005） | **官方站 `punjablaws.gov.pk/laws/477.html`**；原站从本环境不可达，引文取 **Wayback 2025-08-10 快照**（`20250810043230`）；页面为 Word 导出、**cp1252 编码**（按 UTF-8 解码会丢 en dash，导致 s.21 引文误判不匹配）；2025 年修正案（Pb. Act LIV of 2025）是否并入未核 | 170,348 | http://punjablaws.gov.pk/laws/477.html（快照：https://web.archive.org/web/20250810043230/http://www.punjablaws.gov.pk/laws/477.html） | `punjablaws_477_20250810.html` | `adca892e1b23be868ee9c582dd4470a8b7718b71a8fbcd7ab0c56b29967ae3b9` |
 | PK5 | Sindh Consumer Protection Act, 2014（Sindh Act No. XVII of 2015；文首「Amendment up to date: Sindh Act No. XXIX of 2023」） | 信德司法学院（Sindh Judicial Academy）更新版 | 1,219,223 | https://sja.gos.pk/assets/Updated_Laws/Sindh%20Consumer%20Protection%20Act%2C%202014.pdf | `SindhConsumerProtectionActC14.pdf` | `700b9e166973a155f3f8265ec92d459b3aa6c603e913fce90b7441ff13631ea6` |
 | PK6 | Sale of Goods Act, 1930（货物买卖法） | Pakistan Code 发布文本 | 395,246 | https://pakistancode.gov.pk/pdffiles/administrator03eadfb5474bfa7c9e45ab4558d5a926.pdf | `sog1930.pdf` | `ac89374529aa0d4929fa1feb5fefc6106c0513187dfde2d8b05ce9042e2a5fd8` |
 | PK7 | Constitution of the Islamic Republic of Pakistan（宪法，Art. 251） | Pakistan Code 发布文本 | 1,184,244 | https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf | `constitution.pdf` | `bd0caf96b8ea2b257e7dd5d70684fba71b70e41e7c64720314d9ba619b4009e9` |
@@ -47,11 +47,15 @@
 
 | 范围 | 核对方式 | 结果 |
 | --- | --- | --- |
-| PK1–PK6 + PK8（31 条引文） | `pdftotext -layout` / HTML 可见文本抽取后逐条字符串匹配（归一化空白/引号/连字符），脚本随库提供：`python3 verify_excerpts.py --sources <dir>` | 31/31 命中，0 处不匹配 |
+| PK1/PK2/PK3/PK5/PK6 + PK8（24 条引文） | `pdftotext -layout` / HTML 可见文本抽取后逐条字符串匹配（归一化空白/引号/连字符），脚本随库提供：`python3 verify_excerpts.py --sources <dir>` | 24/24 命中，0 处不匹配 |
+| PK4（7 条引文） | 官方页面 `punjablaws.gov.pk/laws/477.html` 的 Wayback 2025-08-10 快照，**按 cp1252 解码**后逐条匹配 | 7/7 命中，0 处不匹配（详见下「编码陷阱」） |
 | PK9（1 条）、PK10（3 条） | 扫描件：200 dpi 转图 → Tesseract OCR 定位 → **人工逐字读图复核**（见下「OCR 说明」） | 4/4 与图像一致 |
-| PK8（1 条） | HTML 表格 176 项解析，取「Electric irons for household or similar use. / PS:185」行 | 命中 |
 
 > PK7（宪法）、PK11/PK12（PSQCA 概述与执法页）、PK13（NEECA FAQ）不承载规则引文，仅用于背景与负向结论（语言义务、强制认证口径），故不参与引文比对。
+
+### 编码陷阱（PK4）
+
+`punjablaws.gov.pk/laws/477.html` 是 Word 导出的 HTML，页面字符集为 **cp1252**，s.21 引导句中的 en dash（`0x96`）在 UTF-8 下是非法字节。若用 `decode('utf-8', 'ignore')` 读取，该 dash 会被静默丢弃，`PK-PB-01` 的引文（`…representation that– (a)…`）就会误判为不匹配——**会得到 6/7 的假阴性**。`verify_excerpts.py` 已改为先试 UTF-8、失败回退 cp1252。
 
 ### OCR 说明（重要）
 
@@ -64,7 +68,7 @@
 | 目标 | 现象 | 处理 |
 | --- | --- | --- |
 | `www.pta.gov.pk`（PTA 型号核准规例、Type Approval Procedures、Terminal Equipment 清单） | TLS 握手失败（`SSL_ERROR_SYSCALL`），HTTP 亦被重置 | `web.archive.org` 返回「Temporarily Offline」；本次**放弃**，登记为 open question 1，3C 品类不开放 |
-| `punjabcode.punjab.gov.pk` / `punjablaws.gov.pk`（旁遮普省法典） | TLS 握手失败 / 连接被重置 | 改用 FAOLEX 存档全文（PK4），并在 `official_url_note` 说明；2025 年修正案未核 |
+| `punjabcode.punjab.gov.pk` / `punjablaws.gov.pk`（旁遮普省法典） | TLS 握手失败 / 连接被重置（`SSL_ERROR_SYSCALL`） | 引文改用**官方页面 `punjablaws.gov.pk/laws/477.html` 的 Wayback 2025-08-10 快照**（PK4）；7 条引文与该快照逐字核对 **7/7 一致**；FAOLEX 版本已停用 |
 | `www.commerce.gov.pk`（Import Policy Order 2022） | 403 Forbidden（含 PDF 直链） | `tipp.gov.pk` 仅取到 S.R.O. 750(I)/2025；IPO 2022 标签条款未取得，登记为 open question 7 |
 | `www.ccp.gov.pk`（竞争委员会指引） | TLS 握手失败 | 未使用；规则只依据 Competition Act 原文 |
 | `kpcode.kp.gov.pk`（KP 省法典，含 KP Consumer Protection Act 1997） | TLS 握手失败，HTTP 301 后仍不可达 | 未建 KP 规则，登记为 open question 6 |
@@ -96,7 +100,9 @@ curl -sSLk -A "$UA" -o sog1930.pdf        https://pakistancode.gov.pk/pdffiles/a
 curl -sSLk -A "$UA" -o constitution.pdf   https://pakistancode.gov.pk/pdffiles/administrator9d8e2ecc414c6d3371ac41114b61a2c4.pdf
 
 # 省法
-curl -sSLk -A "$UA" -o pak195698.pdf      https://faolex.fao.org/docs/pdf/pak195698.pdf
+# 旁遮普：官方站从本环境不可达，取 2025-08-10 快照（与 rules.v0.1.json 的 PK-PB-01~07 引文逐字核对 7/7）
+curl -sSLk -A "$UA" -o punjablaws_477_20250810.html \
+  "https://web.archive.org/web/20250810043230/http://www.punjablaws.gov.pk/laws/477.html"
 curl -sSLk -A "$UA" -o SindhConsumerProtectionActC14.pdf "https://sja.gos.pk/assets/Updated_Laws/Sindh%20Consumer%20Protection%20Act%2C%202014.pdf"
 
 # 公告与规例（扫描件）
