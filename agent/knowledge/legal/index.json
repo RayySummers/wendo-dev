@@ -600,18 +600,37 @@
       "tier": "tier2",
       "priority": "medium",
       "sort_order": 20,
-      "status": "todo",
-      "rules_count": 0,
-      "laws_count": 0,
-      "last_verified": null,
-      "rules_file": null,
-      "readme": null,
-      "sources": null,
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-738 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "status": "v0.1",
+      "rules_count": 40,
+      "laws_count": 11,
+      "last_verified": "2026-11-17",
+      "rules_file": "bn/rules.v0.1.json",
+      "readme": "bn/README.md",
+      "sources": "bn/SOURCES.md",
+      "coverage": [
+        "通用广告与消费者保护（CPFT Act Cap. 261：s.4 误导/虚假声明；Sch. 2 的 20 项具体不公平行为；s.18 举证责任）",
+        "价格与标价（Price Control Act s.5；Display of Prices Order para. 2(1)(2)，附表第 4 项明确含「各类电器及其备件」）",
+        "计量与数量（WMA s.6(1) 公制、s.7 净重、s.13(1)(b) 短量、s.13(2) 数量虚假陈述）",
+        "小家电能效准入（EE Act Cap. 233 s.7/s.8/s.19/s.20；Registrable Goods Order 2023 仅空调 ≤7.1 kW）",
+        "3C 通讯设备准入（Telecom Order 2001 s.9(1)/s.52；AITI Dealer Type Approval）",
+        "隐私告知与同意（PDPO 2025 s.8/s.9/s.17(2)/s.24(1)；Parts 3-9 自 2026-01-01 生效）",
+        "商品说明与合同（SoGA s.15(1)；UCTA s.8(2)；Merchandise Marks Act s.20/s.21）"
       ],
-      "issue": "RAY-738"
+      "known_gaps": [
+        "CPFT 附表 1(c) 把「受其他成文法管制的交易」排除出 consumer transaction；与标价令/能效法重叠时 CPFT 是否仍适用，需律师意见",
+        "线上销售是否适用标价令 para. 2(1) 的 price tags 与 para. 2(2) 的马来语单位要求，无官方解释",
+        "PDPO 对境外卖家的域外效力未明文；s.24 跨境转移的 prescribed requirements 配套条例未取得",
+        "未发现通用家电强制安全认证（无 ST CoA / Safety Mark 类制度）；结论为「未发现」，需向 DES/MOFE 书面确认",
+        "S 37/2023 附表 4 的 MEPS 数值未逐项录入，无法判断具体型号是否达标；AITI 设备豁免清单未取得",
+        "WMA s.8 命令未检索到，s.9 预包装净重义务未单列；亦未检索到终止 pound/kati 公制过渡的部长命令",
+        "Halal Order 2005 的 Halal Label 仅指向食品，非食品 halal 声明无专门规则",
+        "没有文莱版电商信息披露条例（对应马来西亚 ETT 2024）；远程销售冷却期不适用于线上",
+        "食品/美妆/玩具/药品等品类特殊规则未覆盖；支付/物流/退换未覆盖"
+      ],
+      "issue": "RAY-738",
+      "rules_version": "2026-11-17-v0.1",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "bn/SAMPLE_FINDINGS.md"
     },
     {
       "market": "NZ",
