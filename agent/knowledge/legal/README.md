@@ -270,7 +270,7 @@ agent/knowledge/legal/
    python3 agent/knowledge/legal/scripts/audit_sources.py --market <CC>   # 新国家必须 0
    ```
 
-   全局审计（不带 `--market`）在 12 条二手源换完前**不会**是 0，见下节基线。
+   全局审计（不带 `--market`）在 EG / GH 那 10 条二手源换完前**不会**是 0，见下节基线。
 
 4. **市场开放状态只写在 `open` 字段**：`index.json` 每个市场条目都有布尔 `open`，新市场一律 `open: false`。
    `open: true` 表示对产品开放（出现在前端市场清单里），需产品确认上线后由人手动改，**不要由 `tier === "live"`
@@ -281,7 +281,8 @@ agent/knowledge/legal/
 
 `sync_index.py --check` 管的是**索引与规则文件的计数是否一致**；它不看 URL 指向哪。
 `audit_sources.py` 补的是另一半：**每条规则的 `official_url` 是不是落在发布国官方域名上**。
-中期检查表第五节「871 条官方 / 12 条二手汇编」的口径就是它算出来的（RAY-756 / RAY-760）。
+中期检查表第五节最初那句「871 条官方 / 12 条二手汇编」就是它算出来的（RAY-756 / RAY-760）；
+RAY-757 换完 MY 两条后变成 873 / 10。
 
 ```bash
 python3 agent/knowledge/legal/scripts/audit_sources.py                 # 全部市场，人读报表
@@ -301,6 +302,12 @@ python3 agent/knowledge/legal/scripts/audit_sources.py --warn-only     # 只报�
 2. **说明与 URL 不一致**：`official_url` 已经指向 A 站，但 `official_url_note` / `notes` / `source_note`
    里还写着二手汇编的名字。这是历史上真实踩过的坑：PK 那 7 条旁遮普规则只换了 URL、说明里还留着
    FAOLEX，看起来干净，其实没改完。
+
+   这条检查**逐句判断**，不看整段：一句话里如果带「逐页一致 / 逐字核对 / 交叉核对 / 与旧引用」
+   这类核对措辞，就认为它是在交代换源时的比对过程，不算残留。换源做对了本来就该在 `notes` 里写
+   「新官方文本与旧二手文本已核对一致」——RAY-757 的 MY 两条就是这么写的，早先的裸关键词匹配
+   会把它误报成残留（已在 RAY-760 复审时修掉）。反过来，把 WTO 通报附件 / FAOLEX **当来源挂着**
+   （「引文取自 WTO 通报附件」）仍然照报。
 3. **官方域分布**：按主机统计，输出每国「官方 / 二手 / 待降级」条数与官方域占比。
 
 退出码：`0` 干净；`1` 有二手域、说明不一致或缺 `official_url`；`2` 输入有问题（坏 JSON、
@@ -326,19 +333,24 @@ python3 agent/test/audit_sources_test.py   # 或 cd agent && npm run test:legal
 `agent/` 下也有对应的 npm 入口：`npm run audit:sources`（等于跑审计脚本）、
 `npm run test:legal`（等于跑上面的回归测试），`npm run test:py` 会把两个 Python 测试一起跑。
 
-### 基线（2026-11-18）
+### 基线
+
+**当前（2026-11-18 RAY-757 合入后）**：
 
 ```bash
 $ python3 agent/knowledge/legal/scripts/audit_sources.py
 来源域审计：25 国 / 883 条规则
-  官方 871 条（98.6%） | 二手域 12 条 | 说明不一致 0 条 | 待降级 2 条
+  官方 873 条（98.9%） | 二手域 10 条 | 说明不一致 0 条 | 待降级 0 条
   其中 3 条为官方页存档快照（web.archive.org 等），按口径计入官方
 ```
 
-12 条二手源：**EG 4**（`dataguidance.com`，EG-PRIV-02/03、EG-MKT-01/02）、
-**GH 6**（`faolex.fao.org`，GH-LAB-01/02/03/04/10、GH-CERT-01）、
-**MY 2**（`members.wto.org`，MY-HALAL-01/02）。待降级 2 条即 MY 的那两条——
-它们连「非政府域名」的标注都还没有。
+10 条二手源：**EG 4**（`dataguidance.com`，EG-PRIV-02/03、EG-MKT-01/02）、
+**GH 6**（`faolex.fao.org`，GH-LAB-01/02/03/04/10、GH-CERT-01）。
+MY 的 2 条（MY-HALAL-01/02）已由 RAY-757 换到 AGC，官方数从 871 涨到 873。
 
-换源推进后这个基线要跟着降：全库 `--market` 逐国跑，应当是「换完的国家 0、没换的国家不变」。
+**历史**：RAY-760 刚落地时（RAY-757 尚未合入）是 871 官方 / 12 二手 / 待降级 2
+（MY 那两条连「非政府域名」标注都还没有）。这个数字是中期检查表 v1.0 第五节的口径，
+见父单 RAY-756。
+
+后续每换完一个国家，这个基线跟着降：全库 `--market` 逐国跑，应当是「换完的国家 0、没换的国家不变」。
 `sync_index.py --check` 与 `audit_sources.py` 互不替代——前者管计数一致，后者管来源域干净。
