@@ -164,7 +164,7 @@ agent/knowledge/legal/
 | 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿曼（OM） | Tier 2（medium） | RAY-732 | v0.1 | 40 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 巴林（BH） | Tier 2（medium） | RAY-733 | v0.1 | 31 / 8 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 埃及（EG） | Tier 2（medium） | RAY-734 | v0.1 | 31 / 6 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 埃及（EG） | Tier 2（medium） | RAY-734 | v0.1 | 31 / 6 | 2026-11-18 | 已落地；coverage 与 known_gaps 见 index.json |
 | 约旦（JO） | Tier 2（medium） | RAY-735 | v0.1 | 30 / 2 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | v0.1 | 28 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | v0.1 | 33 / 10 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
@@ -331,14 +331,20 @@ python3 agent/test/audit_sources_test.py   # 或 cd agent && npm run test:legal
 ```bash
 $ python3 agent/knowledge/legal/scripts/audit_sources.py
 来源域审计：25 国 / 883 条规则
-  官方 871 条（98.6%） | 二手域 12 条 | 说明不一致 0 条 | 待降级 2 条
+  官方 877 条（99.3%） | 二手域 6 条 | 说明不一致 2 条 | 待降级 0 条
   其中 3 条为官方页存档快照（web.archive.org 等），按口径计入官方
 ```
 
-12 条二手源：**EG 4**（`dataguidance.com`，EG-PRIV-02/03、EG-MKT-01/02）、
-**GH 6**（`faolex.fao.org`，GH-LAB-01/02/03/04/10、GH-CERT-01）、
-**MY 2**（`members.wto.org`，MY-HALAL-01/02）。待降级 2 条即 MY 的那两条——
-它们连「非政府域名」的标注都还没有。
+**2026-11-18 复核基线**（换源推进中是移动靶，以脚本当日输出为准）：
+
+| 市场 | 条数 | 二手域 | 状态 |
+| --- | --- | --- | --- |
+| EG | 4 | 0 | ✅ 已换官方源（`pdpc.gov.eg` 托管的公报影印件，RAY-759） |
+| MY | 2 | 0 | ✅ 已换官方源（`lom.agc.gov.my`，RAY-757）；但 `notes` 仍提 `members.wto.org`，审计报「说明不一致 2」——只换了 URL 没清说明，见第 2 段检查 |
+| GH | 6 | 6 | ⏳ 未换（`faolex.fao.org`，GH-LAB-01/02/03/04/10、GH-CERT-01，RAY-758） |
+
+原始基线（RAY-756/760 立项时）为「官方 871 / 二手 12 / 说明不一致 0 / 待降级 2」。
+MY 的 2 条当时连「非政府域名」标注都没有（即「待降级 2」），换源后该计数归零。
 
 换源推进后这个基线要跟着降：全库 `--market` 逐国跑，应当是「换完的国家 0、没换的国家不变」。
 `sync_index.py --check` 与 `audit_sources.py` 互不替代——前者管计数一致，后者管来源域干净。

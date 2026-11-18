@@ -4,7 +4,7 @@
   "market_name": "埃及",
   "version": "2026-11-17-v0.1",
   "scope": "通用广告与消费者保护 + 小家电 + 家居用品 + 3C 数码 + 语言义务 + 进口登记/型号核准 + 隐私与电子营销；不含食品/美妆/玩具等特殊品类，不含支付/物流/退换（Layer 3）",
-  "last_verified": "2026-11-17",
+  "last_verified": "2026-11-18",
   "language_policy": "优先官方英文原文或官方英文译本；无官方英文版本的条目 language=official_english_unavailable，verbatim_excerpt 保留阿拉伯语原文，不用二手翻译冒充官方英文。",
   "review_policy": "decision_level=rule_level 表示可在‘法条原文 + 页面原文’同时成立时给出规则级判断；substantiation 表示只能判‘需要证明’；human_review 表示需人工/律师复核。review_required=true 的条目必须人工复核后才能进入报告结论。",
   "source_language_mix": {
@@ -848,13 +848,13 @@
       "article": "Art. 2",
       "article_type": "statute",
       "source_id": "S8",
-      "official_url": "https://www.dataguidance.com/sites/default/files/egypt_data_protection_law_arabic.pdf",
-      "source_tier": "gazette_copy_secondary_ar",
+      "official_url": "https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf",
+      "source_tier": "official_regulator_gazette_ar",
       "language": "official_english_unavailable",
       "source_language": "ar",
-      "official_url_note": "非政府域名托管：官方公报版面复制件；原文出处为 Egyptian Official Gazette, Issue No. 28 bis (هـ), 15 July 2020。",
+      "official_url_note": "埃及官方域名（个人数据保护中心 PDPC，法定监管机关 pdpc.gov.eg）托管的官方公报版面影印件：Official Gazette No. 28 bis (هـ), 15 July 2020，31 页，无文本层。原站对境外自动化客户端 TLS 握手失败（2026-11-18 实测），逐字比对使用 Wayback 对同一官方 URL 的原始快照（2026-09-16，SHA-256 已锁定）。站点已迁至 portal.pdpc.gov.eg（2026-10 起 301），本 URL 随同跳转。",
       "effective_date": "2020-10-16",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-18",
       "rule_type": "禁止",
       "decision_level": "rule_level",
       "claim_pattern": [
@@ -871,7 +871,8 @@
       "verbatim_excerpt": "لا يجوز جمع البيانات الشخصية أو معالجتها أو الإفصاح عنها أو إفشائها بأي وسيلة من الوسائل إلا بموافقة صريحة من الشخص المعني بالبيانات، أو في الأحوال المصـرح بهـا قانونًا.",
       "confidence": "medium",
       "review_required": true,
-      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为官方公报第 28 期增刊（هـ）2020-07-15 的版面复制件，托管于第三方；官方公报门户 alamiria.gov.eg 存档服务需会话访问，未取得稳定直链。"
+      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为埃及官方公报第 28 期增刊（هـ）2020-07-15 的版面影印件，由 PDPC 官网托管（政府域名），本引文已于 2026-11-18 对照该影印件第 6 页逐字目视核过。",
+      "archive_url": "https://web.archive.org/web/20260916021955if_/https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf"
     },
     {
       "id": "EG-PRIV-03",
@@ -882,13 +883,13 @@
       "article": "Art. 3(1)",
       "article_type": "statute",
       "source_id": "S8",
-      "official_url": "https://www.dataguidance.com/sites/default/files/egypt_data_protection_law_arabic.pdf",
-      "source_tier": "gazette_copy_secondary_ar",
+      "official_url": "https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf",
+      "source_tier": "official_regulator_gazette_ar",
       "language": "official_english_unavailable",
       "source_language": "ar",
-      "official_url_note": "非政府域名托管：官方公报版面复制件；原文出处为 Egyptian Official Gazette, Issue No. 28 bis (هـ), 15 July 2020。",
+      "official_url_note": "埃及官方域名（个人数据保护中心 PDPC，法定监管机关 pdpc.gov.eg）托管的官方公报版面影印件：Official Gazette No. 28 bis (هـ), 15 July 2020，31 页，无文本层。原站对境外自动化客户端 TLS 握手失败（2026-11-18 实测），逐字比对使用 Wayback 对同一官方 URL 的原始快照（2026-09-16，SHA-256 已锁定）。站点已迁至 portal.pdpc.gov.eg（2026-10 起 301），本 URL 随同跳转。",
       "effective_date": "2020-10-16",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-18",
       "rule_type": "必须披露",
       "decision_level": "rule_level",
       "claim_pattern": [
@@ -903,7 +904,8 @@
       "verbatim_excerpt": "أن تجمع البيانات الشخصية لأغراض مشروعة ومحددة ومعلنة للشخص المعني.",
       "confidence": "medium",
       "review_required": true,
-      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为官方公报第 28 期增刊（هـ）2020-07-15 的版面复制件，托管于第三方；官方公报门户 alamiria.gov.eg 存档服务需会话访问，未取得稳定直链。"
+      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为埃及官方公报第 28 期增刊（هـ）2020-07-15 的版面影印件，由 PDPC 官网托管（政府域名），本引文已于 2026-11-18 对照该影印件第 7 页逐字目视核过。",
+      "archive_url": "https://web.archive.org/web/20260916021955if_/https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf"
     },
     {
       "id": "EG-MKT-01",
@@ -914,13 +916,13 @@
       "article": "Art. 17",
       "article_type": "statute",
       "source_id": "S8",
-      "official_url": "https://www.dataguidance.com/sites/default/files/egypt_data_protection_law_arabic.pdf",
-      "source_tier": "gazette_copy_secondary_ar",
+      "official_url": "https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf",
+      "source_tier": "official_regulator_gazette_ar",
       "language": "official_english_unavailable",
       "source_language": "ar",
-      "official_url_note": "非政府域名托管：官方公报版面复制件；原文出处为 Egyptian Official Gazette, Issue No. 28 bis (هـ), 15 July 2020。",
+      "official_url_note": "埃及官方域名（个人数据保护中心 PDPC，法定监管机关 pdpc.gov.eg）托管的官方公报版面影印件：Official Gazette No. 28 bis (هـ), 15 July 2020，31 页，无文本层。原站对境外自动化客户端 TLS 握手失败（2026-11-18 实测），逐字比对使用 Wayback 对同一官方 URL 的原始快照（2026-09-16，SHA-256 已锁定）。站点已迁至 portal.pdpc.gov.eg（2026-10 起 301），本 URL 随同跳转。",
       "effective_date": "2020-10-16",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-18",
       "rule_type": "需事前批准",
       "decision_level": "rule_level",
       "claim_pattern": [
@@ -938,7 +940,8 @@
       "verbatim_excerpt": "يحظر إجراء أي اتصال إلكتروني بغرض التسويق المباشر للشخص المعني بالبيانات، إلا بتوافر الشروط الآتية: ١ - الحصول على موافقة من الشخص المعني بالبيانات. ٢ - أن يتضمن الاتصال هوية منشئه ومرسله. ٣ - أن يكون للمرسل عنوان صحيح وكاف للوصول إليه. ٤ - الإشارة إلى أن الاتصال الإلكتروني مرسل لأغراض التسويق المباشر. ٥ - وضع آليات واضحة وميسرة لتمكين الشخص المعني بالبيانات من رفض الاتصال الإلكتروني أو العدول عن موافقته على إرسالها.",
       "confidence": "medium",
       "review_required": true,
-      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为官方公报第 28 期增刊（هـ）2020-07-15 的版面复制件，托管于第三方；官方公报门户 alamiria.gov.eg 存档服务需会话访问，未取得稳定直链。"
+      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为埃及官方公报第 28 期增刊（هـ）2020-07-15 的版面影印件，由 PDPC 官网托管（政府域名），本引文已于 2026-11-18 对照该影印件第 16-17 页逐字目视核过。",
+      "archive_url": "https://web.archive.org/web/20260916021955if_/https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf"
     },
     {
       "id": "EG-MKT-02",
@@ -949,13 +952,13 @@
       "article": "Art. 18(3)",
       "article_type": "statute",
       "source_id": "S8",
-      "official_url": "https://www.dataguidance.com/sites/default/files/egypt_data_protection_law_arabic.pdf",
-      "source_tier": "gazette_copy_secondary_ar",
+      "official_url": "https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf",
+      "source_tier": "official_regulator_gazette_ar",
       "language": "official_english_unavailable",
       "source_language": "ar",
-      "official_url_note": "非政府域名托管：官方公报版面复制件；原文出处为 Egyptian Official Gazette, Issue No. 28 bis (هـ), 15 July 2020。",
+      "official_url_note": "埃及官方域名（个人数据保护中心 PDPC，法定监管机关 pdpc.gov.eg）托管的官方公报版面影印件：Official Gazette No. 28 bis (هـ), 15 July 2020，31 页，无文本层。原站对境外自动化客户端 TLS 握手失败（2026-11-18 实测），逐字比对使用 Wayback 对同一官方 URL 的原始快照（2026-09-16，SHA-256 已锁定）。站点已迁至 portal.pdpc.gov.eg（2026-10 起 301），本 URL 随同跳转。",
       "effective_date": "2020-10-16",
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-18",
       "rule_type": "需 substantiation",
       "decision_level": "human_review",
       "claim_pattern": [],
@@ -965,7 +968,8 @@
       "verbatim_excerpt": "الاحتفاظ بسجلات إلكترونية مثبت بها موافقة الشخص المعني بالبيانات وتعديلاتها، أو عدم اعتراضه على استمراره، بشأن تلقي الاتصال الإلكتروني التسويقي وذلك لمدة ثلاث سنوات من تاريخ آخر إرسال.",
       "confidence": "medium",
       "review_required": true,
-      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为官方公报第 28 期增刊（هـ）2020-07-15 的版面复制件，托管于第三方；官方公报门户 alamiria.gov.eg 存档服务需会话访问，未取得稳定直链。 该条不是页面可直接观察项；只能作为“需证明同意记录”的 substantiation 规则，不应据页面缺失直接下结论。"
+      "notes": "阿拉伯语原文，无官方英文版本（official_english_unavailable）。引文为阿拉伯语，不得把机器翻译或律所翻译当作官方英文；报告只能用中文说明规则含义，并标注需当地律师复核。该 PDF 为埃及官方公报第 28 期增刊（هـ）2020-07-15 的版面影印件，由 PDPC 官网托管（政府域名），本引文已于 2026-11-18 对照该影印件第 17 页逐字目视核过。 该条不是页面可直接观察项；只能作为“需证明同意记录”的 substantiation 规则，不应据页面缺失直接下结论。",
+      "archive_url": "https://web.archive.org/web/20260916021955if_/https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf"
     }
   ]
 }
