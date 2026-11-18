@@ -4,7 +4,7 @@
 
 > 语言政策：只收官方英文原文。新西兰立法由 Parliamentary Counsel Office（PCO）在 legislation.govt.nz 以英文发布现行合并文本；本库引文全部取自该站与新西兰政府公报（gazette.govt.nz），不使用律所文章、商业数据库或二手翻译。
 >
-> 语言事实更正：新西兰**没有**以法律指定英语为官方语言。`Te Ture mō Te Reo Māori 2016 / Māori Language Act 2016` s 5 只把毛利语定为官方语言；英语是事实上的通用语与立法语言。任务单里「英语为官方语言之一」的表述与官方文本不符，本库按官方文本订正（见交叉核对 1）。
+> 语言事实更正：新西兰**没有**以法律指定英语为官方语言。法定官方语言有两个：`Te Ture mō Te Reo Māori 2016 / Māori Language Act 2016` s 5 的毛利语，与 `New Zealand Sign Language Act 2006`（2006 No 18）s 6 的新西兰手语；英语是事实上的通用语与立法语言。任务单里「英语为官方语言之一」的表述与官方文本不符，本库按官方文本订正（见交叉核对 1）。2026-11-18 口径：不因语言地位关闭市场，按英语市场设计并在诊断时提示，见 `index.json` 的 `language_note`（RAY-766）。
 
 ## 来源分级
 
@@ -31,7 +31,10 @@
 | NZ7 | Radiocommunications Act 1989（1989 No 148） | 现行版，as at 2025-11-27 | https://www.legislation.govt.nz/act/public/1989/148/en/latest/ | `radio.txt` | `bb986dbef85d4b58533b600384af53a16141cba5c29a7195d198e6ff3bf03348` | 294823 |
 | NZ8 | Radiocommunications (EMC Standards) Notice 2019（Gazette 2019-go2372） | 2019-05-30 刊登，2019-06-04 生效 | https://gazette.govt.nz/notice/id/2019-go2372 | `emc.txt` | `ebde18c87e58b0c58b67b8003ed6a79cf788b9447f8ca4586e9e8dc3c6160e39` | 19233 |
 | NZ9 | Te Ture mō Te Reo Māori 2016 / Māori Language Act 2016（2016 No 17） | 现行版，as at 2023-04-05 | https://www.legislation.govt.nz/act/public/2016/17/en/latest/ | `maori.txt` | `446b0bb10c1af20348ee363e766cf38456d4e3808ca80be13af7c349981876a6` | 195594 |
+| NZ10 | New Zealand Sign Language Act 2006（2006 No 18） | 现行版，as at 2026-07-10 | https://www.legislation.govt.nz/act/public/2006/18/en/latest/ | `nzsl.txt` | `98c91082dd666f39f487ebfac8b9f62765f257465504e12ed1a1dc0e353460a9` | 13597 |
 
+> NZ10 是 2026-11-18（RAY-766）补的，只用于核验语言事实，不产出规则条目：该法 s 6 只宣告新西兰手语为官方语言，未对商品标签、说明书或广告语言设定义务。抓取用下方同一份 Playwright 脚本（把 `nzsl` 加进 `URLS`），连抓两次归一化文本 SHA-256 一致（`98c91082…`）；页面版本条写 `as at 10 July 2026`。字数 13597 是归一化后长度，明显小于其它法的原因是该法本身很短（正文只有 Part 1 与 Part 2 加一个 Schedule，s 6 之后到 s 13 即结束）。
+>
 > NZ9 不产出规则条目：该法只确立毛利语的官方语言地位，未对商品标签、说明书或广告语言设定义务。列在这里是为了支撑「新西兰无一般性语言强制」这一覆盖结论（见 `README.md` 覆盖矩阵）。
 >
 > NZ7 不单独产出规则条目：EMC 公告本身不设罚则，罚则路径回到该法 s 128，已在 `NZ-EMC-01`/`NZ-EMC-02` 的 `penalty_or_note` 中引用。
@@ -69,6 +72,7 @@ URLS = {
     "radio": "https://www.legislation.govt.nz/act/public/1989/148/en/latest/",
     "emc":   "https://gazette.govt.nz/notice/id/2019-go2372",
     "maori": "https://www.legislation.govt.nz/act/public/2016/17/en/latest/",
+    "nzsl":  "https://www.legislation.govt.nz/act/public/2006/18/en/latest/",
 }
 
 async def main():
@@ -94,12 +98,13 @@ python3 fetch.py
 - `fta.txt` 重新抓取两次，归一化文本 SHA-256 **完全一致**。
 - `elec.txt` 两次抓取存在**仅由页面异步占位符**造成的差异：一次残留 `Checking for related legislation... Loading...` 与 `Checking for alerts... Loading...`，另一次已渲染为 `Versions (18) Empowering Acts (1)`。因此归一化函数先删除这两个占位串再哈希；删除后正文一致。哈希按上表口径计算（`.innerText` → 删除占位串 → 引号/破折号归一 → 空白折叠）。
 - 其余 7 份未做二次抓取比对，只做单次核验；重跑上面的脚本可逐份复算。
+- `nzsl.txt`（2026-11-18 新增，RAY-766）连抓两次归一化文本 SHA-256 **完全一致**（`98c91082…`），两次分别返回 HTTP 202 与 200——`legislation.govt.nz` 的 WAF 有时先回 202 再渲染，正文一致即可，不要按状态码判失败。
 
 `emc.txt` 是政府公报刊登的公告全文（HTML），**不是** legislation.govt.nz 的法规库条目；公报页面本身即官方发布渠道。
 
 ## 交叉核对记录
 
-1. **英语的地位**：`Māori Language Act 2016` s 5 原文只有一句「The Māori language is an official language of New Zealand.」。该法未提及英语；新西兰也没有《官方语言法》式的英语地位条款。因此「英语为官方语言之一」的常见说法不成立，正确表述是「英语为事实上的通用语与立法语言，毛利语为法定官方语言」。该法 s 7 另规定在司法程序中有权使用毛利语，与商品标签无关。
+1. **英语的地位**：`Māori Language Act 2016` s 5 原文只有一句「The Māori language is an official language of New Zealand.」。该法未提及英语；新西兰也没有《官方语言法》式的英语地位条款。另有一部独立的 `New Zealand Sign Language Act 2006`（2006 No 18），其 s 6 原文为「New Zealand Sign Language is declared to be an official language of New Zealand.」，2026-11-18 用无头 Chromium 打开 legislation.govt.nz 现行版（`as at 10 July 2026`）复核确认。因此法定官方语言是毛利语与新西兰手语两个，均不含英语。正确表述是「英语为事实上的通用语与立法语言，法定官方语言为毛利语与新西兰手语」。`Māori Language Act 2016` s 7 另规定在司法程序中有权使用毛利语，与商品标签无关。**同法 s 8(1) 还有一层限制**：原文「Subject to section 7, section 6 does not create any legally enforceable rights.」——把 NZSL 定为官方语言是宣示性条款，不能据此推出「商品标签必须用 NZSL」。所以新西兰仍然**没有**一般性标签语言强制；本库把毛利语/NZSL 的标签义务记为「未建规则」，而不是「义务不存在」，两者不要混。
 2. **s 9 没有刑事罚金**：FTA s 40(1) 的罪名清单明确写「except sections 9, 14(2), 23, or 24」，即 s 9（误导性行为的一般禁止）不在罪名内；s 40(1) 的罚则上限为个人 $200,000、法人 $600,000。许多二手资料把 s 9 与 s 13 混为一谈并统一写「最高 60 万」，属误读。`NZ-ADV-01` 的 `penalty_or_note` 因此写「无刑事罚金」。
 3. **substantiation 是独立条款**：s 12A 于 2014-06-17 由 Fair Trading Amendment Act 2013 插入，其 (2) 明确「不以陈述虚假为前提」；(3) 留「合理的人不会期待被证明」的例外。这一点与澳大利亚 ACL s 18 的路径不同，规则里已写明。
 4. **s 28B 是身份披露而非信息清单**：条文只要求「让潜在买家清楚知道卖方是在贸易中经营的人」，没有规定必须列公司名、注册号或地址。报告措辞不能写成「未列注册号即违规」。

@@ -186,6 +186,30 @@ def main() -> int:
         pk = audit.build_report(str(real), ["PK"], [])
         check("PK 修完后二手为 0", pk["totals"]["secondary"] == 0, str(pk["totals"]))
 
+        # ---- 10) 真实库：`language_note` 只给需要提示的市场，且是给用户看的一句话
+        #
+        # 依据 RAY-766：前端 RAY-767 会把任何 `language_note` **原文**渲染成诊断页/报告页的
+        # 提示条。因此这个字段必须是「目标地区官方语言是 xx」这类面向用户的一句话，不能塞
+        # 溯源说明（LK 原来的 96 字收录依据正是因为这一点改名为 `language_policy_note`）。
+        # 这条测试锁的是语义契约，不是文案内容——改文案不需要动它。
+        idx = json.loads((real / "index.json").read_text(encoding="utf-8"))
+        markets = idx.get("markets") or []
+        noted = {m["market"]: m.get("language_note") for m in markets if "language_note" in m}
+        check("真实库：language_note 非空且是字符串",
+              all(isinstance(v, str) and v.strip() for v in noted.values()),
+              str({k: type(v).__name__ for k, v in noted.items()}))
+        check("真实库：language_note 是面向用户的一句提示，不夹溯源说明",
+              all(len(v) <= 80 and "http" not in v and "SOURCES" not in v for v in noted.values()),
+              str({k: len(v) for k, v in noted.items()}))
+        check("真实库：只给 NZ/MT 写 language_note（其余市场不加，也不留空串）",
+              set(noted) == {"NZ", "MT"}, str(sorted(noted)))
+        check("真实库：language_note 不改变 open——NZ/MT 仍为 false，等前端提示上线后由人翻",
+              all(m.get("open") is False for m in markets if m["market"] in {"NZ", "MT"}),
+              str({m["market"]: m.get("open") for m in markets if m["market"] in {"NZ", "MT"}}))
+        # 提示条不能替代规则层：语言缺口必须还在 known_gaps 里，否则等于假装已覆盖。
+        check("真实库：NZ 的 known_gaps 仍记着语言缺口（提示不等于已覆盖）",
+              any("语言" in g for g in (next(m for m in markets if m["market"] == "NZ").get("known_gaps") or [])))
+
     if FAILURES:
         print(f"\n{len(FAILURES)} 项失败：")
         for f in FAILURES:
