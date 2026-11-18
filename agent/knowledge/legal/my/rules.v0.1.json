@@ -1275,12 +1275,12 @@
       "article": "para.4(1)",
       "article_type": "subsidiary_legislation",
       "source_id": "S5",
-      "official_url": "https://members.wto.org/crnattachments/2012/TBT/MYS/12_1573_01_x.pdf",
-      "official_url_note": "马来西亚政府提交 WTO TBT 通知所附的 P.U.(A) 431/2011 英文文本；同日马来文联邦公报扫描件（jheains.ns.gov.my）已交叉核对。",
-      "source_tier": "official_english_text_wto_notification",
+      "official_url": "https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/pua_20111230_P.U.%20%28A%29%20431-perintah%20perihal%20dagangan%20%28perakuan%20dan%20penandaan%20halal%29%202011.pdf",
+      "official_url_note": "马来西亚总检察署法律库 AGC（lom.agc.gov.my）的联邦公报原文 PDF：P.U.(A) 431/2011，2011-12-30 公布，16 页，马来文与英文对照；para.4(1) 的英文正文在 PDF 第 10 页。AGC 站内入口 `https://lom.agc.gov.my/subsid.php?type=pua`，检索 `P.U. (A) 431/2011`；详情页下载按钮为 `processFile.php?token=<动态令牌>`（令牌会过期，不能作为长期 official_url），故固定收录同一条公报 PDF 的静态路径。本地副本 `docs/pua431_2011_agc_20261118.pdf`，SHA-256 `f6565cde261948157a2b613d8d5198586745f4e45a6ddfb45e477dff23f4ce05`。",
+      "source_tier": "official_agc",
       "language": "en",
       "effective_date": "2012-01-01",
-      "last_verified": "2026-11-14",
+      "last_verified": "2026-11-18",
       "rule_type": "需事前批准",
       "decision_level": "rule_level",
       "claim_pattern": [
@@ -1299,7 +1299,7 @@
       "verbatim_excerpt": "4. (1) All food and goods shall not be described as halal or be described in other manner to indicate that the food or goods can be consumed or used by a Muslim unless it is— (a) certified as halal by the competent authority; and (b) marked with the logo as specified in the First Schedule.",
       "confidence": "high",
       "review_required": true,
-      "notes": "英文引文取自马来西亚政府 WTO TBT 通知所附文本；与马来文公报扫描件交叉核对。‘Barang-barang’覆盖非食品商品（含小家电）。"
+      "notes": "英文引文逐字取自 AGC 法律库的 P.U.(A) 431/2011 公报 PDF 第 10 页（马来文与英文同页对照）；‘Barang-barang’覆盖非食品商品（含小家电）。2026-11-18 换源时已核对：该英文文本与旧引用的 WTO 通知附件逐页一致（16 页全文比对无差异）。"
     },
     {
       "id": "MY-HALAL-02",
@@ -1310,12 +1310,12 @@
       "article": "para.5(1)",
       "article_type": "subsidiary_legislation",
       "source_id": "S5",
-      "official_url": "https://members.wto.org/crnattachments/2012/TBT/MYS/12_1573_01_x.pdf",
-      "official_url_note": "马来西亚政府提交 WTO TBT 通知所附的 P.U.(A) 431/2011 英文文本；同日马来文联邦公报扫描件（jheains.ns.gov.my）已交叉核对。",
-      "source_tier": "official_english_text_wto_notification",
+      "official_url": "https://lom.agc.gov.my/ilims/upload/portal/akta/outputp/pua_20111230_P.U.%20%28A%29%20431-perintah%20perihal%20dagangan%20%28perakuan%20dan%20penandaan%20halal%29%202011.pdf",
+      "official_url_note": "马来西亚总检察署法律库 AGC（lom.agc.gov.my）的联邦公报原文 PDF：P.U.(A) 431/2011，2011-12-30 公布，16 页，马来文与英文对照；para.5(1) 的英文正文在 PDF 第 11 页。AGC 站内入口 `https://lom.agc.gov.my/subsid.php?type=pua`，检索 `P.U. (A) 431/2011`；详情页下载按钮为 `processFile.php?token=<动态令牌>`（令牌会过期，不能作为长期 official_url），故固定收录同一条公报 PDF 的静态路径。本地副本 `docs/pua431_2011_agc_20261118.pdf`，SHA-256 `f6565cde261948157a2b613d8d5198586745f4e45a6ddfb45e477dff23f4ce05`。",
+      "source_tier": "official_agc",
       "language": "en",
       "effective_date": "2012-01-01",
-      "last_verified": "2026-11-14",
+      "last_verified": "2026-11-18",
       "rule_type": "需事前批准",
       "decision_level": "rule_level",
       "claim_pattern": [
@@ -1333,7 +1333,7 @@
       "verbatim_excerpt": "5. (1) All imported food and goods marketed in Malaysia shall not be described as halal unless the imported food and goods comply with the requirements in paragraph 4 or certified as halal by the foreign halal certification body recognized by JAKIM as specified in the Second Schedule.",
       "confidence": "high",
       "review_required": true,
-      "notes": "英文引文取自马来西亚政府 WTO TBT 通知所附文本；与马来文公报扫描件交叉核对。外国认证机构是否仍在附表二内需按最新修订核对。"
+      "notes": "英文引文逐字取自 AGC 法律库的 P.U.(A) 431/2011 公报 PDF 第 11 页（马来文与英文同页对照）；与旧引用的 WTO 通知附件逐页一致。外国认证机构是否仍在附表二内需按最新修订核对（附表二最近一次修订为 P.U.(A) 392/2026）。"
     },
     {
       "id": "MY-HALAL-03",

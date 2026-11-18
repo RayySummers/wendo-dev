@@ -59,7 +59,7 @@
 | `penalty_or_note` | 罚则上限或重要限制；上限不等于必然处罚 |
 | `review_required` | true 的条目必须人工/律师复核，不得自动下结论 |
 | `confidence` | high = 条文与措辞已直接核对；medium = 条文存在但适用范围/最新修订待核 |
-| `source_tier` | 见 `SOURCES.md`；本版 MY 规则全部为 `official_agc` / `official_regulator` / 官方英文 WTO 通知，无二手来源 |
+| `source_tier` | 见 `SOURCES.md`；本版 MY 规则全部为 `official_agc` / `official_regulator`，无二手来源、也不再用 WTO 通报附件（2026-11-18 起 S5 改指 AGC 公报原文） |
 
 ### 报告措辞模板
 
