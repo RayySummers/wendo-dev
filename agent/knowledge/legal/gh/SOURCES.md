@@ -76,7 +76,7 @@
 
 | 入口 | 2026-11-18 实测 | 结论 |
 | --- | --- | --- |
-| `ghalii.org`（加纳法律信息研究所，官方口径） | 首页与 `/legislation/` 列表页 200；但**所有条文正文页 `/akn/gh/...` 一律 403**，响应头带 `cf-mitigated: challenge`，正文为 `Performing security verification`。curl、headed Chrome（Playwright，等待 30s）、Wayback 的 `source.pdf` 快照三路全不可用（Wayback 唯一一份 PDF 捕获本身在 5 MB 处截断，修不完整）。 | 未取得正文。**不用它当引文来源** |
+| `ghalii.org`（加纳法律信息研究所，官方口径） | 首页与 `/legislation/` 列表页 200；但**所有条文正文页 `/akn/gh/...` 一律 403**，响应头带 `cf-mitigated: challenge`，正文为 `Performing security verification`。curl、headed Chrome（Playwright，等待 30s）、Scrapling `StealthyFetcher`（headless+network_idle，外部同事实测）、Wayback 的 `source.pdf` 快照**四路全不可用**（Wayback 唯一一份 PDF 捕获本身在 5 MB 处截断，修不完整）。 | 未取得正文。**不用它当引文来源** |
 | `gsa.gov.gh`（加纳标准局） | 站点与 WordPress REST `/wp-json/wp/v2/search`、`/media` 均可用；搜 `1078` / `1541` / `Standards Authority Act` 只回新闻稿，媒体库与 sitemap 无法律文本 PDF | 无原文 |
 | `parliament.gh` | `docs?type=Acts&OT` 可翻，但该目录只列 39 部法（最新到 2021 年），**无 Act 1078，也无 L.I. 目录**（`docs?type=LI` 不返回文书表） | 无原文 |
 | `bcp.gov.gh` | 搜索结果显示该站托管同名 Act 1078 PDF，但站点 TLS 握手失败（`SSL_ERROR_SYSCALL`），http 亦无响应 | 不可达 |
@@ -89,6 +89,14 @@
 
 - **GH2（L.I. 1541）**：`GH-LAB-01`（r.3 + First Schedule）、`GH-LAB-02`（r.4(3)）、`GH-LAB-03`（r.4(1)-(2)）、`GH-LAB-04`（r.9(1)-(2)）、`GH-LAB-10`（r.3(f)）**5/5 一致**。附表一第 11 项「General Household electrical appliances and accessories」与第 1-10、12-24 项均在本件中确认。
 - **GH5（Act 1078）**：`GH-CERT-01`（s.33(2)）**1/1 一致**。文本层把 `(f) import` 识别成 `(I) import`，**已按扫描页 p.24 目视核对**，扫描原图为 `(f)`，本库按原图引用。
+
+### 一条纪律性备注
+
+`ghalii.org` 的 `/legislation/` 列表页返回 200 且有正常内容，容易被当成「站点通了」。
+**判断口径是看条文正文页**：`/akn/gh/...` 一律 403 + `cf-mitigated: challenge`，正文是
+`Performing security verification`。同一现象在 2026-11-18 由三种客户端（curl / Playwright
+headed Chrome / Scrapling StealthyFetcher）独立复现，说明是站点按路径的持续策略，不是临时抖动。
+下次接手时若列表页 200，**不要据此认为正文可取**，直接走 EPA / BRR 两条路径。
 
 ### 为什么保留「同底稿」说明
 
