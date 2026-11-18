@@ -263,8 +263,82 @@ agent/knowledge/legal/
 
    脚本会按各国 rules 文件重建 `index.json` 的 `status` / `rules_count` / `rules_file` 等字段，
    并重画本文件的目录树与状态表。`laws_count` 若已有值则保留（早期按法规族人工归并过）。
-3. 提交前自检：`python3 agent/knowledge/legal/scripts/sync_index.py --check`，退出码 0 才算一致。
+3. 提交前自检：
+
+   ```bash
+   python3 agent/knowledge/legal/scripts/sync_index.py --check   # 必须 0
+   python3 agent/knowledge/legal/scripts/audit_sources.py --market <CC>   # 新国家必须 0
+   ```
+
+   全局审计（不带 `--market`）在 12 条二手源换完前**不会**是 0，见下节基线。
+
 4. **市场开放状态只写在 `open` 字段**：`index.json` 每个市场条目都有布尔 `open`，新市场一律 `open: false`。
    `open: true` 表示对产品开放（出现在前端市场清单里），需产品确认上线后由人手动改，**不要由 `tier === "live"`
    或规则库有无内容反推**——规则写完不等于开放。`sync_index.py` 不会改这个值，只会在字段缺失或非布尔时
    置 `false` 并让 `--check` 报错。
+
+## 来源域审计（`audit_sources.py`）
+
+`sync_index.py --check` 管的是**索引与规则文件的计数是否一致**；它不看 URL 指向哪。
+`audit_sources.py` 补的是另一半：**每条规则的 `official_url` 是不是落在发布国官方域名上**。
+中期检查表第五节「871 条官方 / 12 条二手汇编」的口径就是它算出来的（RAY-756 / RAY-760）。
+
+```bash
+python3 agent/knowledge/legal/scripts/audit_sources.py                 # 全部市场，人读报表
+python3 agent/knowledge/legal/scripts/audit_sources.py --market MY     # 单个市场
+python3 agent/knowledge/legal/scripts/audit_sources.py --market EG,GH  # 多个市场
+python3 agent/knowledge/legal/scripts/audit_sources.py --json          # 机器可读，下游脚本用
+python3 agent/knowledge/legal/scripts/audit_sources.py --warn-only     # 只报告，恒零退出（接入灰度 CI 用）
+```
+
+查三段：
+
+1. **二手域命中**：`official_url` 的主机落在已知二手汇编域（`faolex.fao.org`、`members.wto.org`、
+   `dataguidance.com`、`chemreg.net`）。清单是显式的，新增来源改脚本顶部的 `SECONDARY_DOMAINS`，
+   或用 `--extra-secondary <host>` 临时追加——脚本不猜「域名像不像政府站」。
+   命中时若 `source_tier` 还写着 `official_*`（自称官方直链），finding 里会额外点出来：
+   GH 那 6 条就是 `source_tier: official_statute` + `faolex.fao.org` 的组合。
+2. **说明与 URL 不一致**：`official_url` 已经指向 A 站，但 `official_url_note` / `notes` / `source_note`
+   里还写着二手汇编的名字。这是历史上真实踩过的坑：PK 那 7 条旁遮普规则只换了 URL、说明里还留着
+   FAOLEX，看起来干净，其实没改完。
+3. **官方域分布**：按主机统计，输出每国「官方 / 二手 / 待降级」条数与官方域占比。
+
+退出码：`0` 干净；`1` 有二手域、说明不一致或缺 `official_url`；`2` 输入有问题（坏 JSON、
+`--market` 写了不存在的市场、`--root` 不是目录）。加 `--warn-only` 恒 `0`。
+
+口径（改脚本前先读，别自己发明）：
+
+- `web.archive.org` 这类**官方页的存档快照不算二手**：源站对自动化客户端有 WAF 时
+  用 Wayback 取件（目前是 EG-3C-01/02/03 三条，取的是 `tra.gov.eg` 官方 PDF），
+  口径上仍是官方原文的存档副本，计入官方数并在 JSON 里单列 `archive`。
+  注意 KE 的 Wayback 地址写在 `archive_url` 字段里、`official_url` 仍是 `kenyalaw.org`，
+  那 32 条本来就算官方，不受这条规则影响。
+- **「待降级」只是文本提示**，不是判断有没有换源：二手域条目在说明字段里没写「非政府 / 非官方 /
+  二手 / 降级」就算待降级。降级标注写全了也仍然计入二手域——标注不等于换源。
+- 机器可读输出在 `--json` 下给 `totals` / `markets[]` / `findings[]` 三层，`ok` 字段就是退出码的布尔版。
+
+改了脚本或规则数据后跑一次回归测试（离线，不联网）：
+
+```bash
+python3 agent/test/audit_sources_test.py   # 或 cd agent && npm run test:legal
+```
+
+`agent/` 下也有对应的 npm 入口：`npm run audit:sources`（等于跑审计脚本）、
+`npm run test:legal`（等于跑上面的回归测试），`npm run test:py` 会把两个 Python 测试一起跑。
+
+### 基线（2026-11-18）
+
+```bash
+$ python3 agent/knowledge/legal/scripts/audit_sources.py
+来源域审计：25 国 / 883 条规则
+  官方 871 条（98.6%） | 二手域 12 条 | 说明不一致 0 条 | 待降级 2 条
+  其中 3 条为官方页存档快照（web.archive.org 等），按口径计入官方
+```
+
+12 条二手源：**EG 4**（`dataguidance.com`，EG-PRIV-02/03、EG-MKT-01/02）、
+**GH 6**（`faolex.fao.org`，GH-LAB-01/02/03/04/10、GH-CERT-01）、
+**MY 2**（`members.wto.org`，MY-HALAL-01/02）。待降级 2 条即 MY 的那两条——
+它们连「非政府域名」的标注都还没有。
+
+换源推进后这个基线要跟着降：全库 `--market` 逐国跑，应当是「换完的国家 0、没换的国家不变」。
+`sync_index.py --check` 与 `audit_sources.py` 互不替代——前者管计数一致，后者管来源域干净。
