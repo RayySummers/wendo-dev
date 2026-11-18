@@ -39,7 +39,9 @@
 >
 > 文件为 31 页扫描件、**无文本层**（`pdftotext` 提取为空），因此 4 条引文改以 300dpi 渲染逐条**目视比对**公报版面（第 2 条→第 6 页、第 3(1) 条→第 7 页、第 17 条→第 16-17 页、第 18(3) 条→第 17 页），4/4 一致；同时保留 S9 的逐字转录作第二份文本交叉核对。
 >
-> 访问方式：`pdpc.gov.eg` 对境外自动化客户端 **TLS 握手失败**（`SSL_ERROR_SYSCALL`，2026-11-18 实测 `curl` / `r.jina.ai` 两路均不通），故取件走 **Wayback 对同一官方 URL 的 `if_` 原始快照**（2026-09-16，8,319,549 字节；2026-05-07 快照哈希一致，可复现）。站点已于 2026-10 迁至 `portal.pdpc.gov.eg`（旧 URL 301 跳转），`official_url` 保留 `pdpc.gov.eg` 原路径，`archive_url` 记快照。
+> 访问方式：`pdpc.gov.eg` 对境外自动化客户端 **TLS 握手失败**（`SSL_ERROR_SYSCALL`，2026-11-18 实测 `curl` / `r.jina.ai` / 无头浏览器三路均不通；无头浏览器报 `ERR_CONNECTION_CLOSED`），故取件走 **Wayback 对同一官方 URL 的 `if_` 原始快照**（2026-09-16，8,319,549 字节；2026-05-07 快照哈希一致，可复现）。站点已于 2026-10 迁至 `portal.pdpc.gov.eg`（旧 URL 301 跳转；新域名同样 `ERR_CONNECTION_CLOSED`），`official_url` 保留 `pdpc.gov.eg` 原路径，`archive_url` 记快照。
+>
+> 注：同日用 `cpa.gov.eg` 做对照，无头浏览器可正常返回 200/PDF，说明上述失败是 `pdpc.gov.eg` 这一域名的可达性问题，不是工具故障。**未尝试任何绕过手段**——该站对境外 IP 整体不可达，属客观访问限制。
 
 | 取件方式 | URL |
 | --- | --- |
@@ -138,9 +140,9 @@ python3 verify_excerpts.py --sources /path/to/eg-sources
 | 埃及广告标准（CPA 第 1(6) 条引用的 Egyptian standard specifications for advertising requirements） | 未定位标准号/文本 | 数字广告是否有额外内容标准未知；README open question #2 |
 | 能效标签要求 | 未取得官方文本 | 冰箱/空调/洗衣机/灯具能效标识未建规则 |
 | 官方公报门户 `alamiria.gov.eg` 的存档直链 | 站点可达，但 `/Sec/Archive.aspx` 等存档入口需登录会话，未取得稳定直链 | 不构成阻塞：PDPL 已改用 PDPC 官网托管的公报影印件（S8） |
-| `cc.gov.eg` 最高上诉法院立法门户 | 条目存在（Law 151/2020，公布日 2020-07-15、公报第 28 号），但正文标注 `النص الكامل متاح للمشتركين`（全文仅订阅用户可见）；未购买、未绕付费墙 | 未用于取件；PDPL 改用 PDPC 官网公开全文 |
+| `cc.gov.eg` 最高上诉法院立法门户 | 条目存在（Law 151/2020，公布日 2020-07-15、公报第 28 号），但正文标注 `النص الكامل متاح للمشتركين`（全文仅订阅用户可见）；同日复测该条目页已返回 **403**（站点限流，非付费墙绕过尝试）；未购买、未绕付费墙 | 未用于取件；PDPL 改用 PDPC 官网公开全文 |
 | `laws.gov.eg` | 连接失败（不可达） | 未使用 |
-| `pdpc.gov.eg` 直连 | 境外自动化客户端 TLS 握手失败（`SSL_ERROR_SYSCALL`）；2026-10 起站点迁至 `portal.pdpc.gov.eg` | 不影响采信：经 Wayback `if_` 快照取得同一官方 URL 原件并锁定 SHA-256 |
+| `pdpc.gov.eg` 直连 | 境外自动化客户端 TLS 握手失败（`SSL_ERROR_SYSCALL`）；无头浏览器报 `ERR_CONNECTION_CLOSED`；`cpa.gov.eg` 同法可通，故为域名可达性问题；2026-10 起站点迁至 `portal.pdpc.gov.eg`（同样不可达） | 不影响采信：经 Wayback `if_` 快照取得同一官方 URL 原件并锁定 SHA-256 |
 | `tra.gov.eg` 实时站点 | 首页显示「الموقع تحت الصيانة」，原 PDF URL 404 | 使用 Wayback 官方 PDF 原件（S5/S6/S7） |
 | WTO TBT 通知（G/TBT/N/EGY/233 等） | `docs.wto.org` 返回 JS 挑战页，未取得正文 | 未把通知摘要作为引文；ES 1781 只能留在 open questions |
 | `egypt.gov.eg` / `sis.gov.eg` | TLS 连接被重置 | 未使用；不影响本版主来源 |
