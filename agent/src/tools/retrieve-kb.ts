@@ -1,6 +1,13 @@
 import { readFile } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { resolveCategoryProfile, type CategoryProfile } from "../categories.js";
+import { loadLegalLibrary, type LegalLibrary } from "../compliance/library.js";
+import {
+  assertMarketKbReady,
+  resolveMarket,
+  MarketError,
+  type MarketInfo,
+} from "../market.js";
 import type { KbDigest, KbDimension, KbExcerpt, KbRule, Severity } from "../types.js";
 
 interface RawRule {
@@ -30,41 +37,65 @@ interface RawIndex {
   dimensions: RawDimension[];
 }
 
-const KB_DIR = new URL("../../knowledge/my/", import.meta.url);
-const COUNTRY_PATH = fileURLToPath(new URL("malaysia.md", KB_DIR));
-
 interface LoadedKb {
+  market: MarketInfo;
   index: RawIndex;
   country: Map<string, string>;
   category: string;
+  legal: LegalLibrary;
 }
 
-/** 每个品类单独缓存；小家电与 3C 的索引互不影响。 */
+/** 每个市场 × 品类单独缓存；MY 与 SG 的索引互不影响，也不共用同一个 key。 */
 const cache = new Map<string, LoadedKb>();
 
-async function loadKb(profile: CategoryProfile): Promise<LoadedKb> {
-  const cached = cache.get(profile.code);
+async function loadKb(profile: CategoryProfile, market: MarketInfo): Promise<LoadedKb> {
+  const cacheKey = `${market.kbDir}:${market.legalRulesPath}:${profile.code}`;
+  const cached = cache.get(cacheKey);
   if (cached) return cached;
 
-  const indexPath = fileURLToPath(new URL(profile.indexFile, KB_DIR));
-  const categoryPath = fileURLToPath(new URL(profile.rulesFile, KB_DIR));
+  // 先确认四个文件都在：缺国家知识库时直接 market_kb_missing，不回退 MY。
+  assertMarketKbReady(market, profile);
+
+  const indexPath = join(market.kbDir, profile.indexFile);
+  const categoryPath = join(market.kbDir, profile.rulesFile);
+  const countryPath = join(market.kbDir, market.countryFile);
   const [indexRaw, countryRaw, categoryRaw] = await Promise.all([
     readFile(indexPath, "utf8"),
-    readFile(COUNTRY_PATH, "utf8"),
+    readFile(countryPath, "utf8"),
     readFile(categoryPath, "utf8"),
   ]);
   const index = JSON.parse(indexRaw) as RawIndex;
-  if (index.category !== profile.code) {
-    throw new Error(
-      `知识库索引品类不一致：${profile.indexFile} 写的是「${index.category}」，注册表写的是「${profile.code}」`,
+  if (index.market !== market.code) {
+    throw new MarketError(
+      "market_rules_mismatch",
+      `知识库市场不一致：请求 ${market.code}（${market.name}），${profile.indexFile} 写的是「${String(index.market)}」`,
+      [`索引：${indexPath}`],
     );
   }
+  if (index.market_name && index.market_name !== market.name) {
+    throw new MarketError(
+      "market_rules_mismatch",
+      `知识库市场名与索引不一致：请求 ${market.name}，${profile.indexFile} 写的是「${index.market_name}」`,
+      [`索引：${indexPath}`, `legal/index.json：${market.name}`],
+    );
+  }
+  if (index.category !== profile.code) {
+    throw new MarketError(
+      "market_rules_mismatch",
+      `知识库索引品类不一致：${profile.indexFile} 写的是「${index.category}」，注册表写的是「${profile.code}」`,
+      [`索引：${indexPath}`],
+    );
+  }
+
   const loaded: LoadedKb = {
+    market,
     index,
     country: splitCountrySections(countryRaw),
     category: categoryRaw.trim(),
+    // 法规规则库在检索阶段就加载并核对市场，避免报告阶段才发现读错国家。
+    legal: loadLegalLibrary(market),
   };
-  cache.set(profile.code, loaded);
+  cache.set(cacheKey, loaded);
   return loaded;
 }
 
@@ -115,6 +146,8 @@ function toRule(raw: RawRule, text: string): KbRule {
 
 export interface RetrieveKbOptions {
   pageText: string;
+  /** 目标市场代码；缺省 MY。未知市场或该国知识库缺失时明确失败，不回退。 */
+  market?: string;
   /** 诊断品类代码；缺省为 small_appliances。未知品类直接报错，不回落。 */
   category?: string;
   /** 附带原文的国家知识库段落数量，默认按命中排序取 3 个维度。 */
@@ -125,15 +158,18 @@ export interface RetrieveKbOptions {
 
 /**
  * retrieve_kb：固定工具链第 2 步。
- * 用确定性信号匹配把页面文本映射到「马来西亚 × 选定品类」规则，并按命中排序；
+ * 用确定性信号匹配把页面文本映射到「请求市场 × 选定品类」规则，并按命中排序；
  * 不使用 LLM，保证同一页面每次拿到同一份知识库上下文。
  *
  * RAY-686：品类由 `resolveCategoryProfile` 解析，索引与规则原文按品类加载；
  * 未登记品类抛错，避免把 3C 页面静默套进小家电规则。
+ * RAY-754：市场由 `resolveMarket` 解析，国家知识库与法规规则库按 `<cc>` 加载；
+ * 缺文件抛 `market_kb_missing`，绝不从 MY 目录兜底。
  */
 export async function retrieveKb(options: RetrieveKbOptions): Promise<KbDigest> {
+  const market = resolveMarket(options.market);
   const profile = resolveCategoryProfile(options.category);
-  const { index, country, category } = await loadKb(profile);
+  const { index, country, category, legal } = await loadKb(profile, market);
   const text = options.pageText.toLowerCase();
 
   const dimensions: KbDimension[] = index.dimensions.map((dimension) => {
@@ -161,25 +197,27 @@ export async function retrieveKb(options: RetrieveKbOptions): Promise<KbDigest> 
       if (!body) continue;
       seen.add(section);
       excerpts.push({
-        title: `马来西亚国家知识库 · ${section}`,
-        source: "knowledge/my/malaysia.md",
+        title: `${market.name}国家知识库 · ${section}`,
+        source: `knowledge/${market.code.toLowerCase()}/${market.countryFile}`,
         body: body.slice(0, maxChars),
       });
     }
   }
   excerpts.push({
-    title: `马来西亚${index.category_name}品类规则`,
-    source: `knowledge/my/${profile.rulesFile}`,
+    title: `${market.name}${index.category_name}品类规则`,
+    source: `knowledge/${market.code.toLowerCase()}/${profile.rulesFile}`,
     body: category.slice(0, maxChars),
   });
 
   return {
-    market: index.market,
-    marketName: index.market_name,
+    market: market.code,
+    marketName: market.name,
     category: index.category,
     categoryName: index.category_name,
     scope: index.scope,
     version: index.version,
+    legalVersion: legal.version,
+    legalRuleCount: legal.rules.length,
     dimensions: ranked,
     totalHits: dimensions.reduce((sum, dimension) => sum + dimension.hits, 0),
     excerpts,
