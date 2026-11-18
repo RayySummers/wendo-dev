@@ -1,0 +1,907 @@
+{
+  "market": "AE",
+  "market_name": "阿联酋",
+  "category": "small_appliances",
+  "category_name": "小家电",
+  "version": "2026-11-18-v0.1",
+  "scope": "只适用于阿联酋市场的小家电（厨房电器、清洁电器、环境电器、个护电器）。受管制产品须通过 MOIAT 的 ECAS 取得符合性证书；含无线模块的还须 TDRA 型号批准。阿拉伯语义务适用于面向消费者的数据、广告与合同，可并列英语。本索引不复制法条正文，合规判定由 knowledge/legal/ae/rules.v0.1.json 负责。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-LANG-01",
+          "severity_hint": "high",
+          "applies_to": "商品页、广告、合同与售后条款",
+          "rule": "面向消费者的数据、广告与合同必须有阿拉伯语版本；可以并列英语，不能只有英语。",
+          "why": "阿联酋消费者保护法第 26 条要求与消费者相关的数据、广告与合同使用阿拉伯语；只有英文的页面在阿联酋本身就构成合规缺口，而不只是「本地化不足」。",
+          "fix": "商品页、保修条款、退货政策与结算说明提供阿语版本（可与英文并列或双语切换），并确保两版内容一致。",
+          "signals": [
+            "arabic",
+            "العربية",
+            "english only",
+            "bilingual"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Federal Decree-Law No. 15 of 2020 (CPL) Article (26)：阿语义务",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-LANG-02",
+          "severity_hint": "medium",
+          "applies_to": "阿语版本的文案质量",
+          "rule": "阿语不能是机翻：文案要由母语者校对，品牌名与型号保留原文。",
+          "why": "机翻阿语在本地会被立即识别为「没打算认真做这个市场」，比只有英文更伤可信度；品牌名与型号机翻后还会导致搜索与售后对不上。",
+          "fix": "品牌名、系列名、型号保持原文；描述性文案交母语者改写，避免逐字直译。",
+          "signals": [
+            "machine translation",
+            "translated",
+            "google translate"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（阿语本地化质量边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-LANG-03",
+          "severity_hint": "medium",
+          "applies_to": "面向外籍客群的英文页面",
+          "rule": "英语仍是必要的共同商业语言，不能只做阿语。",
+          "why": "阿联酋外籍人口约占 88%，来自 200 多个国家和地区，英语是实际上的商业共同语；只做阿语会把绝大部分线上买家挡在门外。",
+          "fix": "阿语 + 英语双语并列，语言切换入口在页头固定位置。",
+          "signals": [
+            "expat",
+            "english",
+            "language switcher"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 1/7（外籍人口与英语使用）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-LANG-04",
+          "severity_hint": "low",
+          "applies_to": "日期、数字与计量单位",
+          "rule": "日期写 18/11/2026 或 18 November 2026，数字用阿拉伯数字（0-9），计量用公制。",
+          "why": "本地电商页面普遍使用西方阿拉伯数字与公制；混用东阿拉伯数字或英制单位会增加理解成本。",
+          "fix": "统一 DD/MM/YYYY；容量用 L、功率用 W、尺寸用 cm、温度用 °C。",
+          "signals": [
+            "inch",
+            "oz",
+            "lbs",
+            "fahrenheit",
+            "mm/dd"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地日期与计量书写惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-LANG-05",
+          "severity_hint": "medium",
+          "applies_to": "养生壶、电炖锅、料理机等中文思维命名的品类",
+          "rule": "中文直译的品类词（Health Pot、Stew Cooker、Food Menu）在阿联酋没有对应认知，要换成本地常用说法。",
+          "why": "直译词既不进入本地搜索词，也说不清用途；阿联酋买家来自 200 多个国家，用国际通行的电器品类词才能被检索到。",
+          "fix": "改成 Multifunction Glass Kettle、Slow Cooker、Recipes；品类导航用 Air Fryer、Rice Cooker、Blender 等通行词。",
+          "signals": [
+            "health pot",
+            "stew cooker",
+            "food menu",
+            "multi cooker",
+            "yogurt maker"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "信任与合规资质",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "受管制电器（低电压电气设备等）",
+          "rule": "受管制电器应写清其符合性评定依据（ECAS 符合性证书编号与覆盖型号）；不能只写「certified」。",
+          "why": "CPL 第 20 条要求提供者确保商品符合 UAE.S / GSO 及采纳的 IEC 标准与健康安全要求，ECAS 是 MOIAT 的符合性评定路径。没有编号的「certified」既无法自证，也可能构成欺骗性描述。",
+          "fix": "规格区写「Complies with UAE.S / GSO standards — ECAS certificate no. XXXXX」，并附标志与标签照片；未取证就先删宣称、补证后再卖。",
+          "signals": [
+            "ecas",
+            "certified",
+            "certificate",
+            "conformity",
+            "moiat",
+            "coc",
+            "certification"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL 2020 Article (20)：商品须符合 UAE.S / GSO 标准与健康安全要求；ECAS 为其符合性评定路径",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "含无线/通信模块的家电与智能设备",
+          "rule": "含无线模块的产品要写 TDRA 型号批准编号；不能笼统写「wireless certified」。",
+          "why": "电信设备在投放阿联酋市场销售前须在 TDRA 型号批准系统注册并获得批准，且按风险分 Level 1–3；没有批准编号的无线宣称不可核。",
+          "fix": "规格区写「TDRA type-approved — registration no. XXXXX」，并核对覆盖型号与无线模块规格。",
+          "signals": [
+            "tdra",
+            "type approval",
+            "wi-fi",
+            "bluetooth",
+            "wireless",
+            "5g"
+          ],
+          "source": {
+            "type": "official",
+            "title": "TDRA：Register and approve telecommunication equipment",
+            "url": "https://tdra.gov.ae/en/Services/register-and-approve-telecommunication-equipment"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-TRUST-03",
+          "severity_hint": "medium",
+          "applies_to": "全部电器的规格区",
+          "rule": "规格区要写明 230V / 50Hz 与 G 型（BS 1363 三方脚）插头。",
+          "why": "阿联酋市电为 230V / 50Hz，插座为英式 G 型；页面写 110V 或配美规/欧规插头，买家会直接判断买回来不能用。",
+          "fix": "写「230V / 50Hz · Type G plug (BS 1363)」；宽压产品写「Input: 100–240V, 50/60Hz」，并说明随箱是否含转换头。",
+          "signals": [
+            "110v",
+            "120v",
+            "type a",
+            "type c",
+            "2-pin",
+            "us plug",
+            "eu plug"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Electrical Safety First：阿联酋 230V / 50Hz、G 型插头",
+            "url": "https://www.electricalsafetyfirst.org.uk/safety-advice/travel-advice/united-arab-emirates/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-TRUST-04",
+          "severity_hint": "high",
+          "applies_to": "包装、标签与说明书",
+          "rule": "标签须载明名称/种类/数量、原产国（Made in + 国名）、生产商或进口商名称与地址、生产日期与保质期、使用/储存方法、误用危险警告；警告字体须清晰可读。",
+          "why": "CPL 实施条例第 3 条列明包装或展示须载明的基本信息，第 3(7) 条另要求以清晰易读字体警告错误使用的危险；缺项在阿联酋是可被处罚的标签违规。",
+          "fix": "包装与详情页补全上述信息（阿语 + 英语），原产国写「Made in China」而非只写「Imported」；警告语单独成段并保证字号。",
+          "signals": [
+            "made in",
+            "country of origin",
+            "warning",
+            "label",
+            "importer",
+            "shelf life"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL Executive Regulations 2023 Article (3)：标签与警告要求",
+            "url": "https://uaelegislation.gov.ae/en/legislations/2157"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-TRUST-05",
+          "severity_hint": "medium",
+          "applies_to": "保修宣传与保修条款",
+          "rule": "宣传保修必须同时提供书面保修文件，写明范围与除外责任。",
+          "why": "CPL 实施条例第 11 条规定不得以口头或任何媒介宣传保修而不向消费者提供证明该保修的书面文件；只写「2-year warranty」而不给条款，买家无法判断覆盖什么。",
+          "fix": "保修页提供可下载的保修条款（阿语 + 英语），写明期限、覆盖部件、除外责任与索赔流程。",
+          "signals": [
+            "warranty",
+            "guarantee",
+            "warranty terms",
+            "coverage"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL Executive Regulations 2023 Article (11)：保修须有书面文件",
+            "url": "https://uaelegislation.gov.ae/en/legislations/2157"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "价格、税与促销许可",
+      "source_sections": [
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-PRICE-01",
+          "severity_hint": "high",
+          "applies_to": "全部对消费者标价",
+          "rule": "展示价格应含 5% VAT，并在商品或价签上清晰可读地标注；信用卡付款不得加收额外费用。",
+          "why": "阿联酋增值税法要求广告与展示价格含 VAT，消费者需要在结算前看到最终价格；对信用卡付款加收手续费同样被价格规则禁止。",
+          "fix": "商品卡直接给含税价（AED 1,299.00，VAT inclusive），结算页不再追加税费；如列不含税价，含税价不得更弱。",
+          "signals": [
+            "before vat",
+            "exclusive of vat",
+            "vat added at checkout",
+            "price before tax",
+            "plus vat"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Federal Tax Authority：阿联酋 VAT（价格展示须含 5% VAT）",
+            "url": "https://tax.gov.ae/en/taxes/vat.aspx"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-PRICE-02",
+          "severity_hint": "high",
+          "applies_to": "折扣、促销与降价活动",
+          "rule": "开展促销、全面降价或促销广告前须取得主管机关许可；页面要能给出许可信息。",
+          "why": "CPL 第 18 条要求促销与任何形式的促销广告事前取得主管机关许可；实施条例第 31 条另规定，折扣生效日在消费者购买后一周内的须告知消费者，否则消费者可在 30 天内索回差价。",
+          "fix": "活动页写明「Promotion permit no. XXXXX」与活动起止日期；降价生效日在购买后 7 天内的，主动通知已购买用户差价退还方式。",
+          "signals": [
+            "promotion",
+            "sale",
+            "discount",
+            "clearance",
+            "offer",
+            "deal"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL 2020 Article (18) 与实施条例 Article (31)：促销许可与差价返还",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-PRICE-03",
+          "severity_hint": "high",
+          "applies_to": "划线价与「Save AED XX」",
+          "rule": "比较价与「原价」必须有真实、近期的成交基础；不能先抬价再打折。",
+          "why": "CPL 第 8(2) 条禁止误导性价格广告，比较价、折扣额与「原价」需要有真实、近期的成交基础；虚构原价在阿联酋属可被处罚的价格误导。",
+          "fix": "保留最近 30 天的实际成交记录备查；折扣写成「-20%」或「Save AED 260」，并保留原价与现价的清晰层级。",
+          "signals": [
+            "was aed",
+            "original price",
+            "usual price",
+            "save aed",
+            "up to %",
+            "list price"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL 2020 Article (8)(2)：价格广告不得误导",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-PRICE-04",
+          "severity_hint": "medium",
+          "applies_to": "全部价格文案",
+          "rule": "货币写法统一为 AED 1,299.00 或 Dhs. 1,299，不要只留裸数字让买家猜币种。",
+          "why": "阿联酋是多币种消费市场（游客与 expat 常用 USD/EUR 比价）；不标币种会让买家怀疑是美元定价，也会在结算时产生预期落差。",
+          "fix": "全站统一 AED 1,299.00；若在页脚声明币种，主价旁的符号必须与页脚一致。",
+          "signals": [
+            "aed",
+            "dhs",
+            "dirham",
+            "usd",
+            "us$",
+            "price"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地价格书写惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-PRICE-05",
+          "severity_hint": "medium",
+          "applies_to": "首屏与商品卡",
+          "rule": "价格、运费、COD 手续费与支付方式应在首屏同时可见。",
+          "why": "阿联酋买家对结算页突然出现的运费与货到付款手续费非常敏感；这些费用前置能显著降低弃购与拒收。",
+          "fix": "商品卡显示含税价、运费门槛与可用支付方式；收 COD 手续费的要在同一位置写明金额。",
+          "signals": [],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电商首屏通行结构）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付与结算习惯",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "结算页与商品页支付区",
+          "rule": "应展示本地主流支付方式：Visa/Mastercard、Apple Pay / Google Pay，以及货到付款（如支持）。",
+          "why": "信用卡/借记卡是阿联酋线上主流支付方式，数字钱包普及率高；货到付款仍是部分客群（首次购买、较高年龄）的默认信任机制，不写清楚会流失这部分订单。",
+          "fix": "加购按钮附近放支付图标行，并写明「Visa · Mastercard · Apple Pay · Cash on delivery」。",
+          "signals": [
+            "visa",
+            "mastercard",
+            "apple pay",
+            "google pay",
+            "cash on delivery",
+            "cod",
+            "payment"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 1（支付方式与 COD）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "中高客单价小家电",
+          "rule": "分期/BNPL 要写清期数、手续费与是否 0% 利息，不能只放一个平台图标。",
+          "why": "Tabby、Tamara 在阿联酋中高客单价品类接受度高；只放图标不写「4 期免息、最低 AED XX」，买家无法判断自己是否符合条件。",
+          "fix": "价格旁写「or 4 payments of AED XX with Tabby · 0% interest」，并在 FAQ 写明资格、手续费与逾期条款。",
+          "signals": [
+            "tabby",
+            "tamara",
+            "bnpl",
+            "installment",
+            "instalment",
+            "0% interest",
+            "monthly payment"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Tabby：阿联酋分期条款与适用条件",
+            "url": "https://www.tabby.ai/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-PAY-03",
+          "severity_hint": "medium",
+          "applies_to": "货到付款选项",
+          "rule": "提供 COD 时要写明手续费、可用区域与拒收政策。",
+          "why": "COD 的履约成本来自拒收与退货；不写手续费与拒收政策，买家会以为免费，卖家则承担全部退回成本。",
+          "fix": "结算页写「Cash on delivery: AED 15 fee, available in Dubai, Sharjah, Abu Dhabi; refused parcels are returned at the buyer's cost」。",
+          "signals": [
+            "cash on delivery fee",
+            "cod fee",
+            "refused",
+            "reject"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（COD 条款通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-PAY-04",
+          "severity_hint": "low",
+          "applies_to": "结算页与信任条",
+          "rule": "支付安全说明要具体（3-D Secure、PCI DSS），不要写「100% secure」。",
+          "why": "「100% secure」既不可证实也不可执行；阿联酋买家更认具体的风控标识与退款保障条款。",
+          "fix": "写「Checkout is secured with 3-D Secure; card details are handled by our PCI DSS–compliant payment provider」。",
+          "signals": [
+            "100% secure",
+            "secure payment",
+            "checkout",
+            "payment security"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（支付安全表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送与退换",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "AE-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "结算页地址表单与配送说明",
+          "rule": "地址表单不应把邮政编码当作必填；阿联酋地址靠酋长国、区域、楼名/单元号、P.O. Box 或 Makani 编号定位。",
+          "why": "阿联酋没有全国性邮政编码体系，实际投递依赖 P.O. Box 与楼宇地址；迪拜另有 Makani 10 位楼宇编号。强制 postcode 字段会让买家填 00000 或直接放弃下单。",
+          "fix": "表单改为「Emirate / Area / Building / Unit / P.O. Box or Makani no.（选填）/ Mobile」，并说明「No postal code needed in the UAE」。",
+          "signals": [
+            "postcode",
+            "zip code",
+            "postal code",
+            "p.o. box",
+            "emirate"
+          ],
+          "source": {
+            "type": "official",
+            "title": "UAE Government Portal：Makani 智能地址系统（每栋楼一个 10 位编号）",
+            "url": "https://u.ae/en/information-and-services/transportation/Technology-in-transportation/geospatial-data-in-transportation"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-LOG-02",
+          "severity_hint": "high",
+          "applies_to": "结算页与订单确认",
+          "rule": "手机号必填并按 +971 5X XXX XXXX 校验；配送前会电话联系。",
+          "why": "没有邮政编码的情况下，快递靠电话找人和确认在家；手机号错误或缺失是阿联酋包裹退回的首要原因。",
+          "fix": "手机号字段设为必填并做格式校验，订单确认页提示「Our courier will call you before delivery」。",
+          "signals": [
+            "mobile number",
+            "phone number",
+            "courier will call"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地配送依赖电话确认）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-LOG-03",
+          "severity_hint": "medium",
+          "applies_to": "配送时效说明",
+          "rule": "「Free delivery」要写清门槛、酋长国范围与时效；偏远酋长国与离岛要单独说明。",
+          "why": "迪拜/沙迦/阿布扎比通常 1–3 个工作日，偏远酋长国与离岛 3–7 个工作日；不写清楚会让买家按迪拜时效预期，产生退款与差评。",
+          "fix": "写「Free delivery over AED 200 · Dubai, Sharjah, Abu Dhabi 1–3 working days · other emirates 3–7 working days」。",
+          "signals": [
+            "free shipping",
+            "free delivery",
+            "shipping",
+            "delivery",
+            "working days",
+            "emirates"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地配送时效通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-LOG-04",
+          "severity_hint": "high",
+          "applies_to": "退换货政策页与商品页",
+          "rule": "退货要写清窗口、商品状态、退货运费归属与退款渠道，并说明斋月与节庆期间的时效差异。",
+          "why": "阿联酋退货窗口常见 7–15 天，但各家条件差异大；不写清状态要求与运费归属，售后会变成争议。斋月期间工作时间缩短，退款到账也会延后。",
+          "fix": "写「7-day returns on unused items in original packaging; return shipping is borne by the buyer unless the item is defective; refunds are processed within 7–14 business days」。",
+          "signals": [
+            "return",
+            "returns",
+            "refund",
+            "exchange",
+            "7-day return",
+            "14 days"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地退货政策通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-LOG-05",
+          "severity_hint": "medium",
+          "applies_to": "承运商与订单追踪",
+          "rule": "要写明承运商与运单查询入口，让买家能预期「谁送货、怎么查」。",
+          "why": "Emirates Post、Aramex 等是本地买家熟悉的承运商；写出名称与追踪入口，比一句「we ship fast」可信。",
+          "fix": "FAQ 写「We ship via Emirates Post / Aramex; a tracking number is emailed within 24 hours」，并附追踪页链接。",
+          "signals": [
+            "emirates post",
+            "aramex",
+            "fetchr",
+            "tracking number",
+            "track order"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地承运商与追踪入口通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "全部页面的联系入口",
+          "rule": "必须提供 WhatsApp 一键联系，并同时给电话与电邮入口。",
+          "why": "WhatsApp 是阿联酋最常用的通讯工具，客服与售前咨询都靠它；只有表单或只有电话会让大量买家放弃咨询。",
+          "fix": "页脚与联系页并列「WhatsApp（wa.me/971XXXXXXXXX）· Call · Email」，并标注服务时间（GST, UTC+4）。",
+          "signals": [
+            "whatsapp",
+            "wa.me",
+            "live chat",
+            "contact us",
+            "email us"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 1/6（WhatsApp 为主要通讯工具）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-SVC-02",
+          "severity_hint": "medium",
+          "applies_to": "服务时间与响应承诺",
+          "rule": "服务时间要按本地工作周写明（周五时间缩短），并给响应时效承诺。",
+          "why": "阿联酋联邦政府为周一至周四全天、周五半天，周末为周六周日；私人企业多为周一至周五。写「Mon–Fri 9–6」时要说明周五时段，否则买家在周五下午找不到人。",
+          "fix": "写「Sun–Thu 9:00–18:00, Fri 9:00–12:00 GST; we reply within 1 business day」。",
+          "signals": [
+            "business hours",
+            "opening hours",
+            "friday",
+            "response time",
+            "support hours"
+          ],
+          "source": {
+            "type": "official",
+            "title": "UAE Government Portal：公共部门工作时间（周一至周四全天、周五半天）",
+            "url": "https://u.ae/en/information-and-services/jobs/Sector-of-employment/working-in-uae-government-sector/working-hours-in-the-public-sector"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "页脚与联系页电话",
+          "rule": "电话号码必须是完整的本地号码（+971 4 XXXX XXXX 或 +971 5X XXX XXXX），缺位号码等同模板占位符。",
+          "why": "阿联酋固话为区号 + 7 位、手机为 5X + 7 位；+971 4 123 456 这类缺位号码会被本地买家识别为假号码或没填完的模板。",
+          "fix": "统一写 +971 4 XXXX XXXX 或 +971 5X XXX XXXX，并在页脚、联系页、保修页保持一致。",
+          "signals": [
+            "+971",
+            "tel:",
+            "call us",
+            "hotline",
+            "phone"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电话号码格式惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-SVC-04",
+          "severity_hint": "high",
+          "applies_to": "订阅、注册与结算页的营销同意",
+          "rule": "营销同意不得预勾选、不得作为下单条件，必须提供可用的撤回渠道。",
+          "why": "PDPL 要求同意清晰、简单、无歧义且可随时撤回；电商法另规定消费者有权选择拒收促销信息。把同意作为供货条件取得的同意无效。",
+          "fix": "订阅勾选框默认不勾选且与下单分开；隐私页写明目的、共享对象、跨境传输保障与撤回路径。",
+          "signals": [
+            "subscribe",
+            "newsletter",
+            "opt in",
+            "marketing consent",
+            "unsubscribe"
+          ],
+          "source": {
+            "type": "official",
+            "title": "PDPL 2021 Article (6)(1)(b)-(c)：同意的质量与撤回权",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1972"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "文化语境与节庆",
+      "source_sections": [
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "AE-CUL-01",
+          "severity_hint": "high",
+          "applies_to": "全部图片、视频与食谱内容",
+          "rule": "避免伊斯兰教敏感元素：猪、酒精、赌博意象；不展示鞋底朝向镜头；不用左手递物。",
+          "why": "阿联酋是伊斯兰国家，这些元素会直接引发抵制与平台下架；鞋底与左手在本地文化中被视为不洁，出现在素材里属严重失礼。",
+          "fix": "上线前做素材审查：食谱用清真食材与不含酒精的餐桌布置；人物用右手或双手递物；镜头避免鞋底特写。",
+          "signals": [
+            "pork",
+            "alcohol",
+            "wine",
+            "beer",
+            "gambling",
+            "bikini",
+            "left hand"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 5（文化禁忌）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CUL-02",
+          "severity_hint": "high",
+          "applies_to": "斋月期间的促销与推送",
+          "rule": "斋月期间营销要按禁食节奏调整：白天避免餐饮场景推送，集中在日落后（iftar）与深夜。",
+          "why": "斋月白天禁食，餐饮与烹饪内容在日落后才有共鸣；白天推送食物场景会被视为不尊重。同时工作时间缩短，配送与客服承诺要相应放宽。",
+          "fix": "斋月期间切换到 iftar / suhoor 场景素材，推送时段改到日落后；配送承诺写明「during Ramadan, deliveries may take 1–2 days longer」。",
+          "signals": [
+            "ramadan",
+            "iftar",
+            "suhoor",
+            "eid",
+            "fasting"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 5（斋月礼仪与节奏）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CUL-03",
+          "severity_hint": "medium",
+          "applies_to": "促销日历与节庆 banner",
+          "rule": "促销日历要覆盖 White Friday、National Day、Dubai Shopping Festival 与 Ramadan/Eid，并确认各档期的促销许可。",
+          "why": "阿联酋的销售旺季集中在 10 月至次年 1 月（White Friday、National Day、DSF），以及 Ramadan/Eid；只做 Black Friday 会错过本地最大的几个窗口。促销活动还需事前许可。",
+          "fix": "按季度排期：White Friday（11 月）、National Day（12/2）、DSF（12 月–1 月）、Ramadan/Eid；每个档期提前确认促销许可。",
+          "signals": [
+            "white friday",
+            "national day",
+            "dubai shopping festival",
+            "dsf",
+            "black friday"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地大促档期观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CUL-04",
+          "severity_hint": "medium",
+          "applies_to": "人物图与品牌视觉",
+          "rule": "女性形象按保守标准呈现；营销素材应体现本地与外籍客群的多元构成。",
+          "why": "面向本地 Emirati 客群的素材对女性着装高度敏感；同时阿联酋外籍人口占约 88%，只呈现单一国别形象也不符合市场实际。",
+          "fix": "女性形象避免低胸、短裙与过度暴露；场景图混合本地与外籍人物，避免单一国别刻板印象。",
+          "signals": [
+            "women",
+            "model",
+            "fashion",
+            "dress",
+            "family"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 5（女性形象与多元文化）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "AE-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "首屏 hero 区",
+          "rule": "首屏必须回答「卖什么、为什么选你、下一步做什么」，不能只有欢迎语和分类导航。",
+          "why": "阿联酋智能手机渗透率接近 100%，首屏几乎都在手机上完成决策；只写「Welcome to our store」等于把最贵的版面用来打招呼。",
+          "fix": "首屏改成一句价值主张 + 主 CTA（Shop bestsellers / Chat on WhatsApp）+ 信任条（ECAS、2-year warranty）。",
+          "signals": [
+            "welcome to",
+            "shop now",
+            "more",
+            "home"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 6（信息层级与移动优先）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "图片、排版与整体视觉",
+          "rule": "视觉品质是信任门槛：低质量图片与粗糙排版会立即降低信任，不要用供应商图直接上线。",
+          "why": "阿联酋买家（尤其迪拜与外籍高收入客群）对视觉品质极敏感；供应商白底图与错位排版会被读成「不专业的小卖家」。",
+          "fix": "主图重拍或用高质量渲染图，统一白底与比例；排版对齐、留白一致，移动端逐屏检查。",
+          "signals": [
+            "image",
+            "photo",
+            "gallery",
+            "design"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 6（视觉品质优先）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "文案语气与模板句",
+          "rule": "避免中式英语与机械重复的模板句，改用自然的英语；阿语版本另行改写而非直译。",
+          "why": "「Welcome to call us」「Please kindly revert」这类表达会让本地买家立刻判断是机翻或没做过本地校对，削弱品牌可信度。",
+          "fix": "改成 Get in touch / Contact us / We'll get back to you within one working day；阿语版本由母语者重写。",
+          "signals": [
+            "please kindly",
+            "revert",
+            "welcome to call",
+            "hope for your early reply"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 4（Chinglish 对照表）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "规格区与对比模块",
+          "rule": "规格要以表格呈现，关键参数（容量、功率、电压、尺寸、噪音）要能一眼比较。",
+          "why": "阿联酋买家习惯横向比参数再下单；把参数写成长段落会显著增加阅读成本，也让「和竞品差在哪」无法回答。",
+          "fix": "规格做成表格，容量/功率/电压/尺寸/噪音分列；至少给一个同系列型号的对比入口。",
+          "signals": [
+            "specification",
+            "specs",
+            "compare",
+            "capacity",
+            "power",
+            "dimensions"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（规格呈现通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "CTA 与促销话术",
+          "rule": "CTA 用温和引导（Learn more / Explore / Chat with us），避免「Hurry! Limited time!」这类高压话术。",
+          "why": "阿联酋高净值客群对高压促销反感，紧迫感反而增加犹豫；「尊享感」类表达（Exclusive access、Premium experience）在本地更有效。",
+          "fix": "主 CTA 写 Explore the range / Chat with us / Shop now；促销写具体让利而不是「Last chance!」。",
+          "signals": [
+            "hurry",
+            "limited time",
+            "last chance",
+            "buy now",
+            "click here"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 6（CTA 本地习惯）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    }
+  ]
+}
