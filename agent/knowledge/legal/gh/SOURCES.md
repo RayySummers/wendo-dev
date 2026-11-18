@@ -98,6 +98,25 @@
 headed Chrome / Scrapling StealthyFetcher）独立复现，说明是站点按路径的持续策略，不是临时抖动。
 下次接手时若列表页 200，**不要据此认为正文可取**，直接走 EPA / BRR 两条路径。
 
+### 「200 但空」判断口径对 PDF 要修正
+
+团队口径「正文 < 200 字符且含 `enable JavaScript` 即未取得」对 HTML 页成立，但**直接套到 PDF 上会误判**：
+用 Scrapling `StealthyFetcher` 取上述两个 PDF，都返回 `status=200`、`get_all_text()` 长度为 **0**、也不含
+任何挑战页标记。若只看「文本长度 0」就会把两份已验证的官方原文判成未取得。
+
+实测原因是 Chrome 内置 PDF 查看器的外壳：`body` 是 601 字节的 `<template shadowrootmode="closed">`
++ `<iframe type="application/pdf">` 占位页，正文在闭式 shadow DOM 里，任何 DOM 文本提取都拿不到。
+**它带 `content-type: application/pdf` 且 `content-length` 等于真实文件字节数**，与 WAF 挑战页可区分：
+
+| 判据 | 真 PDF | WAF/Cloudflare 挑战页 |
+| --- | --- | --- |
+| `content-type` | `application/pdf` | `text/html` |
+| `content-length` | 等于真实字节数（本库 64159 / 12359491） | 通常很小且与目标文件无关 |
+| `body` 开头 | `<!doctype html>` + `type="application/pdf"` 外壳，或直接 `%PDF-` | 含 `enable JavaScript` / `Just a moment` / `security verification` |
+
+结论：**取 PDF 时不要用文本长度判成败，要看 `content-type` + `content-length` 是否等于已知字节数**；
+本库对 PDF 一律以 curl 取件并核 SHA-256，不经 DOM 文本通道。
+
 ### 为什么保留「同底稿」说明
 
 GH2 的 EPA 藏本与 FAOLEX 旧藏本 PDF 元数据（Title/Author/CreationDate）相同、文字层逐字相同，属同一底稿的不同分发副本；换成 `.gov.gh` 域名后，来源域落进政府域名，但**文本本身没有换版本**。这一点写在 GH2 的 `official_url_note` 里，避免下次被误读成「引文换了版本」。
