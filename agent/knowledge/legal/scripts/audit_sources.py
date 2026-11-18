@@ -77,10 +77,30 @@ SECONDARY_DOMAINS: dict[str, str] = {
 # 不用裸 "WTO"（"WTO TBT" 之外还有大量正当地提及世贸组织的句子）。
 SECONDARY_MENTION_PATTERNS: dict[str, re.Pattern[str]] = {
     "faolex.fao.org": re.compile(r"faolex|fao\s*lex", re.I),
-    "members.wto.org": re.compile(r"members\.wto\.org|wto\s*tbt|wto\s*通报|wto\s*通知", re.I),
+    # 只认「当成来源在引用」的写法：裸 `WTO 通知 / WTO TBT` 会把「新官方文本已与旧 WTO
+    # 通知逐页核对一致」这种换源做对了才写的溯源说明一起判成残留（RAY-757 的真实写法）。
+    # 域名出现即算；纯文字提法要求带「附件 / 通知文号 / .pdf」这类指向具体文档的尾巴。
+    "members.wto.org": re.compile(
+        r"members\.wto\.org"
+        r"|wto\s*tbt\s*(?:通知|通报)?\s*附件"
+        r"|wto\s*(?:通知|通报)\s*附件"
+        r"|wto\s*tbt\s*通知\s*文号",
+        re.I,
+    ),
     "dataguidance.com": re.compile(r"dataguidance|data\s*guidance", re.I),
     "chemreg.net": re.compile(r"chemreg|chem\s*reg", re.I),
 }
+
+# 「这条说明是在讲『已与二手文本交叉核对过』」的信号词。命中这些词说明这条规则
+# 提到二手源是为了交代核对过程，而不是还把它当来源挂着——那是换源做对了的证据。
+# 只在同一句内生效，避免整段里任意一句出现「核对」就放过全段。
+CROSSCHECK_MARKERS: tuple[str, ...] = (
+    "逐页一致", "逐字一致", "逐字核对", "交叉核对", "全文比对", "比对无差异",
+    "已核对", "核对一致", "与旧引用", "旧引用", "改自", "替代",
+)
+
+# 分句：中英文句号、分号、换行都算边界。
+SENTENCE_SPLIT = re.compile(r"[。；;\n]|\.\s+")
 
 # 扫描的说明类字段。official_url 之外，这些是「这条法条从哪来」的唯一线索。
 NOTE_FIELDS: tuple[str, ...] = (
@@ -178,6 +198,30 @@ def mentioned_secondary(text: str, secondary: Sequence[str]) -> list[str]:
             pattern = re.compile(re.escape(canonical), re.I)
         if pattern.search(text) and canonical not in hits:
             hits.append(canonical)
+    return hits
+
+
+def is_crosscheck_sentence(sentence: str) -> bool:
+    """这句话是否在交代「已与二手文本核对过」（而不是还把它当来源挂着）。"""
+    return any(m in sentence for m in CROSSCHECK_MARKERS)
+
+
+def mentioned_as_source(text: str, secondary: Sequence[str]) -> list[str]:
+    """说明字段里仍然把二手源**当成来源**挂着的地方。
+
+    跟 `mentioned_secondary()` 的区别：逐句看，只在「提到二手源、但该句没有核对措辞」
+    时才认。这样 `notes` 里写一句「英文引文逐字取自 AGC 公报；该文本与旧引用的 WTO
+    通知附件逐页一致」不会因为后半句被误判成残留——那是换源做对了才该写的溯源说明。
+    """
+    if not isinstance(text, str) or not text:
+        return []
+    hits: list[str] = []
+    for sentence in SENTENCE_SPLIT.split(text):
+        if not sentence.strip() or is_crosscheck_sentence(sentence):
+            continue
+        for canonical in mentioned_secondary(sentence, secondary):
+            if canonical not in hits:
+                hits.append(canonical)
     return hits
 
 
@@ -388,7 +432,7 @@ def audit_market(code: str, dirname: str, path: str, root: str, secondary: Seque
             value = rule.get(name)
             if not isinstance(value, str):
                 continue
-            for canonical in mentioned_secondary(value, secondary):
+            for canonical in mentioned_as_source(value, secondary):
                 if host_matches(host, canonical):
                     continue  # URL 就是它，属于第 1 段，不是残留
                 report.note_mismatch += 1
