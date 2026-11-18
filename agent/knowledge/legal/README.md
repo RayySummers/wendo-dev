@@ -135,8 +135,13 @@ agent/knowledge/legal/
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
-└── au/                     # 澳大利亚（AU）
+├── au/                     # 澳大利亚（AU）
 │   ├── rules.v0.1.json     # 45 条规则（JSON）
+│   ├── README.md
+│   ├── SOURCES.md
+│   └── SAMPLE_FINDINGS.md
+└── ca/                     # 加拿大（CA）
+│   ├── rules.v0.1.json     # 68 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
@@ -174,7 +179,7 @@ agent/knowledge/legal/
 | 美国（US） | 非一带一路（低） | RAY-691 | v0.1 | 35 / 20 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 英国（UK） | 非一带一路（低） | RAY-692 | v0.1 | 43 / 15 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
 | 澳大利亚（AU） | 非一带一路（低） | RAY-693 | v0.1 | 45 / 16 | 2026-11-14 | 已落地；coverage 与 known_gaps 见 index.json |
-| 加拿大（CA） | 非一带一路（低） | RAY-695 | backlog | — | — | Competition Act / CCPSA / PIPEDA；Quebec 法语问题另标 |
+| 加拿大（CA） | 非一带一路（低） | RAY-695 | v0.1 | 68 / 16 | 2026-11-18 | 已落地；coverage 与 known_gaps 见 index.json |
 
 > 2026-11-17 MT v0.1（RAY-740）：马耳他是欧盟成员国，英语与马耳他语同为官方语言（宪法 art. 5(2)），**商品页用英语即满足「至少一种官方语言」**（S.L. 378.17 reg. 5(1)），不存在强制马耳他语版本；真正会踩的是产品端——说明书/安全信息/标签必须「马耳他语或英语」二选一（S.L. 427.106 reg. 3、S.L. 427.34 reg. 8(5)、S.L. 427.41 reg. 12(4)(a)）。价格上最锋利的一条是 **S.L. 378.09 reg. 5A**：降价必须标「先前价格」，且取降价前 ≥30 天内的最低价，**以 RRP 作划线价不满足**。电商页面另受 GPSR art. 19 约束（制造商名址、欧盟负责人名址、可识别产品的信息与图片、安全警示四项）。认证走 LVD（CE + DoC）与 RED（CE + DoC + 通用充电器标签），未找到马耳他单独的逐型号型式批准；插头为 **BS 1363 英式三脚 13A 带保险丝**（S.L. 427.51 reg. 5(3)(b)）。54 条：rule_level 40 / substantiation 9 / human_review 5，review_required 14。样例页面（homemate.com.mt 空气炸锅）跑通 6 条 finding，并记录 4 条误报（`free`/`safe` 命中导航、`Limited Stock` 误判、把产品义务当页面义务）与 3 条漏报（Cookie 实测、说明书语言、能效标签）。
 
