@@ -11,7 +11,8 @@
 | --- | --- | --- |
 | `official_regulator_english` | 埃及监管机关官网发布的英文法律/法令/指南 | 是 |
 | `official_regulator_archived_english` | 上述官方 PDF 的 Wayback 存档（原件由官方域名托管，抓取时官网不可用） | 是（须记录原 URL 与快照时间） |
-| `gazette_copy_secondary_ar` | 官方公报版面的复制件，托管在第三方；用于无官方电子直链的阿拉伯语法律 | 是，但 `confidence: medium`，须第二份转录交叉核对 |
+| `official_regulator_gazette_ar` | 监管机关官网托管的官方公报版面影印件（无文本层） | 是；`confidence` 受阿语无官方英译限制仍为 `medium`，须第二份转录交叉核对 |
+| `gazette_copy_secondary_ar` | 官方公报版面的复制件，托管在第三方（本版已无条目使用） | 仅作兜底：无官方域名直链时才用，且须第二份转录交叉核对 |
 | `official_regulator_ar` | 监管机关官网阿拉伯语原文 | 仅交叉核对（本版未直接引用） |
 | `secondary` | 律所文章、商业数据库、媒体 | 否，仅作线索/交叉核对 |
 
@@ -26,13 +27,27 @@
 | S5 | Telecommunication Regulation Law No. 10 of 2003（英文版，Art. 48 型号核准） | 2003-02；34 页 | 原 URL：http://www.tra.gov.eg/uploads/law/law_en.pdf（2026-11-17 返回 404）<br>存档：https://web.archive.org/web/20160303204816/http://www.tra.gov.eg/uploads/law/law_en.pdf | `telecom-law-10-2003-en.pdf` | `867a2ad3be82f25546d330aef1e90d25aa58c4e1cde777e2c4f9f5d46ec4aae8` |
 | S6 | TRA/NTRA FAQ on Telecom Equipment Type Approval | 2024-03；7 页 | 原 URL：https://www.tra.gov.eg/wp-content/uploads/2024/03/FAQ.pdf<br>存档：https://web.archive.org/web/20250430023749/https://www.tra.gov.eg/wp-content/uploads/2024/03/FAQ.pdf | `tra-faq-2024-en.pdf` | `a540dccffae4263d719775b36fa3142fef04590992fa7efac4dea8e449fed91d` |
 | S7 | Major Updates on Type Approval Procedure | 2025-03-24；2 页 | 原 URL：https://www.tra.gov.eg/wp-content/uploads/2025/05/Major-latest-updates-on-Type-Approval-procedure-1-2025-.pdf<br>存档：https://web.archive.org/web/20260110160849/https://www.tra.gov.eg/wp-content/uploads/2025/05/Major-latest-updates-on-Type-Approval-procedure-1-2025-.pdf | `tra-type-approval-updates-2025-en.pdf` | `b2d7c04227c4e666b019ce036e40a9b81766148a03ff3c3256fd42a9a8798985` |
-| S8 | Law No. 151 of 2020 Promulgating the Personal Data Protection Law（PDPL 2020） | Official Gazette Issue 28 bis (هـ), 2020-07-15；8 页（版面复制件） | https://www.dataguidance.com/sites/default/files/egypt_data_protection_law_arabic.pdf | `pdpl-151-2020-ar-copy.pdf` | `c484ad624cddb3376d9b7bb99e9759ac61c97a3ceca889133c2cc34726559af9` |
+| S8 | Law No. 151 of 2020 Promulgating the Personal Data Protection Law（PDPL 2020） | Official Gazette Issue 28 bis (هـ), 2020-07-15；31 页（版面影印件，无文本层） | https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf | `pdpl-151-2020-ar-official.pdf` | `fa96349e24251c3d55b5f6ab3c646de920a684494a3aa4f336d6c0e345fda0ff` |
 
 > S1 说明：该 PDF 由 CPA 官网「Legislations」页发布，版式为 Official Gazette（Issue No 37 bis (C), 13 September 2018），标题页与末页均有公报页眉。英文版是官方译本；阿拉伯语（S2）为作准文本。报告引用英文时写「CPA 2018 官方英译本」。
 >
 > S5/S6/S7 说明：2026-11-17 抓取时 `tra.gov.eg` 首页显示「الموقع تحت الصيانة」（站点维护），原文件 URL 返回 404。使用 Wayback 的 `if_` 原始文件接口取回官方 PDF；S5 快照为 2016-03-03，S6 为 2025-04-30，S7 为 2026-01-10。重新下载的 SHA-256 与上表一致。
 >
-> S8 说明：该 PDF 是官方公报第 28 期增刊（هـ）的浏览器打印件，页眉含 `العدد رقم 28 مكرر(هـ) بتاريخ نشر 15/07/2020` 与公报门户的导航栏。非政府域名托管；官方公报门户 `alamiria.gov.eg` 的存档服务需会话访问，未取得稳定直链。文本已用第二份逐字转录（S9）交叉核对。
+> S8 说明（2026-11-18 更新，RAY-759）：本版已换成**埃及政府域名**的官方公报影印件——`pdpc.gov.eg` 是个人数据保护中心（Personal Data Protection Center, PDPC）官网，PDPC 是 PDPL 第 19 条设立的法定监管机关，站内 `assets/pdf-data/` 直接托管该法公报版面 PDF，**公开可下载、无需订阅**。
+>
+> 这与本任务下发时的判断不同：下发时依据的是最高上诉法院技术办公室 `cc.gov.eg/legislation/3007991608/`，该页确有 Law 151/2020 条目（公布日 2020-07-15、公报第 28 号），但正文标注 `النص الكامل متاح للمشتركين`（全文仅订阅用户可见）。核实中发现 PDPC 官网另有公开全文，故**未走降级路径**。
+>
+> 文件为 31 页扫描件、**无文本层**（`pdftotext` 提取为空），因此 4 条引文改以 300dpi 渲染逐条**目视比对**公报版面（第 2 条→第 6 页、第 3(1) 条→第 7 页、第 17 条→第 16-17 页、第 18(3) 条→第 17 页），4/4 一致；同时保留 S9 的逐字转录作第二份文本交叉核对。
+>
+> 访问方式：`pdpc.gov.eg` 对境外自动化客户端 **TLS 握手失败**（`SSL_ERROR_SYSCALL`，2026-11-18 实测 `curl` / `r.jina.ai` / 无头浏览器三路均不通；无头浏览器报 `ERR_CONNECTION_CLOSED`），故取件走 **Wayback 对同一官方 URL 的 `if_` 原始快照**（2026-09-16，8,319,549 字节；2026-05-07 快照哈希一致，可复现）。站点已于 2026-10 迁至 `portal.pdpc.gov.eg`（旧 URL 301 跳转；新域名同样 `ERR_CONNECTION_CLOSED`），`official_url` 保留 `pdpc.gov.eg` 原路径，`archive_url` 记快照。
+>
+> 注：同日用 `cpa.gov.eg` 做对照，无头浏览器可正常返回 200/PDF，说明上述失败是 `pdpc.gov.eg` 这一域名的可达性问题，不是工具故障。**未尝试任何绕过手段**——该站对境外 IP 整体不可达，属客观访问限制。
+
+| 取件方式 | URL |
+| --- | --- |
+| 官方直链（`official_url`） | https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf |
+| Wayback 快照（`archive_url`） | https://web.archive.org/web/20260916021955if_/https://pdpc.gov.eg/assets/pdf-data/PDPL%20no.%20151%20of%202020%20(ar).pdf |
+
 
 ## 辅助来源（不直接支撑 `verbatim_excerpt`）
 
@@ -53,7 +68,7 @@
 4. **GOEIC 登记流程（S10/S12）**：S12 明确「未登记工厂生产或未从登记商标权人/配送中心进口的商品，不得放行用于流通」；S10 把文件齐备后的登记办理期压到 15 天，并规定 30 天内续期、逾期警告/删除、60 天申诉。与 S3 第 1 条的登记制度一致。
 5. **Telecom Law 2003（S5）与 TRA FAQ（S6）**：S5 Art. 48 授权 NTRA 制定型号核准与进口/制造/使用/交易/营销许可规则；S6 第 1 问把强制范围落到手机、IP 摄像头、交换机、路由器、卫星设备、雷达，并明确 PC/笔记本/家用电器目前为可选。两者不冲突，但**不能把 Art. 48 的「任何类型设备」直接等同于「所有家电都要核准」**；规则 EG-3C-01 的 `notes` 已标注该边界。
 6. **TRA 2025 更新（S7）**：第 1 项要求面向公众产品附阿语用户手册；第 7 项要求 Tight Scheme 手册写明翻译机构名称/联系方式（ISO 17100 或阿拉伯国家政府认可）；第 2 项要求标签不可擦除；第 4 项要求装运发票型号与核准型号完全一致。S7 原文为表格，`pdftotext` 会把序号列插入句中；EG-3C-02 的引文只取连续可核对的第一句，其余要求在 `requirement`/`notes` 中说明。
-7. **PDPL 2020（S8/S9）**：S8 与 S9 对第 2、3(1)、17、18(3) 条逐字比对；阿拉伯语归一化（NFKC、去变音符/ tatweel / 双向控制符、统一 alef/ya/ta marbuta、阿拉伯-印度数字转 ASCII）后，4 条引文在两份文本中均为子串匹配。S8 为公报版面，S9 为上诉法院立法门户转录；两份独立来源一致，但仍无法替代官方英文版本。
+7. **PDPL 2020（S8/S9）**：S8 与 S9 对第 2、3(1)、17、18(3) 条逐字比对；阿拉伯语归一化（NFKC、去变音符/ tatweel / 双向控制符、统一 alef/ya/ta marbuta、阿拉伯-印度数字转 ASCII）后，4 条引文在两份文本中均为子串匹配。S8 为公报版面，S9 为上诉法院立法门户转录；两份独立来源一致，但仍无法替代官方英文版本。**2026-11-18（RAY-759）**：S8 换成 PDPC 官方域名影印件后，因该件无文本层，4 条引文另做逐页目视比对（4/4 一致）；S9 的文本层比对结果保留作为第二份证据。
 8. **PDPL 罚则条号**：第 36 条对应第 2 条（未经同意处理）、第 37 条对应第 3 条、第 43 条对应第 17/18 条；逐条核对第 35-48 条的条号与罚则区间，未发现错位。
 9. **样例页面（S13/S14）**：2026-11-17 抓取，保存 HTML 与 `pdftotext` 等价的正文文本；页面内容可能随投放/促销变化，`SAMPLE_FINDINGS.md` 记录的是抓取时快照。Tefal 页面为品牌站（跳转第三方购买），Midea 页面为品牌站（无结算），二者都不构成完整远程合同流程。
 
@@ -69,7 +84,7 @@
 | S5 | `867a2ad3…6ec4aae8` ✅ | Wayback `if_` 原始文件 |
 | S6 | `a540dccf…49fed91d` ✅ | Wayback `if_` 原始文件 |
 | S7 | `b2d7c042…a8798985` ✅ | Wayback `if_` 原始文件 |
-| S8 | `c484ad62…726559af9` ✅ | 第三方托管的公报复制件 |
+| S8 | `fa96349e…45fda0ff` ✅ | PDPC 官方域名影印件（Wayback `if_` 快照；2026-05-07 与 2026-09-16 两个快照哈希一致） |
 
 复现命令（示例）：
 
@@ -93,8 +108,10 @@ sha256sum s5.pdf
 
 ```bash
 python3 verify_excerpts.py --sources /path/to/eg-sources
-# 31/31 PASS, 0 mismatch
+# 27/27 PASS, 0 mismatch（S8 的 4 条改由目视比对，脚本跳过并提示）
 ```
+
+> **S8 说明（2026-11-18 起）**：S8 换成 PDPC 官方公报影印件后**没有文本层**，`pdftotext` 提取为空，字符串子串比对对它不成立。脚本对该源改为「提示需目视核对」而不是静默 FAIL；S8 的 4 条引文由人对照 300dpi 渲染页逐字核过（4/4），并以 S9 转录的文本比对作为第二份证据。动手前请先读 S8 说明与 `README.md` 的对应 open question。
 
 源文件命名：
 
@@ -105,13 +122,13 @@ python3 verify_excerpts.py --sources /path/to/eg-sources
 | S4 | `goeic-1483.pdf` |
 | S5 | `telecom-law-10-2003-en.pdf` |
 | S7 | `tra-type-approval-updates-2025-en.pdf` |
-| S8 | `pdpl-151-2020-ar-copy.pdf`（同时比对 `pdpl-ar.txt`） |
+| S8 | `pdpl-151-2020-ar-official.pdf`（无文本层，需 `pdftoppm` 渲染后目视比对；同时比对 S9 转录） |
 
 归一化规则：
 
 - 英文：NFKC、弯引号转直引号、转小写、去所有非字母数字字符（消除换行、连字符断词与标点差异）。
 - 阿拉伯语：NFKC、阿拉伯-印度数字转 ASCII、去变音符（U+0610-061A、U+064B-065F、U+0670、U+06D6-06ED）、去 tatweel（U+0640）、去双向控制符（U+200B-200F、U+202A-202E、U+2066-2069）、统一 `أ/إ/آ`→`ا`、`ى`→`ي`、`ة`→`ه`、转小写、去非字母数字字符。
-- S8 同时检查公报 PDF 文本与 S9 的 HTML 转录；4 条 PDPL 引文在两者中均匹配。
+- S9 的 HTML 转录按上面的阿拉伯语规则归一化后比对；S8 官方影印件无文本层，4 条 PDPL 引文以目视核对为准（见上）。
 
 ## 未能取得 / 未采用的官方来源
 
@@ -122,7 +139,10 @@ python3 verify_excerpts.py --sources /path/to/eg-sources
 | EOS 强制标准清单 / ES 1781 全文 | EOS 标准需购买；官网只列目录与简介 | 小家电标准符合性只能判「需要证明」；未把 WTO 通知摘要当条文 |
 | 埃及广告标准（CPA 第 1(6) 条引用的 Egyptian standard specifications for advertising requirements） | 未定位标准号/文本 | 数字广告是否有额外内容标准未知；README open question #2 |
 | 能效标签要求 | 未取得官方文本 | 冰箱/空调/洗衣机/灯具能效标识未建规则 |
-| 官方公报门户 `alamiria.gov.eg` 的存档直链 | 站点可达，但 `/ar-eg/archiving-service/`、`/Sec/Archive.aspx` 均 404；存档需会话 | PDPL 只能用第三方托管的公报复制件 + 第二份转录 |
+| 官方公报门户 `alamiria.gov.eg` 的存档直链 | 站点可达，但 `/Sec/Archive.aspx` 等存档入口需登录会话，未取得稳定直链 | 不构成阻塞：PDPL 已改用 PDPC 官网托管的公报影印件（S8） |
+| `cc.gov.eg` 最高上诉法院立法门户 | 条目存在（Law 151/2020，公布日 2020-07-15、公报第 28 号），但正文标注 `النص الكامل متاح للمشتركين`（全文仅订阅用户可见）；同日复测该条目页已返回 **403**（站点限流，非付费墙绕过尝试）；未购买、未绕付费墙 | 未用于取件；PDPL 改用 PDPC 官网公开全文 |
+| `laws.gov.eg` | 连接失败（不可达） | 未使用 |
+| `pdpc.gov.eg` 直连 | 境外自动化客户端 TLS 握手失败（`SSL_ERROR_SYSCALL`）；无头浏览器报 `ERR_CONNECTION_CLOSED`；`cpa.gov.eg` 同法可通，故为域名可达性问题；2026-10 起站点迁至 `portal.pdpc.gov.eg`（同样不可达） | 不影响采信：经 Wayback `if_` 快照取得同一官方 URL 原件并锁定 SHA-256 |
 | `tra.gov.eg` 实时站点 | 首页显示「الموقع تحت الصيانة」，原 PDF URL 404 | 使用 Wayback 官方 PDF 原件（S5/S6/S7） |
 | WTO TBT 通知（G/TBT/N/EGY/233 等） | `docs.wto.org` 返回 JS 挑战页，未取得正文 | 未把通知摘要作为引文；ES 1781 只能留在 open questions |
 | `egypt.gov.eg` / `sis.gov.eg` | TLS 连接被重置 | 未使用；不影响本版主来源 |
