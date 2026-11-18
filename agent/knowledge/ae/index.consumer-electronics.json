@@ -1,0 +1,1002 @@
+{
+  "market": "AE",
+  "market_name": "阿联酋",
+  "category": "consumer_electronics",
+  "category_name": "3C 数码",
+  "version": "2026-11-18-v0.1",
+  "scope": "只适用于阿联酋市场的 3C 数码（手机、平板、笔记本、穿戴、耳机、影像、配件）。不包含小家电的食品接触与厨房场景规则；语言、支付、物流、退换、客服、价格等共用规则可复用。全球品牌的规模优势不等于中小企业必须项：不要照抄「Apple 有所以我们也要有」。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-LANG-01",
+          "severity_hint": "high",
+          "applies_to": "商品数据、广告与合同条款的 3C 页面",
+          "rule": "3C 商品数据、广告与合同也必须有阿拉伯语版本；不能只在营销页做阿语而让规格与保修条款只有英文。",
+          "why": "CPL 第 26 条的阿语义务覆盖与消费者相关的数据、广告与合同，不限于营销文案；规格与保修条款正是买家最需要看懂的合同性内容。",
+          "fix": "规格表、保修条款、退货政策与结算说明都提供阿语版本（可与英文并列），并保证两版内容一致。",
+          "signals": [
+            "arabic",
+            "العربية",
+            "english only"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Federal Decree-Law No. 15 of 2020 (CPL) Article (26)",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-LANG-02",
+          "severity_hint": "medium",
+          "applies_to": "阿语版本文案",
+          "rule": "阿语不能是机翻：型号、系列名、功能名保留原文，描述性文案由母语者重写。",
+          "why": "机翻阿语会被本地买家立即识别；型号与功能名机翻后还会导致搜索与售后对不上。",
+          "fix": "品牌名/系列名/型号保持原文；描述性文字交母语者改写，避免逐字直译。",
+          "signals": [
+            "machine translation",
+            "translated",
+            "google translate"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（阿语本地化质量边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-LANG-03",
+          "severity_hint": "medium",
+          "applies_to": "语言切换与默认语言",
+          "rule": "阿语与英语双语并列，语言切换入口固定在页头；只做英文在本地是合规缺口。",
+          "why": "外籍人口约占 88%，英语是必要的共同商业语言；但阿语是法定要求。两者都要有，切换入口不能藏在页脚。",
+          "fix": "页头固定「العربية / English」切换；默认语言可按访问地区判断，但要保证任一版本信息完整。",
+          "signals": [
+            "language switcher",
+            "bilingual",
+            "english",
+            "expat"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 1/3（语言环境）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-LANG-04",
+          "severity_hint": "low",
+          "applies_to": "规格、日期与计量",
+          "rule": "规格用公制与摄氏度，日期写 DD/MM/YYYY，数字用 0-9；不要混入 inch、oz、°F。",
+          "why": "本地电商普遍使用公制与西方阿拉伯数字；混用英制或东阿拉伯数字会增加理解成本。",
+          "fix": "写 15.5 cm、重量 g、电池 Wh、温度 °C；日期写 18/11/2026。",
+          "signals": [
+            "inch",
+            "inches",
+            "oz",
+            "lbs",
+            "fahrenheit",
+            "mm/dd"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地计量与日期惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-LANG-05",
+          "severity_hint": "medium",
+          "applies_to": "中文直译的 3C 品类词",
+          "rule": "不要直译中文 3C 品类词（hand machine、digital product），用本地通行的 phone / tablet / laptop / earbuds。",
+          "why": "直译词不进本地搜索词，也说不清品类；阿联酋买家来自 200 多个国家，只有国际通行词才能被检索到。",
+          "fix": "用 phone / tablet / laptop / smartwatch / earbuds / power bank / charger。",
+          "signals": [
+            "hand machine",
+            "digital product",
+            "machine king",
+            "electronic product"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "specs",
+      "name": "产品规格与兼容性",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-SPEC-01",
+          "severity_hint": "high",
+          "applies_to": "含无线模块的设备（手机、平板、手表、耳机、路由）",
+          "rule": "无线设备应写明 TDRA 型号批准编号，并列阿联酋支持的频段；不要笼统写「global bands」。",
+          "why": "电信设备投放阿联酋市场前须在 TDRA 型号批准系统注册并获得批准，按风险分 Level 1–3；只写「global bands」无法说明本地频段是否被支持。",
+          "fix": "规格区写「TDRA type-approved — registration no. XXXXX」并列出本地 LTE/5G 频段与 Wi-Fi 制式。",
+          "signals": [
+            "tdra",
+            "type approval",
+            "5g",
+            "lte",
+            "wi-fi",
+            "bluetooth",
+            "bands",
+            "global bands"
+          ],
+          "source": {
+            "type": "official",
+            "title": "TDRA：Register and approve telecommunication equipment",
+            "url": "https://tdra.gov.ae/en/Services/register-and-approve-telecommunication-equipment"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-SPEC-02",
+          "severity_hint": "high",
+          "applies_to": "充电器、适配器、带插头的电源类 3C",
+          "rule": "电源类产品必须写 230V / 50Hz 与 G 型三脚插头（BS 1363），并给出 ECAS 符合性证书编号。",
+          "why": "阿联酋市电 230V / 50Hz、插座为 G 型；低电压电气设备须通过 ECAS 取得符合性证书才能进口、清关与流通。",
+          "fix": "写「Input: 100–240V, 50/60Hz; Plug: UK 3-pin (BS 1363); ECAS CoC no. XXXXX」，随箱含转换头的要说明。",
+          "signals": [
+            "110v",
+            "120v",
+            "us plug",
+            "eu plug",
+            "2-pin",
+            "adapter",
+            "charger",
+            "plug"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL 2020 Article (20)：商品须符合 UAE.S / GSO 标准（ECAS 符合性评定路径）",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-SPEC-03",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU",
+          "rule": "型号、地区版本、盒内清单与保修地区必须成套出现，不能只给一个产品名。",
+          "why": "3C 买家下单前要确认「盒里有什么、坏了找谁」；缺盒内清单会带来大量「少配件」争议，缺保修地区则无法判断是否本地保修。",
+          "fix": "规格区固定四行：Model（UAE）、What's in the box、Warranty region、Serial number location。",
+          "signals": [
+            "what's in the box",
+            "in the box",
+            "box contents",
+            "model",
+            "warranty region"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 规格区通行结构）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-SPEC-04",
+          "severity_hint": "medium",
+          "applies_to": "配件、外设与跨设备产品",
+          "rule": "兼容性要写清 OS 版本、充电协议与配件代际，不要写「compatible with all devices」。",
+          "why": "USB-C PD 的功率档位、Thunderbolt 代际、iOS/Android 版本都会决定能不能用；笼统的兼容性声明既不可核也常出错。",
+          "fix": "写「Supports USB-C PD 3.0 up to 65 W; requires iOS 16 / Android 12 or later」，并列出已知不兼容机型。",
+          "signals": [
+            "compatible",
+            "compatibility",
+            "ios",
+            "android",
+            "usb-c",
+            "thunderbolt",
+            "requires"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（兼容性表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-SPEC-05",
+          "severity_hint": "medium",
+          "applies_to": "电池、充电与防护等级",
+          "rule": "电池容量用 Wh、充电功率用 W、防护等级用 IP 代码；不要用「all-day battery」「fast charge」代替数字。",
+          "why": "「all-day battery」没有基准，「fast charge」不说明功率与协议；买家无法横向比较，也容易在收货后认为被夸大。",
+          "fix": "写「5,000 mAh (19.5 Wh), 65 W USB-C PD, IP68」；续航写测试条件。",
+          "signals": [
+            "battery",
+            "mah",
+            "wh",
+            "charging",
+            "watt",
+            "ip68",
+            "ip67",
+            "fast charge",
+            "all-day"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（参数化表述优于形容词）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "name": "保修与售后服务",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-WAR-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU 的保修宣传",
+          "rule": "宣传保修必须同时提供书面保修文件，写明期限、覆盖部件与除外责任。",
+          "why": "CPL 实施条例第 11 条规定不得宣传保修而不提供证明该保修的书面文件；只写「1-year warranty」买家无法判断覆盖什么，也不符合该条要求。",
+          "fix": "保修页提供可下载条款（阿语 + 英语），写明期限、覆盖部件、除外责任与索赔流程。",
+          "signals": [
+            "warranty period",
+            "limited warranty",
+            "coverage",
+            "claim",
+            "warranty terms"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL Executive Regulations 2023 Article (11)：保修须有书面文件",
+            "url": "https://uaelegislation.gov.ae/en/legislations/2157"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-WAR-02",
+          "severity_hint": "high",
+          "applies_to": "标价明显低于官方的 3C 卖家",
+          "rule": "要区分官方保修、授权经销商保修与平行进口，并给出序列号查询与授权服务商入口。",
+          "why": "阿联酋 3C 市场平行进口普遍（尤其迪拜），价格差往往来自保修由卖家而非品牌承担；不写清楚，买家会以为能走品牌官方维修。",
+          "fix": "写「Official UAE warranty via authorised distributor」或「Parallel import — 12-month warranty by seller」；给序列号查询与授权服务商链接。",
+          "signals": [
+            "authorised reseller",
+            "authorized reseller",
+            "parallel import",
+            "grey market",
+            "serial",
+            "warranty check"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（平行进口与保修归属通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-WAR-03",
+          "severity_hint": "medium",
+          "applies_to": "维修、换机与延保服务",
+          "rule": "维修/换机要写清周转天数、送修地址与备用机政策，不要只放一个服务名。",
+          "why": "3C 买家最关心「等多久、去哪里送」；只写「authorised service centre」无法回答这两个问题。",
+          "fix": "写「Repairs take 3–5 business days at our Dubai service centre; loaner units subject to availability」，并列出不覆盖情形。",
+          "signals": [
+            "repair",
+            "replacement",
+            "turnaround",
+            "service centre",
+            "loaner",
+            "accidental damage"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（维修条款通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-WAR-04",
+          "severity_hint": "high",
+          "applies_to": "保修与退款条款页",
+          "rule": "不要用「no refund」「no warranty」这类绝对免责话术覆盖法定权利；可写清商业保修与法定权利的边界。",
+          "why": "CPL 禁止在与消费者的合同中加入损害消费者的条款，排除提供方法定义务的条款无效；绝对免责话术很可能被认定为此类条款。",
+          "fix": "写「This warranty is in addition to your rights under UAE consumer protection law」，并说明缺陷商品的维修、更换、退款路径。",
+          "signals": [
+            "no refund",
+            "no warranty",
+            "no returns",
+            "sold as is",
+            "statutory rights"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL 2020 Article (21)：禁止损害消费者的合同条款",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1455"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付、分期与 trade-in",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "结算区与商品页支付区",
+          "rule": "结算区应展示 Visa/Mastercard、Apple Pay / Google Pay，并按实际支持情况说明是否提供 COD。",
+          "why": "阿联酋线上支付以卡为主、数字钱包普及率高；3C 客单价高，缺少钱包与分期会显著影响转化。COD 在 3C 上较少见，支持就要写清条件。",
+          "fix": "价格与加购按钮附近放支付图标行，并写明「Visa · Mastercard · Apple Pay · Google Pay」。",
+          "signals": [
+            "visa",
+            "mastercard",
+            "apple pay",
+            "google pay",
+            "payment"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 1（支付方式）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "价格展示与结算页",
+          "rule": "价格必须含 5% VAT 并写明是否含运费；信用卡付款不得加收额外费用。",
+          "why": "增值税法要求广告与展示价格含 VAT；对信用卡付款加收手续费同样被价格规则禁止。3C 高客单价下，结算页才出现的费用最容易导致弃购。",
+          "fix": "标价写 AED 1,299.00（VAT inclusive），并在价格旁写运费门槛。",
+          "signals": [
+            "before vat",
+            "exclusive of vat",
+            "vat added at checkout",
+            "card fee",
+            "credit card surcharge"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL Executive Regulations 2023 Article (5)(1)-(3)：价格公告与不得加收卡费",
+            "url": "https://uaelegislation.gov.ae/en/legislations/2157"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-PAY-03",
+          "severity_hint": "high",
+          "applies_to": "BNPL 与银行卡分期",
+          "rule": "分期要写清期数、手续费、最低消费与是否 0% 利息；不要只放 Tabby / Tamara 图标。",
+          "why": "分期广告若缺条件，买家会默认自己符合，到结算才发现不适用；阿联酋分期常涉及手续费而非纯免息。",
+          "fix": "写「or 4 payments of AED XX with Tabby; 0% interest, no fees on orders over AED 500」，并在 FAQ 列明资格条件。",
+          "signals": [
+            "tabby",
+            "tamara",
+            "bnpl",
+            "installment",
+            "instalment",
+            "0% interest",
+            "monthly"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Tabby：阿联酋分期条款",
+            "url": "https://www.tabby.ai/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-PAY-04",
+          "severity_hint": "medium",
+          "applies_to": "trade-in 与以旧换新",
+          "rule": "Trade-in 要写清合作方、估价与最终价差异、可抵扣范围、数据清除与资格条件；不要把最高估价写成保证价。",
+          "why": "最高估价只适用于特定机型与状况；数据清除是 3C 买家最关心的隐私问题，也是本地合规预期的一部分。",
+          "fix": "写「Estimated trade-in AED XX–X,XXX depending on model and condition; final value confirmed after inspection; data wiped before recycling」。",
+          "signals": [
+            "trade in",
+            "trade-in",
+            "estimated",
+            "up to aed",
+            "buyback",
+            "recycle"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（trade-in 表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送、退换与渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "结算页地址表单",
+          "rule": "地址表单不应把邮政编码当作必填；阿联酋地址靠酋长国、区域、楼名/单元号、P.O. Box 或 Makani 编号定位。",
+          "why": "阿联酋没有全国性邮政编码体系，投递依赖 P.O. Box 与楼宇地址；3C 高单价订单在地址环节流失代价尤其高。",
+          "fix": "表单改为「Emirate / Area / Building / Unit / P.O. Box or Makani no.（选填）/ Mobile」。",
+          "signals": [
+            "postcode",
+            "zip code",
+            "postal code",
+            "p.o. box"
+          ],
+          "source": {
+            "type": "official",
+            "title": "UAE Government Portal：Makani 智能地址系统",
+            "url": "https://u.ae/en/information-and-services/transportation/Technology-in-transportation/geospatial-data-in-transportation"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-LOG-02",
+          "severity_hint": "high",
+          "applies_to": "高单价 3C 的配送说明",
+          "rule": "高单价 3C 要说明签收、保价与丢件处理，并按酋长国写清时效。",
+          "why": "3C 是盗损与丢件高风险品类；没有签收与保价条款，丢件争议会变成卖家全额承担。各酋长国时效差异也需要提前说明。",
+          "fix": "写「Signature required · insured up to AED 5,000 · Dubai/Sharjah/Abu Dhabi 1–3 working days, other emirates 3–7」。",
+          "signals": [
+            "free shipping",
+            "free delivery",
+            "shipping",
+            "delivery",
+            "insured",
+            "signature",
+            "courier"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（高单价 3C 配送表述）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-LOG-03",
+          "severity_hint": "high",
+          "applies_to": "退货政策页与商品页",
+          "rule": "退货要写清窗口、未拆封/已激活条件、退货运费与退款方式；已激活设备的条件必须单独写。",
+          "why": "3C 一旦激活就影响二次销售，商家通常对已激活设备只换不退；不写清楚会在售后变成争议。",
+          "fix": "写「7-day returns for unopened items; activated devices are eligible for warranty service only unless faulty on arrival」，并写明退款到账时间。",
+          "signals": [
+            "return",
+            "returns",
+            "refund",
+            "exchange",
+            "unopened",
+            "activated",
+            "14 days"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 退货条件通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-LOG-04",
+          "severity_hint": "medium",
+          "applies_to": "有门店或授权渠道的品牌",
+          "rule": "有线下渠道的要写清门店/授权经销商/自提点与库存查询；纯线上品牌写清发货仓与截单时间。",
+          "why": "阿联酋 3C 买家习惯到 Mall 里的门店体验后再下单；不给库存查询会让「线上比价、线下体验」这条路径断掉。",
+          "fix": "写「Available at our Dubai Mall store — check stock」，或「Ships from our Jebel Ali warehouse; order before 3 pm for same-day dispatch」。",
+          "signals": [
+            "store",
+            "find a store",
+            "reseller",
+            "pickup",
+            "availability",
+            "stock",
+            "warehouse"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地 3C 渠道表述）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-LOG-05",
+          "severity_hint": "medium",
+          "applies_to": "订单状态与物流追踪",
+          "rule": "订单状态与配送进度要可查；至少提供订单查询入口与客服兜底，不要只写「we will contact you」。",
+          "why": "3C 订单金额高，买家会反复查看进度；没有查询入口会把客服变成唯一进度来源。",
+          "fix": "页脚放 Order Status，给运单号与预计到达日；异常时给客服兜底入口。",
+          "signals": [
+            "order status",
+            "track order",
+            "dispatch",
+            "delivery status",
+            "tracking number"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（订单可查性通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "认证、隐私与本地信任",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU 的认证表述",
+          "rule": "认证要按产品类型写对：无线设备核对 TDRA 型号批准；低电压电气设备核对 ECAS；不能用「certified」一句覆盖所有。",
+          "why": "不同产品落在不同监管框架：TDRA 管通信设备，MOIAT 的 ECAS 管低电压电气设备；笼统的「certified」既不可核，也可能构成欺骗性描述。",
+          "fix": "按品类分别写「TDRA type-approved no. XXXXX」或「ECAS CoC no. XXXXX」，并附标志与标签照片。",
+          "signals": [
+            "certified",
+            "ecas",
+            "conformity",
+            "compliance",
+            "certification label"
+          ],
+          "source": {
+            "type": "official",
+            "title": "TDRA 型号批准；CPL 2020 Article (20) 标准符合性（ECAS 路径）",
+            "url": "https://tdra.gov.ae/en/Services/register-and-approve-telecommunication-equipment"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "账号注册、下单与 Cookie",
+          "rule": "要有 PDPL 隐私说明：处理目的、共享对象（境内外）、跨境传输保障与撤回同意的方式；不要写「100% secure」。",
+          "why": "PDPL 第 13(2) 条要求处理前告知目的、共享对象与跨境传输的保护措施；3C 页面通常收集设备信息与账号数据，缺告知即属违规。",
+          "fix": "隐私页写清目的、共享对象（物流/支付/云服务）、跨境传输保障、同意撤回路径与联系方式；Cookie 横幅给拒绝选项。",
+          "signals": [
+            "privacy",
+            "pdpl",
+            "personal data",
+            "cookie",
+            "data protection",
+            "100% secure"
+          ],
+          "source": {
+            "type": "official",
+            "title": "PDPL 2021 Article (13)(2)：处理前告知",
+            "url": "https://uaelegislation.gov.ae/en/legislations/1972"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-TRUST-03",
+          "severity_hint": "high",
+          "applies_to": "页脚与 About 页",
+          "rule": "页脚要公开执照发证机关、地址、联系电话与实际营业地址；跨境卖家写本地授权经销商。",
+          "why": "电商法要求向公众公开数字交易者的执照（发证机关）、地址、联系电话、实际营业地址与网站信息；3C 单价高，买家付款前会确认「出事找谁」。",
+          "fix": "页脚写 trade licence 编号与发证机关（如 Dubai DED）、实际地址、+971 电话与邮箱。",
+          "signals": [
+            "trade licence",
+            "trade license",
+            "registered address",
+            "contact us",
+            "distributor",
+            "about us"
+          ],
+          "source": {
+            "type": "official",
+            "title": "E-Commerce Law 2023 Article (6)(9)：公开执照与地址",
+            "url": "https://uaelegislation.gov.ae/en/legislations/2150"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-TRUST-04",
+          "severity_hint": "medium",
+          "applies_to": "评价、评分与媒体测评",
+          "rule": "社会证明要可核对：真实评价、买家图、平台评分或媒体测评；不要编造评分。",
+          "why": "阿联酋买家在 3C 决策前高度依赖评价与影响者背书；虚构评分在本地可被 CPL 与平台规则双重处罚。",
+          "fix": "展示带型号与日期的本地评价、平台评分与媒体测评链接；影响者内容按媒体法标明为广告。",
+          "signals": [
+            "reviews",
+            "rating",
+            "trusted",
+            "testimonial",
+            "media review",
+            "award",
+            "influencer"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（社会证明可核对性边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "全部页面的支持入口",
+          "rule": "应提供 WhatsApp 一键联系，并给出明确的人工入口与服务时间。",
+          "why": "WhatsApp 是阿联酋最常用的通讯工具；3C 售前咨询（型号、兼容性、保修）几乎都发生在 WhatsApp 上，只留表单会流失咨询。",
+          "fix": "写「WhatsApp us (wa.me/971XXXXXXXXX) · Sun–Thu 9:00–18:00 GST」。",
+          "signals": [
+            "whatsapp",
+            "wa.me",
+            "contact",
+            "chat",
+            "hotline"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 1/6（WhatsApp 为主要通讯工具）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-SVC-02",
+          "severity_hint": "medium",
+          "applies_to": "页脚与联系页电话",
+          "rule": "电话号码必须是完整的本地号码（+971 4 XXXX XXXX 或 +971 5X XXX XXXX），不要留缺位模板号。",
+          "why": "阿联酋固话为区号 + 7 位、手机为 5X + 7 位；缺位号码会被本地买家识别为假号码。",
+          "fix": "统一写 +971 4 XXXX XXXX 或 +971 5X XXX XXXX，并在页脚、联系页、保修页保持一致。",
+          "signals": [
+            "+971",
+            "tel:",
+            "phone",
+            "call us"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电话号码格式惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "支持页与 FAQ",
+          "rule": "客服要给响应时效与服务时段，并按本地工作周说明周五时段；不要只写「24/7」却没有渠道。",
+          "why": "阿联酋联邦政府为周一至周四全天、周五半天；只写「24/7 support」而实际只有表单，等于没有承诺。",
+          "fix": "写「Live chat Sun–Thu 9:00–18:00, Fri 9:00–12:00 GST; email replies within 1 business day」。",
+          "signals": [
+            "response time",
+            "business day",
+            "opening hours",
+            "24/7",
+            "support hours",
+            "holiday"
+          ],
+          "source": {
+            "type": "official",
+            "title": "UAE Government Portal：公共部门工作时间",
+            "url": "https://u.ae/en/information-and-services/jobs/Sector-of-employment/working-in-uae-government-sector/working-hours-in-the-public-sector"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-SVC-04",
+          "severity_hint": "low",
+          "applies_to": "客服语言能力说明",
+          "rule": "客服语言至少英语与阿语可通；中文是加分项，不要写成唯一渠道。",
+          "why": "阿联酋买家以外籍为主，英语是共同语；本地 Emirati 客群则期望阿语服务。只标中文会把绝大多数买家挡在门外。",
+          "fix": "写「Support in Arabic and English」，中文服务作为补充说明。",
+          "signals": [
+            "support language",
+            "chinese",
+            "mandarin"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（客服语言表述边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "品牌语气与本地化边界",
+      "source_sections": [
+        "Section 2",
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-BRAND-01",
+          "severity_hint": "medium",
+          "applies_to": "全球品牌与本地子品牌",
+          "rule": "全球统一的品牌语气可以保留，但阿语版本、价格、库存、配送与售后必须本地化；不要为了「本地化」改写全球 slogan。",
+          "why": "3C 的全球品牌资产来自一致语气与产品名；真正影响转化的是阿语可得性、价格与售后是否本地可执行。",
+          "fix": "slogan 与产品名保持原文；把预算放在阿语版本、含税价格、库存、配送时效与保修。",
+          "signals": [
+            "slogan",
+            "global",
+            "worldwide",
+            "brand",
+            "uae"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（全球 master 与本地化边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-BRAND-02",
+          "severity_hint": "medium",
+          "applies_to": "产品名、系列名与功能名",
+          "rule": "全球 slogan 与产品名不要机翻；只翻译描述性文字，品牌名、系列名、功能名保持原文。",
+          "why": "机翻产品名会让搜索与售后对不上型号；阿联酋买家认型号与系列名，翻译后既搜不到也说不清。",
+          "fix": "产品名/系列名/功能名保留原文，只把描述性段落译成自然的英语与阿语。",
+          "signals": [
+            "tagline"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（品牌名与功能名不翻译）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-BRAND-03",
+          "severity_hint": "high",
+          "applies_to": "最高级与性能宣称",
+          "rule": "「world's best」「No.1」「most accurate」这类最高级宣称必须有可核对依据；奖项与证书要能给出编号与有效期。",
+          "why": "CPL 实施条例第 8(4)-(7) 条把奖项、证书、质量标志与「预期使用效果」列为欺骗性描述的法定要素；没有依据的最高级宣称属最易触发执法的一类。",
+          "fix": "改成可核对参数（「0.1 s response time, tested by [lab] on [date]」），并给奖项/证书的编号与覆盖型号。",
+          "signals": [
+            "world's best",
+            "no.1",
+            "number one",
+            "most accurate",
+            "fastest",
+            "leading",
+            "best in"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPL Executive Regulations 2023 Article (8)(4)-(7)：奖项与证书表述",
+            "url": "https://uaelegislation.gov.ae/en/legislations/2157"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "AE-CE-BRAND-04",
+          "severity_hint": "medium",
+          "applies_to": "节庆与送礼场景",
+          "rule": "节庆场景可以用 White Friday / DSF / Eid，但不要把 3C 放进宗教叙事；3C 的本地化重点是「送礼/升级/以旧换新」。",
+          "why": "把电子产品塞进宗教场景会显得不尊重；3C 的节庆需求实际集中在送礼、年终升级与换机。",
+          "fix": "节庆 banner 用「Gift the upgrade」「Trade in and save」，避免宗教符号与祭祀场景。",
+          "signals": [
+            "white friday",
+            "dsf",
+            "eid",
+            "gift",
+            "festive"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 节庆场景边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "AE-CE-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "产品页首屏",
+          "rule": "首屏要回答「卖什么、为什么选它、下一步做什么」；产品 hero 可以极简，但 Buy / Learn more 必须成对出现。",
+          "why": "阿联酋智能手机渗透率接近 100%，比价与浏览都在手机上完成；只有一张产品图会让比价用户直接返回搜索结果。",
+          "fix": "首屏给产品名 + 一句核心差异 + 含税价格 + 主 CTA（Buy now）与次 CTA（Compare models）。",
+          "signals": [
+            "learn more",
+            "buy",
+            "shop",
+            "pre-order",
+            "discover"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 uae.md Section 6（移动优先与信息层级）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/middleeast/uae.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "AE-CE-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "规格区与对比模块",
+          "rule": "规格要用可扫描的表格/对比，不要用长段落堆参数；关键差异（屏幕、芯片、电池、相机）要能一眼对比。",
+          "why": "3C 的购买决策是参数对比；长段落堆参数会把买家送到竞品页面去比。",
+          "fix": "规格做成表格，并给同系列型号的并排对比；关键差异加一行「与上代相比」。",
+          "signals": [
+            "compare",
+            "specs",
+            "technical specifications",
+            "chip",
+            "camera",
+            "display"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 规格呈现通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "CTA 与促销话术",
+          "rule": "CTA 要明确、克制：Buy / Learn more / Trade in 优于「限时抢购」「最后机会」这类高压话术。",
+          "why": "阿联酋高净值客群对高压促销反感，紧迫感反而增加犹豫；「尊享感」类表达在本地更有效。",
+          "fix": "主 CTA 用 Buy now / Compare models / Trade in；促销写具体让利（Save AED 300）。",
+          "signals": [
+            "buy now",
+            "limited time",
+            "hurry",
+            "last chance",
+            "click here"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C CTA 语气边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "品牌站首页与产品列表",
+          "rule": "首页可以不标价（品牌站常见），但必须能一步进入商店并看到含 VAT 的价格；不要让「了解产品」与「购买」断开。",
+          "why": "3C 品牌站常用「了解 → 购买」两段式；购买入口藏得深，或价格要到结算才出现，比价流量会直接流失。",
+          "fix": "产品页给「Buy」直达商店，价格含 VAT 并在商品卡展示；库存状态一并显示。",
+          "signals": [
+            "from aed",
+            "see price",
+            "price list",
+            "where to buy"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（品牌站两段式路径）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "AE-CE-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "页脚与法务链接",
+          "rule": "页脚要能直达 Order Status、Returns & Refunds、Privacy、Support；不要把这些藏在多层菜单里。",
+          "why": "3C 售后触点集中在订单与退换；法务与支持页藏太深会在出问题时放大不满，也不符合 PDPL 的可获取性预期。",
+          "fix": "页脚固定四项：Order Status / Returns & Refunds / Privacy Policy / Support。",
+          "signals": [
+            "returns and refunds",
+            "privacy policy",
+            "terms"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（页脚信息可获取性）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    }
+  ]
+}

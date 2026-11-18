@@ -1,0 +1,901 @@
+{
+  "market": "US",
+  "market_name": "美国",
+  "category": "small_appliances",
+  "category_name": "小家电",
+  "version": "2026-11-18-v0.1",
+  "scope": "只适用于美国市场的小家电（厨房电器、清洁电器、环境电器、个护电器）。美国无联邦增值税，销售税由州与地方征收；不存在「全国统一合规认证」，消费产品安全由 CPSC 规则与标准约束。UL/ETL 是 NRTL 认证，通常是零售商与平台的上架要求，不是联邦法定强制。本索引不复制法条正文，合规判定由 knowledge/legal/us/rules.v0.1.json 负责。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-LANG-01",
+          "severity_hint": "medium",
+          "applies_to": "全部英文文案与日期格式",
+          "rule": "必须使用美式拼写与美式日期格式（MM/DD/YYYY），不要出现英式拼写。",
+          "why": "美国消费者会把 colour / centre / organise 读成拼写错误或非母语写作，直接削弱专业感；日期写 18/11/2026 会被误读成 11 月 18 日以外的含义。",
+          "fix": "统一 color / center / organize / catalog / travelers；日期写 11/18/2026 或 November 18, 2026。",
+          "signals": [
+            "colour",
+            "centre",
+            "organise",
+            "catalogue",
+            "travelled",
+            "organisation",
+            "dd/mm"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 3/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-LANG-02",
+          "severity_hint": "medium",
+          "applies_to": "品类名、部件名与日常用词",
+          "rule": "用美式词汇：apartment、truck、gas station、elevator、cell phone、vacation，不要用英式对应词。",
+          "why": "英式词汇在美国虽能看懂，但会让页面显得是从别的市场直接搬过来的；家具与家电类目尤其明显（flat vs apartment、cooker vs stove）。",
+          "fix": "统一 apartment / truck / gas / elevator / cell phone / vacation / stroller / diaper。",
+          "signals": [
+            "flat",
+            "lorry",
+            "petrol",
+            "lift",
+            "mobile phone",
+            "cooker hob"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 3（词汇选择本地化）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-LANG-03",
+          "severity_hint": "high",
+          "applies_to": "养生壶、电炖锅、料理机等中文思维命名的品类",
+          "rule": "中文直译的品类词（Health Pot、Stew Cooker、Food Menu）在美国没有对应认知，要换成本地常用说法。",
+          "why": "直译词既不进入美国搜索词，也说不清用途：Health Pot（养生壶）通常叫 electric kettle 或 multi-cooker，Stew Cooker 叫 slow cooker，Food Menu 会被读成餐厅菜单。",
+          "fix": "改成 Electric Kettle、Slow Cooker、Recipes；品类导航用 Air Fryer、Rice Cooker、Blender、Vacuum 等通行词。",
+          "signals": [
+            "health pot",
+            "stew cooker",
+            "food menu",
+            "multi cooker",
+            "yogurt maker"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-LANG-04",
+          "severity_hint": "medium",
+          "applies_to": "净含量、规格与温度",
+          "rule": "净含量与规格要同时给英制与公制；温度用 °F 并括注 °C。",
+          "why": "FPLA 与 16 CFR 500 要求净含量原则上同时使用英制与公制单位；美国买家习惯用 oz/qt/inch/°F 判断，但只给英制在标签合规上不完整。",
+          "fix": "写「1.5 L (50.7 fl oz)」「24 cm (9.4 in)」「1800 W」，温度写 400°F (204°C)。",
+          "signals": [
+            "ml only",
+            "litre only",
+            "celsius only",
+            "kg only"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR Part 500：净含量标识（英制与公制）",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-500.4"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-LANG-05",
+          "severity_hint": "low",
+          "applies_to": "文案语气与自我描述",
+          "rule": "用直接、自信、对话式的语气；不要过度谦辞或堆砌正式用语。",
+          "why": "美国文化推崇自信与直接，过度谦虚（Our humble company、We are not worthy）会被读成缺乏信心；hereby / aforementioned 这类法律化措辞则显得疏远。",
+          "fix": "用 We're excited to… / Designed with you in mind；每段只保留一个重点。",
+          "signals": [
+            "humble",
+            "hereby",
+            "aforementioned",
+            "pursuant to",
+            "our small company"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 4（语体偏差）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "宣称实证与合规资质",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "性能、节能、材质与环保宣称",
+          "rule": "任何性能、节能、材质或环保宣称都要有测试报告或供应链依据；FTC 按整体印象判断，不只看单个词。",
+          "why": "FTC Act §5 禁止可能实质误导消费者的表述，判断看整体印象（net impression），包括明示与暗示；没有依据的宣称即使字面真实也可能违法。",
+          "fix": "每个数字类宣称配测试报告（标准、方法、样本、实验室）；定性宣称限定到可证实范围。",
+          "signals": [
+            "energy saving",
+            "saves energy",
+            "non-toxic",
+            "bpa free",
+            "tested",
+            "certified"
+          ],
+          "source": {
+            "type": "official",
+            "title": "FTC Act §5, 15 U.S.C. §45(a)(1)",
+            "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/html/USCODE-2024-title15-chap2-subchapI-sec45.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "「美国制造」「美国设计」类表述",
+          "rule": "标「Made in USA」须同时满足最终组装在美国、全部重要加工在美国、几乎全部成分/部件在美国；「Designed in USA」不等于美国制造。",
+          "why": "FTC 的 Made in USA 规则对「全部或几乎全部」有明确门槛；把「美国设计」写成「美国制造」是典型的原产地误导，也是进口商品的常见违规点。",
+          "fix": "不满足三项条件时写「Designed in USA, manufactured in China」；原产地标记按 19 CFR 134 在包装上标 Made in China。",
+          "signals": [
+            "made in usa",
+            "american made",
+            "designed in usa",
+            "assembled in usa",
+            "proudly made in"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §323.2：Made in USA 标准",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-323.2"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-TRUST-03",
+          "severity_hint": "high",
+          "applies_to": "环保、可回收与「不含某物质」宣称",
+          "rule": "不得作无保留的「eco-friendly / green / sustainable」总体环保宣称；要限定到具体、可证实的环境属性。",
+          "why": "FTC Green Guides 规定总体环保宣称会被理解为广泛、深远甚至无负面环境影响，几乎无法对所有合理解释提供依据；「free of」类宣称若产品含相同风险的替代物也可能构成欺骗。",
+          "fix": "改成具体属性，例如「Packaging made with 80% recycled PET」「BPA-free food-contact parts (test report no. X)」，并说明适用范围。",
+          "signals": [
+            "eco-friendly",
+            "green product",
+            "sustainable",
+            "carbon neutral",
+            "zero waste",
+            "planet friendly"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §260.4(b)：总体环保宣称",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-260.4"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-TRUST-04",
+          "severity_hint": "medium",
+          "applies_to": "安全认证与测试标识",
+          "rule": "不要暗示存在「联邦强制认证」；写 UL/ETL 等 NRTL 标识时要注明是经认可的第三方测试，并给出证书可查依据。",
+          "why": "美国没有针对小家电的单一联邦强制认证：消费产品安全由 CPSC 规则与标准约束，合规需 GCC 与测试报告；UL/ETL 是 NRTL 认证，通常是零售商与平台的上架要求。把 NRTL 说成「政府认证」属误导。",
+          "fix": "写「UL Listed (certificate no. XXXXX) — tested by an OSHA-recognised NRTL」，并另附 CPSC 适用规则与 GCC 说明。",
+          "signals": [
+            "ul listed",
+            "etl listed",
+            "ul certified",
+            "fda approved",
+            "government certified",
+            "cpsc approved"
+          ],
+          "source": {
+            "type": "official",
+            "title": "OSHA：Nationally Recognized Testing Laboratory Program",
+            "url": "https://www.osha.gov/nationally-recognized-testing-laboratory-program"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-TRUST-05",
+          "severity_hint": "high",
+          "applies_to": "评价、评分与达人测评",
+          "rule": "不得生成或购买虚假评论，不得以激励换取特定情绪的评价；测评与达人内容要披露付费或寄样关系。",
+          "why": "FTC 的虚假评论规则禁止撰写、创建或出售在评论者是否存在、是否真实使用、体验内容上作实质性虚假表示的评论；以补偿换取正面评价同样被禁止。",
+          "fix": "只用真实购买者的评价；激励活动不得要求正面情绪；达人内容在显眼位置披露 #ad / paid partnership。",
+          "signals": [
+            "reviews",
+            "testimonial",
+            "rating",
+            "influencer",
+            "sponsored",
+            "5-star"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §465.2 / §465.4：虚假评论与激励评论",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-465.2"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "价格、税与促销表达",
+      "source_sections": [
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-PRICE-01",
+          "severity_hint": "high",
+          "applies_to": "划线价、比较价与「Save $XX」",
+          "rule": "比较价与「原价」必须是真实、善意、在合理较长时间内实际销售的价格；不能先抬价再降价。",
+          "why": "FTC 的欺骗性定价指南要求比较价有真实成交基础；为制造折扣而先抬价再降价属虚假比较，是最常见的价格违规类型。",
+          "fix": "保留最近 30–90 天的实际成交记录备查；折扣写成「-20%」或「Save $60」，并保留原价与现价的清晰层级。",
+          "signals": [
+            "was $",
+            "original price",
+            "list price",
+            "regular price",
+            "save $",
+            "up to % off"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §233.1：欺骗性定价指南",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-233.1"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-PRICE-02",
+          "severity_hint": "high",
+          "applies_to": "销售税与「免税」表述",
+          "rule": "不要宣称「no tax」或「tax-free」，除非确有依据；销售税按州与地方征收，应在结算前可预估。",
+          "why": "美国没有联邦增值税，销售税由州与地方征收，跨州卖家在构成经济联结后有征收义务；宣称免税会构成对最终价格的误导。",
+          "fix": "写「Sales tax calculated at checkout based on your shipping address」，并在结算前显示预估税额。",
+          "signals": [
+            "no tax",
+            "tax free",
+            "tax-free",
+            "no sales tax",
+            "vat included"
+          ],
+          "source": {
+            "type": "official",
+            "title": "California Department of Tax and Fee Administration：Use Tax（州级销售税示例）",
+            "url": "https://www.cdtfa.ca.gov/taxes-and-fees/use-tax.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-PRICE-03",
+          "severity_hint": "high",
+          "applies_to": "「Free」类促销",
+          "rule": "写「Free」时必须在要约开始就清楚显著列出全部条件（需买主商品、需订阅、需付运费等），不能只放脚注。",
+          "why": "FTC 的 Free Guide 要求「free」要约在一开始就清楚显著披露取得并保留赠品所依赖的全部条款；把条件藏在脚注或需跳转的位置属违规。",
+          "fix": "在促销主文案旁直接写「Free gift with any purchase over $99; while stocks last」，不要只在页脚写条件。",
+          "signals": [
+            "free gift",
+            "buy one get one",
+            "free trial",
+            "no cost"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §251.1(c)：「Free」要约的条件披露",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-251.1"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-PRICE-04",
+          "severity_hint": "medium",
+          "applies_to": "全部价格文案",
+          "rule": "货币写法统一为 $1,299.00；不要只留裸数字或与 USD 1,299 混用。",
+          "why": "美国站默认币种是美元，但跨境页面不标符号会让买家怀疑是否含运费或税费；千分位与两位小数是本地价格阅读习惯。",
+          "fix": "全站统一 $1,299.00；若支持多币种，切换后价格与符号要同步变化。",
+          "signals": [
+            "usd",
+            "us$",
+            "price",
+            "cost"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国价格书写惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付与结算习惯",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "结算页与商品页支付区",
+          "rule": "应展示主流支付方式：Visa/Mastercard/Amex、Apple Pay / Google Pay、PayPal；中高客单价可加 BNPL。",
+          "why": "美国线上支付以卡为主，数字钱包与 PayPal 普及；只放信用卡会流失习惯 PayPal 与钱包的买家，中高客单价品类则明显受 BNPL 影响。",
+          "fix": "加购按钮附近放支付图标行，并写明「Visa · Mastercard · Amex · PayPal · Apple Pay · Klarna」。",
+          "signals": [
+            "visa",
+            "mastercard",
+            "amex",
+            "paypal",
+            "apple pay",
+            "google pay",
+            "venmo",
+            "klarna",
+            "affirm",
+            "afterpay",
+            "payment"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 1（支付方式）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "BNPL 与分期",
+          "rule": "分期要写清期数、APR（或 0%）、最低消费与资格审核；不要只放平台图标。",
+          "why": "美国 BNPL 与信用卡分期的定价结构差异大：有的是 0% 四期，有的是带 APR 的贷款；不写清楚，买家会以为免息。",
+          "fix": "写「4 interest-free payments of $75 with Klarna」或「12 monthly payments, 9.99% APR」，并在 FAQ 写明资格审核。",
+          "signals": [
+            "installment",
+            "monthly payment",
+            "0% apr",
+            "interest-free",
+            "pay in 4",
+            "financing"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（BNPL 表述边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-PAY-03",
+          "severity_hint": "medium",
+          "applies_to": "结算页费用明细",
+          "rule": "运费与税费要在结算前可预估，不要在最后一步才出现「handling fee」等附加费用。",
+          "why": "结算最后一步出现的新增费用是美国弃购的首要原因之一；分拆定价也会引发 FTC 对「junk fees」的关注。",
+          "fix": "在购物车页给出「Estimated shipping $X · Estimated tax $Y」，结算页只做确认。",
+          "signals": [
+            "handling fee",
+            "service fee",
+            "surcharge",
+            "processing fee",
+            "convenience fee"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（费用前置与弃购关系）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-PAY-04",
+          "severity_hint": "low",
+          "applies_to": "结算页与信任条",
+          "rule": "支付安全说明要具体（PCI DSS、3-D Secure），不要写「100% secure」。",
+          "why": "「100% secure」既不可证实也不可执行；美国买家更认具体的风控标识与退款保障条款。",
+          "fix": "写「Checkout is secured with 3-D Secure; card details are handled by our PCI DSS–compliant payment provider」。",
+          "signals": [
+            "100% secure",
+            "secure payment",
+            "checkout",
+            "payment security"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（支付安全表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送与退换",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "US-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "发货承诺与预售页",
+          "rule": "未明确承诺发货时间时，须在收到订单后 30 天内发货；无法履约要及时通知并提供取消退款选项。",
+          "why": "FTC 的 Mail Order Rule 要求卖家在 30 天内发货，除非在要约时清楚显著地承诺了其他时间；延迟须通知买家并给出取消与退款选项，否则属不公平做法。",
+          "fix": "商品页写「Ships within 2 business days」；预售写明确切日期，并在延迟时主动发邮件告知新日期与取消方式。",
+          "signals": [
+            "ships within",
+            "pre-order",
+            "backorder",
+            "estimated ship date",
+            "dispatch"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR Part 435：Mail or Telephone Order Merchandise Rule",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-435.1"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-LOG-02",
+          "severity_hint": "high",
+          "applies_to": "「Free shipping」与运费说明",
+          "rule": "「Free shipping」要写清门槛与适用区域；阿拉斯加、夏威夷与波多黎各要单独说明。",
+          "why": "美国本土以外地区的运费显著更高；不写清适用范围，偏远地区买家会在结算时遇到加价或无法配送，直接造成退款与差评。",
+          "fix": "写「Free shipping on orders over $50 (contiguous US); Alaska, Hawaii and Puerto Rico from $XX」。",
+          "signals": [
+            "free shipping",
+            "free delivery",
+            "shipping",
+            "delivery",
+            "contiguous",
+            "alaska",
+            "hawaii"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国免运范围通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-LOG-03",
+          "severity_hint": "medium",
+          "applies_to": "退换货政策页与商品页",
+          "rule": "退货要写清窗口、商品状态、退货运费归属与退款渠道；美国没有法定无理由退货，退货是商家政策。",
+          "why": "美国没有统一的法定冷静期，退货权取决于商家政策与州法；不写清窗口与条件，售后会变成争议，也会在信用卡拒付时处于不利地位。",
+          "fix": "写「30-day returns on unused items in original packaging; return shipping is free within the US; refunds are issued to the original payment method within 5 business days」。",
+          "signals": [
+            "return",
+            "returns",
+            "refund",
+            "exchange",
+            "30-day return",
+            "restocking fee"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国退货政策通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-LOG-04",
+          "severity_hint": "medium",
+          "applies_to": "承运商与订单追踪",
+          "rule": "要写明承运商（UPS / FedEx / USPS）与运单查询入口，并给出预计到达日。",
+          "why": "美国买家习惯按承运商与追踪号自行查询；只写「we ship fast」会增加客服询问量，也无法在丢件时定位责任。",
+          "fix": "FAQ 写「We ship via UPS / FedEx / USPS; a tracking number is emailed within 24 hours」，并给追踪页链接。",
+          "signals": [
+            "ups",
+            "fedex",
+            "usps",
+            "tracking number",
+            "track order"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（承运商与追踪入口通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-LOG-05",
+          "severity_hint": "high",
+          "applies_to": "保修宣传与商品页",
+          "rule": "售价超过 $15 且附书面保修的，须在售前让买家可查看保修全文；保修要标为 full 或 limited。",
+          "why": "Magnuson-Moss 与 16 CFR 702 要求书面保修在售前可查阅，并清楚标注 full（statement of duration）或 limited；只写「1-year warranty」既不符合标注要求，也无法回答覆盖范围。",
+          "fix": "商品页给保修全文链接，开头写「Limited 1-Year Warranty」，并写明覆盖部件、除外责任与索赔流程。",
+          "signals": [
+            "warranty",
+            "limited warranty",
+            "full warranty",
+            "guarantee",
+            "coverage"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §702.3：售前可查阅保修文本",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-702.3"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "全部页面的联系入口",
+          "rule": "客服要提供电话 + 在线聊天 + 邮件，并写清可服务的时区与时段。",
+          "why": "美国买家仍大量使用电话，尤其小家电的售后与保修问题；只给邮件或表单会让高价值客群直接放弃。跨时区卖家尤其要标注覆盖时段。",
+          "fix": "页脚并列「Call +1 (XXX) XXX-XXXX · Live chat · Email」，标注「Mon–Fri 9am–6pm ET」。",
+          "signals": [
+            "whatsapp",
+            "live chat",
+            "contact us",
+            "email us",
+            "phone support",
+            "1-800"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 6（信任信号与服务）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-SVC-02",
+          "severity_hint": "medium",
+          "applies_to": "页脚与联系页电话",
+          "rule": "电话号码必须是完整的本地号码（+1 (XXX) XXX-XXXX 或 1-800 热线），缺位号码等同模板占位符。",
+          "why": "美国号码为 10 位（区号 + 7 位），1-800 为免费热线；缺位号码会被本地买家识别为假号码或没填完的模板。",
+          "fix": "统一写 +1 (415) 555-0132 或 1-800-555-0132，并在页脚、联系页、保修页保持一致。",
+          "signals": [
+            "+1",
+            "tel:",
+            "call us",
+            "hotline",
+            "phone"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电话号码格式惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "支持页与 FAQ",
+          "rule": "客服要给响应时效与服务时段，并说明节假日；不要只写「24/7」却没有实际渠道。",
+          "why": "「24/7 support」如果只有一个表单，等于没有承诺；写清时段与响应时效，买家才知道何时能得到答复。",
+          "fix": "写「Email replies within 1 business day; live chat Mon–Fri 9am–6pm ET」。",
+          "signals": [
+            "response time",
+            "business day",
+            "opening hours",
+            "24/7",
+            "support hours",
+            "holiday"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（客服时效表述通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-SVC-04",
+          "severity_hint": "high",
+          "applies_to": "邮件订阅与营销邮件",
+          "rule": "营销邮件必须有可用退订机制与有效实体邮政地址，并在退订后 10 个工作日内停止发送。",
+          "why": "CAN-SPAM 要求商业邮件包含清晰显著、可用的退订机制与发件人的有效实体邮政地址，并在退订后 10 个工作日内停止发送；这是美国最常被起诉的营销合规点之一。",
+          "fix": "邮件页脚放退订链接 + 实体地址（如「123 Main St, Suite 100, San Francisco, CA 94105」），并确保退订 10 个工作日内生效。",
+          "signals": [
+            "subscribe",
+            "newsletter",
+            "unsubscribe",
+            "opt out",
+            "marketing email"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CAN-SPAM Act, 15 U.S.C. §7704(a)(3)-(5)",
+            "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/html/USCODE-2024-title15-chap103-sec7704.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "文化语境与节庆",
+      "source_sections": [
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "US-CUL-01",
+          "severity_hint": "high",
+          "applies_to": "全部图片、视频与角色设定",
+          "rule": "避免种族刻板印象与文化挪用；素材应体现种族、年龄与家庭形态的多样性。",
+          "why": "美国社会对种族问题极度敏感，疑似种族歧视或文化挪用的内容会引发严重反噬；同时多元化呈现是美国消费者的普遍预期。",
+          "fix": "上线前做素材审查：不出现种族刻板角色、不使用原住民/其他文化的 sacred 元素做装饰；人物构成按市场实际多样化。",
+          "signals": [
+            "race",
+            "ethnic",
+            "tribal",
+            "native",
+            "stereotype"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 5（文化禁忌）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CUL-02",
+          "severity_hint": "medium",
+          "applies_to": "品牌表态与社媒内容",
+          "rule": "品牌通常保持政治中立；避免在极化议题上站队，也避免亵渎宗教符号。",
+          "why": "美国社会高度两极化，在敏感政治议题上站队可能失去一半消费者；宗教符号的轻慢使用同样会引发抵制。",
+          "fix": "品牌账号只就与产品相关的议题发声；宗教节日祝福保持中性，不使用宗教符号做装饰。",
+          "signals": [
+            "political",
+            "election",
+            "religion",
+            "christian",
+            "bible"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 5（政治与宗教敏感）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CUL-03",
+          "severity_hint": "medium",
+          "applies_to": "促销日历与节庆 banner",
+          "rule": "促销日历要覆盖 Labor Day、Back to School、Black Friday / Cyber Monday 与 Holiday Season；小家电在 Q4 占比高。",
+          "why": "美国小家电的销售高峰集中在返校季与 Q4 假日季（Black Friday 至圣诞）；只做 11.11 这类源自中国的节点会错过本地最大的窗口。",
+          "fix": "按季度排期：Labor Day 促销、8 月 Back to School、11 月 Black Friday / Cyber Monday、12 月 Holiday gifting。",
+          "signals": [
+            "black friday",
+            "cyber monday",
+            "labor day",
+            "back to school",
+            "holiday season",
+            "prime day"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国大促档期观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CUL-04",
+          "severity_hint": "low",
+          "applies_to": "品牌视觉与配色",
+          "rule": "蓝色（信任/专业）与绿色（自然/健康）是安全正面色；白色在美国关联婚礼而非丧事，红色需谨慎（危险/爱情双重含义）。",
+          "why": "美国色彩语义与中国差异明显：白色是婚礼色（中国为丧事）、黑色是哀悼色（中国为白色）、股市涨绿跌红；直接沿用中国配色会传递相反信号。",
+          "fix": "主色用蓝或绿；促销用红但避免大面积用于警示语境；婚礼/节庆场景可用白色。",
+          "signals": [
+            "color scheme",
+            "red",
+            "white",
+            "black",
+            "gold"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 5（色彩象征）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "US-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "首屏与长页面结构",
+          "rule": "用可扫描结构：重要信息前置、信息承载型标题、要点列表；按倒金字塔组织。",
+          "why": "美国用户以 F 型模式扫描网页：先水平扫顶部，再较短扫下部，最后垂直扫左侧；把关键信息放在中下部会被大量漏读。",
+          "fix": "首屏给价值主张与主 CTA；每节标题前两个词写要点；长段落拆成要点与表格。",
+          "signals": [
+            "welcome to",
+            "shop now",
+            "more",
+            "read more"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Nielsen Norman Group：F-Shaped Pattern of Reading on the Web",
+            "url": "https://www.nngroup.com/articles/f-shaped-pattern-reading-web-content/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "文案语气与模板句",
+          "rule": "避免中式英语与机械重复的模板句，改用自然的美式英语。",
+          "why": "「Welcome to call us」「Please kindly revert」这类表达会让美国买家立刻判断是机翻或没做过本地校对，削弱品牌可信度。",
+          "fix": "改成 Get in touch / Contact us / We'll get back to you within one business day；每段只保留一个 CTA。",
+          "signals": [
+            "please kindly",
+            "revert",
+            "welcome to call",
+            "hope for your early reply"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 4（Chinglish 对照表）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "分类导航与搜索",
+          "rule": "分类导航要用美国买家会搜索的具体品类词，不要用 Healthy Living、Home Essentials 这类空泛标签。",
+          "why": "空泛标签既不是美国搜索词，也无法体现产品差异；买家习惯直接搜 Air Fryer、Stand Mixer、Robot Vacuum。",
+          "fix": "改成 Air Fryer、Slow Cooker、Stand Mixer、Robot Vacuum、Air Purifier、Hair Dryer，并与站内搜索词一致。",
+          "signals": [
+            "healthy living",
+            "home essentials",
+            "product catalog",
+            "category",
+            "lifestyle"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "规格区与对比模块",
+          "rule": "规格要做成表格并给对比；关键参数（容量、功率、电压、尺寸、噪音）要能一眼比较。",
+          "why": "美国买家习惯先看参数对比再下单（尤其小家电同质化严重）；把参数写成长段落会让买家跳到竞品页面去比。",
+          "fix": "规格做成表格，容量/功率/电压/尺寸/噪音分列；给同系列型号的并排对比。",
+          "signals": [
+            "specification",
+            "specs",
+            "compare",
+            "capacity",
+            "wattage",
+            "dimensions"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（规格呈现通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "CTA 与促销话术",
+          "rule": "CTA 用动词开头并把价值写进去（Shop air fryers、Start saving、Get the deal）；避免模糊的「Click here」。",
+          "why": "美国 CTA 的通行写法是动词优先 + 价值强化；「Click here」既不说明点击后发生什么，也不承载价值。紧迫感可以用于限时优惠，但需真实性支撑。",
+          "fix": "写「Shop air fryers」「Get 20% off — ends Sunday」，并保证限时与库存表述真实。",
+          "signals": [
+            "click here",
+            "learn more",
+            "submit",
+            "continue"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 6（CTA 本地习惯）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    }
+  ]
+}
