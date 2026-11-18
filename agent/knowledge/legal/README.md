@@ -264,6 +264,10 @@ agent/knowledge/legal/
    脚本会按各国 rules 文件重建 `index.json` 的 `status` / `rules_count` / `rules_file` 等字段，
    并重画本文件的目录树与状态表。`laws_count` 若已有值则保留（早期按法规族人工归并过）。
 3. 提交前自检：`python3 agent/knowledge/legal/scripts/sync_index.py --check`，退出码 0 才算一致。
+   `--check` 除计数外还校验两处文字字段与落地状态是否自相矛盾（RAY-764 起）：
+   `rules_count > 0` 却仍在 `known_gaps` 写「尚未落地 / 未落地 / todo」，或有规则但 `coverage` 为空。
+   这两项是研究结论，脚本**不会**自动改写，只报出来等人从各国 README 的 open questions 提炼；
+   重建模式下只打印「待人工处理」，不因此失败。
 4. **市场开放状态只写在 `open` 字段**：`index.json` 每个市场条目都有布尔 `open`，新市场一律 `open: false`。
    `open: true` 表示对产品开放（出现在前端市场清单里），需产品确认上线后由人手动改，**不要由 `tier === "live"`
    或规则库有无内容反推**——规则写完不等于开放。`sync_index.py` 不会改这个值，只会在字段缺失或非布尔时
