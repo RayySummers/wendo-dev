@@ -10,7 +10,8 @@
     {
       "id": "PH-ADV-01",
       "market": "PH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 110 (¶1)",
@@ -35,7 +36,8 @@
     {
       "id": "PH-ADV-02",
       "market": "PH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 110 (¶2)",
@@ -60,7 +62,8 @@
     {
       "id": "PH-ADV-03",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 50(a)",
@@ -97,7 +100,8 @@
     {
       "id": "PH-ADV-04",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 50(b)",
@@ -136,7 +140,8 @@
     {
       "id": "PH-ADV-05",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 50(c)",
@@ -173,7 +178,8 @@
     {
       "id": "PH-ADV-06",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 50(h)",
@@ -217,7 +223,8 @@
     {
       "id": "PH-ADV-07",
       "market": "PH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 50(i) / Art. 72(d)",
@@ -252,7 +259,8 @@
     {
       "id": "PH-ADV-08",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 50(j)",
@@ -286,7 +294,8 @@
     {
       "id": "PH-ADV-09",
       "market": "PH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 52",
@@ -311,7 +320,8 @@
     {
       "id": "PH-ADV-10",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 115",
@@ -347,7 +357,8 @@
     {
       "id": "PH-ADV-11",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 111(a)",
@@ -381,7 +392,8 @@
     {
       "id": "PH-ADV-12",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 118",
@@ -416,7 +428,8 @@
     {
       "id": "PH-ADV-13",
       "market": "PH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 116",
@@ -448,7 +461,8 @@
     {
       "id": "PH-ADV-14",
       "market": "PH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 60",
@@ -473,7 +487,8 @@
     {
       "id": "PH-ADV-15",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 8792 — Electronic Commerce Act of 2000 电子商务法（2000）",
       "law_short": "RA 8792",
       "article": "s.33(c)",
@@ -498,7 +513,8 @@
     {
       "id": "PH-ADV-16",
       "market": "PH",
-      "category": "小家电/家居用品",
+      "product_scope": ["小家电", "家居用品"],
+      "category_legacy": "小家电/家居用品",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 115",
@@ -540,7 +556,8 @@
     {
       "id": "PH-ADV-17",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 115",
@@ -581,7 +598,8 @@
     {
       "id": "PH-ADV-18",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 115 / Art. 50(a)",
@@ -620,7 +638,8 @@
     {
       "id": "PH-LAB-01",
       "market": "PH",
-      "category": "小家电/家居用品/3C 数码",
+      "product_scope": ["小家电", "家居用品", "3C数码"],
+      "category_legacy": "小家电/家居用品/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 77 (¶1)",
@@ -645,7 +664,8 @@
     {
       "id": "PH-LAB-02",
       "market": "PH",
-      "category": "小家电/家居用品/3C 数码",
+      "product_scope": ["小家电", "家居用品", "3C数码"],
+      "category_legacy": "小家电/家居用品/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 76 (¶1)",
@@ -670,7 +690,8 @@
     {
       "id": "PH-LAB-03",
       "market": "PH",
-      "category": "小家电/家居用品/3C 数码",
+      "product_scope": ["小家电", "家居用品", "3C数码"],
+      "category_legacy": "小家电/家居用品/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 77 (¶3)",
@@ -695,7 +716,8 @@
     {
       "id": "PH-LAB-04",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 81",
@@ -720,7 +742,8 @@
     {
       "id": "PH-LAB-05",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 82",
@@ -745,7 +768,8 @@
     {
       "id": "PH-LAB-06",
       "market": "PH",
-      "category": "小家电/家居用品/3C 数码",
+      "product_scope": ["小家电", "家居用品", "3C数码"],
+      "category_legacy": "小家电/家居用品/3C 数码",
       "law_name": "Republic Act No. 7394 — The Consumer Act of the Philippines 消费者法（1992）",
       "law_short": "RA 7394",
       "article": "Art. 78",
@@ -776,7 +800,8 @@
     {
       "id": "PH-CERT-01",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "DTI-BPS Mandatory Product Certification（PS / ICC 强制认证制度）",
       "law_short": "BPS PS/ICC",
       "article": "Product Certification Schemes（制度说明页）",
@@ -801,7 +826,8 @@
     {
       "id": "PH-CERT-02",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "DTI-BPS Mandatory Product Certification（PS / ICC 强制认证制度）",
       "law_short": "BPS PS/ICC",
       "article": "Product Certification Schemes（制度说明页）",
@@ -826,7 +852,8 @@
     {
       "id": "PH-ECOM-01",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.23(f)(1)",
@@ -851,7 +878,8 @@
     {
       "id": "PH-ECOM-02",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.23(a)",
@@ -876,7 +904,8 @@
     {
       "id": "PH-ECOM-03",
       "market": "PH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.23(c)(1)",
@@ -901,7 +930,8 @@
     {
       "id": "PH-ECOM-04",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.23(h)",
@@ -926,7 +956,8 @@
     {
       "id": "PH-ECOM-05",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.5",
@@ -951,7 +982,8 @@
     {
       "id": "PH-ECOM-06",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.15",
@@ -976,7 +1008,8 @@
     {
       "id": "PH-ECOM-07",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 11967 — Internet Transactions Act of 2023 互联网交易法（2023）",
       "law_short": "ITA",
       "article": "s.29(b)",
@@ -1001,7 +1034,8 @@
     {
       "id": "PH-DPA-01",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 10173 — Data Privacy Act of 2012 数据隐私法（2012）",
       "law_short": "DPA",
       "article": "s.16(b)",
@@ -1035,7 +1069,8 @@
     {
       "id": "PH-DPA-02",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 10173 — Data Privacy Act of 2012 数据隐私法（2012）",
       "law_short": "DPA",
       "article": "s.12",
@@ -1060,7 +1095,8 @@
     {
       "id": "PH-DPA-03",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 10173 — Data Privacy Act of 2012 数据隐私法（2012）",
       "law_short": "DPA",
       "article": "s.11",
@@ -1085,7 +1121,8 @@
     {
       "id": "PH-DPA-04",
       "market": "PH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Republic Act No. 10173 — Data Privacy Act of 2012 数据隐私法（2012）",
       "law_short": "DPA",
       "article": "s.26(a)",

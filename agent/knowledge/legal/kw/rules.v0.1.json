@@ -11,7 +11,8 @@
     {
       "id": "KW-EE-01",
       "market": "KW",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "KWS 1893:2018 — Energy Efficiency Labelling and MEPS for DX Air-Conditioners up to 70,000 Btu/h（PAI 标准详情页）",
       "law_short": "KWS 1893:2018",
       "article": "Scope（PAI 标准详情页）",
@@ -36,7 +37,8 @@
     {
       "id": "KW-EE-02",
       "market": "KW",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "KWS 1898:2023 — Electrical Clothes Dryers: Energy Performance Requirements and Labeling（PAI 标准详情页）",
       "law_short": "KWS 1898:2023",
       "article": "Scope（PAI 标准详情页）",
@@ -61,7 +63,8 @@
     {
       "id": "KW-EE-03",
       "market": "KW",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "KWS 1899:2023 — Electrical Clothes Washing Machines: Energy and Water Performance Requirements and Labeling（PAI 标准详情页）",
       "law_short": "KWS 1899:2023",
       "article": "Scope（PAI 标准详情页）",
@@ -86,7 +89,8 @@
     {
       "id": "KW-EE-04",
       "market": "KW",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "KWS 1900:2023 — Refrigerators, Refrigerator-Freezers and Freezers: Energy Performance, Testing and Labeling Requirements（PAI 标准详情页）",
       "law_short": "KWS 1900:2023",
       "article": "Scope（PAI 标准详情页）",
@@ -111,7 +115,8 @@
     {
       "id": "KW-CERT-01",
       "market": "KW",
-      "category": "通用/准入",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/准入",
       "law_name": "PAI 公告（Announcements，英文）：强制性技术法规与能效注册要求",
       "law_short": "PAI Announcements",
       "article": "Announcement 3 — Water Heaters（2026-11-30 起强制）",
@@ -136,7 +141,8 @@
     {
       "id": "KW-CERT-02",
       "market": "KW",
-      "category": "通用/准入",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/准入",
       "law_name": "PAI 公告（Announcements，英文）：强制性技术法规与能效注册要求",
       "law_short": "PAI Announcements",
       "article": "Announcement 3/4 — KUCAS 条款",
@@ -161,7 +167,8 @@
     {
       "id": "KW-CERT-03",
       "market": "KW",
-      "category": "通用/准入",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/准入",
       "law_name": "PAI — About TABEK（KUCAS 电子平台说明）",
       "law_short": "About TABEK",
       "article": "What is TABEK?",
@@ -186,7 +193,8 @@
     {
       "id": "KW-CERT-04",
       "market": "KW",
-      "category": "通用/准入",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/准入",
       "law_name": "PAI — About TABEK（KUCAS 电子平台说明）",
       "law_short": "About TABEK",
       "article": "What is TABEK?（目标）",
@@ -210,7 +218,8 @@
     {
       "id": "KW-CERT-05",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "PAI 公告（Announcements，英文）：强制性技术法规与能效注册要求",
       "law_short": "PAI Announcements",
       "article": "Announcement 2 — Building Materials（不合规后果）",
@@ -235,7 +244,8 @@
     {
       "id": "KW-CERT-06",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "PAI — Kuwait Quality Mark Rules（科威特质量标志规则）",
       "law_short": "QM Rules",
       "article": "QM Rules — item 15",
@@ -265,7 +275,8 @@
     {
       "id": "KW-TA-01",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 2",
@@ -301,7 +312,8 @@
     {
       "id": "KW-TA-02",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 15(1)",
@@ -327,7 +339,8 @@
     {
       "id": "KW-TA-03",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 6(2)",
@@ -357,7 +370,8 @@
     {
       "id": "KW-TA-04",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 11(1)",
@@ -383,7 +397,8 @@
     {
       "id": "KW-TA-05",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 12(1)",
@@ -409,7 +424,8 @@
     {
       "id": "KW-TA-06",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 14(1)",
@@ -435,7 +451,8 @@
     {
       "id": "KW-TA-07",
       "market": "KW",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "CITRA Regulation for Approval of Communication Devices Type（Decision No. 153/2021）",
       "law_short": "CITRA Type Approval Regulation",
       "article": "Art. 13(2)",
@@ -461,7 +478,8 @@
     {
       "id": "KW-ADV-01",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 14-3",
@@ -497,7 +515,8 @@
     {
       "id": "KW-ADV-02",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 14-5",
@@ -523,7 +542,8 @@
     {
       "id": "KW-ADV-03",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 12-2-1 / 12-2-2",
@@ -549,7 +569,8 @@
     {
       "id": "KW-ADV-04",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 9-16",
@@ -575,7 +596,8 @@
     {
       "id": "KW-PRI-01",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 10-1-1",
@@ -601,7 +623,8 @@
     {
       "id": "KW-PRI-02",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 10-1-3",
@@ -627,7 +650,8 @@
     {
       "id": "KW-PRI-03",
       "market": "KW",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "CITRA User Protection and Privacy Rules Regulation（Decision No. 69/2022）",
       "law_short": "CITRA User Protection Rules",
       "article": "Art. 10-1-4",

@@ -10,7 +10,8 @@
     {
       "id": "AU-ADV-01",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Competition and Consumer Act 2010 (Cth), Schedule 2 — Australian Consumer Law 竞争与消费者法 2010（附表 2 澳大利亚消费者法）",
       "law_short": "ACL",
       "article": "s.18(1)",
@@ -35,7 +36,8 @@
     {
       "id": "AU-ADV-02",
       "market": "AU",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(a)",
@@ -72,7 +74,8 @@
     {
       "id": "AU-ADV-03",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(c)",
@@ -104,7 +107,8 @@
     {
       "id": "AU-ADV-04",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(e)-(f), s.29(2)",
@@ -137,7 +141,8 @@
     {
       "id": "AU-ADV-05",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(g)",
@@ -173,7 +178,8 @@
     {
       "id": "AU-ADV-06",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(i)",
@@ -210,7 +216,8 @@
     {
       "id": "AU-ADV-07",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(k)",
@@ -244,7 +251,8 @@
     {
       "id": "AU-ADV-08",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.29(1)(m)",
@@ -277,7 +285,8 @@
     {
       "id": "AU-ADV-09",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.4(1)-(2)",
@@ -311,7 +320,8 @@
     {
       "id": "AU-ADV-10",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.33",
@@ -346,7 +356,8 @@
     {
       "id": "AU-ADV-11",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.35(1)",
@@ -378,7 +389,8 @@
     {
       "id": "AU-ADV-12",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.48(1), (3), (7)",
@@ -403,7 +415,8 @@
     {
       "id": "AU-ADV-13",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.32(1)-(2)",
@@ -436,7 +449,8 @@
     {
       "id": "AU-ADV-14",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.219(2)",
@@ -461,7 +475,8 @@
     {
       "id": "AU-ADV-15",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.224(1), (3A)",
@@ -486,7 +501,8 @@
     {
       "id": "AU-ADV-16",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.23(1), (2A)-(2C)",
@@ -518,7 +534,8 @@
     {
       "id": "AU-ADV-17",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.64(1)",
@@ -549,7 +566,8 @@
     {
       "id": "AU-PRC-01",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.255(1)-(2)",
@@ -580,7 +598,8 @@
     {
       "id": "AU-SAFE-01",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.106(1)",
@@ -605,7 +624,8 @@
     {
       "id": "AU-SAFE-02",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Australian Consumer Law 澳大利亚消费者法（CCA 2010 附表 2）",
       "law_short": "ACL",
       "article": "s.136(1)",
@@ -630,7 +650,8 @@
     {
       "id": "AU-BATT-01",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020 含纽扣/硬币电池消费品安全标准 2020",
       "law_short": "Button/Coin Battery Safety Standard 2020",
       "article": "s.8(1)",
@@ -662,7 +683,8 @@
     {
       "id": "AU-BATT-02",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020 含纽扣/硬币电池消费品安全标准 2020",
       "law_short": "Button/Coin Battery Safety Standard 2020",
       "article": "s.9(1)",
@@ -694,7 +716,8 @@
     {
       "id": "AU-BATT-03",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Goods (Products Containing Button/Coin Batteries) Safety Standard 2020 含纽扣/硬币电池消费品安全标准 2020",
       "law_short": "Button/Coin Battery Safety Standard 2020",
       "article": "s.10(1)-(2)",
@@ -724,7 +747,8 @@
     {
       "id": "AU-BATT-04",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Goods (Products Containing Button/Coin Batteries) Information Standard 2020 含纽扣/硬币电池消费品信息标准 2020",
       "law_short": "Button/Coin Battery Information Standard 2020",
       "article": "s.8(2)-(3), (7)",
@@ -756,7 +780,8 @@
     {
       "id": "AU-BATT-05",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Goods (Products Containing Button/Coin Batteries) Information Standard 2020 含纽扣/硬币电池消费品信息标准 2020",
       "law_short": "Button/Coin Battery Information Standard 2020",
       "article": "s.9(1)-(3)",
@@ -787,7 +812,8 @@
     {
       "id": "AU-ELEC-01",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electrical Equipment Safety System (EESS) — In-Scope Electrical Equipment 电气设备安全体系（EESS）适用范围与责任供应商",
       "law_short": "EESS",
       "article": "In-Scope Electrical Equipment / Responsible Supplier",
@@ -817,7 +843,8 @@
     {
       "id": "AU-ELEC-02",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electrical Equipment Safety System (EESS) — Registration 电气设备安全体系注册要求",
       "law_short": "EESS",
       "article": "Registration – In-Scope Electrical Equipment (Level 2/3)",
@@ -848,7 +875,8 @@
     {
       "id": "AU-ELEC-03",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electrical Equipment Safety System (EESS) — Regulatory Compliance Mark (RCM) 电气设备安全体系合规标志",
       "law_short": "EESS / RCM",
       "article": "Marking of Electrical Equipment",
@@ -877,7 +905,8 @@
     {
       "id": "AU-ELEC-04",
       "market": "AU",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electrical Equipment Safety System (EESS) — Compliance Folder 电气设备安全体系合规档案",
       "law_short": "EESS",
       "article": "Compliance Folder (Level 2)",
@@ -907,7 +936,8 @@
     {
       "id": "AU-EMC-01",
       "market": "AU",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Radiocommunications Equipment (General) Rules 2021 无线电通信设备（通用）规则 2021",
       "law_short": "Radiocommunications Equipment (General) Rules 2021",
       "article": "s.12(1)",
@@ -938,7 +968,8 @@
     {
       "id": "AU-EMC-02",
       "market": "AU",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Radiocommunications Equipment (General) Rules 2021 无线电通信设备（通用）规则 2021",
       "law_short": "Radiocommunications Equipment (General) Rules 2021",
       "article": "s.25(4)",
@@ -968,7 +999,8 @@
     {
       "id": "AU-GEMS-01",
       "market": "AU",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Greenhouse and Energy Minimum Standards Act 2012 温室气体与最低能效标准法 2012",
       "law_short": "GEMS Act 2012",
       "article": "s.12(1)",
@@ -999,7 +1031,8 @@
     {
       "id": "AU-GEMS-02",
       "market": "AU",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Greenhouse and Energy Minimum Standards Act 2012 温室气体与最低能效标准法 2012",
       "law_short": "GEMS Act 2012",
       "article": "s.16(1)",
@@ -1029,7 +1062,8 @@
     {
       "id": "AU-PRV-01",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Privacy Act 1988 (Cth) 隐私法 1988（附表 1 澳大利亚隐私原则 APP）",
       "law_short": "Privacy Act 1988 / APP 1",
       "article": "APP 1.3, 1.5",
@@ -1058,7 +1092,8 @@
     {
       "id": "AU-PRV-02",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Privacy Act 1988 (Cth) 隐私法 1988（附表 1 APP）",
       "law_short": "Privacy Act 1988 / APP 1",
       "article": "APP 1.4(f)-(g)",
@@ -1088,7 +1123,8 @@
     {
       "id": "AU-PRV-03",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Privacy Act 1988 (Cth) 隐私法 1988（附表 1 APP）",
       "law_short": "Privacy Act 1988 / APP 5",
       "article": "APP 5.1-5.2",
@@ -1119,7 +1155,8 @@
     {
       "id": "AU-PRV-04",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Privacy Act 1988 (Cth) 隐私法 1988",
       "law_short": "Privacy Act 1988",
       "article": "s.13G(2)-(3)",
@@ -1144,7 +1181,8 @@
     {
       "id": "AU-ADV-18",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Spam Act 2003 (Cth) 垃圾信息法 2003",
       "law_short": "Spam Act 2003",
       "article": "s.16(1)",
@@ -1176,7 +1214,8 @@
     {
       "id": "AU-ADV-19",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Spam Act 2003 (Cth) 垃圾信息法 2003",
       "law_short": "Spam Act 2003",
       "article": "s.17(1)",
@@ -1206,7 +1245,8 @@
     {
       "id": "AU-ADV-20",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Spam Act 2003 (Cth) 垃圾信息法 2003",
       "law_short": "Spam Act 2003",
       "article": "s.18(1)(c)-(e)",
@@ -1235,7 +1275,8 @@
     {
       "id": "AU-GUIDE-01",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "ACCC — Country of origin claims 澳大利亚竞争与消费者委员会：原产地声称指引",
       "law_short": "ACCC Country of origin guidance",
       "article": "Made in / Produced in / Grown in",
@@ -1267,7 +1308,8 @@
     {
       "id": "AU-GUIDE-02",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "ACCC — Environmental and sustainability claims 澳大利亚竞争与消费者委员会：环保与可持续声称指引",
       "law_short": "ACCC Green claims guidance",
       "article": "Principles for trustworthy environmental claims",
@@ -1302,7 +1344,8 @@
     {
       "id": "AU-GUIDE-03",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "ACCC — Online reviews for products and services 澳大利亚竞争与消费者委员会：在线评论指引",
       "law_short": "ACCC Online reviews guidance",
       "article": "Product and service review rules",
@@ -1334,7 +1377,8 @@
     {
       "id": "AU-GUIDE-04",
       "market": "AU",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "ACCC — Price displays 澳大利亚竞争与消费者委员会：价格展示指引",
       "law_short": "ACCC Price displays guidance",
       "article": "Misleading price displays / drip pricing",
@@ -1370,7 +1414,8 @@
     {
       "id": "AU-GUIDE-05",
       "market": "AU",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "ACCC — False or misleading claims 澳大利亚竞争与消费者委员会：虚假或误导性声称指引",
       "law_short": "ACCC False claims guidance",
       "article": "Information must be accurate and truthful",

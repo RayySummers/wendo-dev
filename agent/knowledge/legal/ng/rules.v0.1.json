@@ -11,7 +11,8 @@
     {
       "id": "NG-ADV-01",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.123(1)(a)-(b)",
@@ -49,7 +50,8 @@
     {
       "id": "NG-ADV-02",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.125(1)(a)-(b)",
@@ -87,7 +89,8 @@
     {
       "id": "NG-ADV-03",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.125(2)(a)",
@@ -126,7 +129,8 @@
     {
       "id": "NG-ADV-04",
       "market": "NG",
-      "category": "通用/跨境电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/跨境电商",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.125(3)",
@@ -153,7 +157,8 @@
     {
       "id": "NG-ADV-05",
       "market": "NG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.124(1)(a)",
@@ -189,7 +194,8 @@
     {
       "id": "NG-ADV-06",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.126(1)-(2)",
@@ -227,7 +233,8 @@
     {
       "id": "NG-ADV-07",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Advertising Regulatory Council of Nigeria Act, 2022（ARCON Act）尼日利亚广告监管委员会法 2022 — 配套 vetting 程序",
       "law_short": "ARCON vetting",
       "article": "Adverts Vetting 页面（pre-exposure clearance / Certificate of Approval）",
@@ -253,7 +260,8 @@
     {
       "id": "NG-ADV-08",
       "market": "NG",
-      "category": "通用/小家电/3C 数码",
+      "product_scope": ["通用", "小家电", "3C数码"],
+      "category_legacy": "通用/小家电/3C 数码",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.123(1)(c)(i)-(ii)",
@@ -294,7 +302,8 @@
     {
       "id": "NG-PRC-01",
       "market": "NG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.115(1)",
@@ -321,7 +330,8 @@
     {
       "id": "NG-PRC-02",
       "market": "NG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.115(3)",
@@ -348,7 +358,8 @@
     {
       "id": "NG-LAB-01",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.116(2)",
@@ -383,7 +394,8 @@
     {
       "id": "NG-LAB-02",
       "market": "NG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.116(3)",
@@ -410,7 +422,8 @@
     {
       "id": "NG-LAB-03",
       "market": "NG",
-      "category": "通用/3C 数码",
+      "product_scope": ["通用", "3C数码"],
+      "category_legacy": "通用/3C 数码",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.117",
@@ -447,7 +460,8 @@
     {
       "id": "NG-LAB-04",
       "market": "NG",
-      "category": "通用/小家电/3C 数码",
+      "product_scope": ["通用", "小家电", "3C数码"],
+      "category_legacy": "通用/小家电/3C 数码",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.134",
@@ -474,7 +488,8 @@
     {
       "id": "NG-LAB-05",
       "market": "NG",
-      "category": "通用/小家电/3C 数码",
+      "product_scope": ["通用", "小家电", "3C数码"],
+      "category_legacy": "通用/小家电/3C 数码",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.135(1)",
@@ -506,7 +521,8 @@
     {
       "id": "NG-LNG-01",
       "market": "NG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Federal Competition and Consumer Protection Act, 2018（FCCPA）联邦竞争与消费者保护法 2018",
       "law_short": "FCCPA",
       "article": "s.114(1)-(2)",
@@ -533,7 +549,8 @@
     {
       "id": "NG-LNG-02",
       "market": "NG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Nigerian Communications Act, 2003（NCA 2003）尼日利亚通信法 2003 — 配套 NCC Equipment Type Approval 申请要求",
       "law_short": "NCA 2003 / NCC Type Approval",
       "article": "NCC Type Approval Requirements 第 8 项（提交文件语言）",
@@ -559,7 +576,8 @@
     {
       "id": "NG-CRT-01",
       "market": "NG",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Standards Organisation of Nigeria Conformity Assessment Programme（SONCAP）尼日利亚标准局合格评定计划",
       "law_short": "SONCAP",
       "article": "SONCAP 服务页（Product Certificate / SONCAP Certificate 的强制性）",
@@ -585,7 +603,8 @@
     {
       "id": "NG-CRT-02",
       "market": "NG",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Standards Organisation of Nigeria Conformity Assessment Programme（SONCAP）尼日利亚标准局合格评定计划",
       "law_short": "SONCAP",
       "article": "SONCAP FAQ（SONCAP Default 罚则）",
@@ -611,7 +630,8 @@
     {
       "id": "NG-CRT-03",
       "market": "NG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Standards Organisation of Nigeria Mandatory Energy Labeling Scheme（SONMELS）尼日利亚强制能效标识计划",
       "law_short": "SONMELS",
       "article": "SONMELS 实施时间表（Phase I / Phase II 强制贴标）",
@@ -643,7 +663,8 @@
     {
       "id": "NG-CRT-04",
       "market": "NG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Nigerian Communications Act, 2003（NCA 2003）尼日利亚通信法 2003 — NCC Equipment Type Approval",
       "law_short": "NCA 2003 / Type Approval",
       "article": "NCC Type Approval 页（Equipment Type Approval 的定义与适用主体）",
@@ -669,7 +690,8 @@
     {
       "id": "NG-PRV-01",
       "market": "NG",
-      "category": "通用/隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/隐私",
       "law_name": "Nigeria Data Protection Act, 2023（NDPA）尼日利亚数据保护法 2023",
       "law_short": "NDPA",
       "article": "s.24(1)(a)、s.24(3)",
@@ -695,7 +717,8 @@
     {
       "id": "NG-PRV-02",
       "market": "NG",
-      "category": "通用/隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/隐私",
       "law_name": "Nigeria Data Protection Act, 2023（NDPA）尼日利亚数据保护法 2023",
       "law_short": "NDPA",
       "article": "s.25(1)(a)-(b)",
@@ -721,7 +744,8 @@
     {
       "id": "NG-PRV-03",
       "market": "NG",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Nigeria Data Protection Act, 2023（NDPA）尼日利亚数据保护法 2023",
       "law_short": "NDPA",
       "article": "s.26(7)(a)、s.26(3)、s.26(6)",
@@ -754,7 +778,8 @@
     {
       "id": "NG-PRV-04",
       "market": "NG",
-      "category": "通用/隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/隐私",
       "law_name": "Nigeria Data Protection Act, 2023（NDPA）尼日利亚数据保护法 2023",
       "law_short": "NDPA",
       "article": "s.27(1)(a)-(b)、s.27(3)",
@@ -780,7 +805,8 @@
     {
       "id": "NG-PRV-05",
       "market": "NG",
-      "category": "通用/隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/隐私",
       "law_name": "Nigeria Data Protection Act, 2023（NDPA）尼日利亚数据保护法 2023",
       "law_short": "NDPA",
       "article": "s.44(1)-(2)",
