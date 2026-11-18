@@ -2,10 +2,17 @@
 
 核验日期：2026-11-18（v0.2，RAY-762）。规则条目见 `rules.v0.1.json`，字段 `source_id` 对应本文件编号。
 
-> **2026-11-18 域名更正**：`caa.lk` 是**民航局（Civil Aviation Authority）**，**不是**消费者事务局。
+> **2026-11-18 域名更正（重要，别再用错）**：`caa.lk` 是**民航局（Civil Aviation Authority）**，**不是**消费者事务局。
 > 消费者事务局是 `caa.gov.lk`（Consumer Affairs Authority）。v0.1 把 `caa.lk` 当作 CAA 站点探测，属误认，已更正。
+>
+> `caa.lk` 能返回 200 与上万字符正文，**这不代表它是本库要的源**——它的正文是飞行员执照、飞机事故、
+> 航空安全通告；`/en/regulations/` 是 404，真实路径是 `/en/regulations-policies/subsidiary-legislation/regulation`，
+> 通篇是 Civil Aviation Act / Air Navigation Act 一类。**看到 200 就当作 CAA 内容源会直接污染规则库。**
+>
 > `caa.gov.lk` 在本环境**TLS 握手失败**（`SSL_ERROR_SYSCALL`，直连 / 代理 / Playwright 三路均不通），
-> 但其正文可经 `r.jina.ai` 读回（索引页），其指令 PDF 可取 Wayback 快照（见 LK6）。
+> 但其正文可经 `r.jina.ai` 读回（索引页），其指令 PDF 可取 Wayback 快照或政府公报库（见 LK6）。
+>
+> `trcsl.lk`（不带 www）是**已停用域名**（`ERR_CONNECTION_CLOSED`），不要再试；TRCSL 统一用 `www.trc.gov.lk`。
 
 > 语言政策：只收官方英文原文。斯里兰卡议会同时发布法案的英文、僧伽罗文、泰米尔文文本，**英文文本由议会官网发布**（CAA Act s.25 仅规定僧伽罗与泰米尔文本冲突时以僧伽罗文本为准）；本库全部引文来自英文官方文本。
 
@@ -157,6 +164,21 @@ r = StealthyFetcher.fetch("https://slsi.lk/en/downloads/", headless=True, networ
 for a in r.css('a'):          # 强制品目清单在 downloads 页的附件里
     print(a.attrib.get('href'), a.text)
 ```
+
+### 斯里兰卡各官方站点的「首页 → 真实内容」路径（2026-11-18 实测）
+
+首页能 200 不代表能找到内容——这几个站的导航都是 JS 菜单，`href` 只在展开后才在 DOM 里。可直接用的深链：
+
+| 站点 | 首页 | 真实内容路径（已验证可 200） |
+| --- | --- | --- |
+| TRCSL | `https://www.trc.gov.lk/`（200，但只有 ~2.4K 字符，是个 meta refresh 壳页） | 跳到 `https://www.trc.gov.lk/index_e.php`；法规＝`/legislation/pages_e.php?id=35`（附属立法全表 PDF 链接）；许可＝`/licensing/pages_e.php?id=13`；Vendor Licence＝`/licensing/pages_e.php?id=72`；设备核准＝`/pages_e.php?id=28` |
+| SLSI | `https://slsi.lk/en/`（200） | 强制品目清单在 `/en/downloads/` 的附件里（LT-PC-01）；认证流程＝`/en/services/sls-mark-product-certification/` |
+| CAA（消费者事务局） | `https://caa.gov.lk/`（**TLS 不可达**） | 经 `r.jina.ai`：`/web/index.php?option=com_content&view=category&id=93&lang=en`（Directions 索引） |
+| CAA（民航局，**不是本库的源**） | `https://www.caa.lk/en/`（200） | `/en/regulations-policies/subsidiary-legislation/regulation` —— 全是航空法规 |
+
+> TRCSL 有个坑：`/legislation/pages_e.php?id=34` 是「法规（Acts）」，`id=35` 才是「附属立法（Subsidiary Legislation）」。
+> Vendors Licence Rules No.1/2001 与 RTTE Rules 2020 都在 `id=35` 那页的 PDF 列表里，静态路径为
+> `content/files/legislation/...` 与 `content/files/spectrum/...`。
 
 ### 议会法案
 
