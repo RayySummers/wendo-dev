@@ -10,7 +10,8 @@
     {
       "id": "MY-ADV-01",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.9(a)",
@@ -49,7 +50,8 @@
     {
       "id": "MY-ADV-02",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.10(1)(a)",
@@ -91,7 +93,8 @@
     {
       "id": "MY-ADV-03",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.10(1)(f)",
@@ -127,7 +130,8 @@
     {
       "id": "MY-ADV-04",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.10(1)(h)",
@@ -167,7 +171,8 @@
     {
       "id": "MY-ADV-05",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.10(1)(l)",
@@ -202,7 +207,8 @@
     {
       "id": "MY-ADV-06",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.12(1)",
@@ -240,7 +246,8 @@
     {
       "id": "MY-ADV-07",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.13(1)",
@@ -274,7 +281,8 @@
     {
       "id": "MY-ADV-08",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.14(1)",
@@ -308,7 +316,8 @@
     {
       "id": "MY-ADV-09",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.15(1)-(3)",
@@ -341,7 +350,8 @@
     {
       "id": "MY-ADV-10",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.20",
@@ -375,7 +385,8 @@
     {
       "id": "MY-ADV-11",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection Act 1999 (Act 599) 消费者保护法 1999",
       "law_short": "CPA 1999",
       "article": "s.21",
@@ -409,7 +420,8 @@
     {
       "id": "MY-ADV-12",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.5(1)",
@@ -444,7 +456,8 @@
     {
       "id": "MY-ADV-13",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.6(1)(i),(k)",
@@ -482,7 +495,8 @@
     {
       "id": "MY-ADV-14",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.14(1)",
@@ -516,7 +530,8 @@
     {
       "id": "MY-ADV-15",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.15(1)",
@@ -551,7 +566,8 @@
     {
       "id": "MY-ADV-16",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.16(1)",
@@ -585,7 +601,8 @@
     {
       "id": "MY-ADV-17",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.18(1)-(2)",
@@ -622,7 +639,8 @@
     {
       "id": "MY-ADV-18",
       "market": "MY",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act 2011 (Act 730) 商品说明法 2011",
       "law_short": "TDA 2011",
       "article": "s.10(1)(c), s.10(2)",
@@ -654,7 +672,8 @@
     {
       "id": "MY-ECOM-01",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.3(1) + Schedule items 1-5",
@@ -693,7 +712,8 @@
     {
       "id": "MY-ECOM-02",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.3(1) + Schedule item 6",
@@ -728,7 +748,8 @@
     {
       "id": "MY-ECOM-03",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.3(1) + Schedule items 7-9",
@@ -764,7 +785,8 @@
     {
       "id": "MY-ECOM-04",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.3(1) + Schedule item 10",
@@ -797,7 +819,8 @@
     {
       "id": "MY-ECOM-05",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.3(2)",
@@ -830,7 +853,8 @@
     {
       "id": "MY-ECOM-06",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.4(1)-(2)",
@@ -856,7 +880,8 @@
     {
       "id": "MY-ECOM-07",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.6(1)",
@@ -882,7 +907,8 @@
     {
       "id": "MY-ECOM-08",
       "market": "MY",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection (Electronic Trade Transaction) Regulations 2024 (P.U.(A) 449/2024) 消费者保护（电子交易）条例 2024",
       "law_short": "CP (ETT) Regs 2024",
       "article": "reg.7(1)",
@@ -914,7 +940,8 @@
     {
       "id": "MY-APP-01",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electricity Regulations 1994 (P.U.(A) 38/1994) 电力条例 1994",
       "law_short": "Electricity Regs 1994",
       "article": "reg.97(1)",
@@ -952,7 +979,8 @@
     {
       "id": "MY-APP-02",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electricity Regulations 1994 (P.U.(A) 38/1994) 电力条例 1994",
       "law_short": "Electricity Regs 1994",
       "article": "reg.97C(1)",
@@ -984,7 +1012,8 @@
     {
       "id": "MY-APP-03",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electricity Regulations 1994 (P.U.(A) 38/1994) 电力条例 1994",
       "law_short": "Electricity Regs 1994",
       "article": "reg.97D(1), reg.97E(1)",
@@ -1017,7 +1046,8 @@
     {
       "id": "MY-APP-04",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Electricity Regulations 1994 (P.U.(A) 38/1994) 电力条例 1994",
       "law_short": "Electricity Regs 1994",
       "article": "reg.98",
@@ -1048,7 +1078,8 @@
     {
       "id": "MY-3C-01",
       "market": "MY",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Communications and Multimedia (Technical Standards) Regulations 2000 (P.U.(A) 124/2000) 通讯与多媒体（技术标准）条例 2000",
       "law_short": "TSR 2000",
       "article": "reg.14",
@@ -1095,7 +1126,8 @@
     {
       "id": "MY-3C-02",
       "market": "MY",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Communications and Multimedia (Technical Standards) Regulations 2000 (P.U.(A) 124/2000) 通讯与多媒体（技术标准）条例 2000",
       "law_short": "TSR 2000",
       "article": "reg.16(1)(b)",
@@ -1135,7 +1167,8 @@
     {
       "id": "MY-3C-03",
       "market": "MY",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Communications and Multimedia (Technical Standards) Regulations 2000 (P.U.(A) 124/2000) 通讯与多媒体（技术标准）条例 2000",
       "law_short": "TSR 2000",
       "article": "reg.22(1)(a)",
@@ -1169,7 +1202,8 @@
     {
       "id": "MY-3C-04",
       "market": "MY",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Communications and Multimedia Act 1998 (Act 588) 通讯与多媒体法 1998",
       "law_short": "CMA 1998",
       "article": "s.239(1)(c)",
@@ -1202,7 +1236,8 @@
     {
       "id": "MY-3C-05",
       "market": "MY",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Guidelines for Online Shopping Platform, Merchant and Consumer in Electronic Commerce for Communications Equipment (MCMC, 31 July 2025) 通讯设备电商指南",
       "law_short": "MCMC E-Commerce Guidelines 2025",
       "article": "para.4.11.1（并见 6.4.2-6.4.3、7.1、Annex 2）",
@@ -1235,7 +1270,8 @@
     {
       "id": "MY-3C-06",
       "market": "MY",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Communications and Multimedia (Technical Standards) Regulations 2000 (P.U.(A) 124/2000) 通讯与多媒体（技术标准）条例 2000",
       "law_short": "TSR 2000",
       "article": "reg.17(1)",
@@ -1269,7 +1305,8 @@
     {
       "id": "MY-HALAL-01",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Trade Descriptions (Certification and Marking of Halal) Order 2011 (P.U.(A) 431/2011) 商品说明（Halal 认证与标识）令 2011",
       "law_short": "Halal Order 2011",
       "article": "para.4(1)",
@@ -1304,7 +1341,8 @@
     {
       "id": "MY-HALAL-02",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Trade Descriptions (Certification and Marking of Halal) Order 2011 (P.U.(A) 431/2011) 商品说明（Halal 认证与标识）令 2011",
       "law_short": "Halal Order 2011",
       "article": "para.5(1)",
@@ -1338,7 +1376,8 @@
     {
       "id": "MY-HALAL-03",
       "market": "MY",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Trade Descriptions (Certification and Marking of Halal) Order 2011 (P.U.(A) 431/2011) 商品说明（Halal 认证与标识）令 2011",
       "law_short": "Halal Order 2011",
       "article": "para.5(2) (as amended by P.U.(A) 288/2023)",
@@ -1369,7 +1408,8 @@
     {
       "id": "MY-PRIV-01",
       "market": "MY",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2010 (Act 709) 个人数据保护法 2010",
       "law_short": "PDPA 2010",
       "article": "s.7(1)",
@@ -1405,7 +1445,8 @@
     {
       "id": "MY-PRIV-02",
       "market": "MY",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2010 (Act 709) 个人数据保护法 2010",
       "law_short": "PDPA 2010",
       "article": "s.7(3)",
@@ -1436,7 +1477,8 @@
     {
       "id": "MY-PRIV-03",
       "market": "MY",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2010 (Act 709) 个人数据保护法 2010",
       "law_short": "PDPA 2010",
       "article": "s.12A(1),(3)",
@@ -1467,7 +1509,8 @@
     {
       "id": "MY-FOOD-01",
       "market": "MY",
-      "category": "小家电/接触食品",
+      "product_scope": ["小家电", "食品接触材料"],
+      "category_legacy": "小家电/接触食品",
       "law_name": "Food Regulations 1985 (P.U.(A) 437/1985) 食品条例 1985",
       "law_short": "Food Regs 1985",
       "article": "reg.27",
@@ -1505,7 +1548,8 @@
     {
       "id": "MY-FOOD-02",
       "market": "MY",
-      "category": "小家电/接触食品",
+      "product_scope": ["小家电", "食品接触材料"],
+      "category_legacy": "小家电/接触食品",
       "law_name": "Food Regulations 1985 (P.U.(A) 437/1985) 食品条例 1985",
       "law_short": "Food Regs 1985",
       "article": "reg.28(4)",
@@ -1538,7 +1582,8 @@
     {
       "id": "MY-FOOD-03",
       "market": "MY",
-      "category": "小家电/接触食品",
+      "product_scope": ["小家电", "食品接触材料"],
+      "category_legacy": "小家电/接触食品",
       "law_name": "Food Regulations 1985 (P.U.(A) 437/1985) 食品条例 1985",
       "law_short": "Food Regs 1985",
       "article": "reg.28(6)-(7)",

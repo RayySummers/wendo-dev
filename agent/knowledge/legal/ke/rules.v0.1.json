@@ -11,7 +11,8 @@
     {
       "id": "KE-ADV-01",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(1)",
@@ -38,7 +39,8 @@
     {
       "id": "KE-ADV-02",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(2)(a)",
@@ -75,7 +77,8 @@
     {
       "id": "KE-ADV-03",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(2)(c)",
@@ -121,7 +124,8 @@
     {
       "id": "KE-ADV-04",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(2)(h)",
@@ -154,7 +158,8 @@
     {
       "id": "KE-ADV-05",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(2)(i)",
@@ -189,7 +194,8 @@
     {
       "id": "KE-ADV-06",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(2)(k)",
@@ -225,7 +231,8 @@
     {
       "id": "KE-ADV-07",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.12(2)(n)",
@@ -259,7 +266,8 @@
     {
       "id": "KE-ADV-08",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.13(1)",
@@ -286,7 +294,8 @@
     {
       "id": "KE-ADV-09",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.15(1)",
@@ -313,7 +322,8 @@
     {
       "id": "KE-ADV-10",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.5(3)",
@@ -350,7 +360,8 @@
     {
       "id": "KE-ADV-11",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Protection Act, No. 46 of 2012 消费者保护法（2012 年第 46 号）",
       "law_short": "CPA 2012",
       "article": "s.31(2)",
@@ -383,7 +394,8 @@
     {
       "id": "KE-ADV-12",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Competition Act, No. 12 of 2010 竞争法（2010 年第 12 号）",
       "law_short": "Competition Act 2010",
       "article": "s.55(b)(iii)",
@@ -422,7 +434,8 @@
     {
       "id": "KE-ADV-13",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Competition Act, No. 12 of 2010 竞争法（2010 年第 12 号）",
       "law_short": "Competition Act 2010",
       "article": "s.55(b)(ii)",
@@ -457,7 +470,8 @@
     {
       "id": "KE-PRICE-01",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Trade Descriptions Act, Chapter 505 (Revised Edition 2012) 商品说明法（第 505 章）",
       "law_short": "TDA Cap. 505",
       "article": "s.4(2)",
@@ -494,7 +508,8 @@
     {
       "id": "KE-PRICE-02",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Trade Descriptions Act, Chapter 505 (Revised Edition 2012) 商品说明法（第 505 章）",
       "law_short": "TDA Cap. 505",
       "article": "s.4(3)(a)(ii)",
@@ -529,7 +544,8 @@
     {
       "id": "KE-LAB-01",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act, Chapter 505 (Revised Edition 2012) 商品说明法（第 505 章）",
       "law_short": "TDA Cap. 505",
       "article": "s.3",
@@ -556,7 +572,8 @@
     {
       "id": "KE-LAB-02",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act, Chapter 505 (Revised Edition 2012) 商品说明法（第 505 章）",
       "law_short": "TDA Cap. 505",
       "article": "s.9(1)(b)",
@@ -583,7 +600,8 @@
     {
       "id": "KE-LAB-03",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Trade Descriptions Act, Chapter 505 (Revised Edition 2012) 商品说明法（第 505 章）",
       "law_short": "TDA Cap. 505",
       "article": "s.7(1)(b)",
@@ -615,7 +633,8 @@
     {
       "id": "KE-LAB-04",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Weights and Measures (Sale and Labelling of Goods) Rules, 1999 度量衡（商品销售与标签）规则 1999",
       "law_short": "WMA Labelling Rules 1999",
       "article": "r.7(1)",
@@ -642,7 +661,8 @@
     {
       "id": "KE-LAB-05",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Weights and Measures (Sale and Labelling of Goods) Rules, 1999 度量衡（商品销售与标签）规则 1999",
       "law_short": "WMA Labelling Rules 1999",
       "article": "r.7(1) proviso (iii)",
@@ -669,7 +689,8 @@
     {
       "id": "KE-LAB-06",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Weights and Measures (Sale and Labelling of Goods) Rules, 1999 度量衡（商品销售与标签）规则 1999",
       "law_short": "WMA Labelling Rules 1999",
       "article": "r.7(2)(a)",
@@ -696,7 +717,8 @@
     {
       "id": "KE-LAB-07",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Weights and Measures (Sale and Labelling of Goods) Rules, 1999 度量衡（商品销售与标签）规则 1999",
       "law_short": "WMA Labelling Rules 1999",
       "article": "r.3(2)",
@@ -735,7 +757,8 @@
     {
       "id": "KE-LAB-08",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Weights and Measures (Sale and Labelling of Goods) Rules, 1999 度量衡（商品销售与标签）规则 1999",
       "law_short": "WMA Labelling Rules 1999",
       "article": "r.8(1)",
@@ -769,7 +792,8 @@
     {
       "id": "KE-QTY-01",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Weights and Measures Act, Chapter 513 (Revised Edition 2012) 度量衡法（第 513 章）",
       "law_short": "WMA Cap. 513",
       "article": "s.40(1)(a)",
@@ -796,7 +820,8 @@
     {
       "id": "KE-QTY-02",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Weights and Measures Act, Chapter 513 (Revised Edition 2012) 度量衡法（第 513 章）",
       "law_short": "WMA Cap. 513",
       "article": "s.42(1)(a)",
@@ -823,7 +848,8 @@
     {
       "id": "KE-CERT-01",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Standards Act, Chapter 496 (Revised Edition 2012) 标准法（第 496 章）",
       "law_short": "Standards Act Cap. 496",
       "article": "s.9(2)",
@@ -857,7 +883,8 @@
     {
       "id": "KE-CERT-02",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Standards Act, Chapter 496 (Revised Edition 2012) 标准法（第 496 章）",
       "law_short": "Standards Act Cap. 496",
       "article": "s.10(6)",
@@ -889,7 +916,8 @@
     {
       "id": "KE-CERT-03",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Standards Act, Chapter 496 (Revised Edition 2012) 标准法（第 496 章）",
       "law_short": "Standards Act Cap. 496",
       "article": "s.10(8)",
@@ -916,7 +944,8 @@
     {
       "id": "KE-CERT-04",
       "market": "KE",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Verification of Conformity to Kenya Standards of Imports Order, 2005 (L.N. 78/2005) 进口商品符合性验证令 2005",
       "law_short": "VoC Order 2005",
       "article": "para. 3 & 5",
@@ -948,7 +977,8 @@
     {
       "id": "KE-CERT-05",
       "market": "KE",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Verification of Conformity to Kenya Standards of Imports Order, 2005 (L.N. 78/2005) 进口商品符合性验证令 2005",
       "law_short": "VoC Order 2005",
       "article": "para. 6(2)",
@@ -975,7 +1005,8 @@
     {
       "id": "KE-CERT-06",
       "market": "KE",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Kenya Information and Communications (Importation, Type Approval and Distribution of Communications Equipment) Regulations, 2010 (L.N. 57/2010) 通信设备进口、型式核准与分销条例 2010",
       "law_short": "KICA Equipment Regs 2010",
       "article": "reg. 12(2)",
@@ -1008,7 +1039,8 @@
     {
       "id": "KE-CERT-07",
       "market": "KE",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Kenya Information and Communications (Importation, Type Approval and Distribution of Communications Equipment) Regulations, 2010 (L.N. 57/2010) 通信设备进口、型式核准与分销条例 2010",
       "law_short": "KICA Equipment Regs 2010",
       "article": "reg. 17(1)-(2)",
@@ -1035,7 +1067,8 @@
     {
       "id": "KE-PRI-01",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Data Protection Act, No. 24 of 2019 数据保护法（2019 年第 24 号）",
       "law_short": "DPA 2019",
       "article": "s.29",
@@ -1067,7 +1100,8 @@
     {
       "id": "KE-PRI-02",
       "market": "KE",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Data Protection Act, No. 24 of 2019 数据保护法（2019 年第 24 号）",
       "law_short": "DPA 2019",
       "article": "s.25(b) & s.26(a)",

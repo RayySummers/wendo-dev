@@ -10,7 +10,8 @@
     {
       "id": "SG-ADV-01",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "s.4(a)",
@@ -45,7 +46,8 @@
     {
       "id": "SG-ADV-02",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "s.4(b)",
@@ -80,7 +82,8 @@
     {
       "id": "SG-ADV-03",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 1",
@@ -114,7 +117,8 @@
     {
       "id": "SG-ADV-04",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 4",
@@ -150,7 +154,8 @@
     {
       "id": "SG-ADV-05",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 5",
@@ -184,7 +189,8 @@
     {
       "id": "SG-ADV-06",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 7",
@@ -217,7 +223,8 @@
     {
       "id": "SG-ADV-07",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 9",
@@ -250,7 +257,8 @@
     {
       "id": "SG-ADV-08",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 19",
@@ -281,7 +289,8 @@
     {
       "id": "SG-ADV-09",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 20",
@@ -312,7 +321,8 @@
     {
       "id": "SG-ADV-10",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Fair Trading) Act 2003 消费者保护（公平交易）法 2003",
       "law_short": "CPFTA 2003",
       "article": "Second Schedule item 16",
@@ -344,7 +354,8 @@
     {
       "id": "SG-ADV-11",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Trade Descriptions and Safety Requirements) Act 1975 消费者保护（商品说明与安全要求）法 1975",
       "law_short": "CPTDSRA 1975",
       "article": "s.4",
@@ -377,7 +388,8 @@
     {
       "id": "SG-ADV-12",
       "market": "SG",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Protection (Trade Descriptions and Safety Requirements) Act 1975 消费者保护（商品说明与安全要求）法 1975",
       "law_short": "CPTDSRA 1975",
       "article": "s.5(b)",
@@ -410,7 +422,8 @@
     },
     {
       "id": "SG-PRICE-01",
-      "category": "通用/价格",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/价格",
       "law_name": "Goods and Services Tax (General) Regulations 消费税（一般）条例",
       "law_short": "GST (General) Regs",
       "article": "reg.77(1)",
@@ -443,7 +456,8 @@
     },
     {
       "id": "SG-PRICE-02",
-      "category": "通用/价格",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/价格",
       "law_name": "Goods and Services Tax (General) Regulations 消费税（一般）条例",
       "law_short": "GST (General) Regs",
       "article": "reg.77(2)",
@@ -475,7 +489,8 @@
     {
       "id": "SG-APP-01",
       "market": "SG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection (Safety Requirements) Regulations (Cap. 53, Rg 1) 消费者保护（安全要求）条例",
       "law_short": "CPSR",
       "article": "reg.4(1)",
@@ -514,7 +529,8 @@
     {
       "id": "SG-APP-02",
       "market": "SG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection (Safety Requirements) Regulations (Cap. 53, Rg 1) 消费者保护（安全要求）条例",
       "law_short": "CPSR",
       "article": "reg.5(1)-(2)",
@@ -544,7 +560,8 @@
     {
       "id": "SG-APP-03",
       "market": "SG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection (Safety Requirements) Regulations (Cap. 53, Rg 1) 消费者保护（安全要求）条例",
       "law_short": "CPSR",
       "article": "reg.7(1)",
@@ -575,7 +592,8 @@
     {
       "id": "SG-APP-04",
       "market": "SG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection (Safety Requirements) Regulations (Cap. 53, Rg 1) 消费者保护（安全要求）条例",
       "law_short": "CPSR",
       "article": "reg.13(1)",
@@ -603,7 +621,8 @@
     {
       "id": "SG-APP-05",
       "market": "SG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection (Safety Requirements) Regulations (Cap. 53, Rg 1) 消费者保护（安全要求）条例",
       "law_short": "CPSR",
       "article": "reg.4(2)-(3)",
@@ -630,7 +649,8 @@
     {
       "id": "SG-APP-06",
       "market": "SG",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Consumer Protection (Safety Requirements) Regulations (Cap. 53, Rg 1) 消费者保护（安全要求）条例",
       "law_short": "CPSR",
       "article": "First Schedule items 10, 20, 22",
@@ -663,7 +683,8 @@
     {
       "id": "SG-APP-07",
       "market": "SG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Telecommunications (Dealers) Regulations 电信（经销商）条例（Cap. 323, Rg 6）",
       "law_short": "Dealers Regs",
       "article": "reg.20(1)",
@@ -697,7 +718,8 @@
     {
       "id": "SG-APP-08",
       "market": "SG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Telecommunications (Dealers) Regulations 电信（经销商）条例（Cap. 323, Rg 6）",
       "law_short": "Dealers Regs",
       "article": "Second Schedule para 8(a), (e)",
@@ -721,7 +743,8 @@
     {
       "id": "SG-APP-09",
       "market": "SG",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Telecommunications (Dealers) Regulations 电信（经销商）条例（Cap. 323, Rg 6）",
       "law_short": "Dealers Regs",
       "article": "Second Schedule para 8(d)",
@@ -750,7 +773,8 @@
     {
       "id": "SG-APP-10",
       "market": "SG",
-      "category": "家居",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居",
       "law_name": "Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011 消费者保护（消费品安全要求）条例 2011（No. S 113/2011）",
       "law_short": "CGSR 2011",
       "article": "reg.4(a)-(b)",
@@ -783,7 +807,8 @@
     {
       "id": "SG-APP-11",
       "market": "SG",
-      "category": "家居",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居",
       "law_name": "Consumer Protection (Consumer Goods Safety Requirements) Regulations 2011 消费者保护（消费品安全要求）条例 2011（No. S 113/2011）",
       "law_short": "CGSR 2011",
       "article": "reg.3(1)(b), (3), (4)",
@@ -807,7 +832,8 @@
     {
       "id": "SG-LANG-01",
       "market": "SG",
-      "category": "营销/语言",
+      "product_scope": ["通用"],
+      "category_legacy": "营销/语言",
       "law_name": "Spam Control Act 2007 垃圾信息控制法 2007（Second Schedule）",
       "law_short": "SCA 2007",
       "article": "Second Schedule para 2(4)",
@@ -834,7 +860,8 @@
     },
     {
       "id": "SG-FOOD-01",
-      "category": "小家电/食品接触",
+      "product_scope": ["小家电", "食品接触材料"],
+      "category_legacy": "小家电/食品接触",
       "law_name": "Food Regulations 食品条例（Sale of Food Act 第 283 章）",
       "law_short": "Food Regs",
       "article": "reg.37(2)",
@@ -871,7 +898,8 @@
     },
     {
       "id": "SG-FOOD-02",
-      "category": "家居/食品接触",
+      "product_scope": ["家居用品", "食品接触材料"],
+      "category_legacy": "家居/食品接触",
       "law_name": "Food Regulations 食品条例（Sale of Food Act 第 283 章）",
       "law_short": "Food Regs",
       "article": "reg.37(3)(a)-(e)",
@@ -905,7 +933,8 @@
     },
     {
       "id": "SG-FOOD-03",
-      "category": "家居/食品接触",
+      "product_scope": ["家居用品", "食品接触材料"],
+      "category_legacy": "家居/食品接触",
       "law_name": "Food Regulations 食品条例（Sale of Food Act 第 283 章）",
       "law_short": "Food Regs",
       "article": "reg.13(2)",
@@ -938,7 +967,8 @@
     },
     {
       "id": "SG-MET-01",
-      "category": "通用/计量",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/计量",
       "law_name": "Weights and Measures Act 1975 度量衡法 1975",
       "law_short": "WMA 1975",
       "article": "s.18(1)(d), (2)",
@@ -979,7 +1009,8 @@
     },
     {
       "id": "SG-MET-02",
-      "category": "通用/计量",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/计量",
       "law_name": "Weights and Measures Act 1975 度量衡法 1975",
       "law_short": "WMA 1975",
       "article": "s.19(3)",
@@ -1003,7 +1034,8 @@
     },
     {
       "id": "SG-MET-03",
-      "category": "通用/计量",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/计量",
       "law_name": "Weights and Measures Act 1975 度量衡法 1975",
       "law_short": "WMA 1975",
       "article": "s.19(2)",
@@ -1040,7 +1072,8 @@
     {
       "id": "SG-PRIV-01",
       "market": "SG",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.20(1)",
@@ -1072,7 +1105,8 @@
     {
       "id": "SG-PRIV-02",
       "market": "SG",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.11(3)-(5)",
@@ -1101,7 +1135,8 @@
     {
       "id": "SG-PRIV-03",
       "market": "SG",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.13",
@@ -1132,7 +1167,8 @@
     {
       "id": "SG-PRIV-04",
       "market": "SG",
-      "category": "通用/网站",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/网站",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.12",
@@ -1160,7 +1196,8 @@
     },
     {
       "id": "SG-PRIV-05",
-      "category": "隐私/营销",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私/营销",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.43(1)",
@@ -1184,7 +1221,8 @@
     },
     {
       "id": "SG-PRIV-06",
-      "category": "隐私/营销",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私/营销",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.44",
@@ -1213,7 +1251,8 @@
     },
     {
       "id": "SG-PRIV-07",
-      "category": "隐私/营销",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私/营销",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.46(1)",
@@ -1243,7 +1282,8 @@
     },
     {
       "id": "SG-PRIV-08",
-      "category": "隐私/营销",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私/营销",
       "law_name": "Personal Data Protection Act 2012 个人数据保护法 2012",
       "law_short": "PDPA 2012",
       "article": "s.47(1)-(2)",
@@ -1273,7 +1313,8 @@
     },
     {
       "id": "SG-MKT-01",
-      "category": "营销",
+      "product_scope": ["通用"],
+      "category_legacy": "营销",
       "law_name": "Spam Control Act 2007 垃圾信息控制法 2007",
       "law_short": "SCA 2007",
       "article": "s.11 + Second Schedule para 2",
@@ -1301,7 +1342,8 @@
     },
     {
       "id": "SG-MKT-02",
-      "category": "营销",
+      "product_scope": ["通用"],
+      "category_legacy": "营销",
       "law_name": "Spam Control Act 2007 垃圾信息控制法 2007",
       "law_short": "SCA 2007",
       "article": "Second Schedule para 3(1)(b), (3)",

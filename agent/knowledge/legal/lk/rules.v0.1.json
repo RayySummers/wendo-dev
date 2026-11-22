@@ -11,7 +11,8 @@
     {
       "id": "LK-ADV-01",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.30",
@@ -47,7 +48,8 @@
     {
       "id": "LK-ADV-02",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(a)",
@@ -82,7 +84,8 @@
     {
       "id": "LK-ADV-03",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(b)",
@@ -115,7 +118,8 @@
     {
       "id": "LK-ADV-04",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(c)",
@@ -151,7 +155,8 @@
     {
       "id": "LK-ADV-05",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(d)",
@@ -184,7 +189,8 @@
     {
       "id": "LK-ADV-06",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(e)",
@@ -218,7 +224,8 @@
     {
       "id": "LK-ADV-07",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(f)",
@@ -251,7 +258,8 @@
     {
       "id": "LK-ADV-08",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.31(g)",
@@ -283,7 +291,8 @@
     {
       "id": "LK-LAB-01",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.10(1)(a)",
@@ -308,7 +317,8 @@
     {
       "id": "LK-LAB-02",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.10(4)",
@@ -333,7 +343,8 @@
     {
       "id": "LK-PRICE-01",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.11",
@@ -358,7 +369,8 @@
     {
       "id": "LK-PRICE-02",
       "market": "LK",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.26(1)",
@@ -383,7 +395,8 @@
     {
       "id": "LK-WAR-01",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.32(1)(c)",
@@ -408,7 +421,8 @@
     {
       "id": "LK-PEN-01",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Consumer Affairs Authority Act, No. 9 of 2003 消费者事务局法",
       "law_short": "CAA Act 2003",
       "article": "s.60(5)",
@@ -433,7 +447,8 @@
     {
       "id": "LK-PRIV-01",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11 + Schedule V para 1(a)",
@@ -458,7 +473,8 @@
     {
       "id": "LK-PRIV-02",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11 + Schedule V para 1(c)",
@@ -483,7 +499,8 @@
     {
       "id": "LK-PRIV-03",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11 + Schedule V para 1(f)",
@@ -508,7 +525,8 @@
     {
       "id": "LK-PRIV-04",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11 + Schedule V para 1(j), (k)",
@@ -533,7 +551,8 @@
     {
       "id": "LK-PRIV-05",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11 + Schedule V para 1(i)",
@@ -558,7 +577,8 @@
     {
       "id": "LK-PRIV-06",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11 + Schedule V para 1(h)",
@@ -583,7 +603,8 @@
     {
       "id": "LK-PRIV-07",
       "market": "LK",
-      "category": "隐私",
+      "product_scope": ["通用"],
+      "category_legacy": "隐私",
       "law_name": "Personal Data Protection Act, No. 9 of 2022 个人数据保护法",
       "law_short": "PDPA 2022",
       "article": "s.11",
@@ -608,7 +629,8 @@
     {
       "id": "LK-MEAS-01",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Measurement Units, Standards and Services Act, No. 35 of 1995 计量单位、标准与服务法",
       "law_short": "Measurement Act 1995",
       "article": "s.12(1), (3)",
@@ -633,7 +655,8 @@
     {
       "id": "LK-MEAS-02",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Measurement Units, Standards and Services Act, No. 35 of 1995 计量单位、标准与服务法",
       "law_short": "Measurement Act 1995",
       "article": "s.42",
@@ -658,7 +681,8 @@
     {
       "id": "LK-MEAS-03",
       "market": "LK",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Measurement Units, Standards and Services Act, No. 35 of 1995 计量单位、标准与服务法",
       "law_short": "Measurement Act 1995",
       "article": "s.51(4)",
@@ -683,7 +707,8 @@
     {
       "id": "LK-CERT-01",
       "market": "LK",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Sri Lanka Standards Institution Act, No. 6 of 1984 斯里兰卡标准协会法",
       "law_short": "SLSI Act 1984",
       "article": "s.20(1)",
@@ -708,7 +733,8 @@
     {
       "id": "LK-CERT-02",
       "market": "LK",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Sri Lanka Standards Institution Act, No. 6 of 1984 斯里兰卡标准协会法",
       "law_short": "SLSI Act 1984",
       "article": "s.23",
@@ -733,7 +759,8 @@
     {
       "id": "LK-TEL-01",
       "market": "LK",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Sri Lanka Telecommunications Act, No. 25 of 1991 斯里兰卡电信法",
       "law_short": "Telecommunications Act 1991",
       "article": "s.21(1)(a)",
@@ -758,7 +785,8 @@
     {
       "id": "LK-TEL-02",
       "market": "LK",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Sri Lanka Telecommunications Act, No. 25 of 1991 斯里兰卡电信法",
       "law_short": "Telecommunications Act 1991",
       "article": "s.5(q)",

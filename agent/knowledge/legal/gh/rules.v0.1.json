@@ -11,7 +11,8 @@
     {
       "id": "GH-ETA-01",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(1)(a)-(c),(f)",
@@ -38,7 +39,8 @@
     {
       "id": "GH-ETA-02",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(1)(g)",
@@ -76,7 +78,8 @@
     {
       "id": "GH-ETA-03",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(1)(h)",
@@ -111,7 +114,8 @@
     {
       "id": "GH-ETA-04",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(1)(k)",
@@ -145,7 +149,8 @@
     {
       "id": "GH-ETA-05",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(1)(m)",
@@ -180,7 +185,8 @@
     {
       "id": "GH-ETA-06",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(1)(o)",
@@ -213,7 +219,8 @@
     {
       "id": "GH-ETA-07",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(2)",
@@ -240,7 +247,8 @@
     {
       "id": "GH-ETA-08",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(5)-(6)",
@@ -273,7 +281,8 @@
     {
       "id": "GH-ETA-09",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.47(3)-(4)",
@@ -300,7 +309,8 @@
     {
       "id": "GH-ETA-10",
       "market": "GH",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Electronic Transactions Act, 2008 (Act 772) 电子交易法（2008 年第 772 号法）",
       "law_short": "ETA 2008",
       "article": "s.50(1)",
@@ -334,7 +344,8 @@
     {
       "id": "GH-LAB-01",
       "market": "GH",
-      "category": "小家电/3C 数码/家居用品",
+      "product_scope": ["小家电", "3C数码", "家居用品"],
+      "category_legacy": "小家电/3C 数码/家居用品",
       "law_name": "Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) 加纳标准局（食品、药品及其他商品）通用标签规则",
       "law_short": "L.I. 1541",
       "article": "r.3 + First Schedule",
@@ -360,7 +371,8 @@
     {
       "id": "GH-LAB-02",
       "market": "GH",
-      "category": "小家电/3C 数码/家居用品",
+      "product_scope": ["小家电", "3C数码", "家居用品"],
+      "category_legacy": "小家电/3C 数码/家居用品",
       "law_name": "Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) 加纳标准局（食品、药品及其他商品）通用标签规则",
       "law_short": "L.I. 1541",
       "article": "r.4(3)",
@@ -391,7 +403,8 @@
     {
       "id": "GH-LAB-03",
       "market": "GH",
-      "category": "小家电/3C 数码/家居用品",
+      "product_scope": ["小家电", "3C数码", "家居用品"],
+      "category_legacy": "小家电/3C 数码/家居用品",
       "law_name": "Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) 加纳标准局（食品、药品及其他商品）通用标签规则",
       "law_short": "L.I. 1541",
       "article": "r.4(1)-(2)",
@@ -417,7 +430,8 @@
     {
       "id": "GH-LAB-04",
       "market": "GH",
-      "category": "小家电/3C 数码/家居用品",
+      "product_scope": ["小家电", "3C数码", "家居用品"],
+      "category_legacy": "小家电/3C 数码/家居用品",
       "law_name": "Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) 加纳标准局（食品、药品及其他商品）通用标签规则",
       "law_short": "L.I. 1541",
       "article": "r.9(1)-(2)",
@@ -443,7 +457,8 @@
     {
       "id": "GH-LAB-05",
       "market": "GH",
-      "category": "家居用品（家居化学品/清洁用品）",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品（家居化学品/清洁用品）",
       "law_name": "FDA Guidelines for Labelling of Cosmetics and Household Chemical Substances (FDA/MCH/CHC/GL-LCH/2013/03) 化妆品与家居化学物质标签指南",
       "law_short": "FDA 标签指南 2013",
       "article": "para 3.1.3(a)-(k)",
@@ -468,7 +483,8 @@
     {
       "id": "GH-LAB-06",
       "market": "GH",
-      "category": "家居用品（家居化学品/清洁用品）",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品（家居化学品/清洁用品）",
       "law_name": "FDA Guidelines for Labelling of Cosmetics and Household Chemical Substances (FDA/MCH/CHC/GL-LCH/2013/03) 化妆品与家居化学物质标签指南",
       "law_short": "FDA 标签指南 2013",
       "article": "para 3.1.5",
@@ -493,7 +509,8 @@
     {
       "id": "GH-LAB-07",
       "market": "GH",
-      "category": "家居用品（家居化学品/清洁用品）",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品（家居化学品/清洁用品）",
       "law_name": "FDA Guidelines for Labelling of Cosmetics and Household Chemical Substances (FDA/MCH/CHC/GL-LCH/2013/03) 化妆品与家居化学物质标签指南",
       "law_short": "FDA 标签指南 2013",
       "article": "para 3.2.3",
@@ -526,7 +543,8 @@
     {
       "id": "GH-LAB-08",
       "market": "GH",
-      "category": "家居用品（家居化学品/清洁用品）",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品（家居化学品/清洁用品）",
       "law_name": "FDA Guidelines for Labelling of Cosmetics and Household Chemical Substances (FDA/MCH/CHC/GL-LCH/2013/03) 化妆品与家居化学物质标签指南",
       "law_short": "FDA 标签指南 2013",
       "article": "para 3.1.7",
@@ -555,7 +573,8 @@
     {
       "id": "GH-LAB-09",
       "market": "GH",
-      "category": "家居用品（家居化学品/清洁用品）",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品（家居化学品/清洁用品）",
       "law_name": "Public Health Act, 2012 (Act 851) 公共卫生法",
       "law_short": "PHA 2012",
       "article": "s.113(1)(b)",
@@ -591,7 +610,8 @@
     {
       "id": "GH-LAB-10",
       "market": "GH",
-      "category": "小家电/3C 数码",
+      "product_scope": ["小家电", "3C数码"],
+      "category_legacy": "小家电/3C 数码",
       "law_name": "Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) 加纳标准局（食品、药品及其他商品）通用标签规则",
       "law_short": "L.I. 1541",
       "article": "r.3(f)",
@@ -633,7 +653,8 @@
     {
       "id": "GH-CERT-01",
       "market": "GH",
-      "category": "小家电/3C 数码/家居用品",
+      "product_scope": ["小家电", "3C数码", "家居用品"],
+      "category_legacy": "小家电/3C 数码/家居用品",
       "law_name": "Ghana Standards Authority Act, 2022 (Act 1078) 加纳标准局法",
       "law_short": "GSA Act 2022",
       "article": "s.33(2)",
@@ -659,7 +680,8 @@
     {
       "id": "GH-CERT-02",
       "market": "GH",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Electronic Communications Act, 2008 (Act 775) 电子通信法",
       "law_short": "ECA 2008",
       "article": "s.66(1)",
@@ -684,7 +706,8 @@
     {
       "id": "GH-CERT-03",
       "market": "GH",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Electronic Communications Act, 2008 (Act 775) 电子通信法",
       "law_short": "ECA 2008 / NCA TA 2015",
       "article": "s.66(3)；NCA TA 12.3、12.6",
@@ -713,7 +736,8 @@
     {
       "id": "GH-CERT-04",
       "market": "GH",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "NCA Type Approval Guidelines — Electronic Communications Equipment (26 May 2015)",
       "law_short": "NCA TA 2015",
       "article": "para 19.3(a)",
@@ -738,7 +762,8 @@
     {
       "id": "GH-CERT-05",
       "market": "GH",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "NCA Type Approval Guidelines — Electronic Communications Equipment (26 May 2015)",
       "law_short": "NCA TA 2015",
       "article": "para 19.3(e)",
@@ -763,7 +788,8 @@
     {
       "id": "GH-CERT-06",
       "market": "GH",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Energy Efficiency Standards and Labelling (Non-Ducted Air Conditioners and Self-Ballasted Fluorescent Lamps) Regulations, 2005 (L.I. 1815)",
       "law_short": "L.I. 1815",
       "article": "reg.2(1)-(2)",
@@ -795,7 +821,8 @@
     {
       "id": "GH-CERT-07",
       "market": "GH",
-      "category": "小家电/3C 数码/家居用品",
+      "product_scope": ["小家电", "3C数码", "家居用品"],
+      "category_legacy": "小家电/3C 数码/家居用品",
       "law_name": "Ghana EasyPASS Programme — Certificate of Conformity（GSA 进口合格评定）",
       "law_short": "EasyPASS",
       "article": "Programme scope (GS A flyer, 2018/2019)",
@@ -820,7 +847,8 @@
     {
       "id": "GH-PRV-01",
       "market": "GH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Data Protection Act, 2012 (Act 843) 数据保护法",
       "law_short": "DPA 2012",
       "article": "s.23",
@@ -846,7 +874,8 @@
     {
       "id": "GH-PRV-02",
       "market": "GH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Data Protection Act, 2012 (Act 843) 数据保护法",
       "law_short": "DPA 2012",
       "article": "s.27(2)(a)-(i)",
@@ -872,7 +901,8 @@
     {
       "id": "GH-PRV-03",
       "market": "GH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Data Protection Act, 2012 (Act 843) 数据保护法",
       "law_short": "DPA 2012",
       "article": "s.27(1)",
@@ -898,7 +928,8 @@
     {
       "id": "GH-PRV-04",
       "market": "GH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Data Protection Act, 2012 (Act 843) 数据保护法",
       "law_short": "DPA 2012",
       "article": "s.28(1)",
@@ -929,7 +960,8 @@
     {
       "id": "GH-PRV-05",
       "market": "GH",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Data Protection Act, 2012 (Act 843) 数据保护法",
       "law_short": "DPA 2012",
       "article": "s.40(1)",
@@ -962,7 +994,8 @@
     {
       "id": "GH-LAB-11",
       "market": "GH",
-      "category": "家居用品（家居化学品/清洁用品）",
+      "product_scope": ["家居用品"],
+      "category_legacy": "家居用品（家居化学品/清洁用品）",
       "law_name": "FDA Guidelines for Labelling of Cosmetics and Household Chemical Substances (FDA/MCH/CHC/GL-LCH/2013/03) 化妆品与家居化学物质标签指南",
       "law_short": "FDA 标签指南 2013",
       "article": "para 3.1.1",

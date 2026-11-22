@@ -11,7 +11,8 @@
     {
       "id": "QA-ADV-01",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 7",
@@ -61,7 +62,8 @@
     {
       "id": "QA-ADV-02",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 6",
@@ -87,7 +89,8 @@
     {
       "id": "QA-ADV-03",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 13",
@@ -122,7 +125,8 @@
     {
       "id": "QA-ADV-04",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 24",
@@ -159,7 +163,8 @@
     {
       "id": "QA-ADV-05",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 18",
@@ -185,7 +190,8 @@
     {
       "id": "QA-ADV-06",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 7",
@@ -223,7 +229,8 @@
     {
       "id": "QA-LAB-01",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 7",
@@ -249,7 +256,8 @@
     {
       "id": "QA-LAB-02",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 17",
@@ -275,7 +283,8 @@
     {
       "id": "QA-PRC-01",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 8",
@@ -306,7 +315,8 @@
     {
       "id": "QA-PRC-02",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 10",
@@ -339,7 +349,8 @@
     {
       "id": "QA-SAF-01",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 5",
@@ -365,7 +376,8 @@
     {
       "id": "QA-SAF-02",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 14",
@@ -391,7 +403,8 @@
     {
       "id": "QA-WAR-01",
       "market": "QA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 16",
@@ -423,7 +436,8 @@
     {
       "id": "QA-WAR-02",
       "market": "QA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Law No. 8 of 2008 on Consumer Protection 消费者保护法（2008 年第 8 号法）",
       "law_short": "CPL 2008",
       "article": "Art. 9",
@@ -453,7 +467,8 @@
     {
       "id": "QA-ECM-01",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 51",
@@ -479,7 +494,8 @@
     {
       "id": "QA-ECM-02",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 53",
@@ -514,7 +530,8 @@
     {
       "id": "QA-ECM-03",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 54",
@@ -545,7 +562,8 @@
     {
       "id": "QA-ECM-04",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 55",
@@ -575,7 +593,8 @@
     {
       "id": "QA-ECM-05",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 56",
@@ -601,7 +620,8 @@
     {
       "id": "QA-ECM-06",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 57",
@@ -632,7 +652,8 @@
     {
       "id": "QA-ECM-07",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 58",
@@ -663,7 +684,8 @@
     {
       "id": "QA-ECM-08",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Decree Law No. 16 of 2010 Promulgating the Electronic Transactions and Commerce Law 电子交易与电子商务法（2010 年第 16 号法令）",
       "law_short": "E-Commerce Law 2010",
       "article": "Art. 59",
@@ -693,7 +715,8 @@
     {
       "id": "QA-PRV-01",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 13 of 2016 on Protecting Personal Data Privacy 个人数据隐私保护法（2016 年第 13 号法）",
       "law_short": "PDPPL 2016",
       "article": "Art. 9",
@@ -723,7 +746,8 @@
     {
       "id": "QA-PRV-02",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 13 of 2016 on Protecting Personal Data Privacy 个人数据隐私保护法（2016 年第 13 号法）",
       "law_short": "PDPPL 2016",
       "article": "Art. 4",
@@ -752,7 +776,8 @@
     {
       "id": "QA-PRV-03",
       "market": "QA",
-      "category": "通用/电商",
+      "product_scope": ["通用"],
+      "category_legacy": "通用/电商",
       "law_name": "Law No. 13 of 2016 on Protecting Personal Data Privacy 个人数据隐私保护法（2016 年第 13 号法）",
       "law_short": "PDPPL 2016",
       "article": "Art. 22",
@@ -782,7 +807,8 @@
     {
       "id": "QA-PRV-04",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 13 of 2016 on Protecting Personal Data Privacy 个人数据隐私保护法（2016 年第 13 号法）",
       "law_short": "PDPPL 2016",
       "article": "Art. 23",
@@ -807,7 +833,8 @@
     {
       "id": "QA-PRV-05",
       "market": "QA",
-      "category": "通用",
+      "product_scope": ["通用"],
+      "category_legacy": "通用",
       "law_name": "Law No. 13 of 2016 on Protecting Personal Data Privacy 个人数据隐私保护法（2016 年第 13 号法）",
       "law_short": "PDPPL 2016",
       "article": "Art. 13–14",
@@ -836,7 +863,8 @@
     {
       "id": "QA-TEL-01",
       "market": "QA",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Telecommunications Law No. 34 of 2006 (as amended by Law No. 17 of 2017) 电信法（2006 年第 34 号法，2017 年第 17 号法修订）",
       "law_short": "Telecom Law 2006",
       "article": "Art. 55",
@@ -865,7 +893,8 @@
     {
       "id": "QA-TEL-02",
       "market": "QA",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Type Approval Guidelines for Radio Equipment and Telecommunications Terminal Equipment (ICTRA 01/6-2010-TA-Guidelines) 型号核准指南",
       "law_short": "CRA TA Guidelines",
       "article": "s. 1.1",
@@ -893,7 +922,8 @@
     {
       "id": "QA-TEL-03",
       "market": "QA",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Type Approval Guidelines for Radio Equipment and Telecommunications Terminal Equipment (ICTRA 01/6-2010-TA-Guidelines) 型号核准指南",
       "law_short": "CRA TA Guidelines",
       "article": "s. 8(b)",
@@ -918,7 +948,8 @@
     {
       "id": "QA-TEL-04",
       "market": "QA",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Type Approval Guidelines for Radio Equipment and Telecommunications Terminal Equipment (ICTRA 01/6-2010-TA-Guidelines) 型号核准指南",
       "law_short": "CRA TA Guidelines",
       "article": "s. 8(f)–(g)",
@@ -943,7 +974,8 @@
     {
       "id": "QA-TEL-05",
       "market": "QA",
-      "category": "3C 数码",
+      "product_scope": ["3C数码"],
+      "category_legacy": "3C 数码",
       "law_name": "Class License for the use of RLAN devices over 5925-6425 MHz Band (CRA/SM/TA/001/2022) 6 GHz RLAN 类许可",
       "law_short": "CRA WiFi 6E Class License",
       "article": "s. 7.1",
@@ -973,7 +1005,8 @@
     {
       "id": "QA-REG-01",
       "market": "QA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LVE TR",
       "article": "Art. 18(1)",
@@ -1002,7 +1035,8 @@
     {
       "id": "QA-REG-02",
       "market": "QA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LVE TR",
       "article": "Art. 17(10)",
@@ -1027,7 +1061,8 @@
     {
       "id": "QA-REG-03",
       "market": "QA",
-      "category": "小家电",
+      "product_scope": ["小家电"],
+      "category_legacy": "小家电",
       "law_name": "Gulf Technical Regulation for Low Voltage Electrical Equipment and Appliances (BD-142004-01) 海湾低压电器技术法规",
       "law_short": "GSO LVE TR",
       "article": "Art. 4",
