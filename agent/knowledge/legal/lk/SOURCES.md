@@ -1,6 +1,18 @@
-# 斯里兰卡法条规则库 v0.1 — 来源清单
+# 斯里兰卡法条规则库 v0.2 — 来源清单
 
-核验日期：2026-11-17。规则条目见 `rules.v0.1.json`，字段 `source_id` 对应本文件编号。
+核验日期：2026-11-18（v0.2，RAY-762）。规则条目见 `rules.v0.1.json`，字段 `source_id` 对应本文件编号。
+
+> **2026-11-18 域名更正（重要，别再用错）**：`caa.lk` 是**民航局（Civil Aviation Authority）**，**不是**消费者事务局。
+> 消费者事务局是 `caa.gov.lk`（Consumer Affairs Authority）。v0.1 把 `caa.lk` 当作 CAA 站点探测，属误认，已更正。
+>
+> `caa.lk` 能返回 200 与上万字符正文，**这不代表它是本库要的源**——它的正文是飞行员执照、飞机事故、
+> 航空安全通告；`/en/regulations/` 是 404，真实路径是 `/en/regulations-policies/subsidiary-legislation/regulation`，
+> 通篇是 Civil Aviation Act / Air Navigation Act 一类。**看到 200 就当作 CAA 内容源会直接污染规则库。**
+>
+> `caa.gov.lk` 在本环境**TLS 握手失败**（`SSL_ERROR_SYSCALL`，直连 / 代理 / Playwright 三路均不通），
+> 但其正文可经 `r.jina.ai` 读回（索引页），其指令 PDF 可取 Wayback 快照或政府公报库（见 LK6）。
+>
+> `trcsl.lk`（不带 www）是**已停用域名**（`ERR_CONNECTION_CLOSED`），不要再试；TRCSL 统一用 `www.trc.gov.lk`。
 
 > 语言政策：只收官方英文原文。斯里兰卡议会同时发布法案的英文、僧伽罗文、泰米尔文文本，**英文文本由议会官网发布**（CAA Act s.25 仅规定僧伽罗与泰米尔文本冲突时以僧伽罗文本为准）；本库全部引文来自英文官方文本。
 
@@ -11,6 +23,7 @@
 | `official_parliament_digital` | 斯里兰卡议会官网发布的法案 PDF，含文本层 | 是（文本可机器比对） |
 | `official_parliament_scan` | 斯里兰卡议会官网发布的法案 PDF，**图像扫描件、无文本层**（多为 300dpi） | 是（引文经 OCR 后逐条目视比对原页面图，见下） |
 | `official_regulator` | 数据保护局（DPA）、电信监管委员会（TRCSL）等主管机关官网发布的法案、修正案与宪报命令 | 是（宪报命令为法律文件；指引类须标 guideline） |
+| `official_regulator_gazette` | 主管机关依授权法发布的指令，官方载体为政府公报（`documents.gov.lk`），有宪报号与生效日 | 是（指令本身即法律文件，违反依 s.10(3)/s.20 构成 offence） |
 | `secondary` | 律所文章、商业数据库（CommonLII 等）、行业报告 | 否，仅作线索或交叉核对 |
 
 ## 主来源
@@ -22,6 +35,34 @@
 | LK3 | Measurement Units, Standards and Services Act, No. 35 of 1995 | 1995-12-21 认证；施行日由部长指定（指定令未取得） | 49 | https://www.parliament.lk/uploads/acts/gbills/english/3204.pdf | `lk_measurement_1995.pdf` | `d931e88b8f83f81977c543b7624e370ee691eb45923d7142e1b8ff44d41139dd` |
 | LK4 | Sri Lanka Standards Institution Act, No. 6 of 1984 | 1984-01-27 认证；未设施行日条款 | 24 | https://www.parliament.lk/uploads/acts/gbills/english/3190.pdf | `lk_slsi_1984.pdf` | `400c2bcec0da61df872b6ff1149a379c260db294ae2af79d5d9858ad4db64a55` |
 | LK5 | Sri Lanka Telecommunications Act, No. 25 of 1991 | 1991-07-03 认证即施行（s.72 除外） | 51 | https://www.parliament.lk/uploads/acts/gbills/english/3500.pdf | `lk_telecom_1991.pdf` | `d28aaaa626dd4aa2f630cb2b0b90daed0cb09d5e3dbce6790176139cdb2defc3` |
+
+### 主管机关指令与修正案（v0.2 新增，2026-11-18）
+
+| ID | 文件 | 宪报 / 生效 | 官方 URL | SHA-256 |
+| --- | --- | --- | --- | --- |
+| LK6 | CAA **Direction No. 68**（三语标签，76 类商品） | 宪报 2135/53（2019-08-07）；2020-01-01 施行 | `https://www.caa.gov.lk/web/images/Direction/English/sec10/direction_68E.pdf`（caa.gov.lk TLS 不可达，正文取自 Wayback `20250413152341` 快照） | `—`（Wayback 副本不计算，见下注） |
+| LK6 | CAA **Direction No. 60**（保修文件三语） | 宪报 1966/43（2016-05-13）；2017-01-01 施行 | `https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/1966-43_E_1784558881.pdf` | `3a2a70f9b735ebea246616fff01d33253f5b9f73ae2b50fff6aceae4e70b9a85` |
+| LK6 | CAA **Direction No. 91**（电商信息披露） | 宪报 2332/15（2023-05-17）；即日施行 | `https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/2332-15_E_1784564900.pdf` | `670e6d5209100a261550f0d9c92162f63ef7a9f878abde46d987f5d595523502` |
+| LK6 | CAA **Direction No. 96**（SLS 强制：SLS 1616 / SLS 1306） | 宪报 2456/42（2025-10-01） | `https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/2456-42_E_1784567501.pdf` | `9cb2445a1e53d9447e8f5c64bb62c1cf20179e07bd7d0a7f47a10b8c5b7e9071` |
+| LK6 | CAA **Direction No. 99**（SLS 强制：SLS 1732 / SLS 1748） | 宪报 2496/28（2026-07-09）；2026-10-08 施行 | `https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/2496-28_E_1786415260.pdf` | `09da0385f8d3de327a76602155a4a9f038899698a81fa90cd04940972e8cafa6` |
+| LK6 | CAA **Direction No. 101**（修订 Direction 99 的 SLS 1749） | 宪报 2509/31（2026-10-07） | `https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/PG%208054%20(E)_1791631244.pdf` | `09c0bd6fe9d2dc40ac646c0e264993f7411b73701e042bafad7b1dee135d458d` |
+| LK6 | CAA **Direction No. 63 / 64**（≤250V 电气产品 SLS 强制；插头须符 SLS 734 Part 1） | 宪报 2048/39（2017-12-07）；2019-01-01 施行 | `https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/2048-39_E_1784560050.pdf` | `4d5d55cee50bd2a3a3f526fc62e8a0441321e7ec8fea9e94430ba6b23e530bbe` |
+| LK6 | CAA **Direction No. 76**（废止 Direction 73） | 宪报 2216/33（2021-02-25） | CAA 官网 Google Drive 链接（Directions 索引页 id=93 列示） | `—` |
+| LK7 | **Consumer Affairs Authority (Amendment) Act, No. 20 of 2021** | 2021-09-22 认证；宪报增刊 2021-09-24 | `https://documents.gov.lk/api/content-file-proxy?file=/act-content/20-2021_E_1784552998.pdf` | `d946a987ff82b063dce8af7e1e0acd7a41b97e25a52539bbd872a8283216a52a` |
+
+**注**：`caa.gov.lk` 直连 TLS 不可达，其 `web/images/Direction/...` 下的 PDF **无法直接下载**。上述 `documents.gov.lk` 链接是这些指令的**官方公报载体**（政府印刷局公报库），宪报号与日期与 CAA 官网索引页逐条对应，属同源官方文本，优先于 CAA 官网副本引用。
+
+### 监管机关清单与规则（v0.2 新增）
+
+| ID | 文件 | 说明 | 官方 URL | SHA-256 |
+| --- | --- | --- | --- | --- |
+| LK8 | SLSI **LT-PC-01 Issue No. 13**《Products for which the “SLS” Mark is Compulsory》 | 2026-10-01 发布，3 页，列 **50 个强制品目**，逐项给标准号、宪报号、指令号（ITD / CAA）、覆盖范围（L / L&I） | `https://slsi.lk/wp-content/uploads/2026/10/Compulsory-SLS-Mark-Items-Issue-13.pdf` | `5e2859d905f58aa1ec2462a038fc997df8547c62929a83b10452604034c85479` |
+| LK9 | TRCSL **Vendors Licence (Telecommunication Apparatus) Rules, No. 1 of 2001** | 宪报 1182/12（2001-05-03）；2001-05-10 生效；1 页**扫描件无文本层**，引文经 300dpi OCR 后目视核对 | `https://www.trc.gov.lk/content/files/legislation/Vendors%20Licence-%20(Telecommunications%20Apparatus)%20Rules,%20No%201%20of%202001.pdf` | `—`（扫描件，未计算） |
+| LK9 | TRCSL **RTTE Type Approval Rules 2020** | 宪报 2196/51（2020-10-09）；2020-12-16 生效；规则 3(1) 挂 s.5(q)，规则 18(3) 包装永久标签，规则 20 列 5 类豁免 | `https://www.trc.gov.lk/content/files/spectrum/RTTE_GAZETTE-English.pdf` | `—` |
+| LK9 | TRCSL **Vendor Licence procedure**（2025 年宪报 2467/41 后更新版） | 许可申请、MOD 安全审查、车间检查、五类年费 | `https://www.trc.gov.lk/content/files/licensing/vender_license/2026/VendorLicenceProcedureHostInTRCSLWeb-After%20Gazette%202025.pdf` | `—` |
+
+> **LK8 / LK9 的定位**：这两组是**主管部门的清单与规则**，用来把 LK4（SLSI 法）/ LK5（电信法）的授权条款落到可核对的品目与程序上。
+> 规则条目的 `source_id` 仍为 LK4 / LK5（引文取自法条本身），LK8 / LK9 通过 `official_url_note` 引用，属**支撑性官方文件**，不用于替代 `verbatim_excerpt`。
 
 ### 配套法律文件（生效日与修正依据）
 
@@ -69,17 +110,79 @@
 
 ## 未取得 / 未采用
 
-| 来源 | 状态 | 影响 |
-| --- | --- | --- |
-| CAA 依 s.10(1)(a) 发布的标签/价格标示**指令清单**（宪报） | caa.gov.lk 在本环境 TLS 握手失败（`SSL_ERROR_SYSCALL`，直连与代理均失败），无法取得 | LK-LAB-01、LK-PRICE-01 只能写成「有指令时适用」；具体标签要素（是否要求三语、是否要求进口商信息）待补 |
-| CAA 的电商/线上交易指引 | 同上，不可达 | 线上价格展示与信息披露义务无法逐条落地 |
-| SLSI 强制认证命令清单与 SLS 标准目录 | slsi.lk 返回 Cloudflare JS 挑战（HTTP 403），未绕过 | LK-CERT-01/02 只能按「被命令覆盖的品类」处理；小家电/3C 是否在列未核 |
-| TRCSL 类型核准规则、Vendors Licence Rules No. 1 of 2001 全文 | 官网设备页与规则页为脚本加载，未取得全文 | LK-TEL-01/02 的实操要求（申请材料、标签）未落地 |
-| 宪法第 18/22 条官方英文文本（语言义务） | 未取得（议会宪法页面未定位到可下载英文 PDF） | 语言义务只作定性说明，不建规则 |
-| Import Control (Standardization and Quality Control) Regulations | 未取得 | 进口环节的 SLSI 合规执行路径未落地 |
-| 律所/商业数据库解读 | 二手 | 仅用于定位条文，未作为来源 |
+> v0.2 状态：下表前四项在 2026-11-18 已**部分或全部解除**，保留原文以便对照历史障碍；解除方式见每行末的「v0.2 进展」。
+
+| 来源 | 状态 | 影响 | v0.2 进展（2026-11-18） |
+| --- | --- | --- | --- |
+| CAA 依 s.10(1)(a) 发布的标签/价格标示**指令清单**（宪报） | caa.gov.lk 在本环境 TLS 握手失败（`SSL_ERROR_SYSCALL`，直连与代理均失败） | LK-LAB-01、LK-PRICE-01 只能写成「有指令时适用」 | **已解除**：CAA Directions 索引页（`web/index.php?option=com_content&view=category&id=93&lang=en`）经 `r.jina.ai` 读回全部 100+ 条指令（s.10 与 s.12 两张表，含宪报号、生效日、废止标记）。三语标签＝Direction 68，保修三语＝Direction 60，MRP＝Direction 12/87 |
+| CAA 的电商/线上交易指引 | 同上，不可达 | 线上价格展示与信息披露义务无法逐条落地 | **已解除**：CAA **Direction 91**（宪报 2332/15，2023-05-17）就是电商专项指令，PDF 已从 `documents.gov.lk` 公报库取得并逐条核对 |
+| SLSI 强制认证命令清单与 SLS 标准目录 | slsi.lk 返回 Cloudflare JS 挑战（HTTP 403），未绕过 | LK-CERT-01/02 只能按「被命令覆盖的品类」处理；小家电/3C 是否在列未核 | **已解除**：用 Scrapling `StealthyFetcher` 可正常读 `slsi.lk`（curl 被挡）；官方文件 **LT-PC-01 Issue 13（2026-10-01）** 给出 50 个强制品目全表（LK8） |
+| TRCSL 类型核准规则、Vendors Licence Rules No. 1 of 2001 全文 | 官网设备页与规则页为脚本加载，未取得全文 | LK-TEL-01/02 的实操要求（申请材料、标签）未落地 | **已解除**：两文件均在 TRCSL 静态路径下（`content/files/legislation/`、`content/files/spectrum/`），已下载（LK9）。注意 Rules No.1/2001 是扫描件，引文经 OCR 核对 |
+| 宪法第 18/22 条官方英文文本（语言义务） | 未取得（议会宪法页面未定位到可下载英文 PDF） | 语言义务只作定性说明，不建规则 | **未解除**。但三语义务的**实证法源**已由 Direction 68 / Direction 60 落地，宪法文本不再是唯一依据 |
+| Import Control (Standardization and Quality Control) Regulations | 未取得 | 进口环节的 SLSI 合规执行路径未落地 | **文本未取得**，但 Direction 96/99 已明文援引该 2006 年条例及其上位法（Imports and Exports (Control) Act No. 1 of 1969），进口检验路径可据此表述 |
+| Measurement Act s.1 施行日指定令 | 未取得 | `effective_date` 按认证日标注 | **未取得**。`documents.gov.lk` 公报库按关键词（Measurement / appointed date / 35 of 1995）检索未命中该指定令；已检索 1995–2026 全量公报的表格搜索，非「未试」 |
+| Measurement Act s.51「特定预包装商品」指定清单 | 未取得 | 规则按「被指定时适用」处理 | **未取得**，同上检索范围 |
+| 律所/商业数据库解读 | 二手 | 仅用于定位条文，未作为来源 | 不变 |
 
 ## 复核方法（可复现）
+
+### v0.2 新增：三条在本环境唯一可用的取数路径
+
+这三条是踩过坑之后剩下的**能跑通**的路径，写下来免得下次重走：
+
+**1. `caa.gov.lk` —— TLS 握手失败，但正文可读**
+
+```bash
+# 直连 / 走代理 / Playwright 全部 SSL_ERROR_SYSCALL 或 ERR_CONNECTION_CLOSED
+# 唯一可用：r.jina.ai 读回 HTML 正文（对 PDF 会 422 超时，只能读索引页）
+curl -sS "https://r.jina.ai/https://caa.gov.lk/web/index.php?option=com_content&view=category&id=93&lang=en"
+```
+- 能拿到：Directions 索引页的**全部条目**（编号、宪报号、发布日期、生效日、废止标记、PDF 相对链接）。
+- 拿不到：PDF 本体。要 PDF 就走第 2 条。
+
+**2. 政府公报（`documents.gov.lk`）—— 指令与法案的官方载体**
+
+```bash
+# 2a. 公报检索：站点是 Next.js RSC，表单提交走 POST 到同一 URL，
+#     结果在响应体的 RSC 流里（形如 1:{"data":[...]}），不在 DOM 表格里。
+#     用 Playwright 填搜索框再截响应体最省事（见下）：
+#         page.fill("input[aria-label='Search table by entering keyword']", "Consumer Affairs")
+# 2b. 拿到 uploadedFile 后，PDF 走这个代理（注意是 content-file-proxy，带前导斜杠）：
+curl -sSL -o out.pdf \
+  "https://documents.gov.lk/api/content-file-proxy?file=/extra-gazette-content/2332-15_E_1784564900.pdf"
+```
+- **坑 1**：`/api/file-proxy?file=...` 是给图片用的，PDF 会回 `500 {"error":"Failed to fetch file"}`。
+- **坑 2**：正确端点是 `/api/content-file-proxy?file=/<路径>`，前导斜杠不能省。
+- **坑 3**：`documents.gov.lk` 只在 `domcontentloaded` 下稳定，`networkidle` 会超时。
+
+**3. `slsi.lk` —— curl 403，Scrapling 能过**
+
+```python
+# 用 /usr/bin/python3（系统 Python 装了 scrapling 0.5.1；~/.venvs/wendo 里没有）
+from scrapling.fetchers import StealthyFetcher
+r = StealthyFetcher.fetch("https://slsi.lk/en/downloads/", headless=True, network_idle=True, timeout=45000)
+for a in r.css('a'):          # 强制品目清单在 downloads 页的附件里
+    print(a.attrib.get('href'), a.text)
+```
+
+### 斯里兰卡各官方站点的「首页 → 真实内容」路径（2026-11-18 实测）
+
+首页能 200 不代表能找到内容——这几个站的导航都是 JS 菜单，`href` 只在展开后才在 DOM 里。可直接用的深链：
+
+| 站点 | 首页 | 真实内容路径（已验证可 200） |
+| --- | --- | --- |
+| TRCSL | `https://www.trc.gov.lk/`（200，但只有 ~2.4K 字符，是个 meta refresh 壳页） | 跳到 `https://www.trc.gov.lk/index_e.php`；法规＝`/legislation/pages_e.php?id=35`（附属立法全表 PDF 链接）；许可＝`/licensing/pages_e.php?id=13`；Vendor Licence＝`/licensing/pages_e.php?id=72`；设备核准＝`/pages_e.php?id=28` |
+| SLSI | `https://slsi.lk/en/`（200） | 强制品目清单在 `/en/downloads/` 的附件里（LT-PC-01）；认证流程＝`/en/services/sls-mark-product-certification/` |
+| CAA（消费者事务局） | `https://caa.gov.lk/`（**TLS 不可达**） | 经 `r.jina.ai`：`/web/index.php?option=com_content&view=category&id=93&lang=en`（Directions 索引） |
+| CAA（民航局，**不是本库的源**） | `https://www.caa.lk/en/`（200） | `/en/regulations-policies/subsidiary-legislation/regulation` —— 全是航空法规 |
+
+> TRCSL 有个坑：`/legislation/pages_e.php?id=34` 是「法规（Acts）」，`id=35` 才是「附属立法（Subsidiary Legislation）」。
+> Vendors Licence Rules No.1/2001 与 RTTE Rules 2020 都在 `id=35` 那页的 PDF 列表里，静态路径为
+> `content/files/legislation/...` 与 `content/files/spectrum/...`。
+
+### 议会法案
+
+
 
 1. 议会法案 PDF 的下载地址形如 `https://www.parliament.lk/uploads/acts/gbills/english/<编号>.pdf`，编号可从 `https://www.parliament.lk/en/business-of-parliament/acts-listing?year=<年份>&itemCount=100` 的 `act-details/<编号>` 链接取得。本库：CAA=5802、PDPA=6242、Measurement=3204、SLSI=3190、Telecom=3500。
 2. 重新下载后计算 `sha256sum`，与上表比对。**扫描件注意**：议会站对同一法案只提供一份扫描 PDF，若哈希变化说明文件被替换，需重新逐条比对。

@@ -1,6 +1,6 @@
 {
   "version": "2026-11-17",
-  "updated_at": "2026-11-18T21:58:08+08:00",
+  "updated_at": "2026-11-22T23:24:57+08:00",
   "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
   "language_policy": "只用官方英文原文或官方英文译本，无英文官方版本的条目标 official_english_unavailable，不用二手翻译。2026-11-18 口径（RAY-766）：市场是否收录不再以「英语是否为法定官方语言」为准；法定官方语言不含英语的市场（NZ 毛利语与新西兰手语、MT 马耳他语与英语）按英语市场设计，在诊断/报告里显示 language_note 提示一句，且不因此减轻规则层的语言义务缺口。埃及（EG）为显式例外：官方语言为阿拉伯语、英语为商务通用语；CPA 2018 等有官方英译本，PDPL 2020 无官方英文版本，4 条以阿拉伯语原文收录并标 official_english_unavailable。",
   "markets": [
@@ -376,9 +376,9 @@
       "sort_order": 10,
       "status": "v0.1",
       "open": false,
-      "rules_count": 28,
+      "rules_count": 40,
       "laws_count": 5,
-      "last_verified": "2026-11-17",
+      "last_verified": "2026-11-18",
       "rules_file": "lk/rules.v0.1.json",
       "readme": "lk/README.md",
       "sources": "lk/SOURCES.md",

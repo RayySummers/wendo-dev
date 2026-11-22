@@ -61,7 +61,7 @@ agent/knowledge/legal/
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
 ├── lk/                     # 斯里兰卡（LK）
-│   ├── rules.v0.1.json     # 28 条规则（JSON）
+│   ├── rules.v0.1.json     # 40 条规则（JSON）
 │   ├── README.md
 │   ├── SOURCES.md
 │   └── SAMPLE_FINDINGS.md
@@ -163,7 +163,7 @@ agent/knowledge/legal/
 | 尼日利亚（NG） | Tier 1（high） | RAY-725 | v0.1 | 26 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 南非（ZA） | Tier 1（high） | RAY-726 | v0.1 | 41 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 肯尼亚（KE） | Tier 1（high） | RAY-727 | v0.1 | 34 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 28 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 斯里兰卡（LK） | Tier 2（medium） | RAY-728 | v0.1 | 40 / 5 | 2026-11-18 | 已落地；coverage 与 known_gaps 见 index.json |
 | 孟加拉国（BD） | Tier 2（medium） | RAY-729 | v0.1 | 28 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 卡塔尔（QA） | Tier 2（medium） | RAY-730 | v0.1 | 35 / 7 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
@@ -246,7 +246,7 @@ const matchesScope = (scope: string[], wanted: string) =>
 
 `category_legacy` 是迁移前的自由文本 `category` 原值（29 种写法，如 `小家电/3C 数码`），原样保留、仅供回溯审计。29 条旧写法 → `product_scope` 的映射在 `scripts/migrate_category.py` 里逐字写全，**不做模糊匹配**；`python3 scripts/migrate_category.py --check` 校验词表闭包、映射一致性与 ID 对账。
 
-> 2026-11-17 首次迁移（RAY-751，25 国 883 条）；2026-11-22 合入 CA 后在 master 重跑，**26 国 951 条规则，`product_scope` 共 1066 个命中（`通用` 666 / `小家电` 203 / `3C数码` 153 / `家居用品` 37 / `食品接触材料` 7）**。旧值只有主题没有品类词的 22 条（`隐私`、`营销` 等）按「不区分品类」处理，同样记 `通用`，否则它们会对所有品类筛选不可见。**主题（`topic`）维度不在本次迁移范围，另单处理。**
+> 2026-11-17 首次迁移（RAY-751，25 国 883 条）；2026-11-22 合入 CA 后在 master 重跑，并在合入 LK v0.2 后再跑一次，**26 国 963 条规则，`product_scope` 共 1078 个命中（`通用` 678 / `小家电` 203 / `3C数码` 153 / `家居用品` 37 / `食品接触材料` 7）**。旧值只有主题没有品类词的 22 条（`隐私`、`营销` 等）按「不区分品类」处理，同样记 `通用`，否则它们会对所有品类筛选不可见。**主题（`topic`）维度不在本次迁移范围，另单处理。**
 
 ### decision_level 的口径（与 RAY-684 产品决定一致）
 
@@ -385,8 +385,8 @@ python3 agent/test/audit_sources_test.py   # 或 cd agent && npm run test:legal
 
 ```bash
 $ python3 agent/knowledge/legal/scripts/audit_sources.py
-来源域审计：26 国 / 951 条规则
-  官方 951 条（100.0%） | 二手域 0 条 | 说明不一致 5 条 | 待降级 0 条
+来源域审计：26 国 / 963 条规则
+  官方 963 条（100.0%） | 二手域 0 条 | 说明不一致 5 条 | 待降级 0 条
   其中 3 条为官方页存档快照（web.archive.org 等），按口径计入官方
 ```
 
