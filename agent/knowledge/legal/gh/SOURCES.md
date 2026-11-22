@@ -1,6 +1,6 @@
 # 加纳（GH）法条规则库 v0.1 — 来源清单
 
-核验日期：2026-11-17。规则条目见 `rules.v0.1.json`，字段 `source_id` 对应本文件编号。
+核验日期：2026-11-17（GH2/GH5 于 2026-11-18 换官方源，见文末「官方源替换记录 RAY-758」）。规则条目见 `rules.v0.1.json`，字段 `source_id` 对应本文件编号。
 
 > 语言政策：只收官方英文原文或官方英文译本。加纳成文法以英文制定并公布，本库全部引文为英文原文；未使用任何二手翻译。加纳没有可公开访问的政府统一立法数据库，官方文本主要来自**部门/监管机关托管的公报影印本**与**贸易与工业部 BRR 门户的逐条公布页**。凡非 `*.gov.gh` 域名者，均在规则字段 `official_url_note` 与下表「托管说明」中注明。
 
@@ -21,10 +21,10 @@
 | GH1 | Electronic Transactions Act, 2008 (Act 772)，as amended by Act 838 (2012)（s.47、s.50） | 2008 年；BRR 页面未载生效日 | 58,524（s.47 页） | https://brr.gov.gh/new/search_detail.php?indexes_id=NTEx~Electronic+Transactions+Act,+2008+(Act+772)+as+amended+by+the+Electronic+Transactions+(Amendment)+Act,+2012+(Act+838)~79~57 | `brr_eta47.html` | `3851f227c1d2453b111d712ed5f42fb17971e412a16ce1e985fef61e5445e5fd` | gov.gh（贸易与工业部 BRR 门户）；同法 s.47(5)-(6) 与 s.50(1) 为另两个页面（见下） |
 | GH1 | 同上，s.47(5)-(6) | 同上 | 55,663 | https://brr.gov.gh/new/search_detail.php?indexes_id=NTEy~Electronic+Transactions+Act~79~57 | — | 页面为动态渲染，SHA 会随访问变化；以条文文本为准 | 同上 |
 | GH1 | 同上，s.50(1) | 同上 | 55,558 | https://brr.gov.gh/new/search_detail.php?indexes_id=NTEz~Electronic+Transactions+Act~79~57 | — | 同上 | 同上 |
-| GH2 | Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) | 1992-05-04 生效（r.16） | 82,473 | https://faolex.fao.org/docs/pdf/gha17279.pdf | `li1541.pdf` | `ea19e0840dde8e2e413210bd0e7e0034709650e995ecd452c16a907749f97c61` | FAOLEX 托管的加纳公报影印本（政府提交文本）；非政府域名 |
+| GH2 | Ghana Standards Board (Food, Drugs and Other Goods) General Labelling Rules, 1992 (L.I. 1541) | 1992-05-04 生效（r.16）；公报通知日 1992-09-11 | 64,159 | https://www.epa.gov.gh/ghanalex/acts/Acts/GHANA%20STANDARDS%20BOARD(FOOD,DRUGS%20AND%20OTHER%20GOODS)%20GENERAL%20LABELLING%20RULES,1992.pdf | `li1541.pdf` | `f260c17d8b329eeb96247b5ce02466b701bbacfcf1c4fa8036ca4ca2ffc2dee4` | **gov.gh（环境保护局 GHANALEX 法律库）**；6 页全文 PDF，文末印公报通知日与董事会主席签署页。原 FAOLEX 藏本文字层与本件逐字相同（同一底稿，SHA `ea19e084…f97c61`） |
 | GH3 | FDA Guidelines for Labelling of Cosmetics and Household Chemical Substances（FDA/MCH/CHC/GL-LCH/2013/03） | Version 01；2013-02-01 首次通过，2013-03-01 发布 | 110,033 | https://fdaghana.gov.gh/wp-content/uploads/2024/02/GUIDELINE-LABELLING-REQUIREMENTS-MDCHC-1.pdf | `fda_labelling_guideline.pdf` | `c6ea02dbb9755963ec054f6a5a3913bbb68c34ac900c59457339ebeafbbd1630` | gov.gh（FDA 官网） |
 | GH4 | Public Health Act, 2012 (Act 851) | 2012-10-09 签署；2012-10-16 公报 | 983,821 | https://brr.gov.gh/acc/registry/docs/PUBLIC%20HEALTH%20ACT,%202012%20(ACT%20851).pdf | `pha851.pdf` | `4260765df7d71b7b279b938516e3203d42ea39be2be68b3da8a78ed26c79a15f` | gov.gh（BRR 门户文件库） |
-| GH5 | Ghana Standards Authority Act, 2022 (Act 1078) | 2022-06-30 签署 | 6,449,690 | https://faolex.fao.org/docs/pdf/gha233071.pdf | `gsa_act1078.pdf` | `004143e3c12c7576bf292dbe64d462f16f2317c679a1f4cfb67e828f8b635d86` | FAOLEX 托管的加纳公报影印本；**文本层为 OCR，质量较差**，s.33(2) 已按扫描页 p.24 逐字校读 |
+| GH5 | Ghana Standards Authority Act, 2022 (Act 1078) | 2022-06-30 签署；末页印公报通知日 2022-06-30 | 12,359,491 | https://brr.gov.gh/acc/consultation/docs/GHANA%20STANDARDS%20AUTHORITY%20ACT%2c%202022.pdf | `gsa_act1078.pdf` | `357818f15c41d97ef044b1592f5dbb648bcd1741af48b8b69ed8098496d4ee63` | **gov.gh（贸易与工业部 BRR 商业监管改革门户）**；72 页全文扫描件，带 OCR 文本层，**质量较差**（s.33(2) 的 `(f) import` 被识别成 `(I) import`），已按扫描页 p.24 目视逐字校读。原 FAOLEX 藏本 SHA `004143e3…8b635d86` |
 | GH6 | Electronic Communications Act, 2008 (Act 775) | 2009-01-06 签署 | 381,477 | https://nca.org.gh/wp-content/uploads/2023/04/NCA-Electronic-Communications-Act-775.pdf | `eca775.pdf` | `cdb016fc5e237c3ceb2396b0c1a75b9254270bff91a0de45b665f9a73d90f898` | gov.gh（NCA 官网） |
 | GH6 | NCA Type Approval Guidelines — Electronic Communications Equipment | 2015-05-26 | 1,793,564 | https://nca.org.gh/wp-content/uploads/2021/11/Type-Approval-Revised-Guidelines-2015-Final-Revised2.pdf | `nca_type_approval_2015.pdf` | `f09add7cef2c1aa24b3137339f1a2628d903fc115c68d58ab1ad6a9ef91d31e1` | gov.gh（NCA 官网） |
 | GH7 | Energy Efficiency Standards and Labelling (Non-Ducted Air Conditioners and Self-Ballasted Fluorescent Lamps) Regulations, 2005 (L.I. 1815) | 2005-06-02 制定；BRR 记公报日 2005-01-01 | 56,791（reg.2 页） | https://brr.gov.gh/new/search_detail.php?indexes_id=MTM0Ng==~Energy+Efficiency+Standards+and+Labelling+(Non-Ducted+Air+Conditioners+and+Self-Ballasted+Fluorescent+Lamps)+Regulations,+2005+(L.I.+1815)~148~9 | `brr_detail.html` | `c848bc4e4d7e4ff5095ef1c8b53b6cef7de5a1bbc841120de2619c5fa95bd756` | gov.gh（BRR 门户） |
@@ -46,7 +46,7 @@
 | X1 | ETA 2008 s.47 条文 | ① BRR 门户逐条页（已下载）；② 议会机构库（`ir.parliament.gh`）同名 PDF 的检索摘要，措辞与 BRR 一致 | 一致。议会 PDF 直链被 SPA 拦截、无法下载，故只作旁证，不作引文来源 |
 | X2 | L.I. 1541 附表一是否覆盖小家电/3C | 逐项阅读影印本附表一（第 1-11 项） | 覆盖：燃气灶、冰箱、电扇、收音机、电视、空调、灯具、电气配件、办公设备、电机、通用家用电器、电缆、干电池 |
 | X3 | L.I. 1541 r.4(3) 英文义务 | 影印本原文 + 与 r.3 的适用范围对照 | 确认「goods meant for sale or distribution in the Ghana」须以英文标示 |
-| X4 | Act 1078 s.33(2) | FAOLEX OCR 文本与扫描页 p.24 对照（人工目视逐字校对） | OCR 有噪声（“andatory Standard”），**按扫描原文校正后引用**，未改动条文含义 |
+| X4 | Act 1078 s.33(2) | brr.gov.gh 影印本 OCR 文本与扫描页 p.24 对照（人工目视逐字校对；2026-11-18 换源后在新件上复核） | OCR 有噪声（文本层 (f) 项作 “(I) import”、他处 “andatory Standard”），**按扫描原图校正后引用**，未改动条文含义 |
 | X5 | Act 843 s.27(2) 九项告知 | OCR 文本与扫描页 p.15 对照（人工目视逐字校对） | 一致 |
 | X6 | Act 851 s.113(1)(b)/s.118(1)/s.148(1) | BRR PDF 文本层；PDF 存在空格缺失（“inamanner,thatisfalse”） | 已按原文补空格引用；能义不变。报告不引用该条的罚金数额 |
 | X7 | 加纳是否存在统一消费者保护法 | Consumers International 研究报告、SOAS 论文、2025-03 加纳媒体报道（CPA 称法案仍未通过） | 三份二手资料一致：无统一立法，Bill 长期未通过。**列为 open question，不作为规则依据** |
@@ -67,6 +67,60 @@
 | GS 1 / GS IEC 60335 等产品标准全文 | 付费标准，未取得 | 认证类规则只能引用法律与指南，不能引用具体技术限值 |
 | 加纳官方立法数据库 | 不存在可公开访问的统一库 | 这是本库来源结构的根本限制，已写入 README |
 
+## 官方源替换记录（RAY-758，2026-11-18）
+
+父单 RAY-756 的口径：全库不得再引二手汇编。本次处理 GH2 / GH5 两条来源（覆盖
+`GH-LAB-01/02/03/04/10` 与 `GH-CERT-01` 共 6 条规则）。**结论：6 条全部换到 `*.gov.gh` 官方 PDF，无一降级。**
+
+### 检索过的官方入口与实测状态
+
+| 入口 | 2026-11-18 实测 | 结论 |
+| --- | --- | --- |
+| `ghalii.org`（加纳法律信息研究所，官方口径） | 首页与 `/legislation/` 列表页 200；但**所有条文正文页 `/akn/gh/...` 一律 403**，响应头带 `cf-mitigated: challenge`，正文为 `Performing security verification`。curl、headed Chrome（Playwright，等待 30s）、Scrapling `StealthyFetcher`（headless+network_idle，外部同事实测）、Wayback 的 `source.pdf` 快照**四路全不可用**（Wayback 唯一一份 PDF 捕获本身在 5 MB 处截断，修不完整）。 | 未取得正文。**不用它当引文来源** |
+| `gsa.gov.gh`（加纳标准局） | 站点与 WordPress REST `/wp-json/wp/v2/search`、`/media` 均可用；搜 `1078` / `1541` / `Standards Authority Act` 只回新闻稿，媒体库与 sitemap 无法律文本 PDF | 无原文 |
+| `parliament.gh` | `docs?type=Acts&OT` 可翻，但该目录只列 39 部法（最新到 2021 年），**无 Act 1078，也无 L.I. 目录**（`docs?type=LI` 不返回文书表） | 无原文 |
+| `bcp.gov.gh` | 搜索结果显示该站托管同名 Act 1078 PDF，但站点 TLS 握手失败（`SSL_ERROR_SYSCALL`），http 亦无响应 | 不可达 |
+| **`epa.gov.gh/ghanalex/`**（环境保护局 GHANALEX 法律库，UNEP 支持的国家法律数据库项目） | **可用**。`/ghanalex/acts/` 索引里直接列出 L.I. 1541 全文 PDF（6 页） | ✅ **GH2 采用** |
+| **`brr.gov.gh`**（贸易与工业部商业监管改革门户） | **可用**。`/consultation?cd=MTY=` 是 Act 1078 的官方公示页，其附件 `/acc/consultation/docs/GHANA STANDARDS AUTHORITY ACT, 2022.pdf` 为 72 页全文 | ✅ **GH5 采用** |
+
+### 逐字核验结果
+
+两份 PDF 均下载后与 `verbatim_excerpt` 逐字比对（忽略空白与 OCR 噪声）：
+
+- **GH2（L.I. 1541）**：`GH-LAB-01`（r.3 + First Schedule）、`GH-LAB-02`（r.4(3)）、`GH-LAB-03`（r.4(1)-(2)）、`GH-LAB-04`（r.9(1)-(2)）、`GH-LAB-10`（r.3(f)）**5/5 一致**。附表一第 11 项「General Household electrical appliances and accessories」与第 1-10、12-24 项均在本件中确认。
+- **GH5（Act 1078）**：`GH-CERT-01`（s.33(2)）**1/1 一致**。文本层把 `(f) import` 识别成 `(I) import`，**已按扫描页 p.24 目视核对**，扫描原图为 `(f)`，本库按原图引用。
+
+### 一条纪律性备注
+
+`ghalii.org` 的 `/legislation/` 列表页返回 200 且有正常内容，容易被当成「站点通了」。
+**判断口径是看条文正文页**：`/akn/gh/...` 一律 403 + `cf-mitigated: challenge`，正文是
+`Performing security verification`。同一现象在 2026-11-18 由三种客户端（curl / Playwright
+headed Chrome / Scrapling StealthyFetcher）独立复现，说明是站点按路径的持续策略，不是临时抖动。
+下次接手时若列表页 200，**不要据此认为正文可取**，直接走 EPA / BRR 两条路径。
+
+### 「200 但空」判断口径对 PDF 要修正
+
+团队口径「正文 < 200 字符且含 `enable JavaScript` 即未取得」对 HTML 页成立，但**直接套到 PDF 上会误判**：
+用 Scrapling `StealthyFetcher` 取上述两个 PDF，都返回 `status=200`、`get_all_text()` 长度为 **0**、也不含
+任何挑战页标记。若只看「文本长度 0」就会把两份已验证的官方原文判成未取得。
+
+实测原因是 Chrome 内置 PDF 查看器的外壳：`body` 是 601 字节的 `<template shadowrootmode="closed">`
++ `<iframe type="application/pdf">` 占位页，正文在闭式 shadow DOM 里，任何 DOM 文本提取都拿不到。
+**它带 `content-type: application/pdf` 且 `content-length` 等于真实文件字节数**，与 WAF 挑战页可区分：
+
+| 判据 | 真 PDF | WAF/Cloudflare 挑战页 |
+| --- | --- | --- |
+| `content-type` | `application/pdf` | `text/html` |
+| `content-length` | 等于真实字节数（本库 64159 / 12359491） | 通常很小且与目标文件无关 |
+| `body` 开头 | `<!doctype html>` + `type="application/pdf"` 外壳，或直接 `%PDF-` | 含 `enable JavaScript` / `Just a moment` / `security verification` |
+
+结论：**取 PDF 时不要用文本长度判成败，要看 `content-type` + `content-length` 是否等于已知字节数**；
+本库对 PDF 一律以 curl 取件并核 SHA-256，不经 DOM 文本通道。
+
+### 为什么保留「同底稿」说明
+
+GH2 的 EPA 藏本与 FAOLEX 旧藏本 PDF 元数据（Title/Author/CreationDate）相同、文字层逐字相同，属同一底稿的不同分发副本；换成 `.gov.gh` 域名后，来源域落进政府域名，但**文本本身没有换版本**。这一点写在 GH2 的 `official_url_note` 里，避免下次被误读成「引文换了版本」。
+
 ## 复现命令
 
 ```bash
@@ -74,8 +128,8 @@ mkdir -p gh-sources && cd gh-sources
 UA='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36'
 
 # 成文法（PDF）
-curl -sSL -A "$UA" 'https://faolex.fao.org/docs/pdf/gha17279.pdf' -o li1541.pdf
-curl -sSL -A "$UA" 'https://faolex.fao.org/docs/pdf/gha233071.pdf' -o gsa_act1078.pdf
+curl -sSL -A "$UA" 'https://www.epa.gov.gh/ghanalex/acts/Acts/GHANA%20STANDARDS%20BOARD(FOOD,DRUGS%20AND%20OTHER%20GOODS)%20GENERAL%20LABELLING%20RULES,1992.pdf' -o li1541.pdf
+curl -sSL -A "$UA" 'https://brr.gov.gh/acc/consultation/docs/GHANA%20STANDARDS%20AUTHORITY%20ACT%2c%202022.pdf' -o gsa_act1078.pdf
 curl -sSL -A "$UA" 'https://brr.gov.gh/acc/registry/docs/PUBLIC%20HEALTH%20ACT,%202012%20(ACT%20851).pdf' -o pha851.pdf
 curl -sSL -A "$UA" 'https://nca.org.gh/wp-content/uploads/2023/04/NCA-Electronic-Communications-Act-775.pdf' -o eca775.pdf
 curl -sSL -A "$UA" 'https://nca.org.gh/wp-content/uploads/2020/09/Data-Protection-Act-2012.pdf' -o dpa2012.pdf

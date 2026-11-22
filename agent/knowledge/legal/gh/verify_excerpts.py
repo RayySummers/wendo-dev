@@ -11,6 +11,11 @@ OCR/HTML artefacts: GH4 (PHA 851 word spacing), GH5 (Act 1078 OCR), GH7 (BRR
 HTML drops hyphens: "nonducted"), GH9 (Act 843 OCR). These excerpts are
 reported as MANUAL and were verified by eye against the scanned page. Every
 other source must match after whitespace and punctuation normalisation.
+
+RAY-758 (2026-11-18): GH2 and GH5 were re-pointed to the .gov.gh copies
+(epa.gov.gh GHANALEX / brr.gov.gh BRR portal). GH2's copy has a real text
+layer, so it stays on the automatic path; GH5's new copy is still a bad-OCR
+scan, so it stays MANUAL.
 """
 import argparse
 import html
@@ -35,7 +40,7 @@ SOURCE_FILES = {
 }
 
 # Scanned sources: excerpt transcribed from the page image, verified by eye.
-MANUAL = {"GH4", "GH5", "GH7", "GH9"}
+MANUAL = {"GH4", "GH5", "GH7", "GH9"}  # GH2 有文本层，走自动比对
 
 
 def normalise(text):
