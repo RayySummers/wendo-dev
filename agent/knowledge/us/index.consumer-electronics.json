@@ -1,0 +1,1013 @@
+{
+  "market": "US",
+  "market_name": "美国",
+  "category": "consumer_electronics",
+  "category_name": "3C 数码",
+  "version": "2026-11-18-v0.1",
+  "scope": "只适用于美国市场的 3C 数码（手机、平板、笔记本、穿戴、耳机、影像、配件）。不包含小家电的食品接触与厨房场景规则；语言、支付、物流、退换、客服、价格等共用规则可复用。美国无联邦增值税；FCC 管无线/数字设备，电气安全由 CPSC 规则与标准约束，UL/ETL 是 NRTL 认证而非联邦强制。全球品牌的规模优势不等于中小企业必须项。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-LANG-01",
+          "severity_hint": "medium",
+          "applies_to": "全部英文文案与日期格式",
+          "rule": "必须使用美式拼写与美式日期格式（MM/DD/YYYY），不要出现英式拼写。",
+          "why": "美国消费者会把 colour / centre / organise 读成拼写错误或非母语写作；日期写 18/11/2026 会被误读。",
+          "fix": "统一 color / center / organize / catalog / travelers；日期写 11/18/2026。",
+          "signals": [
+            "colour",
+            "centre",
+            "organise",
+            "catalogue",
+            "travelled",
+            "dd/mm"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 3/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-LANG-02",
+          "severity_hint": "medium",
+          "applies_to": "部件名与日常用词",
+          "rule": "用美式词汇：cell phone、flash drive、elevator、apartment，不要用英式对应词。",
+          "why": "英式词汇会让 3C 页面显得是从其他市场直接搬过来的；配件类目尤其明显（pen drive vs flash drive）。",
+          "fix": "统一 cell phone / flash drive / elevator / apartment / pants。",
+          "signals": [
+            "mobile phone",
+            "pen drive",
+            "lift",
+            "flat",
+            "trousers"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 3（词汇选择）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-LANG-03",
+          "severity_hint": "medium",
+          "applies_to": "规格、尺寸与温度",
+          "rule": "规格同时给英制与公制（写 inch 并括注 cm），温度用 °F 并括注 °C。",
+          "why": "美国买家习惯 inch/oz/°F，但 FPLA 与 16 CFR 500 要求净含量原则上同时使用英制与公制；只给一种在标签合规上不完整。",
+          "fix": "写 6.1 in (15.5 cm)、weight 1.2 lb (540 g)、battery 19.5 Wh。",
+          "signals": [
+            "cm only",
+            "mm only",
+            "kg only",
+            "celsius only"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR Part 500：净含量标识（英制与公制）",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-500.4"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-LANG-04",
+          "severity_hint": "medium",
+          "applies_to": "型号、地区版本与盒内清单",
+          "rule": "型号与地区版本要写清 US 版（US model / US warranty），不要只给国际或欧洲型号。",
+          "why": "同一 3C 产品在不同地区的频段、充电器插头与保修范围都不同；只给国际型号，买家无法判断能否在美国用、能否本地保修。",
+          "fix": "规格区写 Model（US）、盒内清单、保修适用地区；国际版（international version）要单独标注保修由卖家提供。",
+          "signals": [
+            "model code",
+            "region code",
+            "international version",
+            "global version",
+            "part number",
+            "sku"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国 3C 型号与地区版本写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-LANG-05",
+          "severity_hint": "medium",
+          "applies_to": "中文直译的 3C 品类词",
+          "rule": "不要直译中文 3C 品类词（hand machine、digital product），用本地通行的 phone / tablet / laptop / earbuds。",
+          "why": "直译词不进美国搜索词，也说不清品类；买家看到「digital product」无法判断是手机还是配件。",
+          "fix": "用 phone / tablet / laptop / smartwatch / earbuds / power bank / charger。",
+          "signals": [
+            "hand machine",
+            "digital product",
+            "machine king",
+            "electronic product"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（美国电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "specs",
+      "name": "产品规格与兼容性",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-SPEC-01",
+          "severity_hint": "high",
+          "applies_to": "无线/数字设备（手机、平板、手表、耳机、路由）",
+          "rule": "受 FCC 认证或 SDoC 约束的设备须写明 FCC ID 或 SDoC，并在设备显著位置标合规声明；不要笼统写「FCC approved」。",
+          "why": "47 CFR 15.19 要求受认证或 SDoC 约束的设备在显著位置标注合规声明，设备过小时按 15.19(a)(5) 放入说明书；FCC 不发「approved」，只做认证/SDoC 程序。",
+          "fix": "规格区写「FCC ID: XXXXX」或「FCC SDoC — responsible party: [US company, address, phone]」，并列出支持的本土频段。",
+          "signals": [
+            "fcc",
+            "fcc id",
+            "sdoc",
+            "part 15",
+            "wireless",
+            "wi-fi",
+            "bluetooth",
+            "bands"
+          ],
+          "source": {
+            "type": "official",
+            "title": "47 CFR §15.19：设备合规声明与标签",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-47/section-15.19"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-SPEC-02",
+          "severity_hint": "high",
+          "applies_to": "充电器、适配器、带插头的电源类 3C",
+          "rule": "电源类产品必须写 120V / 60Hz 与美规插头（NEMA 1-15 或 5-15）；宽压产品要写明输入范围。",
+          "why": "美国市电为 120V / 60Hz，插头标准为 NEMA 1-15 / 5-15；页面写 230V 或配欧规插头，买家会判断买回来不能用，也可能过不了合规检查。",
+          "fix": "写「Input: 100–240V, 50/60Hz; Plug: NEMA 1-15 (2-prong) or NEMA 5-15 (3-prong)」，随箱含转换头的要说明。",
+          "signals": [
+            "230v",
+            "240v",
+            "eu plug",
+            "uk plug",
+            "type g",
+            "schuko",
+            "adapter",
+            "charger",
+            "plug"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Interpower：北美 120V / 60Hz 与 NEMA 插头标准",
+            "url": "https://interpower.com/ic/designers/connections/How-to-Design-for-North-America.html"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-SPEC-03",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU",
+          "rule": "型号、地区版本、盒内清单与保修地区必须成套出现，不能只给一个产品名。",
+          "why": "3C 买家下单前要确认「盒里有什么、坏了找谁」；缺盒内清单会带来大量「少配件」争议，缺保修地区则无法判断是否本地保修。",
+          "fix": "规格区固定四行：Model（US）、What's in the box、Warranty region、Serial number location。",
+          "signals": [
+            "what's in the box",
+            "in the box",
+            "box contents",
+            "model",
+            "warranty region"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 规格区通行结构）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-SPEC-04",
+          "severity_hint": "medium",
+          "applies_to": "配件、外设与跨设备产品",
+          "rule": "兼容性要写清 OS 版本、充电协议与配件代际，不要写「compatible with all devices」。",
+          "why": "USB-C PD 的功率档位、Thunderbolt 代际、iOS/Android 版本都会决定能不能用；笼统的兼容性声明既不可核也常出错。",
+          "fix": "写「Supports USB-C PD 3.0 up to 65 W; requires iOS 16 / Android 12 or later」，并列出已知不兼容机型。",
+          "signals": [
+            "compatible",
+            "compatibility",
+            "ios",
+            "android",
+            "usb-c",
+            "thunderbolt",
+            "requires"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（兼容性表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-SPEC-05",
+          "severity_hint": "medium",
+          "applies_to": "电池、充电与防护等级",
+          "rule": "电池容量用 mAh/Wh、充电功率用 W、防护等级用 IP 代码；不要用「all-day battery」「fast charge」代替数字。",
+          "why": "「all-day battery」没有基准，「fast charge」不说明功率与协议；买家无法横向比较，也容易在收货后认为被夸大。",
+          "fix": "写「5,000 mAh (19.5 Wh), 65 W USB-C PD, IP68」；续航写测试条件。",
+          "signals": [
+            "battery",
+            "mah",
+            "wh",
+            "charging",
+            "watt",
+            "ip68",
+            "ip67",
+            "fast charge",
+            "all-day"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（参数化表述优于形容词）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "name": "保修与售后服务",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-WAR-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU 的书面保修",
+          "rule": "书面保修须清楚标为 full（statement of duration）或 limited；售价超过 $15 且附保修的，须在售前让买家可查阅全文。",
+          "why": "Magnuson-Moss 要求书面保修明确标注 full 或 limited，只有满足联邦最低标准的才能称 full；16 CFR 702 要求售价超过 $15 的消费品在售前可查阅保修文本。",
+          "fix": "商品页给保修全文链接，开头写「Limited 1-Year Warranty」，写明覆盖部件、除外责任与索赔流程。",
+          "signals": [
+            "warranty period",
+            "limited warranty",
+            "full warranty",
+            "coverage",
+            "claim",
+            "warranty terms"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Magnuson-Moss §103, 15 U.S.C. §2303；16 CFR §702.3",
+            "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/html/USCODE-2024-title15-chap50-sec2303.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-WAR-02",
+          "severity_hint": "high",
+          "applies_to": "标价明显低于官方的 3C 卖家",
+          "rule": "要区分官方保修、授权经销商保修与平行进口（grey market），并给出序列号查询与授权服务商入口。",
+          "why": "美国 3C 市场存在国际版与平行进口，价格差往往来自保修由卖家而非品牌承担；不写清楚，买家会以为能走品牌官方维修。",
+          "fix": "写「US warranty via authorised reseller」或「International version — 12-month warranty by seller」；给序列号查询与授权服务商链接。",
+          "signals": [
+            "authorised reseller",
+            "authorized reseller",
+            "grey market",
+            "serial",
+            "warranty check"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（平行进口与保修归属通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-WAR-03",
+          "severity_hint": "medium",
+          "applies_to": "维修、换机与延保服务",
+          "rule": "维修/换机要写清周转天数、寄修地址与备用机政策，不要只放一个服务名。",
+          "why": "3C 买家最关心「等多久、寄到哪里」；只写「authorized service provider」无法回答这两个问题。",
+          "fix": "写「Repairs take 5–7 business days at our California service center; loaner units subject to availability」，并列出不覆盖情形。",
+          "signals": [
+            "repair",
+            "replacement",
+            "turnaround",
+            "service center",
+            "loaner",
+            "accidental damage"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（维修条款通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-WAR-04",
+          "severity_hint": "high",
+          "applies_to": "保修与退款条款页",
+          "rule": "不要用「no refund」「no warranty」这类绝对免责话术覆盖法定权利；可写清商业保修与州法默示保证的边界。",
+          "why": "美国各州对商品适销性有默示保证（implied warranty of merchantability），Magnuson-Moss 也限制对默示保证的排除；绝对免责话术在多数州无效，并可能构成欺骗。",
+          "fix": "写「This warranty gives you specific legal rights, and you may also have other rights which vary from state to state」，并说明缺陷商品的维修、更换、退款路径。",
+          "signals": [
+            "no refund",
+            "no warranty",
+            "no returns",
+            "sold as is",
+            "as-is"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Magnuson-Moss Warranty Act §103（默示保证不得被排除）",
+            "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/html/USCODE-2024-title15-chap50-sec2303.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付、分期与 trade-in",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "结算区与商品页支付区",
+          "rule": "结算区应展示 Visa/Mastercard/Amex、Apple Pay / Google Pay、PayPal、Venmo；只放信用卡会流失买家。",
+          "why": "美国线上支付以卡为主，数字钱包与 PayPal 普及；3C 客单价高，缺钱包与 PayPal 会显著影响转化。",
+          "fix": "价格与加购按钮附近放支付图标行，并写明「Visa · Mastercard · Amex · PayPal · Apple Pay」。",
+          "signals": [
+            "visa",
+            "mastercard",
+            "amex",
+            "paypal",
+            "apple pay",
+            "google pay",
+            "venmo",
+            "payment"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 1（支付方式）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "价格展示与结算页",
+          "rule": "不要宣称「no tax」；销售税按州与地方征收，结算前给预估税额。",
+          "why": "美国没有联邦增值税，跨州卖家在构成经济联结后有征收义务；宣称免税会构成对最终价格的误导。3C 高客单价下，结算页才出现的税额最容易导致弃购。",
+          "fix": "写「Sales tax calculated at checkout based on your shipping address」，并在购物车页给预估税额。",
+          "signals": [
+            "no tax",
+            "tax free",
+            "tax-free",
+            "no sales tax"
+          ],
+          "source": {
+            "type": "official",
+            "title": "California Department of Tax and Fee Administration：Use Tax",
+            "url": "https://www.cdtfa.ca.gov/taxes-and-fees/use-tax.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-PAY-03",
+          "severity_hint": "high",
+          "applies_to": "BNPL 与信用卡分期",
+          "rule": "分期要写清期数、APR 或 0%、最低消费与资格审核；不要只放 Klarna / Affirm 图标。",
+          "why": "美国 BNPL 与信用卡分期的定价结构差异大：有的是 0% 四期，有的是带 APR 的贷款；不写清楚，买家会以为免息。",
+          "fix": "写「4 interest-free payments of $75 with Klarna」或「12 monthly payments, 9.99% APR」，并在 FAQ 写明资格审核。",
+          "signals": [
+            "klarna",
+            "affirm",
+            "afterpay",
+            "installment",
+            "interest-free",
+            "pay in 4",
+            "apr",
+            "financing"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（BNPL 表述边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-PAY-04",
+          "severity_hint": "medium",
+          "applies_to": "trade-in 与以旧换新",
+          "rule": "Trade-in 要写清合作方、估价与最终价差异、可抵扣范围、数据清除与资格条件；不要把最高估价写成保证价。",
+          "why": "最高估价只适用于特定机型与状况；数据清除是 3C 买家最关心的隐私问题，也是被起诉的常见原因。",
+          "fix": "写「Estimated trade-in $XX–$XXX depending on model and condition; final value confirmed after inspection; data wiped before recycling」。",
+          "signals": [
+            "trade in",
+            "trade-in",
+            "estimated",
+            "up to $",
+            "buyback",
+            "recycle"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（trade-in 表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送、退换与渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "发货承诺与预售页",
+          "rule": "未明确承诺发货时间时，须在收到订单后 30 天内发货；无法履约要及时通知并提供取消退款选项。",
+          "why": "FTC 的 Mail Order Rule 要求卖家在 30 天内发货，除非在要约时清楚显著地承诺了其他时间；延迟须通知买家并给出取消与退款选项。",
+          "fix": "商品页写「Ships within 2 business days」；预售写明确切日期，并在延迟时主动告知新日期与取消方式。",
+          "signals": [
+            "ships within",
+            "pre-order",
+            "backorder",
+            "estimated ship date",
+            "dispatch"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR Part 435：Mail or Telephone Order Merchandise Rule",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-435.1"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-LOG-02",
+          "severity_hint": "high",
+          "applies_to": "高单价 3C 的配送说明",
+          "rule": "高单价 3C 要说明签收、保价与丢件处理，并写清免运门槛与本土以外地区（AK/HI/PR）的差异。",
+          "why": "3C 是盗损与丢件高风险品类；没有签收与保价条款，丢件争议会变成卖家全额承担。美国本土以外地区运费显著更高。",
+          "fix": "写「Signature required · insured up to $2,500 · Free shipping over $99 (contiguous US); Alaska, Hawaii and Puerto Rico from $XX」。",
+          "signals": [
+            "free shipping",
+            "free delivery",
+            "shipping",
+            "delivery",
+            "insured",
+            "signature",
+            "courier"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（高单价 3C 配送表述）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-LOG-03",
+          "severity_hint": "high",
+          "applies_to": "退货政策页与商品页",
+          "rule": "退货要写清窗口、未拆封/已激活条件、退货运费与退款方式；已激活设备的条件必须单独写。",
+          "why": "3C 一旦激活就影响二次销售，商家通常对已激活设备只换不退；不写清楚会在售后变成争议，也会在信用卡拒付时处于不利地位。",
+          "fix": "写「30-day returns for unopened items; activated devices are eligible for warranty service only unless faulty on arrival」。",
+          "signals": [
+            "return",
+            "returns",
+            "refund",
+            "exchange",
+            "unopened",
+            "activated",
+            "restocking fee"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 退货条件通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-LOG-04",
+          "severity_hint": "medium",
+          "applies_to": "有门店或授权渠道的品牌",
+          "rule": "有线下渠道的要写清门店/授权经销商/自提点与库存查询；纯线上品牌写清发货仓与截单时间。",
+          "why": "美国 3C 买家习惯先到店体验再下单；不给库存查询会让「线上比价、线下体验」这条路径断掉。",
+          "fix": "写「Available at our New York store — check stock」，或「Ships from our California warehouse; order before 2 pm PT for same-day dispatch」。",
+          "signals": [
+            "store",
+            "find a store",
+            "reseller",
+            "pickup",
+            "availability",
+            "stock",
+            "warehouse"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地 3C 渠道表述）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-LOG-05",
+          "severity_hint": "medium",
+          "applies_to": "订单状态与物流追踪",
+          "rule": "订单状态与配送进度要可查；至少提供订单查询入口与客服兜底，不要只写「we will contact you」。",
+          "why": "3C 订单金额高，买家会反复查看进度；没有查询入口会把客服变成唯一进度来源。",
+          "fix": "页脚放 Order Status，给运单号与预计到达日；异常时给客服兜底入口。",
+          "signals": [
+            "order status",
+            "track order",
+            "delivery status",
+            "tracking number"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（订单可查性通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "认证、隐私与本地信任",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU 的认证表述",
+          "rule": "认证要按产品类型分开写：无线/数字设备核对 FCC；电气安全由 CPSC 规则与标准约束（GCC + 测试报告）；UL/ETL 是 NRTL 认证，不是联邦强制。",
+          "why": "把 NRTL 说成「政府认证」、或用一句「certified」覆盖 FCC 与电气安全，都属误导；FCC 与 CPSC 是两套不同的监管框架，证据也不同。",
+          "fix": "分别写「FCC ID: XXXXX」「UL Listed (certificate no. XXXXX) — tested by an OSHA-recognised NRTL」，并另附 CPSC 适用规则与 GCC 说明。",
+          "signals": [
+            "certified",
+            "compliance",
+            "certification label",
+            "ul listed",
+            "etl listed",
+            "ul certified"
+          ],
+          "source": {
+            "type": "official",
+            "title": "OSHA：Nationally Recognized Testing Laboratory Program",
+            "url": "https://www.osha.gov/nationally-recognized-testing-laboratory-program"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "账号注册、下单与 Cookie",
+          "rule": "隐私政策要写清收集范围、共享对象与用户选择；不要写「100% secure」，也不要作出与实际数据行为不符的承诺。",
+          "why": "美国没有统一的联邦综合隐私法，但已作出的隐私承诺会被 FTC 按 §5 作为欺骗行为执行；加州销售还需另核 CCPA/CPRA。",
+          "fix": "隐私页写清收集的数据类型、共享的第三方（广告/分析 SDK）、选择与删除路径；Cookie 横幅给拒绝选项。",
+          "signals": [
+            "privacy",
+            "personal data",
+            "cookie",
+            "data protection",
+            "100% secure",
+            "ccpa"
+          ],
+          "source": {
+            "type": "official",
+            "title": "FTC Act §5（隐私承诺的执行）",
+            "url": "https://www.govinfo.gov/content/pkg/USCODE-2024-title15/html/USCODE-2024-title15-chap2-subchapI-sec45.htm"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-TRUST-03",
+          "severity_hint": "high",
+          "applies_to": "页脚与 About 页",
+          "rule": "页脚要有公司名、美国实体地址（含州与邮编）、电话与邮箱；跨境卖家要写美国境内的合规责任方。",
+          "why": "美国买家付款前会确认「出事找谁」；FCC 的 SDoC 程序也要求列明美国境内责任方的名称、地址与联系方式。",
+          "fix": "页脚写公司名、实体地址（street, city, state, ZIP）、+1 电话与 support 邮箱。",
+          "signals": [
+            "registered address",
+            "contact us",
+            "distributor",
+            "about us",
+            "responsible party"
+          ],
+          "source": {
+            "type": "official",
+            "title": "47 CFR §2.1077：SDoC 须列明美国境内责任方",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-47/section-2.1077"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-TRUST-04",
+          "severity_hint": "high",
+          "applies_to": "评价、评分与达人测评",
+          "rule": "社会证明要可核对：真实评价、买家图、平台评分或媒体测评；不得生成或购买虚假评论，也不得以激励换取正面评价。",
+          "why": "美国买家在 3C 决策前高度依赖在线评论；FTC 的虚假评论规则禁止虚构评论者与体验，也禁止以补偿换取特定情绪的评价。",
+          "fix": "展示带型号与日期的真实评价、平台评分与媒体测评链接；达人内容披露付费或寄样关系。",
+          "signals": [
+            "reviews",
+            "rating",
+            "trusted",
+            "testimonial",
+            "media review",
+            "award",
+            "bestsellers"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §465.2 / §465.4：虚假评论与激励评论",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-465.2"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "全部页面的支持入口",
+          "rule": "应提供电话 + 在线聊天 + 邮件，并写清可服务的时区与时段。",
+          "why": "美国买家仍大量使用电话，尤其 3C 的保修与技术支持；只给邮件或表单会让高价值客群直接放弃。",
+          "fix": "页脚并列「Call +1 (XXX) XXX-XXXX · Live chat · Email」，标注「Mon–Fri 9am–6pm ET」。",
+          "signals": [
+            "whatsapp",
+            "live chat",
+            "contact",
+            "chat",
+            "hotline",
+            "1-800"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 6（信任信号与服务）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-SVC-02",
+          "severity_hint": "medium",
+          "applies_to": "页脚与联系页电话",
+          "rule": "电话号码必须是完整的本地号码（+1 (XXX) XXX-XXXX 或 1-800 热线），不要留缺位模板号。",
+          "why": "美国号码为 10 位（区号 + 7 位）；缺位号码会被本地买家识别为假号码或没填完的模板。",
+          "fix": "统一写 +1 (415) 555-0132 或 1-800-555-0132，并在页脚、联系页、保修页保持一致。",
+          "signals": [
+            "+1",
+            "tel:",
+            "phone",
+            "call us"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电话号码格式惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "支持页与 FAQ",
+          "rule": "客服要给响应时效与服务时段，并说明节假日；不要只写「24/7」却没有实际渠道。",
+          "why": "「24/7 support」如果只有一个表单，等于没有承诺；写清时段与响应时效，买家才知道何时能得到答复。",
+          "fix": "写「Live chat Mon–Fri 9am–6pm ET; email replies within 1 business day」。",
+          "signals": [
+            "response time",
+            "business day",
+            "opening hours",
+            "24/7",
+            "support hours",
+            "holiday"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（客服时效表述通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-SVC-04",
+          "severity_hint": "low",
+          "applies_to": "客服语言能力说明",
+          "rule": "客服语言至少英语可通；西班牙语是重要加分项，不要写成唯一渠道。",
+          "why": "美国西班牙裔人口约占 19%，3C 的售后与保修咨询中西班牙语需求实际存在；标英语仍是底线。",
+          "fix": "写「Support in English and Spanish」，并在服务时间说明西班牙语覆盖时段。",
+          "signals": [
+            "support language",
+            "spanish",
+            "espanol",
+            "english"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 1（多元文化构成）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "品牌语气与本地化边界",
+      "source_sections": [
+        "Section 2",
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-BRAND-01",
+          "severity_hint": "medium",
+          "applies_to": "全球品牌与美国子品牌",
+          "rule": "全球统一的品牌语气可以保留，但价格、税、库存、配送与售后必须本地化；不要为了「本地化」改写全球 slogan。",
+          "why": "3C 的全球品牌资产来自一致语气与产品名；真正影响转化的是价格与售后是否本地可执行。",
+          "fix": "slogan 与产品名保持原文；把预算放在不含税标价、预估税额、库存、配送时效与保修。",
+          "signals": [
+            "slogan",
+            "global",
+            "worldwide",
+            "brand",
+            "usa"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（全球 master 与本地化边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-BRAND-02",
+          "severity_hint": "medium",
+          "applies_to": "产品名、系列名与功能名",
+          "rule": "全球 slogan 与产品名不要机翻；只翻译描述性文字，品牌名、系列名、功能名保持原文。",
+          "why": "机翻产品名会让搜索与售后对不上型号；美国买家认型号与系列名，翻译后既搜不到也说不清。",
+          "fix": "产品名/系列名/功能名保留原文，只把描述性段落译成自然的英语。",
+          "signals": [
+            "tagline",
+            "translated",
+            "machine translation"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（品牌名与功能名不翻译）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-BRAND-03",
+          "severity_hint": "high",
+          "applies_to": "最高级与性能宣称",
+          "rule": "「world's best」「No.1」「most accurate」这类最高级宣称必须有可核对依据；「Made in USA」须满足三项门槛。",
+          "why": "FTC Act §5 禁止无依据的实质性宣称；Made in USA 规则对「全部或几乎全部」有明确门槛，把国际版写成美国制造是典型违规。",
+          "fix": "改成可核对参数（「0.1 s response time, tested by [lab] on [date]」）；原产地按实际写 Made in China 或「Designed in USA, manufactured in China」。",
+          "signals": [
+            "world's best",
+            "no.1",
+            "number one",
+            "most accurate",
+            "fastest",
+            "leading",
+            "made in usa",
+            "american made"
+          ],
+          "source": {
+            "type": "official",
+            "title": "16 CFR §323.2：Made in USA 标准",
+            "url": "https://www.ecfr.gov/on/2026-11-12/title-16/section-323.2"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "US-CE-BRAND-04",
+          "severity_hint": "medium",
+          "applies_to": "节庆与送礼场景",
+          "rule": "节庆场景可以用 Black Friday / Back to School / Holiday，但不要把 3C 放进宗教或政治叙事；3C 的本地化重点是「送礼/升级/以旧换新」。",
+          "why": "美国社会高度两极化，宗教与政治叙事会带来不必要的风险；3C 的节庆需求集中在送礼、返校与换机。",
+          "fix": "节庆 banner 用「Gift the upgrade」「Trade in and save」，避免宗教符号与政治表态。",
+          "signals": [
+            "black friday",
+            "back to school",
+            "gift",
+            "festive"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 节庆场景边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "US-CE-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "产品页首屏",
+          "rule": "首屏要回答「卖什么、为什么选它、下一步做什么」；产品 hero 可以极简，但 Buy / Learn more 必须成对出现。",
+          "why": "美国 3C 买家通常带着型号来，但仍有大量比价流量；只有一张产品图会让比价用户直接返回搜索结果。",
+          "fix": "首屏给产品名 + 一句核心差异 + 价格 + 主 CTA（Buy now）与次 CTA（Compare models）。",
+          "signals": [
+            "learn more",
+            "buy",
+            "shop",
+            "discover"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 6（信息层级）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "规格区与对比模块",
+          "rule": "规格要用可扫描的表格/对比，不要用长段落堆参数；关键差异（屏幕、芯片、电池、相机）要能一眼对比。",
+          "why": "3C 的购买决策是参数对比；长段落堆参数会把买家送到竞品页面去比。",
+          "fix": "规格做成表格，并给同系列型号的并排对比；关键差异加一行「与上代相比」。",
+          "signals": [
+            "compare",
+            "specs",
+            "technical specifications",
+            "chip",
+            "camera",
+            "display"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 规格呈现通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "CTA 与促销话术",
+          "rule": "CTA 用动词开头并把价值写进去（Buy now、Compare models、Trade in）；避免模糊的「Click here」。",
+          "why": "美国 CTA 的通行写法是动词优先 + 价值强化；「Click here」既不说明点击后发生什么，也不承载价值。紧迫感可用于限时优惠，但需真实性支撑。",
+          "fix": "写「Buy now」「Get 20% off — ends Sunday」，并保证限时与库存表述真实。",
+          "signals": [
+            "click here",
+            "limited time",
+            "hurry",
+            "last chance"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 united-states.md Section 6（CTA 本地习惯）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/united-states/united-states.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "US-CE-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "品牌站首页与产品列表",
+          "rule": "首页可以不标价（品牌站常见），但必须能一步进入商店并看到价格；不要让「了解产品」与「购买」断开。",
+          "why": "3C 品牌站常用「了解 → 购买」两段式；购买入口藏得深，比价流量会直接流失。",
+          "fix": "产品页给「Buy」直达商店，价格与库存状态在商品卡展示，税额在购物车页预估。",
+          "signals": [
+            "from $",
+            "see price",
+            "price list",
+            "where to buy"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（品牌站两段式路径）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "US-CE-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "页脚与法务链接",
+          "rule": "页脚要能直达 Order Status、Returns & Refunds、Warranty、Privacy、Support；不要把这些藏在多层菜单里。",
+          "why": "3C 售后触点集中在订单、退换与保修；法务与支持页藏太深会在出问题时放大不满。",
+          "fix": "页脚固定五项：Order Status / Returns & Refunds / Warranty / Privacy Policy / Support。",
+          "signals": [
+            "returns and refunds",
+            "privacy policy",
+            "terms"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（页脚信息可获取性）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    }
+  ]
+}

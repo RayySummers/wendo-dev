@@ -243,17 +243,18 @@ test("MY 基线：默认市场与显式 MY 一致，法规规则库同源", asyn
   assert.equal(meta.generated_at, "2026-11-18T00:41:12+08:00");
 });
 
-test("缺国家知识库：SG 直接 market_kb_missing，不回退 MY", async () => {
+// RAY-755 之后 SG / AE / US 已有生产知识库，缺知识库的用例改用尚未补库的 PH。
+test("缺国家知识库：PH 直接 market_kb_missing，不回退 MY", async () => {
   await assert.rejects(
-    retrieveKb({ pageText: PAGE_TEXT, market: "SG" }),
+    retrieveKb({ pageText: PAGE_TEXT, market: "PH" }),
     (error: unknown) => {
       assert.ok(error instanceof MarketError);
       assert.equal(error.code, "market_kb_missing");
-      assert.match(error.message, /市场 SG（新加坡）/);
+      assert.match(error.message, /市场 PH（菲律宾）/);
       assert.match(error.message, /未回退到 MY/);
-      assert.ok(error.details.some((detail) => detail.includes("knowledge/sg/singapore.md")));
-      assert.ok(error.details.some((detail) => detail.includes("knowledge/sg/index.json")));
-      assert.ok(error.details.some((detail) => detail.includes("knowledge/sg/small-appliances.md")));
+      assert.ok(error.details.some((detail) => detail.includes("knowledge/ph/philippines.md")));
+      assert.ok(error.details.some((detail) => detail.includes("knowledge/ph/index.json")));
+      assert.ok(error.details.some((detail) => detail.includes("knowledge/ph/small-appliances.md")));
       return true;
     },
   );
@@ -261,7 +262,7 @@ test("缺国家知识库：SG 直接 market_kb_missing，不回退 MY", async ()
 
 test("pipeline 在抓取前就拒绝缺知识库的市场，不联网、不调用模型", async () => {
   await assert.rejects(
-    runDiagnosis({ url: "https://example.com/product", market: "SG" }),
+    runDiagnosis({ url: "https://example.com/product", market: "PH" }),
     (error: unknown) => error instanceof MarketError && error.code === "market_kb_missing",
   );
 });

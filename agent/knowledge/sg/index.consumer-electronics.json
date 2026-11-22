@@ -1,0 +1,1016 @@
+{
+  "market": "SG",
+  "market_name": "新加坡",
+  "category": "consumer_electronics",
+  "category_name": "3C 数码",
+  "version": "2026-11-18-v0.1",
+  "scope": "只适用于新加坡市场的 3C 数码（手机、平板、笔记本、穿戴、耳机、影像、配件）。不包含小家电的食品接触、厨房场景规则；语言、支付、物流、退换、客服、价格等共用规则可复用。全球品牌的规模优势不等于中小企业必须项：不要照抄「Apple 有所以我们也要有」。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-LANG-01",
+          "severity_hint": "medium",
+          "applies_to": "全部 SKU 的标题与描述文案",
+          "rule": "英文主文案可以保留，但交易与售后信息（配送、保修、退货、客服）必须有一眼可见的英文完整说明，不要只给图标或短标签。",
+          "why": "新加坡英文是共同语，全球 3C 品牌通常保留英文主文案；但交易与售后信息如果只有图标或缩略标签，买家在出问题时找不到可执行的说法。",
+          "fix": "英文主文案不动；在商品页底部与保修页补齐完整的 delivery / warranty / returns / support 说明段落。",
+          "signals": [
+            "warranty",
+            "support"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 3/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-LANG-02",
+          "severity_hint": "low",
+          "applies_to": "正式文案与日期格式",
+          "rule": "统一英式拼写与 DD/MM/YYYY 日期格式，不要英美混用。",
+          "why": "新加坡教育体系以英式英语为准；同一页混用 color/colour 会显得没校对过。日期写成 11/18/2026 在本地会被读成 11 月 18 日或 18 月 11 日以外的歧义写法。",
+          "fix": "统一 colour / centre / organise / catalogue；日期写 18/11/2026 或 18 November 2026。",
+          "signals": [
+            "color",
+            "center",
+            "organize",
+            "catalog",
+            "mm/dd",
+            "11/18"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 3",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-LANG-03",
+          "severity_hint": "low",
+          "applies_to": "规格表与包装参数",
+          "rule": "规格一律用公制与摄氏度：mm / cm / g / kg / W / Wh / °C，不要混入 inch、oz、lb、°F。",
+          "why": "WMA 1975 s.18(1)(d) 规定展示商品时不得只用非公制单位；本地买家也习惯用 mm 与 g 判断机身与重量。",
+          "fix": "写 6.1 inch → 15.5 cm、重量 g、电池 Wh、温度 °C；英制只能作公制之后的附加标注且不得更显著。",
+          "signals": [
+            "inch",
+            "inches",
+            "oz",
+            "lbs",
+            "°f",
+            "fahrenheit"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Weights and Measures Act 1975 s.18(1)(d)",
+            "url": "https://sso.agc.gov.sg/Act/WMA1975"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-LANG-04",
+          "severity_hint": "medium",
+          "applies_to": "型号、地区版本与盒内清单",
+          "rule": "型号与地区版本要写清新加坡版（SG set / local warranty set），不要只给美国或欧洲型号。",
+          "why": "3C 强型号驱动：同一产品在不同地区的频段、充电器插头与保修范围都不同；只给海外型号，买家无法判断能否在新加坡用、能否本地保修。",
+          "fix": "规格区写 Model（SG）、盒内清单、保修适用地区；平行进口（parallel import）要单独标注保修由卖家提供。",
+          "signals": [
+            "model code",
+            "region code",
+            "us version",
+            "global version",
+            "part number",
+            "sku"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地 3C 型号与地区版本通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-LANG-05",
+          "severity_hint": "medium",
+          "applies_to": "中文直译的品类词与营销词",
+          "rule": "不要直译中文 3C 品类词或营销词（hand machine、digital product、machine king），用本地通行的 phone / tablet / laptop / earbuds。",
+          "why": "直译词不进本地搜索词，也说不清品类；新加坡买家看到「digital product」无法判断是手机还是配件。",
+          "fix": "用 phone / tablet / laptop / smartwatch / earbuds / power bank / charger；营销语换成具体参数或场景。",
+          "signals": [
+            "hand machine",
+            "digital product",
+            "machine king",
+            "electronic product"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "specs",
+      "name": "产品规格与兼容性",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-SPEC-01",
+          "severity_hint": "high",
+          "applies_to": "手机、平板、笔记本、手表、耳机、Wi-Fi/蓝牙设备",
+          "rule": "无线通信设备应写明 IMDA 设备注册号，并列新加坡支持的频段；不要笼统写「global bands」。",
+          "why": "在新加坡销售或使用的无线电通信设备，设备型号须先经 IMDA 注册批准；只写「global bands」无法说明 5G/LTE 频段是否被本地运营商支持，买家会担心买回来降级到 4G。",
+          "fix": "规格区写「IMDA registered — registration no. XXXXX」并列出本地 LTE/5G 频段与 Wi-Fi 制式。",
+          "signals": [
+            "imda",
+            "type approval",
+            "5g",
+            "lte",
+            "wi-fi",
+            "bluetooth",
+            "bands",
+            "global bands"
+          ],
+          "source": {
+            "type": "official",
+            "title": "IMDA：Equipment Registration",
+            "url": "https://www.imda.gov.sg/regulations-and-licensing-listing/equipment-registration"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-SPEC-02",
+          "severity_hint": "high",
+          "applies_to": "充电器、适配器、带插头的电源类 3C",
+          "rule": "电源类产品必须写 230V / 50Hz 与 G 型三脚插头（BS 1363）；在 CPSR 清单内的须有 SAFETY Mark 注册编号。",
+          "why": "新加坡市电 230V / 50Hz、插座为 G 型；充电器/适配器若属 CPSR 33 类受管制商品，须先注册并贴 SAFETY Mark 才能供应或为供应而广告。",
+          "fix": "写「Input: 100–240V, 50/60Hz; Plug: UK 3-pin (BS 1363)」，附 SAFETY Mark 编号；随箱含转换头的要说明。",
+          "signals": [
+            "110v",
+            "120v",
+            "us plug",
+            "eu plug",
+            "2-pin",
+            "adapter",
+            "charger",
+            "plug"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPSO：CPSR 受管制商品与 SAFETY Mark",
+            "url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-SPEC-03",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU",
+          "rule": "型号、地区版本、盒内清单与保修地区必须成套出现，不能只给一个产品名。",
+          "why": "3C 买家在下单前要确认「盒里有什么、坏了找谁」；缺盒内清单会带来大量「少配件」争议，缺保修地区则无法判断是否本地保修。",
+          "fix": "规格区固定四行：Model（SG）、What's in the box、Warranty region、Serial number location。",
+          "signals": [
+            "what's in the box",
+            "in the box",
+            "box contents",
+            "model",
+            "warranty region"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地 3C 规格区通行结构）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-SPEC-04",
+          "severity_hint": "medium",
+          "applies_to": "配件、外设与跨设备产品",
+          "rule": "兼容性要写清 OS 版本、充电协议与配件代际，不要假设买家已有对应配件。",
+          "why": "「compatible with all devices」既不可核也常出错：USB-C PD 的功率档位、Thunderbolt 代际、iOS/Android 版本都会决定能不能用。",
+          "fix": "写「Supports USB-C PD 3.0 up to 65 W; requires iOS 16 / Android 12 or later」，并列出不兼容的已知机型。",
+          "signals": [
+            "compatible",
+            "compatibility",
+            "ios",
+            "android",
+            "usb-c",
+            "thunderbolt",
+            "requires"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（兼容性表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-SPEC-05",
+          "severity_hint": "medium",
+          "applies_to": "电池、充电与防护等级",
+          "rule": "电池容量用 Wh、充电功率用 W、防护等级用 IP 代码；不要用「all-day battery」「fast charge」代替可核对数字。",
+          "why": "「all-day battery」没有基准（亮屏时长？待机？），「fast charge」不说明功率与协议；买家无法横向比较，也容易在收货后认为被夸大。",
+          "fix": "写「5,000 mAh (19.5 Wh), 65 W USB-C PD, IP68」；续航写测试条件（如「up to 12 h video playback, 50% brightness」）。",
+          "signals": [
+            "battery",
+            "mah",
+            "wh",
+            "charging",
+            "watt",
+            "ip68",
+            "ip67",
+            "fast charge",
+            "all-day"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（参数化表述优于形容词）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "warranty",
+      "name": "保修与售后服务",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-WAR-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU 的保修说明",
+          "rule": "保修要写清期限、覆盖部件、是否国际保修、索赔流程与维修网点；只写「1-year warranty」不算完成。",
+          "why": "新加坡买家会把「本地保修」当成溢价理由；只写年限不写覆盖范围与索赔路径，出问题时只能反复问客服。CPFTA Part III 对不符合合同商品的救济也不能被条款排除。",
+          "fix": "保修页写「12-month local warranty covering manufacturing defects in battery and internals; excludes accidental damage and wear items; claim at our service centre or by courier with proof of purchase」。",
+          "signals": [
+            "warranty period",
+            "limited warranty",
+            "coverage",
+            "claim",
+            "serial number"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003（Part III 商品救济）",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-WAR-02",
+          "severity_hint": "high",
+          "applies_to": "标价明显低于官方的 3C 卖家",
+          "rule": "要区分官方保修、授权经销商保修与平行进口（水货），并给出序列号查询与授权服务商入口。",
+          "why": "新加坡 3C 市场平行进口普遍，价格差往往来自保修由卖家而非品牌承担；不写清楚，买家会以为能走品牌官方维修。",
+          "fix": "写「Local set — warranty by authorised distributor」或「Parallel import — 12-month warranty by seller」，并给序列号查询与授权服务商链接。",
+          "signals": [
+            "authorised reseller",
+            "authorized reseller",
+            "parallel import",
+            "grey market",
+            "serial",
+            "warranty check"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地平行进口与保修归属通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-WAR-03",
+          "severity_hint": "medium",
+          "applies_to": "延保、意外损坏与备用机服务",
+          "rule": "维修/换机/备用机与延保要写清响应时效、覆盖范围与自付额，不要只放一个服务名。",
+          "why": "买家真正关心的是「等多久、付多少」；只写「AppleCare+」或「extended warranty」无法回答这两个问题。",
+          "fix": "写「Screen repair: 2–3 business days, S$XX excess; replacement unit subject to stock」，并列出不覆盖的情形。",
+          "signals": [
+            "applecare",
+            "extended warranty",
+            "repair",
+            "replacement",
+            "turnaround",
+            "excess",
+            "accidental damage"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（延保条款通行写法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-WAR-04",
+          "severity_hint": "high",
+          "applies_to": "保修与退款条款页",
+          "rule": "不要用「no refund」「no warranty」这类绝对免责话术覆盖法定救济；可写清商业保修与法定权利的边界。",
+          "why": "CPFTA Part III 规定交付时不符合合同的商品，买家可要求维修、更换、减价或退款；用绝对免责条款排除这些权利，本身可能构成不公平做法。",
+          "fix": "写「This warranty is in addition to your statutory rights. If a product is not of satisfactory quality at delivery, you may be entitled to a repair, replacement, price reduction or refund.」",
+          "signals": [
+            "no refund",
+            "no warranty",
+            "no returns",
+            "statutory rights",
+            "sold as is"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003（Part III）",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付、分期与 trade-in",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "结算区与商品页支付区",
+          "rule": "结算区应展示本地支付方式：PayNow、GrabPay、ShopeePay、Visa/Mastercard、Apple/Google Pay、NETS；只放信用卡会流失买家。",
+          "why": "3C 客单价高，支付方式的影响比小家电更大：PayNow 覆盖绝大多数成年人口，钱包在小额配件上尤其常用。",
+          "fix": "在价格与加购按钮附近放支付图标行，并写明「PayNow · GrabPay · ShopeePay · Visa/Mastercard · Apple Pay」。",
+          "signals": [
+            "paynow",
+            "grabpay",
+            "shopeepay",
+            "nets",
+            "apple pay",
+            "google pay",
+            "visa",
+            "mastercard",
+            "payment"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "ABS：PayNow（新加坡账户到账户支付）",
+            "url": "https://www.abs.org.sg/consumer-banking/pay-now"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "价格展示与结算页",
+          "rule": "价格必须含 GST（现行 9%）并写明是否含运费；不要让买家到结算页才发现加价。",
+          "why": "GST 注册商家对公众标价必须含 GST；3C 高客单价下，结算页才出现的税与运费最容易导致弃购与投诉。",
+          "fix": "标价写 S$1,299.00（Inclusive of GST），并在价格旁写「Free delivery」或运费门槛。",
+          "signals": [
+            "before gst",
+            "exclusive of gst",
+            "gst added at checkout",
+            "price before tax"
+          ],
+          "source": {
+            "type": "official",
+            "title": "IRAS：Displaying and quoting prices",
+            "url": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/invoicing-price-display-and-record-keeping/displaying-and-quoting-prices"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-PAY-03",
+          "severity_hint": "high",
+          "applies_to": "0% 分期与银行卡分期（EPP）",
+          "rule": "0% 分期要写清最低消费、可选期数、参与银行与卡种；不要只写「0% interest」或只放银行图标。",
+          "why": "分期广告若缺条件，买家会默认自己符合，到结算才发现不适用；新加坡的分期通常限定特定银行与卡种，且常有最低消费门槛。",
+          "fix": "写「0% interest for 12 months on orders over S$1,000 with participating banks (DBS/POSB, OCBC, UOB) Visa/Mastercard」，并在 FAQ 列明不适用情形。",
+          "signals": [
+            "0% interest",
+            "installment",
+            "instalment",
+            "monthly",
+            "participating banks",
+            "epp",
+            "24 months"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Atome Singapore：分期条款（最低消费与期数）",
+            "url": "https://www.atome.sg/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-PAY-04",
+          "severity_hint": "medium",
+          "applies_to": "trade-in 与以旧换新",
+          "rule": "Trade-in 要写清合作方、估价与最终价差异、可抵扣范围、数据清除与资格条件；不要把最高估价写成保证价。",
+          "why": "最高估价只适用于特定机型与状况，写成「up to S$XXX off」会被读成保证抵扣；数据清除也是买家最关心的隐私问题。",
+          "fix": "写「Estimated trade-in value S$XX–S$XXX depending on model and condition; final value confirmed after inspection; we erase your device before recycling」。",
+          "signals": [
+            "trade in",
+            "trade-in",
+            "estimated",
+            "up to s$",
+            "buyback",
+            "recycle"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（trade-in 表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送、退换与渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "配送说明与促销 banner",
+          "rule": "「Free delivery」必须写清门槛、适用区域与时效；高单价 3C 建议给签收与保价选项。",
+          "why": "3C 是盗损与丢件高风险品类；无条件免运与无签收承诺会让买家承担风险，也容易在纠纷中变成卖家的责任。",
+          "fix": "写「Free delivery on orders over S$80 · 1–3 working days · signature required」，并说明丢失与损坏的处理流程。",
+          "signals": [
+            "free shipping",
+            "free delivery",
+            "shipping",
+            "insured",
+            "signature",
+            "courier",
+            "delivery"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（高单价 3C 配送表述通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-LOG-02",
+          "severity_hint": "medium",
+          "applies_to": "取件与自提选项",
+          "rule": "应提供智能柜/自取点选项并说明取件期限与逾期处理。",
+          "why": "SingPost POPStation 智能柜 24/7 可用，上班族普遍用自取避免白天不在家；不给这个选项会增加二次派送与退货率。",
+          "fix": "结算页给「Deliver to home / Collect at POPStation」，写取件期限（通常 3 天）与逾期退回规则。",
+          "signals": [
+            "popstation",
+            "collection point",
+            "self-collect",
+            "pickup",
+            "locker"
+          ],
+          "source": {
+            "type": "official",
+            "title": "SingPost：Parcel Collection / POPStation",
+            "url": "https://www.singpost.com/support/managing-deliveries/collection-points"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-LOG-03",
+          "severity_hint": "high",
+          "applies_to": "退货政策页与商品页",
+          "rule": "退货要写清窗口、未拆封/已激活条件、退货运费与退款方式；已激活设备的条件必须单独写。",
+          "why": "3C 一旦激活就影响二次销售，商家通常对已激活设备只换不退；不写清楚会在售后变成纠纷。新加坡多数网上下单没有法定冷静期，退货是商家政策。",
+          "fix": "写「14-day returns for unopened items; activated devices are eligible for warranty service only unless faulty on arrival」，并写明退货运费归属与退款到账时间。",
+          "signals": [
+            "return",
+            "refund",
+            "exchange",
+            "unopened",
+            "activated",
+            "14 days",
+            "returns"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003（Part III 救济范围）",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-LOG-04",
+          "severity_hint": "medium",
+          "applies_to": "有门店或授权渠道的品牌",
+          "rule": "有线下渠道的要写清门店/授权经销商/自提点的可用性与库存查询；纯线上品牌则写清发货仓与截单时间。",
+          "why": "3C 买家习惯先到店体验再下单；不给库存查询会让「线上价、线下看」这条路径断掉。",
+          "fix": "写「Available at our Orchard store — check stock」，或「Ships from our Singapore warehouse; order before 3 pm for same-day dispatch」。",
+          "signals": [
+            "store",
+            "find a store",
+            "reseller",
+            "availability",
+            "stock",
+            "warehouse"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地 3C 渠道表述通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-LOG-05",
+          "severity_hint": "medium",
+          "applies_to": "订单状态与物流追踪",
+          "rule": "订单状态与配送进度要可查；至少提供订单查询入口与客服兜底，不要只写「we will contact you」。",
+          "why": "3C 订单金额高，买家会反复查看进度；没有查询入口会把客服变成唯一的进度来源。",
+          "fix": "页脚放 Order Status，给运单号与预计到达日；异常时给客服兜底入口。",
+          "signals": [
+            "order status",
+            "track order",
+            "dispatch",
+            "delivery status",
+            "tracking number"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（订单可查性通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "认证、隐私与本地信任",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "全部 3C SKU 的认证表述",
+          "rule": "认证要按产品类型写对：无线设备核对 IMDA 注册；充电器/适配器核对 CPSR 与 SAFETY Mark；不能用「safety certified」一句覆盖所有。",
+          "why": "不同产品落在不同监管框架：IMDA 管通信设备，CPSO 管受管制家电与电源类；用一句笼统的「certified」既不可核，也可能被认定为虚假商品说明。",
+          "fix": "按品类分别写「IMDA registered no. XXXXX」或「CPSO SAFETY Mark no. XXXXXXXX」，并附标签照片。",
+          "signals": [
+            "safety mark",
+            "certified",
+            "cpso",
+            "compliance",
+            "certification label"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CPSO：CPSR 与 SAFETY Mark；IMDA：Equipment Registration",
+            "url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "账号注册、下单、保修登记与 Cookie",
+          "rule": "要有 PDPA 隐私说明：收集哪些资料、用途、保存期限、第三方共享、联系人与查询/更正渠道，并公开 DPO 联系方式；不要写「100% secure」。",
+          "why": "PDPA 要求收集前告知目的，并指定至少一名负责人、向公众提供其业务联系方式；3C 页面通常收集设备信息与账号数据，缺告知即属违规。",
+          "fix": "隐私页写清目的、保存期限、共享对象（物流/支付/云服务）、DPO 邮箱与查询/更正路径；Cookie 横幅给拒绝选项。",
+          "signals": [
+            "privacy",
+            "pdpa",
+            "personal data",
+            "cookie",
+            "data protection",
+            "dpo",
+            "100% secure"
+          ],
+          "source": {
+            "type": "official",
+            "title": "PDPC：PDPA Data Protection Obligations",
+            "url": "https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act/data-protection-obligations"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-TRUST-03",
+          "severity_hint": "high",
+          "applies_to": "页脚与 About 页",
+          "rule": "页脚要有本地公司实体（ACRA 注册名 / UEN）、地址、客服邮箱与 +65 电话；跨境卖家写本地授权经销商。",
+          "why": "3C 单价高，买家在付款前会确认「出事找谁」；只有海外主体与表单入口，会显著降低转化。",
+          "fix": "页脚写 UEN、本地地址、support 邮箱、+65 电话与服务时间；平行进口写明保修由本地卖家承担。",
+          "signals": [
+            "uen",
+            "acra",
+            "registered address",
+            "contact us",
+            "distributor",
+            "about us"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地零售商页脚通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-TRUST-04",
+          "severity_hint": "medium",
+          "applies_to": "评价、评分与媒体测评",
+          "rule": "社会证明要可核对：真实评价、买家图、平台评分或媒体测评；不要编造评分，也不要把 Apple 级别的品牌资产当成 SME 的必备项。",
+          "why": "新加坡买家在 3C 决策前高度依赖评价；虚构评分在新加坡可被 CPFTA 与平台规则双重处罚，而拿全球品牌的门店网络要求中小企业也不现实。",
+          "fix": "展示带型号与日期的本地评价、平台评分与媒体测评链接；没有评价就先积累，不用「Bestsellers」标签替代。",
+          "signals": [
+            "reviews",
+            "rating",
+            "trusted",
+            "testimonial",
+            "media review",
+            "award",
+            "bestsellers"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（社会证明可核对性边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "全部页面的支持入口",
+          "rule": "本地 3C 零售商应提供 WhatsApp 一键联系；全球品牌可以用官方热线/在线支持，但必须给出明确的人工入口与服务时间。",
+          "why": "WhatsApp Business 是新加坡首选客服渠道；全球品牌即使主用热线，也必须能让买家找到「真人什么时候在」，否则售前咨询会流失。",
+          "fix": "写「WhatsApp us (wa.me/65XXXXXXXX) · Mon–Fri 9:00–18:00 SGT」，或「Hotline 1800-XXX-XXXX · 24/7」。",
+          "signals": [
+            "whatsapp",
+            "wa.me",
+            "contact",
+            "chat",
+            "hotline",
+            "1800"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 6（WhatsApp Business 作为 CTA 渠道）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-SVC-02",
+          "severity_hint": "medium",
+          "applies_to": "页脚与联系页电话",
+          "rule": "电话号码必须是完整可拨的本地号码（+65 8XXX XXXX、6XXX XXXX 或 1800 热线），不要留缺位模板号。",
+          "why": "新加坡是 8 位编号计划；缺位号码会被本地买家识别为假号码或没填完的模板。",
+          "fix": "统一写 +65 8XXX XXXX 或 1800 XXX XXXX，并在页脚、联系页、保修页保持一致。",
+          "signals": [
+            "+65",
+            "tel:",
+            "phone",
+            "call us"
+          ],
+          "source": {
+            "type": "official",
+            "title": "IMDA：National Numbering Plan",
+            "url": "https://www.imda.gov.sg/assets/ed442ee8-853e-4184-a710-8e6722606721.pdf"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "支持页与 FAQ",
+          "rule": "客服要给响应时效与服务时段，并说明周末/公共假日；不要只写「24/7」却没有渠道。",
+          "why": "「24/7 support」如果只有一个表单，等于没有承诺；写清时段与响应时效，买家才知道何时能得到答复。",
+          "fix": "写「Live chat Mon–Fri 9:00–18:00 SGT; email replies within 1 business day」。",
+          "signals": [
+            "response time",
+            "business day",
+            "opening hours",
+            "24/7",
+            "support hours",
+            "holiday"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（客服时效表述通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-SVC-04",
+          "severity_hint": "low",
+          "applies_to": "客服语言能力说明",
+          "rule": "客服语言至少英文可通；中文是加分项，不要写成唯一渠道。",
+          "why": "新加坡英文是共同语，客服只标中文会把多数买家挡在门外；标中文可以吸引华族客群，但不能替代英文。",
+          "fix": "写「Support in English and Mandarin」，并在服务时间内说明各语言的可用时段。",
+          "signals": [
+            "support language",
+            "chinese",
+            "mandarin",
+            "english"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（客服语言表述边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "品牌语气与本地化边界",
+      "source_sections": [
+        "Section 2",
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-BRAND-01",
+          "severity_hint": "medium",
+          "applies_to": "全球品牌与本地子品牌",
+          "rule": "全球统一的品牌语气可以保留，但价格、可购买性、配送与售后必须本地化；不要为了「本地化」改写全球 slogan。",
+          "why": "3C 的全球品牌资产来自一致语气与产品名；改掉 slogan 既得不到本地好感，也会破坏品牌识别。真正影响转化的是价格与售后是否本地可执行。",
+          "fix": "slogan 与产品名保持原文；把本地化预算放在含 GST 价格、库存、配送时效、保修与支付方式上。",
+          "signals": [
+            "slogan",
+            "global",
+            "worldwide",
+            "brand",
+            "singapore"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（全球 master 与本地化边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-BRAND-02",
+          "severity_hint": "medium",
+          "applies_to": "产品名、系列名与功能名",
+          "rule": "全球 slogan 与产品名不要机翻；只翻译描述性文字，品牌名、系列名、功能名保持原文。",
+          "why": "机翻产品名会让搜索与售后对不上型号；新加坡买家认型号与系列名，翻译后既搜不到也说不清。",
+          "fix": "产品名/系列名/功能名保留原文，只把描述性段落译成自然的英文（必要时补中文对照）。",
+          "signals": [
+            "tagline",
+            "translated",
+            "machine translation",
+            "translated by"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（品牌名与功能名不翻译）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-BRAND-03",
+          "severity_hint": "high",
+          "applies_to": "最高级与性能宣称",
+          "rule": "「world's best」「No.1」「most accurate」这类最高级宣称必须有可核对依据；没有依据就改成可验证的具体表述。",
+          "why": "CPFTA 第二附表禁止对商品的质量、等级、性能作其实际没有的表示；最高级宣称属最容易触发执法的一类表述。",
+          "fix": "改成可核对参数（「0.1 s response time, tested by [lab] on [date]」），或直接删除最高级表述。",
+          "signals": [
+            "world's best",
+            "no.1",
+            "number one",
+            "most accurate",
+            "fastest",
+            "leading",
+            "best in"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003 第二附表",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-CE-BRAND-04",
+          "severity_hint": "medium",
+          "applies_to": "节庆与送礼场景",
+          "rule": "节庆场景可以用 CNY / Hari Raya / Deepavali，但不要把 3C 硬套进宗教叙事；3C 的本地化重点是「送礼/升级/以旧换新」。",
+          "why": "把电子产品塞进宗教或祭祀语境会显得不尊重；3C 的节庆需求实际集中在送礼、年终升级与换机。",
+          "fix": "节庆 banner 用「Gift the upgrade」「Trade in and save」，避免宗教符号与祭祀场景。",
+          "signals": [
+            "cny",
+            "hari raya",
+            "deepavali",
+            "gift",
+            "festive"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 节庆场景边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "SG-CE-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "产品页首屏",
+          "rule": "首屏要回答「卖什么、为什么选它、下一步做什么」；产品 hero 可以极简，但 Buy / Learn more 必须成对出现。",
+          "why": "3C 买家通常带着型号来，但仍有大量比价流量；只有一张产品图和一个「了解更多」，会让比价用户直接返回搜索结果。",
+          "fix": "首屏给产品名 + 一句核心差异 + 价格 + 主 CTA（Buy now）与次 CTA（Compare models）。",
+          "signals": [
+            "learn more",
+            "buy",
+            "shop",
+            "pre-order",
+            "discover"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 6（信息层级）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CE-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "规格区与对比模块",
+          "rule": "规格要用可扫描的表格/对比，不要用长段落堆参数；关键差异（屏幕、芯片、电池、相机）要能一眼对比。",
+          "why": "3C 的购买决策是参数对比；长段落堆参数会让买家跳到竞品页面去比，等于把决策场景让出去。",
+          "fix": "规格做成表格，并给同系列型号的并排对比；关键差异加一行「与上代相比」。",
+          "signals": [
+            "compare",
+            "specs",
+            "technical specifications",
+            "chip",
+            "camera",
+            "display"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C 规格呈现通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "CTA 与促销话术",
+          "rule": "CTA 要明确、克制：Buy / Learn more / Trade in 优于「限时抢购」「最后机会」这类高压话术。",
+          "why": "新加坡买家对高压促销持谨慎态度，容易怀疑质量或真实性；3C 是高单价决策，紧迫感反而增加犹豫。",
+          "fix": "主 CTA 用 Buy now / Compare models / Trade in；促销写具体让利（Save S$80）而不是「Hurry!」。",
+          "signals": [
+            "buy now",
+            "limited time",
+            "hurry",
+            "last chance",
+            "click here"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（3C CTA 语气边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "品牌站首页与产品列表",
+          "rule": "首页可以不标价（品牌站常见），但必须能一步进入商店并看到含 GST 的价格；不要让「了解产品」与「购买」断开。",
+          "why": "3C 品牌站常用「了解 → 购买」两段式；如果购买入口藏得深，或价格要到结算才出现，比价流量会直接流失。",
+          "fix": "产品页给「Buy」直达商店，价格含 GST 并在商品卡展示；库存状态一并显示。",
+          "signals": [
+            "from s$",
+            "see price",
+            "price list",
+            "where to buy"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（品牌站两段式路径）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CE-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "页脚与法务链接",
+          "rule": "页脚要能直达 Order Status、Returns & Refunds、Privacy、Support；不要把这些藏在多层菜单里。",
+          "why": "3C 售后触点集中在订单与退换；法务与支持页藏太深，会在出问题时放大不满，也不符合 PDPA 的可获取性预期。",
+          "fix": "页脚固定四项：Order Status / Returns & Refunds / Privacy Policy / Support。",
+          "signals": [
+            "returns and refunds",
+            "privacy policy",
+            "terms"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（页脚信息可获取性）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    }
+  ]
+}

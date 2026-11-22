@@ -1,0 +1,907 @@
+{
+  "market": "SG",
+  "market_name": "新加坡",
+  "category": "small_appliances",
+  "category_name": "小家电",
+  "version": "2026-11-18-v0.1",
+  "scope": "只适用于新加坡市场的小家电（厨房电器、清洁电器、环境电器、个护电器）。受 CPSR 管制的 33 类商品须先取得 SAFETY Mark 注册才能宣传销售；带无线模块的产品还要过 IMDA 设备注册。本索引不复制法条正文，合规判定由 knowledge/legal/sg/rules.v0.1.json 负责。",
+  "dimensions": [
+    {
+      "id": "language",
+      "name": "语言与本地化表达",
+      "source_sections": [
+        "Section 3",
+        "Section 4",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-LANG-01",
+          "severity_hint": "medium",
+          "applies_to": "全部 SKU 的标题、卖点与品类导航",
+          "rule": "新加坡正式文案应统一英式拼写与日期格式，不要英美混用。",
+          "why": "新加坡教育体系以英式英语为准，正式文书与商务沟通沿用英式拼写；同一页里 color 与 colour 并存，会让本地读者觉得是没校对过的机翻稿。",
+          "fix": "统一 colour / centre / organise / catalogue / travelled；日期写 18/11/2026 或 18 November 2026，不要写 November 18, 2026。",
+          "signals": [
+            "color",
+            "center",
+            "organize",
+            "catalog",
+            "personalized",
+            "mm/dd"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 3/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-LANG-02",
+          "severity_hint": "medium",
+          "applies_to": "规格表、保修条款、结算与客服流程",
+          "rule": "Singlish 语气词与口语语法只可用于社媒语气，不得进入规格、保修与交易流程。",
+          "why": "lah / leh / lor / shiok 在本地营销中能拉近距离，但写进保修条款或结算说明会显得不专业；新加坡买家对「正式文件里出现口语」非常敏感。",
+          "fix": "规格与条款用标准英语；社媒与促销 banner 可保留 kiasu / shiok 这类已经被词典收录的本地词，但要保证语义正面。",
+          "signals": [
+            "lah",
+            "leh",
+            "lor",
+            "shiok",
+            "kiasu",
+            "can lah",
+            "confirm plus chop"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 3/4",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-LANG-03",
+          "severity_hint": "high",
+          "applies_to": "养生壶、电炖锅、料理机等中文思维命名的品类",
+          "rule": "中文直译的品类词（Health Pot、Stew Cooker、Food Menu）在新加坡没有对应认知，要换成本地常用说法。",
+          "why": "直译词既不进入本地搜索词，也说不清用途：Health Pot（养生壶）本地通常叫 glass kettle 或 multifunction kettle，Stew Cooker 叫 slow cooker，Food Menu 会被读成餐厅菜单。",
+          "fix": "改成 Multifunction Glass Kettle、Slow Cooker、Recipes；品类导航用可搜索词（Air Fryer、Rice Cooker、Air Purifier）。",
+          "signals": [
+            "health pot",
+            "stew cooker",
+            "food menu",
+            "multi cooker",
+            "yogurt maker"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（基于本地电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-LANG-04",
+          "severity_hint": "medium",
+          "applies_to": "全部规格区与包装信息",
+          "rule": "规格一律用公制与摄氏度；英制只能作为公制之后的附加标注。",
+          "why": "WMA 1975 s.18(1)(d) 规定展示商品时不得只用非公制单位，非公制只能作为附加标注且不得比公制更显著；同时本地买家习惯用 L、cm、W、°C 判断容量与功率。",
+          "fix": "写 1.5 L、24 cm、1800 W、230V / 50Hz；确需并列英制时把公制放前面，例如 1.5 L (1.6 qt)，且字号不得大于公制数值。",
+          "signals": [
+            "oz",
+            "ounce",
+            "inch",
+            "inches",
+            "lb",
+            "lbs",
+            "fahrenheit",
+            "qt"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Weights and Measures Act 1975 s.18(1)(d)：展示商品须用公制",
+            "url": "https://sso.agc.gov.sg/Act/WMA1975"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-LANG-05",
+          "severity_hint": "low",
+          "applies_to": "标题、促销区与首页 banner",
+          "rule": "避免堆叠空泛营销词（Hot Sale、High Quality、Best Price），改用可核对的具体信息。",
+          "why": "「Hot Sale High Quality Good Price」是典型中式电商英文；新加坡买家对这类堆叠词的容忍度低，且它们不进入本地搜索习惯。",
+          "fix": "换成可核对信息：SAFETY Mark registered、2-year local warranty、Free delivery over S$80、1800 W；每句只保留一个卖点。",
+          "signals": [
+            "hot sale",
+            "high quality",
+            "good price",
+            "best price",
+            "top quality",
+            "cheap price"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 4/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "trust",
+      "name": "信任与合规资质",
+      "source_sections": [
+        "Section 5",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-TRUST-01",
+          "severity_hint": "high",
+          "applies_to": "CPSR 附表一 33 类受管制家电（电水壶、厨房机、电饭煲、风扇、熨斗、吸尘器等）",
+          "rule": "受管制家电必须写清 SAFETY Mark 的 8 位注册编号，且编号能对应到具体型号；不能只写「safety certified」。",
+          "why": "受管制商品须在 CPSO 注册并贴 SAFETY Mark 才能供应或为供应而广告；标签上的 8 位编号是买家反查登记册的唯一凭据。没有编号的「certified」既无法自证，也可能构成虚假商品说明。",
+          "fix": "在规格区写「Registered with CPSO — SAFETY Mark no. XXXXXXXX」，并附标签图；未取证就先删宣称、补证后再卖。",
+          "signals": [
+            "safety mark",
+            "certified",
+            "certificate",
+            "cpso",
+            "safety",
+            "registered"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Product Safety Office：CPSR 受管制商品与 SAFETY Mark",
+            "url": "https://www.consumerproductsafety.gov.sg/suppliers/cpsr/overview-of-cpsr/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-TRUST-02",
+          "severity_hint": "high",
+          "applies_to": "带无线模块的家电、蓝牙耳机、Wi-Fi 音箱等通信设备",
+          "rule": "无线设备要写 IMDA 设备注册号，且不得在未注册设备的广告上标「IMDA compliant」。",
+          "why": "在新加坡销售或使用的无线电通信设备，其设备型号须先经 IMDA 注册批准；在未注册设备上贴合规标签或作合规标示，本身违反经销商规例。",
+          "fix": "规格区写「IMDA registered — registration no. XXXXX」，并核对注册号对应的型号；没有注册就先注册，不要先写「IMDA ready」。",
+          "signals": [
+            "imda",
+            "wi-fi",
+            "bluetooth",
+            "wireless",
+            "router",
+            "5g"
+          ],
+          "source": {
+            "type": "official",
+            "title": "IMDA：Equipment Registration",
+            "url": "https://www.imda.gov.sg/regulations-and-licensing-listing/equipment-registration"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-TRUST-03",
+          "severity_hint": "medium",
+          "applies_to": "全部电器的规格区",
+          "rule": "规格区要写明 230V / 50Hz 与 G 型（BS 1363 三方脚）插头。",
+          "why": "新加坡市电为 230V / 50Hz，插座为英式 G 型三方脚。页面写 110V 或配美规/欧规插头，买家会直接判断「买回来不能用」。",
+          "fix": "写「230V / 50Hz · Type G plug (BS 1363)」；宽压产品写「Input: 100–240V, 50/60Hz」，并说明随箱是否含转换头。",
+          "signals": [
+            "110v",
+            "120v",
+            "type a",
+            "type c",
+            "2-pin",
+            "two-pin",
+            "us plug",
+            "eu plug"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Energy Market Authority：新加坡电气安全与供电规格",
+            "url": "https://www.ema.gov.sg/consumer-information/electricity/electrical-safety"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-TRUST-04",
+          "severity_hint": "medium",
+          "applies_to": "页脚、About 页与保修页",
+          "rule": "页脚要有新加坡本地公司实体、地址、客服邮箱与电话；只有「local team」一句话不足以证明售后存在。",
+          "why": "新加坡买家对纯跨境卖家戒心高：没有本地注册实体与可回拨电话，出现问题只能走平台仲裁。ACRA 注册名与本地地址是最直接的信任信号。",
+          "fix": "页脚补 ACRA 注册名与 UEN、本地地址、support 邮箱、+65 电话与服务时间（SGT）。",
+          "signals": [
+            "about us",
+            "local team",
+            "address",
+            "uen",
+            "acra"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（基于新加坡本地零售商页脚通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-TRUST-05",
+          "severity_hint": "medium",
+          "applies_to": "全新品牌与新品页",
+          "rule": "需要可核对的社会证明：真实评价、买家图、平台评分或媒体测评；「Bestsellers」标签本身不构成证据。",
+          "why": "新加坡消费者在购买前高度依赖评价，尤其来自本地买家的反馈；新品牌没有本地口碑时，自封的 Bestsellers 反而会降低可信度。",
+          "fix": "接入 Google Reviews / Shopee 评分，展示带图的本地买家评价，并标注评价日期与型号。",
+          "signals": [
+            "review",
+            "testimonial",
+            "rating",
+            "bestsellers",
+            "featured",
+            "trusted"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 6（信任信号偏好）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "pricing",
+      "name": "价格、税与促销表达",
+      "source_sections": [
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-PRICE-01",
+          "severity_hint": "high",
+          "applies_to": "GST 注册商家的全部对公众标价",
+          "rule": "对公众展示的价格必须含 GST（现行 9%），不能把税留到结算页才加。",
+          "why": "GST 注册商家在价签、广告、网站上标价必须含 GST，公众需要在下单前看到最终价格；把税放到结算页才出现，属违反价格展示要求，最高可罚 S$5,000。",
+          "fix": "商品卡与详情页直接给含税价，例如 S$109.00，并在价格旁注明「Inclusive of GST」；如同时列不含税价，含税价的字号与位置不得更弱。",
+          "signals": [
+            "before gst",
+            "exclusive of gst",
+            "gst added at checkout",
+            "price before tax",
+            "++"
+          ],
+          "source": {
+            "type": "official",
+            "title": "IRAS：Displaying and quoting prices（含 GST 标价要求）",
+            "url": "https://www.iras.gov.sg/taxes/goods-services-tax-(gst)/basics-of-gst/invoicing-price-display-and-record-keeping/displaying-and-quoting-prices"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-PRICE-02",
+          "severity_hint": "medium",
+          "applies_to": "划线价、折扣标签与「Save S$XX」",
+          "rule": "折扣要有可核对的原价依据；不能先抬价再打折，也不能只留一个无单位数字。",
+          "why": "CPFTA 第二附表禁止虚构原价与虚假价格优势；划线「原价」必须是真实、近期、实际成交过的价格。裸数字（如「11」）还会被当成模板错误。",
+          "fix": "写成「-11%」或「Save S$16.30」，并保留原价与现价的清晰层级；原价保留最近 30 天的实际成交记录备查。",
+          "signals": [
+            "discount",
+            "save",
+            "was s$",
+            "usual price",
+            "up to %",
+            "promotion"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003 第二附表（价格误导）",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-PRICE-03",
+          "severity_hint": "medium",
+          "applies_to": "全部价格与促销文案",
+          "rule": "货币写法要统一：S$1,299.00，不要 S$1299、SGD 1299、$1.3k 混用。",
+          "why": "新加坡元与美元都以 $ 书写，跨境页面不标 S$ 或 SGD 会让买家怀疑是不是美元定价；千分位与两位小数是本地价格阅读习惯。",
+          "fix": "全站统一 S$1,299.00；若只在页脚声明币种，则主价旁的 $ 必须与页脚说明一致。",
+          "signals": [
+            "usd",
+            "us$",
+            "sgd",
+            "s$",
+            "price"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地零售与电商价格书写惯例）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-PRICE-04",
+          "severity_hint": "low",
+          "applies_to": "首屏与商品卡",
+          "rule": "价格、运费门槛与支付方式应在首屏同时可见。",
+          "why": "新加坡买家习惯先确认「到手价」再决定是否继续浏览；把运费和支付方式藏在结算页会推高弃购。",
+          "fix": "商品卡直接显示含税现价、原价、免运费门槛（Free delivery over S$80）与可用的本地支付方式。",
+          "signals": [],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（基于本地电商首屏通行结构）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "payment",
+      "name": "支付与结算习惯",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-PAY-01",
+          "severity_hint": "high",
+          "applies_to": "结算页与商品页支付区",
+          "rule": "应展示本地主流支付方式：PayNow、GrabPay、ShopeePay、Visa/Mastercard、Apple Pay / Google Pay、NETS。",
+          "why": "新加坡的账户到账户支付极度普及，PayNow 覆盖绝大多数成年人口；只放信用卡与 PayPal 会让大量习惯 PayNow/钱包的买家在结算前流失。",
+          "fix": "在加购按钮附近放支付图标行，并写明「PayNow · GrabPay · ShopeePay · Visa/Mastercard · Apple Pay」。",
+          "signals": [
+            "paynow",
+            "grabpay",
+            "shopeepay",
+            "nets",
+            "apple pay",
+            "google pay",
+            "visa",
+            "mastercard",
+            "payment"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "ABS：PayNow（新加坡账户到账户支付）",
+            "url": "https://www.abs.org.sg/consumer-banking/pay-now"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-PAY-02",
+          "severity_hint": "medium",
+          "applies_to": "中高客单价小家电",
+          "rule": "分期/BNPL 要写清期数、最低消费与是否 0% 利息，不能只放一个平台图标。",
+          "why": "Atome、SPayLater 等先买后付在新加坡中高客单价品类接受度高；只放图标不写「3 期免息、最低 S$XX」，买家无法判断自己是否符合条件。",
+          "fix": "价格旁写「or 3 payments of S$XX with Atome · 0% interest」，并在 FAQ 写明最低消费、期数与逾期条款。",
+          "signals": [
+            "atome",
+            "spaylater",
+            "paylater",
+            "installment",
+            "instalment",
+            "0% interest",
+            "monthly payment"
+          ],
+          "source": {
+            "type": "secondary",
+            "title": "Atome Singapore：分期条款与适用条件",
+            "url": "https://www.atome.sg/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-PAY-03",
+          "severity_hint": "medium",
+          "applies_to": "结算页与信任条",
+          "rule": "支付安全说明要具体（3-D Secure、PCI DSS），不要写「100% secure」。",
+          "why": "「100% secure」既不可证实也不可执行；新加坡买家更认具体的风控标识与退款保障条款。",
+          "fix": "写「Checkout is secured with 3-D Secure; card details are handled by our PCI DSS–compliant payment provider」，并给退款与争议处理入口。",
+          "signals": [
+            "100% secure",
+            "secure payment",
+            "checkout",
+            "payment security"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（支付安全表述通行边界）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-PAY-04",
+          "severity_hint": "low",
+          "applies_to": "结算流程与运费说明",
+          "rule": "结算页要把运费、税费与折扣分项列清，不能到最后一步才冒出附加费用。",
+          "why": "分拆定价（drip pricing）在新加坡受 CCCS 价格透明指引约束；买家在确认付款前必须看到最终总价。",
+          "fix": "结算页按「商品小计 / 运费 / 折扣 / 应付总额（含 GST）」分项列出，运费在进入结算前就可知。",
+          "signals": [
+            "shipping fee",
+            "delivery fee",
+            "surcharge",
+            "handling fee",
+            "total at checkout"
+          ],
+          "source": {
+            "type": "official",
+            "title": "CCCS：价格透明与分拆定价指引",
+            "url": "https://www.cccs.gov.sg/"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    },
+    {
+      "id": "logistics",
+      "name": "配送与退换",
+      "source_sections": [
+        "Section 1",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "SG-LOG-01",
+          "severity_hint": "high",
+          "applies_to": "全部配送说明与促销 banner",
+          "rule": "「Free delivery」必须写清门槛、适用区域与预计时效。",
+          "why": "小家电体积与重量差异大，无条件写「Free shipping」会让买家以为整单免运；新加坡本地配送通常 1–3 个工作日，写清时效才能管理预期。",
+          "fix": "写成「Free delivery on orders over S$80 · 1–3 working days」，并在 FAQ 说明离岛与大件家电的额外安排。",
+          "signals": [
+            "free shipping",
+            "free delivery",
+            "shipping",
+            "delivery",
+            "postage",
+            "working days"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地配送时效与免运门槛通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-LOG-02",
+          "severity_hint": "medium",
+          "applies_to": "配送方式与取件说明",
+          "rule": "应提供自取/智能柜取件选项并说明取件期限，不要只给送货上门。",
+          "why": "SingPost 的 POPStation 智能柜与 POPStop 网点覆盖全岛，上班族普遍用自取避开白天不在家的问题；只提供送货上门会漏掉这部分需求，也会增加二次派送成本。",
+          "fix": "结算页给「Deliver to home / Collect at POPStation」，并写明取件期限（通常 3 天）与逾期退回规则。",
+          "signals": [
+            "popstation",
+            "collection point",
+            "self-collect",
+            "pickup",
+            "locker"
+          ],
+          "source": {
+            "type": "official",
+            "title": "SingPost：Parcel Collection / POPStation 取件点",
+            "url": "https://www.singpost.com/support/managing-deliveries/collection-points"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-LOG-03",
+          "severity_hint": "high",
+          "applies_to": "退换货政策页与商品页",
+          "rule": "写清退换窗口、商品状态要求、退货运费归属与退款渠道，并说明这是商家政策而非法定冷静期。",
+          "why": "新加坡对多数网上下单没有法定冷静期，退货是商家自愿提供的政策；页面若暗示「法定 7 天无理由退货」，一旦拒退就会构成不公平做法。CPFTA Part III 的救济针对的是不符合合同的商品。",
+          "fix": "写「14-day returns on unused items in original packaging; return shipping is borne by the buyer unless the item is defective」，并单列缺陷商品的 repair/replace/refund 路径。",
+          "signals": [
+            "return",
+            "returns",
+            "refund",
+            "exchange",
+            "cooling off",
+            "7-day return"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003（Part III 商品救济）",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-LOG-04",
+          "severity_hint": "medium",
+          "applies_to": "缺陷与保修索赔说明",
+          "rule": "缺陷商品应指向 CPFTA 下的 repair / replace / reduce price / refund 路径，并给本地维修或换货入口。",
+          "why": "交付时不符合合同要求的商品，买家可要求维修、更换、减价或退款；把售后只写成「联系客服」会让买家不知道该主张什么权利。",
+          "fix": "保修页写「If the item does not conform to the contract at delivery, you may request repair, replacement, a price reduction or a refund」，并附本地服务点与寄修地址。",
+          "signals": [
+            "warranty",
+            "defective",
+            "repair",
+            "replacement",
+            "faulty"
+          ],
+          "source": {
+            "type": "official",
+            "title": "Consumer Protection (Fair Trading) Act 2003（不符合合同商品的救济）",
+            "url": "https://sso.agc.gov.sg/Act/CPFTA2003"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-LOG-05",
+          "severity_hint": "low",
+          "applies_to": "订单与物流追踪",
+          "rule": "要写明承运商与运单查询入口，让买家能预期「谁送货、怎么查」。",
+          "why": "SingPost / Ninja Van / J&T / Qxpress 是本地买家熟悉的承运商；写出名称与追踪入口，比一句「we ship fast」可信。",
+          "fix": "FAQ 写「We ship via SingPost / Ninja Van; a tracking number is emailed within 24 hours」，并附追踪页链接。",
+          "signals": [
+            "singpost",
+            "ninja van",
+            "j&t",
+            "qxpress",
+            "tracking number",
+            "track order"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地承运商与追踪入口通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "name": "客服与联络渠道",
+      "source_sections": [
+        "Section 1",
+        "Section 6",
+        "Section 7"
+      ],
+      "rules": [
+        {
+          "id": "SG-SVC-01",
+          "severity_hint": "high",
+          "applies_to": "全部页面的联系入口",
+          "rule": "客服渠道至少要给两个可用入口（WhatsApp 或在线聊天 + 电邮/表单），并写服务时间（SGT）。",
+          "why": "WhatsApp Business 是新加坡首选客服渠道，但纯 WhatsApp 会让不用 WhatsApp 的买家无路可走；没有服务时间则无法判断何时能得到回复。",
+          "fix": "页脚与联系页并列「WhatsApp us（wa.me/65XXXXXXXX）· Email · Contact form」，标注 Mon–Fri 9:00–18:00 SGT。",
+          "signals": [
+            "whatsapp",
+            "wa.me",
+            "live chat",
+            "email us",
+            "hotline",
+            "contact us"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 6（WhatsApp Business 作为 CTA 渠道）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-SVC-02",
+          "severity_hint": "high",
+          "applies_to": "页脚、联系页与保修页的电话号码",
+          "rule": "电话号码必须是完整的 8 位新加坡号码（+65 8XXX XXXX 或 6XXX XXXX），缺位号码等同模板占位符。",
+          "why": "新加坡是统一 8 位编号计划，手机以 8 或 9 开头，固话以 6 开头；+65 1234 567 这类缺位号码会被本地买家识别为假号码或没填完的模板。",
+          "fix": "换成真实的 +65 8XXX XXXX 或 +65 6XXX XXXX，并在页脚、联系页、保修页保持一致。",
+          "signals": [
+            "+65",
+            "tel:",
+            "call us",
+            "phone"
+          ],
+          "source": {
+            "type": "official",
+            "title": "IMDA：National Numbering Plan（8 位编号计划）",
+            "url": "https://www.imda.gov.sg/assets/ed442ee8-853e-4184-a710-8e6722606721.pdf"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        },
+        {
+          "id": "SG-SVC-03",
+          "severity_hint": "medium",
+          "applies_to": "联系页与 FAQ",
+          "rule": "客服响应要给出时效承诺，并说明周末与公共假日不计。",
+          "why": "新加坡买家习惯先问再买；没有响应时效会让人怀疑售后是否有人。节假日承诺不排除公共假日，容易被击穿。",
+          "fix": "写「We reply within 1 business day (Mon–Fri, excluding public holidays)」，并在节前 banner 提示可能延长。",
+          "signals": [
+            "response time",
+            "reply",
+            "business day",
+            "support hours",
+            "24/7"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地客服时效承诺通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-SVC-04",
+          "severity_hint": "high",
+          "applies_to": "订阅、注册与结算页的营销同意",
+          "rule": "营销同意不得预勾选、不得作为下单条件，且必须提供可用的退订方式。",
+          "why": "PDPA 要求同意必须自愿、知情且针对特定目的；把营销同意作为供货条件取得的同意无效。短信营销还须先查 DNC 登记册，并提供发送者身份与退订渠道。",
+          "fix": "订阅勾选框默认不勾选且与下单分开；隐私页写明目的、保存期限、DNC 查询做法与退订入口（邮件退订链接或回复退订）。",
+          "signals": [
+            "subscribe",
+            "newsletter",
+            "opt in",
+            "marketing consent",
+            "unsubscribe"
+          ],
+          "source": {
+            "type": "official",
+            "title": "PDPC：Personal Data Protection Act — Data Protection Obligations",
+            "url": "https://www.pdpc.gov.sg/overview-of-pdpa/the-legislation/personal-data-protection-act/data-protection-obligations"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "已核实"
+        }
+      ]
+    },
+    {
+      "id": "culture",
+      "name": "文化语境与节庆",
+      "source_sections": [
+        "Section 5",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "SG-CUL-01",
+          "severity_hint": "medium",
+          "applies_to": "首屏素材、人物图与 About 页",
+          "rule": "营销素材应体现多元族裔构成，不能只呈现单一族群。",
+          "why": "新加坡是华族约 74%、马来族约 13%、印度族约 9% 的多元社会；只呈现单一族裔会让其余群体觉得「这不是卖给我的」，也与种族和谐的公共预期相悖。",
+          "fix": "首屏与场景图按族群比例混合出镜；节庆素材也轮换，不把某一族群当成默认客群。",
+          "signals": [
+            "chinese new year",
+            "cny",
+            "hari raya",
+            "deepavali",
+            "festive",
+            "family"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 5/7",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CUL-02",
+          "severity_hint": "high",
+          "applies_to": "全部图片、视频与食谱内容",
+          "rule": "避免宗教与族群敏感元素：宗教符号误用、种族刻板印象、政治议题、过度暴露着装。",
+          "why": "新加坡对种族与宗教和谐有严格法律保护，涉及种族或宗教的冒犯性内容会直接引发下架与执法风险；政治议题同样不适合出现在商业素材里。",
+          "fix": "上线前做素材审查：不出现宗教符号的装饰化使用、不做族群刻板印象的角色设定、不碰政治表态；人物着装按保守标准。",
+          "signals": [
+            "religion",
+            "race",
+            "political",
+            "bikini",
+            "alcohol",
+            "beef"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 5（文化禁忌）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CUL-03",
+          "severity_hint": "medium",
+          "applies_to": "食品接触类小家电（空气炸锅、蒸锅、破壁机、电饭煲）",
+          "rule": "面向穆斯林客群的食品接触场景要避开猪肉与酒精，且未经 MUIS 认证不得使用 halal 标志或写「halal certified」。",
+          "why": "马来族穆斯林买家对食品接触材质与食材非常敏感；未经 MUIS 认证而使用 halal 标识，在新加坡属可被执法的虚假标示。",
+          "fix": "食谱与场景用清真食材、不含酒精的餐桌布置；材质说明写「Food-contact parts are BPA-free and detachable」，等认证通过后再展示 halal 标识。",
+          "signals": [
+            "halal",
+            "muis",
+            "muslim",
+            "food contact",
+            "bpa",
+            "lard",
+            "pork"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 5（清真与饮食禁忌）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CUL-04",
+          "severity_hint": "low",
+          "applies_to": "促销日历与节庆 banner",
+          "rule": "促销日历要覆盖四大节庆（农历新年、Hari Raya、Deepavali、圣诞）与本地大促节点。",
+          "why": "只做农历新年会把马来族与印度族客群排除在外，也浪费全年多个销售高峰；新加坡买家对 11.11、Black Friday 等大促节点同样敏感。",
+          "fix": "按季度排期：CNY（团圆饭/烘焙）、Hari Raya（开斋聚餐/烘焙）、Deepavali（甜点/送礼）、圣诞与 11.11/12.12 叠加。",
+          "signals": [
+            "11.11",
+            "12.12",
+            "black friday",
+            "great singapore sale",
+            "gss",
+            "mega sale"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地节庆与大促节点观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        }
+      ]
+    },
+    {
+      "id": "content",
+      "name": "信息层级与表达自然度",
+      "source_sections": [
+        "Section 4",
+        "Section 6"
+      ],
+      "rules": [
+        {
+          "id": "SG-CONT-01",
+          "severity_hint": "high",
+          "applies_to": "首屏 hero 区",
+          "rule": "首屏必须回答「卖什么、为什么选你、下一步做什么」，不能只有欢迎语和分类导航。",
+          "why": "移动端首屏决定去留；只写「Welcome to our store」等于把最贵的版面用来打招呼，新加坡买家会直接返回搜索结果。",
+          "fix": "首屏改成一句价值主张 + 主 CTA（Shop bestsellers / Chat with us）+ 信任条（SAFETY Mark、2-year warranty）。",
+          "signals": [
+            "welcome to",
+            "shop now",
+            "more",
+            "home"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 6（信息层级）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CONT-02",
+          "severity_hint": "medium",
+          "applies_to": "文案语气与模板句",
+          "rule": "避免中式英语与机械重复的模板句，改用自然的本地英语。",
+          "why": "「Welcome to call us」「Please kindly revert」这类表达在新加坡虽能看懂，但会立刻暴露是机翻或没做过本地校对，削弱品牌可信度。",
+          "fix": "统一改成 Get in touch / Contact us / We'll get back to you within one working day；每段只保留一个 CTA。",
+          "signals": [
+            "please kindly",
+            "revert",
+            "welcome to call",
+            "hope for your early reply",
+            "information"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 4（Chinglish 对照表）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        },
+        {
+          "id": "SG-CONT-03",
+          "severity_hint": "medium",
+          "applies_to": "分类导航与筛选器",
+          "rule": "分类导航要用买家会搜索的具体品类词，不要用 Healthy Living、Home Living 这类空泛标签。",
+          "why": "空泛标签既不是本地搜索词，也无法体现产品差异；新加坡买家习惯直接搜 Air Fryer、Air Purifier 这样的具体品类。",
+          "fix": "改成 Air Fryer、Rice Cooker、Blender、Vacuum Cleaner、Air Purifier、Hair Dryer，并保持与站点搜索词一致。",
+          "signals": [
+            "healthy living",
+            "home living",
+            "product catalog",
+            "category",
+            "lifestyle"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电商品类词观察）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CONT-04",
+          "severity_hint": "medium",
+          "applies_to": "规格区与对比模块",
+          "rule": "规格要以表格或对比方式呈现，关键参数（容量、功率、电压、尺寸、噪音）要能一眼比较。",
+          "why": "新加坡买家习惯横向比参数再下单；把参数写成长段落会显著增加阅读成本，也让「和竞品差在哪」无法回答。",
+          "fix": "规格做成表格，容量/功率/电压/尺寸/噪音分列；至少给一个同系列型号的对比入口。",
+          "signals": [
+            "specification",
+            "specs",
+            "compare",
+            "capacity",
+            "power",
+            "dimensions"
+          ],
+          "source": {
+            "type": "editorial",
+            "title": "团队编辑判断（本地电商规格呈现通行做法）",
+            "url": null
+          },
+          "accessed": "2026-11-18",
+          "confidence": "编辑判断"
+        },
+        {
+          "id": "SG-CONT-05",
+          "severity_hint": "low",
+          "applies_to": "CTA 与促销话术",
+          "rule": "CTA 用清晰直接的行动词，并避免过度紧迫的促销话术。",
+          "why": "新加坡买家偏好明确的行动指引（Shop now、Get a quote），同时对「限时抢购」类高压话术持谨慎态度，容易怀疑质量或真实性。",
+          "fix": "主 CTA 写 Shop now / Compare models / Chat with us；促销写具体让利（Save S$30）而不是「Hurry! Last chance!」。",
+          "signals": [
+            "hurry",
+            "limited time",
+            "last chance",
+            "buy now",
+            "click here"
+          ],
+          "source": {
+            "type": "internal",
+            "title": "团队国家知识库 singapore.md Section 6（CTA 本地习惯）",
+            "url": "https://github.com/RayySummers/wendo-knowledge-base/blob/main/references/regions/asiapacific/singapore.md"
+          },
+          "accessed": "2026-11-18",
+          "confidence": "佐证"
+        }
+      ]
+    }
+  ]
+}
