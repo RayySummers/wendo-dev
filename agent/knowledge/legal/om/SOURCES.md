@@ -39,6 +39,17 @@
 | OM6 | Executive Regulations of the Personal Data Protection Law（部长决定 34/2024，阿语） | 2024-08-28 | 198,588 | `https://www.mtcit.gov.om/web/content/mtcit.content/1035/attachment?download=True` | `pdpl_regs.pdf` | `43fdb2a30ab82b2cb7d76be1f01c9430252d986c3e8436d61267852ba4d6c552` |
 | OM7 | Personal Data Protection Law（Royal Decree 6/2022，阿语原文） | Official Gazette No. (1429) | 154,415 | `https://www.mtcit.gov.om/web/content/mtcit.content/1034/attachment?download=True` | `pdpl_2022_ar.pdf` | `a7fde9fff58e5e9dbbf668c1af4c786e71311a0dcdb5b0f552023d67d9f061e0` |
 
+### 官方公报（Official Gazette）下载通道（2026-11-18 实测）
+
+司法部法律事务厅（MJLA）的公报库可机取，是 OM4 / OM6 这类「部委附件」之外的第二条官方取件路径：
+
+- 公报列表：`https://www.mjla.gov.om/legislation/1`（可抓）
+- 直下 PDF：`https://www.mjla.gov.om/modules/legislation/download.php?file=<id>`（直接回 PDF）
+- `file=1185` → 公报第 1664 期（2026-09-06），苏丹诏令 68/2026（PDPL 修订令）起第 **91 页**
+- `file=1045` → 公报第 1531 期（2024-02-04），含部长决定 34/2024（PDPL 实施条例）
+
+> 旁证 `qanoon.om`（`/p/2026/rd2026068/`、`/p/2024/mtcit20240034/` 转录了同一文本）自述「موقع Qanoom.om لا يعد مصدرا رسميا للقوانين」（非官方来源），**只能当线索，不得引用为官方源**。
+
 ### 交叉核对记录
 
 1. **CPA 英文译本 ↔ gov.om 阿语合并本（OM1 vs OM5）。**
@@ -112,6 +123,12 @@ curl -sSL -A 'Mozilla/5.0' \
 curl -sSL -A 'Mozilla/5.0' \
   'https://www.mtcit.gov.om/web/content/mtcit.content/1481/attachment?download=True' \
   -o rd68_2026_ar.pdf
+
+# OM4 / OM6 的官方公报原件（MJLA 公报库，2026-11-18 实测可机取）
+curl -sSL -A 'Mozilla/5.0' \
+  'https://www.mjla.gov.om/modules/legislation/download.php?file=1185' -o gazette_1664.pdf
+curl -sSL -A 'Mozilla/5.0' \
+  'https://www.mjla.gov.om/modules/legislation/download.php?file=1045' -o gazette_1531.pdf
 
 # OM5 阿语合并本（gov.om 文档库，需先从页面取带 hash 的直链）
 curl -sSL -A 'Mozilla/5.0' \

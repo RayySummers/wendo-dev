@@ -52,6 +52,7 @@
 | S25 | AITI — Equipment Search（已注册设备数据库页） | 确认可按品牌/型号检索 Equipment Registration；数据库自 2000 年起收录，但「未检索到」不等于未批准 | 页面无稳定静态正文，未计算哈希 |
 | S26 | AGC BruLaw — 法规索引页（A-Z，352 条） | 用于穷举候选法规，确认无独立的「消费者保护（安全要求）令」或「电商披露条例」 | `agc_index/laws.json` = `6834308c00df9b8f95a9fbc9202956feec0cd79e37e89282bbbfee08ff2c1de4` |
 | S27 | Consumer Protection (Fair Trading) Order, 2011 (S 64/2011) 原始文本 | 与 S1 的 2023 合并本逐句交叉核对 s.4、Sch. 2 para. 1/20 | `65a655832c2c4243dfe1f5c62a1d7f2ad70074e6a390acba741f6fbd238c567f` |
+| S28 | AITI — Advisory Guidelines on Equipment Importation and Type Approval（PDF，effective 2019-12-13，835,135 B）<br>`https://aiti.gov.bn/media/5lghh4op/agonequipmentimportationtypeapproval_final.pdf` | 确认 DTA 的进口许可费豁免范围（Sch.3、footnote 3）与 §5.2.4 Implicit Import Permit 的类别规则 | `df3f4adb0ead2a653c03314ab346df835cefbe74d50d534ebac7af862cd2f04c` |
 
 ## OCR / 文本层说明（`gazette_scan_ocr`）
 
@@ -72,7 +73,7 @@
 2. **Cap. 261 的罚则结构**：对 S1 全文检索 `fine`、`imprison`、`offence`，命中数为 **0**，确认本法为纯民事框架；这一结论直接影响报告措辞（不能说「将被罚款」）。
 3. **Price Control**：S5 s.5 与 S6 para. 2(1) 的义务表述一致（Controller 可命令零售商标价 / 附表商品须以价格标签标价）；S6 附表第 4 项确认覆盖「Electrical appliances of all kinds and spare parts therefor」；S7 附表确认受管制商品仅为米、糖、面粉、婴儿奶粉、炼乳、烟、汽油，**不含电器**，因此电器不适用最高限价，只适用标价义务。
 4. **Weights and Measures**：S8 核对 s.6(1) 但书（允许 pound/kati 直至部长命令）、s.7（净重）、s.9（预包装，须有 s.8 命令）、s.13(1)(b)、s.13(2)、s.17（一般罚则）。本次**未检索到** s.8 命令，故 s.9 未单列规则。
-5. **Energy Efficiency**：S10 核对 s.6（部长可指定 registrable goods）、s.7、s.8(1)、s.19(1)(2)、s.20(1)、s.29（一般罚则）；S12 附表第 1 项确认仅空调三类，均以 7.1 kW 为上限；S11 的文本层有系统性括号损坏（`(` → `!` 或 `{`），未直接引用，MEPS 数值留待 v0.2（open question 6）。
+5. **Energy Efficiency**：S10 核对 s.6（部长可指定 registrable goods）、s.7、s.8(1)、s.19(1)(2)、s.20(1)、s.29（一般罚则）；S12 附表第 1 项确认仅空调三类，均以 7.1 kW 为上限；S11 的文本层有系统性括号损坏（`(` → `!` 或 `{`），未直接引用。Sch.4 MEPS 已转录：Casement/window、Split（非变频）、Split（变频）三类均为 COP ≥ 2.90；文本层把 `≥` 渲染成 `?`（`COP?: 2.90`），以 450dpi 渲染 + 视觉复核确认。
 6. **Telecommunications**：S13 核对 s.9(1)（使用前批准）、s.52（未获批准设备的断开通知）、s.68（一般罚则 $10,000／3 年）；S14 未设设备型式批准条款，故 3C 规则全部落在 S13 与 S15。S15（AITI 指引）核对 DTA 的「品牌 + 型号」评估、DTA 先于 Dealer Import Permit 的顺序。
 7. **PDPO**：S16 核对 s.3（适用范围/豁免）、s.8（同意）、s.9（文莱电话号码直邮）、s.17(2)（目的告知与联系人）、s.24(1)（跨境转移）、s.37（财务罚款上限）；S17 确认 Parts 1、2、10（除 s.42）、11、12 自 2025-01-08 生效；S18 确认 **Parts 3-9 自 2026-01-01 生效**——因此 BN-PRV-01…05 的 `effective_date` 均为 2026-01-01，而非宪报日 2025-01-08。
 8. **Merchandise Marks**：S19 文本层破损，s.2 定义、s.20、s.21 以 300dpi OCR 核对（p5/p6/p12）；确认「trade description」包含原产国、制造方法、材质，且 s.20 的刑责可及于「causes any false description to be applied」。
@@ -88,9 +89,9 @@
 | 文莱通用家电安全认证（CoA / Safety Mark 类） | `not_found`（AGC 法规库 + AITI + 能效主管机关范围内） | 不能写「未认证即违规」；只能写「页面未展示认证信息，需向商家核实」。需向 DES/MOFE 书面确认 |
 | WMA s.8 命令（指定只按重量/计量出售的商品） | `not_found` | s.9 预包装净重义务未单列 |
 | 终止 pound/kati 过渡的部长命令 | `not_found` | 英制标示只能提示核实（BN-QTY-03 标 human_review） |
-| PDPO s.24 的「prescribed requirements」配套条例 | `not_found` | BN-PRV-05 标 human_review，不能判跨境转移是否合规 |
-| S 37/2023 附表 4 的 MEPS 数值 | 已取得 PDF，但文本层损坏、未逐项转录 | 只能判「须符合 MEPS」，不能判某型号是否达标 |
-| AITI 设备豁免清单 | `not_found` | 无法判断哪些 3C 设备可免 DTA |
+| PDPO s.24 的「prescribed requirements」配套条例 | `not_yet_published`（检索范围：PDPO Sch.1–6 均不含跨境；AITI pdp 门户 7 份 guidance 均为模板） | BN-PRV-05 标 human_review，不能判跨境转移是否合规 |
+| S 37/2023 附表 4 的 MEPS 数值 | **已解决（2026-11-18）**：三类空调均为 COP ≥ 2.90，见「交叉核对记录」第 5 条 | 可按 COP ≥ 2.90 判断某型号是否达到 MEPS 门槛 |
+| AITI 设备豁免清单 | **进口许可费**豁免清单已取得（S28：Sch.3 共 17 类 + footnote 3 仅蓝牙 SRD + §5.2.4 Implicit Import Permit）；**全量 DTA 豁免清单未单独公布** | 可判哪些设备免「进口许可费」；「哪些设备整体免 DTA」仍只能按 §5.2.4 的类别规则判断，不能给全量清单 |
 | 文莱电商披露条例（对应马来西亚 ETT 2024） | `not_found` | 线上 listing 的卖家身份/地址披露无专门规则 |
 | CPFT 附表 1(c) 与标价令/能效法的优先关系 | `unverified`（需律师） | 影响能否用 CPFT 处理价格/能效问题 |
 

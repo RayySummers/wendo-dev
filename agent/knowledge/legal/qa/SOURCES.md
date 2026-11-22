@@ -29,6 +29,8 @@
 
 > S9 未参与任何 `verbatim_excerpt`，故未计算 SHA-256 入表；如需复现可按 URL 重新下载。
 
+> ⚠️ **罚则待核（2026-11-22）**：Law No. 8/2008 Art. 18 经 Law No. 7/2018 修订（2018-05-13 通过、2018-07-04 生效，WIPO Lex 记「as amended up to Law No. 7 of 2018」；原版标 superseded）。现行罚则幅度未取得官方文本，仓库内 13 条引用「3,000–1,000,000 里亚尔」的规则一律标 `review_required`，报告中不得作确定性结论。
+
 ## 访问状态与替代路径
 
 | 来源 | 2026-11-17 直连结果 | 处理 |
@@ -38,11 +40,14 @@
 | MOCI 消费者指南（S9） | 可下载，但正文为阿拉伯文 | 仅作背景，不作为引文 |
 | Kahramaa（km.qa / www.kahramaa.com.qa） | `www` 域名证书不匹配，`km.qa` 可访问但未取得英文规范文本 | 未收录能效标签规则；列入 open questions |
 | 2012 年第 68 号执行条例英文版 | Al Meezan 无英文快照；MOCI 英文页仅提供阿拉伯文合订本 | 未编码为规则；列入 known gaps |
+| CRA `/-/media/` 附件（S5/S6/S7） | 2026-11-18 23:1x 复测：媒体端点触发 Google reCAPTCHA v3 限流（922 B 挑战页）；S5 于同日 23:02 曾成功取回（173,679 B，与记录一致），随后转为 404 | S6/S7 需人工在浏览器另存后更新 token；引文不得记为已核（见下方说明） |
+
+> 2026-11-18 23:1x 复测：`/-/media/` 端点触发 Google reCAPTCHA v3 限流（922 B 挑战页），S5 于同日 23:02 曾成功取回（173,679 B，与记录一致）后转为 404；S6 的 token 已由 `4D87FF06…` 轮换为 `A414762A…`。**S6/S7 的引文当前无法回源复核，不得记为已核。**
 
 ## 交叉核对记录
 
 1. **CPL 2008 条号与结构（S1 vs S2）**：英文快照的章节结构（Chapter One Definitions 1；Chapter Two Rights 2–4；Chapter Three Supplier's Obligations 5–17；Chapter Four Sanctions 18–22；Chapter Five General Provisions 23–30）与阿拉伯文合订本的条号顺序一致；英文页元数据“31 条”系将 18 bis 计入。**结论：条号可用。** 阿拉伯文 PDF 文本层存在 ligature 损坏（如 “غلافها” 提取为 “غالفها”），未做逐字比对。
-2. **CPL 2008 修订状态**：S1 快照仅含 2011 年第 14 号法令修订标记（Art. 1、10、18、18 bis、22）。2018 年第 7 号法的修订未反映在该快照中；据 Al Tamimi 2018-08 文章（辅助来源）涉及行政处罚与关店期限。**结论：罚则与 Art. 18 bis 的现行版本待核，已在 README open questions 登记。**
+2. **CPL 2008 修订状态**：线上阿语版已反映 2018 年第 7 号法修订（Art. 1 / 18 / 22 带 2018-05-13 标记；Art. 18 标注 `معدلة ملغاة`，废止日 2018-05-13）。英文快照（S1，Wayback 2023-04-01）未反映，该快照仅含 2011 年第 14 号法令修订标记（Art. 1、10、18、18 bis、22）；据 Al Tamimi 2018-08 文章（辅助来源）涉及行政处罚与关店期限。**结论：罚则与 Art. 18 bis 的现行版本待核，已在 README open questions 登记。**
 3. **电商法条号（S3 vs Al Meezan 记录）**：Al Meezan 的该法目录显示 “Chapter Eight (51-59) Consumer Protection”“Number of Articles: 77”，与 S3 的目录、Art. 51–59 编号一致。**结论：条号可用。**
 4. **PDPPL（S4）**：NCSA 英文本自述非官方，官方版本为 2016 年公报第 15 期（阿拉伯文）。本库未取得阿拉伯文正本，无法做逐条对照；Art. 23 罚则上限 1,000,000 里亚尔、Art. 24 上限 5,000,000 里亚尔与条文正文一致。**结论：条号与罚则可用，译本官方性需在报告中标注。**
 5. **电信法（S5）**：PDF 页眉为 “Telecommunication Law No (34)2006 Amended Provisions No (17)2017”；CRA 法律参考页列出同一法律。Art. 54–58 为设备标准与核准章节。**结论：可用。**
@@ -80,12 +85,20 @@ curl -sS -L --max-time 60 -A 'Mozilla/5.0' \
   -o CRA_TELECOM_LAW_ENGLISH_Draft_FA.pdf
 
 # S6 型号核准指南（CRA 的 /-/media/ 链接需带 Referer，否则返回 404）
+# ⚠️ 2026-11-18 23:1x 起该端点触发 Google reCAPTCHA v3 限流（922 B 挑战页），curl 已取不到。
+#    复现方式改为：浏览器打开 https://www.cra.gov.qa/en/document/type-approval-guidelines
+#    → 点附件另存为 cra_ta_guidelines.pdf。
+#    下面的 URL 里 token 已由 4D87FF06… 轮换为 A414762A…，token 待人工在浏览器里更新后再替换。
 curl -sS -L --max-time 60 -A 'Mozilla/5.0' \
   -H 'Referer: https://www.cra.gov.qa/en/services/telecommunications/spectrum-management/type-approval' \
   'https://www.cra.gov.qa/-/media/System/4/D/8/7/4D87FF06B6B253A79DA525C1299ABA57/2011-01-09-Guidelines-Type-Approval-EN.ashx' \
   -o cra_ta_guidelines.pdf
 
 # S7 Wi-Fi 6E 类许可
+# ⚠️ 同上：2026-11-18 23:1x 复测 404 / reCAPTCHA 挑战页，curl 已取不到。
+#    复现方式改为：浏览器打开
+#    https://www.cra.gov.qa/en/document/class-license-for-the-use-of-rlan-devices-over-5925-6425-mhz-band
+#    → 点附件另存为 cra_wifi6e.pdf；token 待人工更新。
 curl -sS -L --max-time 60 -A 'Mozilla/5.0' \
   'https://www.cra.gov.qa/-/media/System/D/2/5/8/D258CF18B83A5613B0D590193CB799CB/Class-License-WIFI-6E-Final-English-032022--V3.ashx' \
   -o cra_wifi6e.pdf
@@ -100,6 +113,7 @@ sha256sum law8_wb.html moci1.pdf ecommerce_law_wb.pdf pdppl_en.pdf \
 ```
 
 > 2026-11-17 复验：GSO（S8）与 CRA 指南（S6）重新下载后 SHA-256 一致（S6 需带 Referer）；S1/S3 的 Wayback 快照为固定时间戳，重复下载应得到同一文件。
+> 2026-11-18 23:1x 复测起 S5/S6/S7 已不能在命令行复现（reCAPTCHA 限流 + token 轮换），只能人工浏览器另存，见上节「访问状态与替代路径」。
 
 ## 辅助来源（仅作线索，未用于引文）
 

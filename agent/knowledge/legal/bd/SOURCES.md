@@ -89,9 +89,9 @@ curl -sSL --max-time 60 -A 'Mozilla/5.0' \
 | 来源 | 状态 | 影响 |
 | --- | --- | --- |
 | Bangladesh Telecommunication Regulation Act, 2001 (Act No. 18 of 2001) | bdlaws act-857 仅有孟加拉文；BTRC 官网 PDF 亦为孟加拉文；未找到官方英文译本 | 3C 数码中的手机、路由器、蓝牙、Wi-Fi 等电信/无线电设备准入未建规则；BTRC 型号核准/技术接受证书（type approval / TAC）列入 open questions |
-| BTRC 设备型号核准指南（2022 版及后续） | BTRC 官网版本为孟加拉文；英文版未取得 | 同上；无法核对具体设备类别、测试标准、证书有效期 |
-| Personal Data Protection Act, 2026 (Act No. 63 of 2026) | 2026-04-10 公报，孟加拉文；BTRC 官网附件亦为孟加拉文；未找到官方英文文本 | 隐私告知、同意、数据主体权利未建规则；“隐私告知”覆盖为 **gap** |
-| Digital Commerce Operation Guidelines, 2021（商务部） | 官方 PDF 未定位到英文版；公开英文内容多为媒体/律所摘要或商家自述 | 电商披露（卖家身份、商品描述、价格、交付、退换）未建规则；“电商披露”覆盖为 **gap** |
+| BTRC 设备型号核准指南（2022 版及后续） | BTRC 官网版本为孟加拉文；英文版未取得。`btrc.gov.bd` 可访问（200 / 8,198 字符），但页面仅孟加拉文 | 同上；无法核对具体设备类别、测试标准、证书有效期 |
+| Personal Data Protection Act, 2026 (Act No. 63 of 2026) | 2026-04-10 公报，孟加拉文；官方全文在 bdlaws：https://bdlaws.minlaw.gov.bd/act-1692.html （全孟加拉文；该条目的 English 开关不生效）；BTRC 官网附件亦为孟加拉文；未找到官方英文文本 | 隐私告知、同意、数据主体权利未建规则；“隐私告知”覆盖为 **gap** |
+| Digital Commerce Operation Guidelines, 2021（商务部） | `dco.gov.bd` 实测 `ERR_CONNECTION_CLOSED`（连接级失败，非 WAF）；`mincom.gov.bd` 可访问但未找到指南页；官方 PDF 未定位到英文版；公开英文内容多为媒体/律所摘要或商家自述 | 电商披露（卖家身份、商品描述、价格、交付、退换）未建规则；“电商披露”覆盖为 **gap** |
 | Import Policy Order 2026-2029（2026-08-24 公报） | 官方 PDF 为孟加拉文；英文版未取得 | 进口标签、原产地标识、语言义务未建规则；“商品说明与标签/语言义务”只能覆盖 CRPA s.37 的罚则框架，不能覆盖具体字段 |
 | BSTI 各产品 SRO（孟加拉文公报） | 未逐份取得/翻译；仅用 BSTI 英文汇总清单 | 产品是否在清单内可核对；具体型号范围、过渡期、豁免需以 SRO 原文与 BSTI 许可为准 → 产品规则 `confidence: medium` |
 | BDS 标准全文（BDS 253:1990、BDS IEC 60311:2018 等） | BSTI 标准为付费文本，未取得 | 无法引用标准条款；只能引用“产品须符合该 BDS”的清单表述 |
