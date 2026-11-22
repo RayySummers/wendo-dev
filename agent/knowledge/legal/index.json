@@ -2,7 +2,7 @@
   "version": "2026-11-17",
   "updated_at": "2026-11-18T21:58:08+08:00",
   "description": "文渡合规规则库索引（Layer 4）。2026-11-17 起按一带一路优先：MY live，BRI 21 国按 tier1/2/3 一国一单，US/UK/AU/CA 保留但排在最后。",
-  "language_policy": "只收 de facto official language 为英语的市场；只用官方英文原文或官方英文译本。无英文官方版本的条目标 official_english_unavailable，不用二手翻译。埃及（EG）为显式例外：官方语言为阿拉伯语、英语为商务通用语；CPA 2018 等有官方英译本，PDPL 2020 无官方英文版本，4 条以阿拉伯语原文收录并标 official_english_unavailable。",
+  "language_policy": "只用官方英文原文或官方英文译本，无英文官方版本的条目标 official_english_unavailable，不用二手翻译。2026-11-18 口径（RAY-766）：市场是否收录不再以「英语是否为法定官方语言」为准；法定官方语言不含英语的市场（NZ 毛利语与新西兰手语、MT 马耳他语与英语）按英语市场设计，在诊断/报告里显示 language_note 提示一句，且不因此减轻规则层的语言义务缺口。埃及（EG）为显式例外：官方语言为阿拉伯语、英语为商务通用语；CPA 2018 等有官方英译本，PDPL 2020 无官方英文版本，4 条以阿拉伯语原文收录并标 official_english_unavailable。",
   "markets": [
     {
       "market": "MY",
@@ -388,7 +388,7 @@
       "rules_version": "2026-11-17-v0.1",
       "acceptance_status": "accepted_merged",
       "sample_findings": "lk/SAMPLE_FINDINGS.md",
-      "language_note": "英语为联系语言（宪法第 22 条），非官方语言；议会官网同时发布该法案的英文文本，按官方英文文本/官方英文译本使用（CAA Act s.25 仅规定僧伽罗与泰米尔文本冲突时以僧伽罗文本为准）。"
+      "language_policy_note": "英语为联系语言（宪法第 22 条），非官方语言；议会官网同时发布该法案的英文文本，按官方英文文本/官方英文译本使用（CAA Act s.25 仅规定僧伽罗与泰米尔文本冲突时以僧伽罗文本为准）。"
     },
     {
       "market": "BD",
@@ -733,7 +733,7 @@
         "商业电子讯息：同意、发送者身份、退订（UEMA 2007 s 9-s 11）"
       ],
       "known_gaps": [
-        "英语不是法定官方语言（仅毛利语为官方语言）；无一般性商品标签语言强制，标签语言风险只能经 FTA s 9 间接处理",
+        "语言适用范围：法定官方语言为毛利语（Māori Language Act 2016 s 5）与新西兰手语（NZSL Act 2006 s 6），不含英语；英语为事实通用语言。本库按英语市场设计，但毛利语与新西兰手语的标签/说明义务仍未建规则，是本库的真实缺口（注：NZSL Act s 8(1) 明定 s 6 的宣告本身不创设可执行权利）",
         "AS/NZS 60335 / AS/NZS 3112 / CISPR 32 等为付费标准，只引法规转致，不引标准原文",
         "Radiocommunications (Compliance) Notice 2013 No. 2 未取得：EMC 合规等级 1/2/3 的具体义务未落成规则",
         "WorkSafe 的 declared medium risk 清单未取得：NZ-ELEC-05 的适用前提无法在库内判定",
@@ -746,7 +746,8 @@
       "issue": "RAY-739",
       "sample_findings": "nz/SAMPLE_FINDINGS.md",
       "rules_version": "2026-11-17-v0.1",
-      "acceptance_status": "pending_product_review"
+      "acceptance_status": "pending_product_review",
+      "language_note": "目标地区官方语言是毛利语与新西兰手语，不包含英语；英语为事实通用语言。"
     },
     {
       "market": "MT",
@@ -789,7 +790,8 @@
       "rules_version": "2026-11-17-v0.1",
       "acceptance_status": "pending_product_review",
       "sample_findings": "mt/SAMPLE_FINDINGS.md",
-      "market_readiness": "mt/MARKET_READINESS.md"
+      "market_readiness": "mt/MARKET_READINESS.md",
+      "language_note": "目标地区官方语言是马耳他语与英语。"
     },
     {
       "market": "US",
