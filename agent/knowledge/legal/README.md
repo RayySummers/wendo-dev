@@ -164,7 +164,7 @@ agent/knowledge/legal/
 | 科威特（KW） | Tier 2（medium） | RAY-731 | v0.1 | 24 / 9 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 阿曼（OM） | Tier 2（medium） | RAY-732 | v0.1 | 40 / 4 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 巴林（BH） | Tier 2（medium） | RAY-733 | v0.1 | 31 / 8 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
-| 埃及（EG） | Tier 2（medium） | RAY-734 | v0.1 | 31 / 6 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
+| 埃及（EG） | Tier 2（medium） | RAY-734 | v0.1 | 31 / 6 | 2026-11-18 | 已落地；coverage 与 known_gaps 见 index.json |
 | 约旦（JO） | Tier 2（medium） | RAY-735 | v0.1 | 30 / 2 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 坦桑尼亚（TZ） | Tier 2（medium） | RAY-736 | v0.1 | 28 / 5 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
 | 加纳（GH） | Tier 2（medium） | RAY-737 | v0.1 | 33 / 10 | 2026-11-17 | 已落地；coverage 与 known_gaps 见 index.json |
