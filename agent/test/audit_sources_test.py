@@ -64,6 +64,37 @@ def main() -> int:
         check("说明残留退出码 1", run(root) == 1)
         check("--warn-only 恒 0", run(root, "--warn-only") == 0)
 
+    # ---- 1b) 换源后写「新文本已与旧二手文本核对一致」不算残留
+    #
+    # 这是 RAY-757 换源时的真实写法：notes 里既交代了新官方出处，又写了一句
+    # 「该英文文本与旧引用的 WTO 通知附件逐页一致」。那是换源做对了的证据，
+    # 不是「说明还挂着二手源」。早先的裸 `WTO 通知` 关键词会把它误报。
+    with tempfile.TemporaryDirectory() as td:
+        root = make_root(Path(td), {"xx": {"market": "XX", "rules": [
+            {"id": "XX-A-01", "official_url": "https://lom.agc.gov.my/a.pdf",
+             "notes": "英文引文逐字取自 AGC 公报第 10 页；2026-11-18 换源时已核对："
+                      "该英文文本与旧引用的 WTO 通知附件逐页一致（16 页全文比对无差异）。"},
+            {"id": "XX-A-02", "official_url": "https://lom.agc.gov.my/b.pdf",
+             "notes": "英文引文取自 AGC 公报；与旧引用的 WTO 通知附件逐页一致。"},
+        ]}})
+        t = audit.build_report(str(root), [], [])["totals"]
+        check("核对说明不算残留", t["note_mismatch"] == 0, str(t))
+        check("核对说明退出码 0", run(root) == 0)
+
+    # ---- 1c) 但「把 WTO 通报附件当来源挂着」仍然是残留（别把 1b 放宽过头）
+    with tempfile.TemporaryDirectory() as td:
+        root = make_root(Path(td), {"xx": {"market": "XX", "rules": [
+            {"id": "XX-A-01", "official_url": "https://lom.agc.gov.my/a.pdf",
+             "notes": "英文引文取自 WTO 通报附件。"},
+            {"id": "XX-A-02", "official_url": "https://example.gov.xx/b.pdf",
+             "official_url_note": "本 PDF 为 FAOLEX 存档版本"},
+        ]}})
+        rep = audit.build_report(str(root), [], [])
+        ids = {f["rule_id"] for f in rep["findings"] if f["kind"] == audit.KIND_NOTE_RESIDUE}
+        check("把 WTO 通报附件当来源仍报残留", "XX-A-01" in ids, str(ids))
+        check("把 FAOLEX 当来源仍报残留", "XX-A-02" in ids, str(ids))
+        check("两类残留都报时退出码 1", run(root) == 1)
+
     # ---- 2) URL 本身就是二手源：算二手域；未标注「非政府/二手/降级」时进待降级
     with tempfile.TemporaryDirectory() as td:
         root = make_root(Path(td), {"xx": {"market": "XX", "rules": [
