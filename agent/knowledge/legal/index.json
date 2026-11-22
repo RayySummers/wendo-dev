@@ -223,11 +223,31 @@
       "rules_file": "pk/rules.v0.1.json",
       "readme": "pk/README.md",
       "sources": "pk/SOURCES.md",
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-724 in_progress）；落地后同步 rules_count / last_verified / known_gaps"
+      "coverage": [
+        "通用反误导（Competition Act 2010 s.10、s.38，全国适用）",
+        "首都区消费者保护（ICPA 1995 s.2(f)、s.7、s.9，仅伊斯兰堡首都区）",
+        "旁遮普省消费者保护（PCPA 2005 s.20、s.21、s.22、s.32）",
+        "信德省消费者保护（SCPA 2014 s.21、s.33）",
+        "强制认证与合格评定（PSQCA Act 1996 s.10/11/14/22 + SRO 46(KE)/2020 + 强制认证商品清单）",
+        "能效标签（风扇，《2023 年巴基斯坦风扇能源标签条例》S.R.O. 411(I)/2024 reg.3、reg.4(7)）",
+        "商品说明（Sale of Goods Act 1930 s.15、s.16(1)）",
+        "罚则上限（竞争法、省消费者法、PSQCA Act s.22）"
       ],
-      "issue": "RAY-724"
+      "known_gaps": [
+        "PTA 型号核准是 3C 的唯一阻塞项：PT(Re-Org) Act 1996 s.29 与 PTA 型号核准规例的官方全文未取得（pta.gov.pk TLS 不可达、Wayback 离线），3C 品类不具备开放条件",
+        "PSQCA 强制清单与 SRO 的逐条对应未核：清单页 176 项，只核到 s.14 授权层面，需逐条比对 SRO 46(KE)/2020、44(KE)/2018、48(KE)/2018、117(KE)/2016",
+        "旁遮普 2025 年修正案（Pb. Act LIV of 2025）是否修改 s.21/s.22/s.32 未核到；本库旁遮普引文来自 FAOLEX 存档版本（省政府站点 TLS 不可达）",
+        "隐私告知完全空缺：巴基斯坦无生效的综合性数据保护法，PECA 2016 全文亦未取得（pakistancode.gov.pk 未收录）",
+        "四省覆盖不完整是本版最大范围缺口：KP 与俾路支省法未取得官方文本（KP Code 站点不可达）",
+        "s.20 退换政策对纯线上交易的适用方式待律师意见（条文写 sign at the point of purchase）",
+        "Import Policy Order 2022 的进口标签条款未核（commerce.gov.pk 返回 403），原产国/进口商信息要求不明",
+        "PS 标准全文为付费/受限标准，官网部分链接错配，未作为引文来源",
+        "ICPA 1995、PSQCA Act 1996、SCPA 2014 的精确生效日未印于官方文本，effective_date 取通过年度 1 月 1 日为占位，报告中不得引用",
+        "食品接触材料、化妆品/DRAP、玩具安全、纺织品标签、PEMRA 广播广告守则、NEECA 空调/冰箱/电机能效规例未覆盖"
+      ],
+      "issue": "RAY-724",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "pk/SAMPLE_FINDINGS.md"
     },
     {
       "market": "NG",
@@ -480,11 +500,30 @@
       "rules_file": "kw/rules.v0.1.json",
       "readme": "kw/README.md",
       "sources": "kw/SOURCES.md",
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-731 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "coverage": [
+        "能效适用范围：KWS 1893:2018 空调 / 1898:2023 干衣机 / 1899:2023 洗衣机 / 1900:2023 冰箱冷柜（只判是否落入强制技术法规，不含 MEPS 数值与标签字段）",
+        "能效注册与 KUCAS 办理口径（PAI 公告 + TABEK 电子平台说明）",
+        "科威特质量标志（Kuwait Quality Mark）许可与误用（PAI QM Rules）",
+        "通信设备型号核准（CITRA Decision 153/2021：适用范围、进口前核准、CE 基础、3 年有效期、续期窗口、变更重审、撤销后禁售）",
+        "营销与广告（CITRA Decision 69/2022：不得误导、免责声明不得削弱主旨、商业信息 07:00–22:00 与退订）",
+        "隐私告知与同意（CITRA Decision 69/2022：收集须同意、须告知目的、第三方营销披露须另行同意；仅持牌人）",
+        "消费者投诉程序公示（CITRA Decision 69/2022 Art. 9-16，仅持牌人）"
       ],
-      "issue": "RAY-731"
+      "known_gaps": [
+        "KWS 标准正文未收录（付费件）：能效标签字段、说明书语言、MEPS 数值均无规则；rev.2 起 WTO 通报英文文本也不再作为引文来源",
+        "广告与消费者保护只有阿拉伯语官方文本：CPL 39/2014、实施条例 27/2015、数字商业法 10/2026 未建规则，广告/价格/退换只能提示按阿语原文复核",
+        "语言义务 0 条：空调/干衣机/洗衣机说明书阿英双语、冰箱说明书阿语等要求只见于付费标准与 WTO 通报，不能作为科威特官方来源引用",
+        "强制实施日 2024-10-08 取自认证机构转述 PAI 部长令 16/2023（二手）；PAI 页面只给公报日 2023-10-08",
+        "CITRA 营销/隐私/投诉规则只约束持牌电信与内容服务商，不自动适用于普通零售商或品牌独立站",
+        "一般隐私告知未覆盖：科威特无通用个人信息保护法，适用范围限于 CITRA 持牌人",
+        "罚则金额未取得官方英文文本，规则只写条文不写金额",
+        "带 Wi-Fi 的家电是否需单独 CITRA 核准未建适用性规则",
+        "PAI 能效注册是否接受海外制造商/出口商直接办理、还是必须由科威特进口商办理，待核",
+        "食品/美妆/玩具等特殊品类与支付/物流/退换（Layer 3）不在本版范围"
+      ],
+      "issue": "RAY-731",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "kw/SAMPLE_FINDINGS.md"
     },
     {
       "market": "OM",
@@ -535,11 +574,37 @@
       "rules_file": "bh/rules.v0.1.json",
       "readme": "bh/README.md",
       "sources": "bh/SOURCES.md",
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-733 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "coverage": [
+        "广告真实性与误导（CP Law 2012 第 6、18 条）",
+        "价格、促销、保修期与发票（CP Law 第 5 条；价格法令 1975 第 14、20 条；MOIC 消费者保护 FAQ）",
+        "经营者身份披露，含电子文件与电子文据（CP Law 第 4 条）",
+        "不退不换声明（CP Law 第 7 条第 3 款）",
+        "缺陷告知与召回（CP Law 第 7 条第 1 款）",
+        "产品技术合规与进口符合性（CP Law 第 3 条；规格与计量法令 1985 第 2(A)、14 条）",
+        "巴林标准标志的许可使用（规格与计量法令第 8 条）",
+        "十进公制计量单位（度量衡法令 1977 第 1 条）",
+        "广告语言、许可与内容事前批准（广告法令 1973 第 2、3、6 条）",
+        "广告与文化/宗教敏感（广告法令第 7 条）",
+        "隐私告知、同意、直接营销、跨境传输与事前通报（PDPA 2018 第 4、12、14、17、19 条）",
+        "电信与无线设备型号核准（TRA Type Approval FAQ，依 2003 年电信法）",
+        "罚则上限汇总（CP Law 第 20、22 条；广告法令第 16 条；规格法令第 18 条；价格法令第 20 条；PDPA 第 58 条）"
       ],
-      "issue": "RAY-733"
+      "known_gaps": [
+        "CP Law 实施条例（2014 年第 66 号部长决定）无官方英文文本，LLOC `/FullEn/MD6614.docx` 返回 404：折扣/促销/标价/退换的操作细则无法逐字引用，直接压低可做 rule_level 的比例",
+        "1973 年广告法令对线上广告与产品页的适用性无官方说明（8 条 rule_level 因此标 review_required）",
+        "G-Mark / GSO 低压电器技术法规 BD-142004-01 英文本首页自述 Non-official Translation，按语言政策不得作引文，建不出 rule_level 条目；BSMD 是否另有英文通告未取得",
+        "强制标准清单未取得：规格法令未随文公布强制标准目录，BSMD Standards Store 未逐项核对",
+        "CP Law 第 5(b)（促销期保修与价格标示）的处罚路径待核：第 20 条罚则清单只列 5(a)",
+        "PDPA 生效日 2019-08-01 系按第 60 条推算，需以《官方公报》核对；第 14(2) 条豁免情形与第 12(1) 条充分性名单未取得",
+        "TRA 型号核准规例全文与罚则未取得，设备是否须在包装/页面展示核准号待核；申请人须为巴林本地注册公司，是结构性门槛",
+        "价格法令第 14 条要求以阿拉伯语牌卡显眼标价，线上标价是否等同、平台责任如何分配无官方说明",
+        "度量衡公制强制由部长决定分阶段推进（第 10 条），规格表中英制单位（inch/lb）的可罚性未明",
+        "CP Law 是否有 2024–2026 年修订待核：MOLA 版本声明含截至 2026-06-01 的修订，但正文无修订标记",
+        "食品/美妆/玩具与支付/物流/退换（Layer 3）不在本版范围"
+      ],
+      "issue": "RAY-733",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "bh/SAMPLE_FINDINGS.md"
     },
     {
       "market": "EG",
@@ -608,11 +673,31 @@
       "rules_file": "jo/rules.v0.1.json",
       "readme": "jo/README.md",
       "sources": "jo/SOURCES.md",
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-735 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "coverage": [
+        "广告与消费者保护（CPL 2017 Art. 8(A) 六类误导事项、8(B)、Art. 4(B)(E)、Art. 3 消费者权利）",
+        "商品说明完整性：规格、原产地、重量、制造方法、有效期、价格与售后条件（CPL Art. 3(A)(2)、3(A)(3)、3(A)(7)、6(A)(3)、6(B)(2)）",
+        "广告中的合同条件与总价披露（CPL Art. 8(A)(4)）",
+        "不公平合同条款（CPL Art. 21 无效条款；Art. 22 法院救济）",
+        "隐私告知与同意（PDP 2023 Art. 4/5/7/8/9/11/14，官方英文译本）",
+        "认证与准入的原则性要求（CPL Art. 6(A)(1)、6(A)(2)：不符合安全要求或强制性技术规则即视为缺陷商品）",
+        "罚则上限（CPL Art. 25(A)、25(B)；PDP Art. 21、22）"
       ],
-      "issue": "RAY-735"
+      "known_gaps": [
+        "语言义务整块未建条：产品标签与说明书是否强制使用阿拉伯语、由哪份 JSMO 技术法规规定，未取得任何官方原文（jsmo.gov.jo TLS 连接被重置）",
+        "准入缺清单：JSMO 强制性技术法规未取得，JO-PRD-06 只能判「需要证明」，没有任何可判的电气安全/能效/标签规则",
+        "2023 年《消费者保护指令》（官方公报第 5879 期）全文未取得：售后不超过 1 年、耐用品不少于 5 年仅为媒体转述，未采信、期限无法写死",
+        "TRC 2025 年第 2 号《通讯设备进口批准条件与程序指令》未取得（trc.gov.jo 不可达）：含无线功能的 3C 无法判型式认可",
+        "EMRC 能效标签要求未取得（emrc.gov.jo 不可达），冰箱/空调/洗衣机能效标签未覆盖",
+        "CPL 2017 是否经修正、MoITS 版 PDF 是否为最新合并文本待核；罚则数额可能过期",
+        "PDP 实施条例（Bylaws）与委员会指令未取得：同意撤回、跨境传输的具体程序不明",
+        "电商专项披露规则不完整：未发现独立的电商消费者保护法，CPL Art. 3/8 是否足以覆盖电商页面待律师确认",
+        "Art. 22(B) 的 8 类推定不公平条款未逐项拆条，条款审查只能人工",
+        "30 条中 21 条为阿拉伯语原文（official_english_unavailable）；JO1 是部内重排版而非公报原始版面，引文按标准正字法转录并逐条对照页面图像核验",
+        "食品/美妆/玩具与支付/物流/退换（Layer 3）不在本版范围"
+      ],
+      "issue": "RAY-735",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "jo/SAMPLE_FINDINGS.md"
     },
     {
       "market": "TZ",
@@ -628,11 +713,30 @@
       "rules_file": "tz/rules.v0.1.json",
       "readme": "tz/README.md",
       "sources": "tz/SOURCES.md",
-      "coverage": [],
-      "known_gaps": [
-        "规则库尚未落地（RAY-736 todo）；落地后同步 rules_count / last_verified / known_gaps"
+      "coverage": [
+        "通用广告与误导行为（FCA Cap. 285 s.15(1)、s.16(a)(c)(e)(f)(g)(i)(k)、s.18）",
+        "价格与促销（FCA s.17 现金总价、s.22(1) 诱饵广告、s.23 收款不供货）",
+        "产品安全与信息标准（FCA s.49(1)、s.50(1)）",
+        "商品说明与原产地标注（《商品标识法》Cap. 85 s.12、s.16(b)、s.27）",
+        "标准与准入（《标准法》Cap. 130 s.18(4)、s.19、s.20(6)、s.20(7)）",
+        "3C 通信设备准入（EPOCA 设备条例 2020 reg.5、reg.12、reg.26、reg.27，GN 919/2020）",
+        "隐私告知与数据合规（PDPA Cap. 44 s.14(1)、s.22、s.23(2)、s.31/32）"
       ],
-      "issue": "RAY-736"
+      "known_gaps": [
+        "TBS 强制标准清单未取得：哪些小家电/3C 品类已被部长依《标准法》s.20(1)(a) 宣布为强制标准不明，TZ-STD-01/TZ-STD-04 只能输出「需核实适用标准」",
+        "FCA s.51 公告的消费品安全与信息标准清单未取得：TZ-SAFE-01/TZ-SAFE-02 在清单补齐前不能作为准入结论",
+        "各法原始生效日缺失：OCPD 合并本把生效条款标为 [Omitted]，effective_date 只能按合并版适用起点（2025-07-31）或公报公布日标注",
+        "PDPA 生效通知 GN No. 395B-1 原件未取得（effective_date=2023-05-01 依据该通知），需核对公报原文",
+        "TBS 进口符合性评定（PVoC）的条例原文未取得，该机制未建规则",
+        "语言义务未建条：未找到对商品页/标签设定斯瓦希里语的成文条款；若 TZS 4 系列标签标准有语言要求，需以标准原文补入",
+        "桑给巴尔是另一套制度（独立的标准与消费者主管机关），本版只覆盖坦桑尼亚大陆",
+        "TCRA 对广播/在线内容的广告规则与《媒体服务法》对广告的限制未纳入（属内容监管）",
+        "FCA 对电商平台（marketplace）的连带责任未单列：s.57「involved in offence」可延伸，但需判例支撑",
+        "罚则执法实践未检索：s.60 的「年营业额」基数如何认定、FCC 实际处罚案例未做判例检索"
+      ],
+      "issue": "RAY-736",
+      "acceptance_status": "pending_product_review",
+      "sample_findings": "tz/SAMPLE_FINDINGS.md"
     },
     {
       "market": "GH",

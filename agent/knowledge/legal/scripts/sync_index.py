@@ -8,6 +8,10 @@
 字段约定：`open`（市场是否对产品开放）由人显式声明，不参与重建。
 脚本只做校验——缺失或非布尔时置 `false` 并记入 problems，绝不由 `tier` 或规则数反推开放状态。
 
+`--check` 另校验两处**文字**字段与落地状态是否自相矛盾（RAY-764 起）：
+规则已落地（rules_count > 0）却仍在 `known_gaps` 写「尚未落地 / 未落地 / todo」，
+或有规则但 `coverage` 为空。这两项是研究结论，脚本不自动改写，只报出来等人改。
+
 用法：
     python3 agent/knowledge/legal/scripts/sync_index.py            # 重建并写入
     python3 agent/knowledge/legal/scripts/sync_index.py --check    # 只检查，不一致就非零退出
@@ -24,6 +28,42 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 INDEX = os.path.join(ROOT, "index.json")
 README = os.path.join(ROOT, "README.md")
 
+# 规则已落地、known_gaps 却还写着「尚未落地」的迹象。只匹配「未落地」这个词族与工单
+# 状态词 todo，不匹配裸「落地」——「落地后同步计数」这类历史措辞本身不矛盾。
+# 依据是 RAY-764：KW/BH/JO/TZ 四国规则文件早已提交，index 却一直写「尚未落地」，
+# 而 --check 只比对计数，所以陈旧状态连续多单没被发现。
+STALE_GAP_PATTERN = re.compile(r"尚未落地|未落地|(?<![a-z])todo(?![a-z])", re.I)
+
+
+def check_market_metadata(m: dict, rules: list) -> list[str]:
+    """校验 coverage / known_gaps 与「规则是否已落地」是否自相矛盾。
+
+    只报问题，不自动改写：coverage 与 known_gaps 是研究结论，得由人从 README /
+    SOURCES 里提炼，脚本猜不出来。两种模式都会调用本函数，但只有 --check 会因此
+    非零退出；重建模式只把它打印成「待人工处理」，因为跑脚本本身修不好这类问题。
+    """
+    if not rules:
+        # 没有规则的市场（如 CA）写「尚未落地」是对的，不是矛盾。
+        return []
+    cc = m["market"]
+    problems: list[str] = []
+    gaps = m.get("known_gaps") or []
+    if not isinstance(gaps, list):
+        problems.append(f"{cc}.known_gaps: 必须是数组，实际是 {type(gaps).__name__}")
+        gaps = []
+    stale = [g for g in gaps if isinstance(g, str) and STALE_GAP_PATTERN.search(g)]
+    if stale:
+        problems.append(
+            f"{cc}.known_gaps 与其落地状态矛盾：已落地 {len(rules)} 条规则，"
+            f"但仍写着「{stale[0][:40]}…」——换成真实缺口（从 README 的 open questions 提炼）"
+        )
+    coverage = m.get("coverage") or []
+    if not isinstance(coverage, list):
+        problems.append(f"{cc}.coverage: 必须是数组，实际是 {type(coverage).__name__}")
+    elif not coverage:
+        problems.append(f"{cc}: 有规则但 coverage 为空——按法规族补一句覆盖范围（参照 MY/QA 的写法）")
+    return problems
+
 
 def load_rules(cc: str):
     path = os.path.join(ROOT, cc, "rules.v0.1.json")
@@ -39,10 +79,16 @@ def load_rules(cc: str):
     return rules, last
 
 
-def sync_index(check: bool) -> list[str]:
+def sync_index(check: bool) -> tuple[list[str], list[str], int]:
+    """返回 (计数类 problems, 元数据类 problems, 已改动字段数)。
+
+    两类分开返回是因为处理方式不同：计数类由本脚本自动重建修好；元数据类
+    （coverage / known_gaps）是研究结论，脚本修不了，只能报出来等人改。
+    """
     with open(INDEX, encoding="utf-8") as fh:
         idx = json.load(fh)
     problems: list[str] = []
+    meta_problems: list[str] = []
     changed = 0
     for m in idx["markets"]:
         # open 是产品开关，只能由人显式声明：这里只补默认值并报错，不从 tier / rules_count 推断。
@@ -58,6 +104,8 @@ def sync_index(check: bool) -> list[str]:
                 problems.append(f"{m['market']}: index 记为已落地，但没有 rules 文件")
             continue
         rules, last_verified = loaded
+        # 元数据矛盾只做校验，不自动改写：coverage / known_gaps 得由人从 README 提炼。
+        meta_problems.extend(check_market_metadata(m, rules))
         laws = len({r.get("law_name") for r in rules if r.get("law_name")})
         want = {
             "status": "v0.1",
@@ -77,12 +125,12 @@ def sync_index(check: bool) -> list[str]:
                 m[k] = v
                 changed += 1
     if check:
-        return problems
+        return problems, meta_problems, 0
     if changed:
         idx["updated_at"] = __import__("datetime").datetime.now().astimezone().isoformat(timespec="seconds")
         with open(INDEX, "w", encoding="utf-8") as fh:
             fh.write(json.dumps(idx, ensure_ascii=False, indent=2) + "\n")
-    return problems
+    return problems, meta_problems, changed
 
 
 def sync_readme() -> None:
@@ -134,17 +182,28 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="只检查，不写文件")
     args = ap.parse_args()
-    problems = sync_index(args.check)
+    problems, meta_problems, changed = sync_index(args.check)
+    # 元数据矛盾（coverage 空 / known_gaps 与落地状态矛盾）两种模式都报，但只有 --check 会因此失败：
+    # 重建模式改不动它们，报成失败只会让人以为跑一次脚本就能修好。
     if args.check:
-        if problems:
-            print("index 与规则文件不一致：")
-            for p in problems:
-                print("  -", p)
+        if problems or meta_problems:
+            if problems:
+                print("index 与规则文件不一致：")
+                for p in problems:
+                    print("  -", p)
+            if meta_problems:
+                print("index 元数据与落地状态矛盾（脚本不自动改写，需人工按 README 提炼）：")
+                for p in meta_problems:
+                    print("  -", p)
             return 1
         print("index 与规则文件一致")
         return 0
     sync_readme()
-    print(f"已重建 index.json 与 README.md（{len(problems)} 处计数更新）")
+    print(f"已重建 index.json 与 README.md（{changed} 处计数更新）")
+    if meta_problems:
+        print("另有元数据矛盾待人工处理（本脚本不改写）：")
+        for p in meta_problems:
+            print("  -", p)
     return 0
 
 
