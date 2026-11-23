@@ -50,8 +50,10 @@
 | 披露/主体义务，单页不可判定 | `MY-ECOM-01/02/03/07/08`、`MY-ADV-15`、`MY-HALAL-03`、`MY-FOOD-03`、`MY-PRIV-02/03` | 地址、运费、退换、平台责任、DPO：需要主体资料；支付/物流/退换已由市场就绪度覆盖 |
 | 与已判定规则重复或需额外检测 | `MY-ADV-17`、`MY-ADV-18`、`MY-FOOD-01` | 同一表述由 `MY-ADV-01/02` 覆盖；客服口头说明与迁移检测不在单页文本内 |
 
-跳过清单在 `src/compliance/rules.ts` 的 `COMPLIANCE_SKIP_REASONS`，`uncoveredRuleIds()` 会
-检查「规则库里既没 matcher 也没记跳过原因」的规则并直接报错，避免静默丢规则。
+跳过清单在 `src/compliance/rules.ts` 的 `COMPLIANCE_SKIP_REASONS_BY_MARKET.MY`（导出别名
+`COMPLIANCE_SKIP_REASONS`），`uncoveredRuleIds("MY")` 会检查「规则库里既没 matcher 也没记
+跳过原因」的规则并直接报错，避免静默丢规则。SG / AE / US 各自有独立的 matcher 与跳过清单，
+互不共用；本文件只描述马来西亚。
 
 ## 取证范围
 

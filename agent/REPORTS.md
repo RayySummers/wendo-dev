@@ -182,16 +182,22 @@
 
 ## 合规与风险判定（RAY-698）
 
-合规与风险（Layer 4）v0.1 的判定子集只覆盖马来西亚：MY 消费
-`knowledge/legal/my/rules.v0.1.json`（45 条 / 9 部法规），由 `src/compliance/analyze.ts`
-在 pipeline 里**代码侧**判定，不经模型。RAY-754 起规则库按 `legal/<cc>/rules.v0.1.json`
-加载并核对市场；其他市场只加载规则库、显式标 `not_assessable`，**不套用 MY 的法条**，
-直到该国判定子集就绪。具体：
+合规与风险（Layer 4）的规则库与判定器**都按市场分派**：`ruleById(market, id)` /
+`rulesVersion(market)` 走 `loadLegalLibrary(market)`，读 `knowledge/legal/<cc>/rules.v0.1.json`；
+判定器由 `src/compliance/rules.ts` 的 `COMPLIANCE_MATCHERS_BY_MARKET` 决定。
+`src/compliance/analyze.ts` 在 pipeline 里**代码侧**判定，不经模型。
+
+RAY-773 起已挂载可判定子集的市场：**MY（45 条里 17 条）、SG（42 条里 5 条）、
+AE（33 条里 4 条）、US（35 条里 5 条）**。早退条件只看「这个市场有没有 matcher」
+（`hasMatchersFor(market.code)`），不按市场代码判断；没挂载 matcher 的市场（如 PH）
+整库标 `not_assessable`，**不套用 MY 的法条**。具体：
 
 - **三档判定**：`rule_level`（页面要素直接对应法条）/ `substantiation`（只写「需要证明」）/
   `human_review`（需人工判断）。层级只来自规则库，代码不升级也不降级。
-- **可判定子集**：45 条里 17 条可由页面文本判定（见 `knowledge/compliance/my/README.md`）；
-  其余 28 条写在 `COMPLIANCE_SKIP_REASONS` 里，逐条给原因，不硬凑覆盖率。
+- **可判定子集**：只挂 `rule_level` 且单页文本能证实的条目，且只从四个通用 check 里表达
+  （`privnotice` 类「有入口缺告知」/ `limited_without_terms` / 语言版本缺失 / 声称缺凭据）；
+  其余条目逐条写进 `COMPLIANCE_SKIP_REASONS_BY_MARKET` 给原因，不硬凑覆盖率。
+  MY 清单见 `knowledge/compliance/my/README.md`。
 - **出处可追溯**：每条 finding 的 `law_name` / `article` / `last_verified` 来自规则库，
   `evidence` 写成 `规则 <id> · <法条> · 官方来源 <url> · 取证：<范围> · 命中：<模式>`，
   网页与 PDF 都原样渲染，所以每条都能回到规则 id + 条文 + 官方 URL。
@@ -205,8 +211,10 @@
 - **版式**：网页与 PDF 都在「市场就绪度」之后单独成章「合规与风险（<市场名>）」，
   章节开头固定「基于公开法规的自动筛查，不构成法律意见」；`risks` 里仍带全部合规条目，
   由前端 / 渲染器按 `dimension` 分章，不再重复出现在风险清单。
-- **非 MY 市场**：章节标题与能力边界说明改用请求市场名；没有该国 finding 时不写
-  「没问题」，维度行写「本版判定器尚未覆盖」。法规名、监管机构、官方 URL 绝不从 MY 规则库借用。
+- **非 MY 市场**：章节标题、边界说明、finding 文案全部按该国规则库原文生成；没有该国
+  finding 时不写「没问题」，维度行写「本次不做该市场的合规筛查」。未挂载 matcher 的市场
+  降级理由写明「判定器目前只为 MY / SG / AE / US 挂载了可判定子集」。法规名、监管机构、
+  官方 URL 绝不从 MY 规则库借用。
 
 ## 硬性约束
 

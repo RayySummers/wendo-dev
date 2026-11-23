@@ -1,15 +1,15 @@
 /**
- * 合规与风险 v0.1（马来西亚）代码侧规则判定。
+ * 合规与风险 v0.1 代码侧规则判定，按市场分派（RAY-773 起）。
  *
  * 设计口径（与 RAY-684 / RAY-696 / RAY-698 对齐）：
  * - 规则库按市场加载（RAY-754：`legal/index.json` → `legal/<cc>/rules.v0.1.json`）；
  *   法条、条文号、官方 URL、核验日期全部来自该市场的规则库，代码不写死任何法条。
- * - v0.1 的可判定子集只覆盖马来西亚；其他市场只加载并核对规则库，显式标「未评估」，
- *   绝不把 MY 的 matcher 套到别国页面。
+ * - 判定器也按市场挂载：`rules.ts` 的 `COMPLIANCE_MATCHERS_BY_MARKET` 决定「这个市场怎么判」。
+ *   没挂载的市场显式降级为「未评估」，绝不把 MY 的 matcher 套到别国页面上。
  * - 三档判定沿用规则库的 `decision_level`，不改写：规则直判 / 需事实核实 / 需人工判断。
  * - 同一页同一规则只出一条；同一句触发多条规则时合并成一张卡，各法条写进 evidence。
  * - 取证范围优先商品主面板（价格/SKU 锚点），导航、推荐位、页脚链接标签不参与取证。
- * - 缺席类检查（国语版本、隐私告知）只写「页面未展示」，不推断未认证/未合规，
+ * - 缺席类检查（语言版本、隐私告知、退订、凭据）只写「页面未展示」，不推断未认证/未合规，
  *   并一律标 `reviewRequired`。
  * - 输出里不出现「合法 / 违法 / 保证通过 / 已认证」这类判决式措辞。
  */
@@ -19,11 +19,13 @@ import { resolveMarket, type MarketInfo } from "../market.js";
 import { findProductPanel, isSubstantiveLine } from "../market-readiness/analyze.js";
 import { loadLegalLibrary, type LegalLibrary } from "./library.js";
 import {
-  COMPLIANCE_MATCHERS,
-  COMPLIANCE_SKIP_REASONS,
+  assessedMarkets,
+  hasMatchersFor,
+  matchersFor,
   ruleById,
+  rulesFor,
+  skipReasonsFor,
   uncoveredRuleIds,
-
   type ComplianceMatcher,
   type FormalMatcherDef,
   type LegalRule,
@@ -290,15 +292,17 @@ function buildFinding(
     /** 缺席类检查把置信度降到 medium：看到的是文本可见范围，不是事实。 */
     confidence?: ComplianceFinding["confidence"];
     reviewRequired?: boolean;
+    /** 该市场的 matcher 表：严重程度只在表里查，不跨市场借用。 */
+    matchers: ComplianceMatcher[];
   },
 ): ComplianceFinding {
   // high 级默认标「需专业审核」；human_review 与规则库要求复核的条目同样要标。
   const reviewRequired =
     options.reviewRequired ??
-    (rule.review_required || rule.decision_level === "human_review" || severityOf(rule) === "high");
+    (rule.review_required || rule.decision_level === "human_review" || severityOf(rule, options.matchers) === "high");
   return {
     ruleId: rule.id,
-    severity: severityOf(rule),
+    severity: severityOf(rule, options.matchers),
     quote: quoteOf(options.quote, options.pattern),
     why: options.why,
     fix: options.fix ?? fixFor(rule),
@@ -315,8 +319,8 @@ function buildFinding(
   };
 }
 
-function severityOf(rule: LegalRule): Severity {
-  const matcher = COMPLIANCE_MATCHERS.find((item) => item.ruleId === rule.id);
+function severityOf(rule: LegalRule, matchers: ComplianceMatcher[]): Severity {
+  const matcher = matchers.find((item) => item.ruleId === rule.id);
   if (matcher) return matcher.severity;
   if (rule.decision_level === "rule_level") return "medium";
   if (rule.decision_level === "human_review") return "low";
@@ -326,18 +330,19 @@ function severityOf(rule: LegalRule): Severity {
 /* ------------------------------------------------------------------ 声明匹配 */
 
 function collectCandidates(input: {
+  market: string;
   matchers: ComplianceMatcher[];
   lines: Line[];
   panel: ReturnType<typeof findProductPanel>;
 }): { candidates: Candidate[]; misses: ComplianceRuleDisposition[] } {
-  const { matchers, lines, panel } = input;
+  const { market, matchers, lines, panel } = input;
   const candidates: Candidate[] = [];
   const misses: ComplianceRuleDisposition[] = [];
   const region = productRegion(lines, panel);
 
   for (const matcher of matchers) {
     if (matcher.kind !== "claim") continue;
-    const rule = ruleById(matcher.ruleId);
+    const rule = ruleById(market, matcher.ruleId);
     const scopedLines = matcher.scope === "panel" ? region.lines : lines;
     const scopeNote =
       matcher.scope === "panel" ? region.note : "整页可见文本（只取句子行，排除导航/页脚链接标签）";
@@ -397,75 +402,213 @@ const PRIVACY_NOTICE = /\bprivacy\s+(?:policy|notice|statement)\b|\bdasar\s+priv
 const HALAL_CERTIFICATE =
   /\bjakim\b|\bhalal\s*(?:cert(?:ificate|ification)?|logo)\b[^.\n]{0,40}\b(?:no|number|ref)\b|\b(?:halal|cert(?:ificate)?)\s*(?:no\.?|number|#)\s*[:#]?\s*[\w-]{3,}/i;
 
-function malayMarkerCount(lines: Line[]): number {
+/**
+ * 页脚常见的数据保护/法务入口标签。别国的 `notice_disclosure_absent` 用它避免
+ * 把「有数据保护页但措辞不同」误判成「没有告知」；MY 的 `privacy_notice_absent`
+ * 口径不变，不读这条。
+ */
+const GENERIC_LEGAL_LINK =
+  /\bdata\s+protection\b|\bpdpl\b|\bpdpa\b|\bprivacy\s+center\b|\blegal\s+notice\b|\bterms\s+of\s+(?:use|service)\b/i;
+
+/** 一段文本里某个语言标记词命中的次数。 */
+function markerCount(lines: Line[], markers: RegExp): number {
   let count = 0;
   for (const line of lines) {
-    const hits = line.text.match(MALAY_MARKERS);
+    // 带 g 的正则有 lastIndex 状态，逐行重置，避免跨行漏计。
+    markers.lastIndex = 0;
+    const hits = line.text.match(markers);
     if (hits) count += hits.length;
   }
   return count;
 }
 
+/**
+ * 四个通用 check 的公共实现。市场差异只通过 matcher 上的参数（语言标记、入口/告知正则、
+ * 凭据正则）表达，实现本身与市场无关：MY 的 `malay_disclosure_absent` /
+ * `halal_claim_without_certificate` 与别国的 `language_disclosure_absent` /
+ * `claim_without_evidence` 走同一段代码。
+ */
 function formalCandidates(
   matcher: FormalMatcherDef,
-  ctx: { lines: Line[]; panel: ReturnType<typeof findProductPanel> },
+  ctx: { market: string; lines: Line[]; panel: ReturnType<typeof findProductPanel> },
 ): Candidate | undefined {
-  const { lines, panel } = ctx;
-  const scoped = panel.lines.length ? panel.lines : lines;
-  const scopeNote = panel.lines.length ? panel.scopeNote : "整页可见文本";
-  const rule = ruleById(matcher.ruleId);
+  const { market, lines, panel } = ctx;
+  // matcher 显式声明整页取证（非 MY 的检查）：证据行必须是句子行，
+  // 免得把页脚导航标签（`Affiliates`、`Warranty`）当成声称。
+  const strict = matcher.strictPage === true;
+  const usable = (line: Line): boolean => !strict || isSubstantiveLine(line.text);
+  // 通用 check 看整页：保修承诺、订阅入口、优惠条件都可能写在主面板之外（hero / 页脚），
+  // 只扫商品面板会漏。MY 的既有 check 仍以商品面板优先（RAY-698 口径）。
+  const scoped = strict ? lines : panel.lines.length ? panel.lines : lines;
+  const scopeNote = strict
+    ? "整页可见文本（只取句子行，排除导航/页脚链接标签）"
+    : panel.lines.length
+      ? panel.scopeNote
+      : "整页可见文本";
+  const rule = ruleById(market, matcher.ruleId);
 
   if (matcher.check === "limited_without_terms") {
+    const terms = matcher.terms ?? LIMITED_TERMS;
     for (let index = 0; index < scoped.length; index += 1) {
       const line = scoped[index];
       if (!line) continue;
+      if (!usable(line)) continue;
       const pattern = matcher.patterns.find((item) => patternRegExp(item).test(line.text));
       if (!pattern) continue;
       const neighbourhood = [scoped[index - 1], line, scoped[index + 1]]
         .filter((item): item is Line => Boolean(item))
         .map((item) => item.text)
         .join(" ");
-      if (LIMITED_TERMS.test(neighbourhood)) continue;
+      if (terms.test(neighbourhood)) continue;
       return { rule, def: matcher, line, pattern, scopeNote };
     }
     return undefined;
   }
 
-  if (matcher.check === "malay_disclosure_absent") {
+  if (matcher.check === "malay_disclosure_absent" || matcher.check === "language_disclosure_absent") {
+    const language = matcher.language ?? { markers: MALAY_MARKERS, label: "马来语" };
     const substantive = lines.filter((line) => isSubstantiveLine(line.text));
     if (substantive.length < 6) return undefined;
-    if (malayMarkerCount(lines) >= 3) return undefined;
+    if (markerCount(lines, language.markers) >= (language.minMarkers ?? 3)) return undefined;
     const anchor = panel.lines.find((line) => isSubstantiveLine(line.text)) ?? substantive[0];
     if (!anchor) return undefined;
-    return { rule, def: matcher, line: anchor, pattern: "整页未见马来语版本", scopeNote };
+    return { rule, def: matcher, line: anchor, pattern: `整页未见${language.label}版本`, scopeNote };
   }
 
-  if (matcher.check === "privacy_notice_absent") {
-    if (lines.some((line) => PRIVACY_NOTICE.test(line.text))) return undefined;
-    const trigger = lines.find((line) => DATA_COLLECTION.test(line.text) && isSubstantiveLine(line.text));
+  if (matcher.check === "privacy_notice_absent" || matcher.check === "notice_disclosure_absent") {
+    const notice = matcher.notice ?? PRIVACY_NOTICE;
+    const hasNotice = (line: Line): boolean => notice.test(line.text);
+    if (!matcher.lineScoped && lines.some(hasNotice)) return undefined;
+    // 有平台自己的 PDPO/PDPA 页脚链接时，不因为找不到具体措辞就判缺席。
+    if (
+      !matcher.lineScoped &&
+      matcher.check === "notice_disclosure_absent" &&
+      lines.some((line) => GENERIC_LEGAL_LINK.test(line.text))
+    ) {
+      return undefined;
+    }
+    const trigger = lines.find(
+      (line) => (matcher.trigger ?? DATA_COLLECTION).test(line.text) && isSubstantiveLine(line.text) && !hasNotice(line),
+    );
     if (!trigger) return undefined;
-    return { rule, def: matcher, line: trigger, pattern: "收集入口未见隐私告知", scopeNote: "整页可见文本" };
+    // 命中说明别写死「收集入口」：同一个 check 也用于标价（GST）、单位制（英制/公制）等场景。
+    const missing = matcher.missingEvidence ?? "隐私告知";
+    const pattern = matcher.lineScoped ? `同一处未见${missing}` : `整页未见${missing}`;
+    return {
+      rule,
+      def: matcher,
+      line: trigger,
+      pattern,
+      scopeNote: matcher.lineScoped ? "同一行文本（要求同一处并列）" : "整页可见文本（未见该项告知）",
+    };
   }
 
-  if (matcher.check === "halal_claim_without_certificate") {
-    const claim = scoped.find((line) => matcher.patterns.some((item) => patternRegExp(item).test(line.text)));
+  if (matcher.check === "halal_claim_without_certificate" || matcher.check === "claim_without_evidence") {
+    const claim = scoped.find(
+      (line) => usable(line) && matcher.patterns.some((item) => patternRegExp(item).test(line.text)),
+    );
     if (!claim) return undefined;
-    if (lines.some((line) => HALAL_CERTIFICATE.test(line.text))) return undefined;
-    const pattern = matcher.patterns.find((item) => patternRegExp(item).test(claim.text)) ?? "halal";
+    const evidence = matcher.evidence ?? HALAL_CERTIFICATE;
+    if (lines.some((line) => evidence.test(line.text))) return undefined;
+    const pattern = matcher.patterns.find((item) => patternRegExp(item).test(claim.text)) ?? matcher.patterns[0] ?? "";
     return { rule, def: matcher, line: claim, pattern, scopeNote };
   }
 
   return undefined;
 }
 
-function formalFinding(candidate: Candidate): ComplianceFinding {
+/**
+ * 缺席/凭据类检查没触发时的处置说明。按 check 类型给具体原因，
+ * 不写「页面没问题」——只说明这条检查为什么没命中。
+ */
+function formalMissReason(matcher: FormalMatcherDef): string {
+  if (matcher.check === "malay_disclosure_absent" || matcher.check === "language_disclosure_absent") {
+    const label = matcher.language?.label ?? "本国语言";
+    return `页面已出现${label}文本，或正文过短无法判断`;
+  }
+  if (matcher.check === "privacy_notice_absent" || matcher.check === "notice_disclosure_absent") {
+    return `页面已有${matcher.missingEvidence ?? "该项告知"}，或没有可观察的触发入口`;
+  }
+  if (matcher.check === "halal_claim_without_certificate" || matcher.check === "claim_without_evidence") {
+    return `页面未出现该条规则规范的表述，或已能看到${matcher.missingEvidence ?? "对应凭据"}`;
+  }
+  return "页面未触发该条检查的触发条件";
+}
+
+/**
+ * 非 MY 市场的缺席/凭据类 finding 文案：用该市场的规则库原文 + matcher 参数拼，
+ * 不借用任何 MY 法条名或监管机构。措辞固定为「页面未展示 / 需核实」，不下结论。
+ */
+function formalFindingForMarket(candidate: Candidate, matchers: ComplianceMatcher[]): ComplianceFinding {
+  const { rule, line, pattern, scopeNote, def } = candidate;
+  if (def.kind !== "formal") return claimFinding(candidate, matchers);
+
+  const legal = `${rule.law_short} ${rule.article}`;
+  const requirement = firstSentence(rule.requirement);
+  const missing = def.missingEvidence ?? "相应凭据";
+  const common = { quote: line.text, pattern, scopeNote, matchers, reviewRequired: true, confidence: "medium" as const };
+
+  if (def.check === "limited_without_terms") {
+    return buildFinding(rule, {
+      ...common,
+      why: `页面用「${pattern}」作优惠表述，但同一屏没有写清优惠期间、限量数量或取得条件。${legal}：${requirement}`,
+      fix: "在这句旁边写明优惠期间、限量数量或取得条件（例如 while stocks last / ends 31 Dec 2026 / min. spend S$80）；写不出条件就不要用限量或免费措辞。",
+    });
+  }
+
+  if (def.check === "language_disclosure_absent" || def.check === "malay_disclosure_absent") {
+    const label = def.language?.label ?? "马来语";
+    return buildFinding(rule, {
+      ...common,
+      scopeNote: `整页可见文本（${label}标记命中 0）`,
+      why: `整页可见文本里没有发现${label}版本。${legal}：${requirement} 这里只看页面文本，页面未展示不等于商家没有该语言版本，需向商家核实。`,
+      fix: `把该条要求的消费者信息加上${label}版本并与现有语言并列；只把品牌名译成${label}不算。`,
+    });
+  }
+
+  if (def.check === "notice_disclosure_absent" || def.check === "privacy_notice_absent") {
+    return buildFinding(rule, {
+      ...common,
+      scopeNote: def.lineScoped ? "同一行文本（要求同一处并列）" : "整页可见文本（未见该项告知）",
+      why: `页面出现「${line.text}」这类表述，但整页看不到${missing}。${legal}：${requirement} 页面未展示不等于商家没有做这项披露，需向商家核实。`,
+      fix: `在这句表述旁或同一流程里给出${missing}，并链到可读的告知页面；内容要能对应到 ${rule.article} 要求的具体项目。`,
+    });
+  }
+
+  if (def.check === "claim_without_evidence" || def.check === "halal_claim_without_certificate") {
+    return buildFinding(rule, {
+      ...common,
+      why: `页面出现「${pattern}」这类表述，但整页看不到${missing}。${legal}：${requirement} 页面未展示不等于该凭据不存在，需向商家核实，不能据此推断违规。`,
+      fix: `把${missing}写在页面可读位置（编号/链接/条款全文）；提供不出时，删去或改写这句表述。`,
+    });
+  }
+
+  return buildFinding(rule, {
+    ...common,
+    why: `${legal}：${requirement}`,
+  });
+}
+
+/**
+ * 一条 finding 的组装入口：claim 类走 `claimFinding`，formal 类按市场分流。
+ * MY 保留 RAY-698 验收过的专用文案；其他市场走按规则库原文生成的通用文案。
+ */
+function findingFor(candidate: Candidate, matchers: ComplianceMatcher[], market: string): ComplianceFinding {
+  if (candidate.def.kind === "formal") return formalFinding(candidate, matchers, market);
+  return claimFinding(candidate, matchers);
+}
+
+function formalFinding(candidate: Candidate, matchers: ComplianceMatcher[], market: string): ComplianceFinding {
   const { rule, line, pattern, scopeNote } = candidate;
+
+  if (market !== "MY") return formalFindingForMarket(candidate, matchers);
 
   if (rule.id === "MY-ADV-09") {
     return buildFinding(rule, {
       quote: line.text,
       pattern,
       scopeNote,
+      matchers,
       why: `页面用「${pattern}」表示限量，但同一屏没有写清最大数量或活动期间。${rule.law_short} ${rule.article} 要求「限量」只在数量被限定为预先确定的最大数量、或限定期间内的实际订单量时才可使用，并须显著标明数量与期间。`,
       fix: "在限量表述旁写明最大数量（例如 only 200 units）与截止日期；定不出数量或期间，就不要用限量措辞。",
       reviewRequired: true,
@@ -478,6 +621,7 @@ function formalFinding(candidate: Candidate): ComplianceFinding {
       quote: line.text,
       pattern,
       scopeNote: "整页可见文本（马来语标记命中 0）",
+      matchers,
       why: "整页可见文本里没有发现国语（马来语）版本，商品信息以英文呈现。CP (ETT) Regs 2024 reg.4(1) 要求向消费者披露的附表信息以国语提供，其他语言可以并列。这里只看页面文本，页面未展示不等于商家没有其他语言版本；reg.4 是否覆盖品牌自营独立站（而非只覆盖平台 listing）在规则库里仍待核，需按商家主体类型确认。",
       fix: "把附表 1-10 项（卖家名称与联系方式、完整价格与费用、条款、预计送达、证书等）加上马来语版本并与英文并列；只把品牌名译成马来语不算。",
       reviewRequired: true,
@@ -490,6 +634,7 @@ function formalFinding(candidate: Candidate): ComplianceFinding {
       quote: line.text,
       pattern,
       scopeNote: "整页可见文本（隐私告知 0 命中）",
+      matchers,
       why: `页面有「${pattern}」这类会收集个人数据的入口，但整页未见隐私告知。PDPA 2010 s.7(1) 要求在收集个人数据时以书面通知说明：处理的数据、收集与后续处理目的、数据来源、查阅与更正权及联系方式、披露给哪些第三方、限制处理的选择与方式、提供数据是强制还是自愿、不提供的后果。页面未展示不等于没有隐私政策，需向商家核实。`,
       fix: "在收集入口旁链到马来语 + 英语的隐私告知，逐项写清 s.7(1) 的八项内容，并给出可联系的数据保护联系人。",
       reviewRequired: true,
@@ -502,6 +647,7 @@ function formalFinding(candidate: Candidate): ComplianceFinding {
       quote: line.text,
       pattern,
       scopeNote,
+      matchers,
       why: `页面把商品描述为 halal（「${pattern}」），但没有给出认证机构或证书编号。Halal Order 2011 para.4(1) 要求已获 JAKIM 或州伊斯兰理事会认证才能作此描述并按附表一标注标志；页面未展示证书信息，需向商家核实，不能据此推断未认证。`,
       fix: "提供 JAKIM/州伊斯兰理事会的 halal 证书编号与有效期，并在页面标注对应标志；未取得证书前不要使用 halal 描述或标志。",
       reviewRequired: true,
@@ -513,21 +659,22 @@ function formalFinding(candidate: Candidate): ComplianceFinding {
     quote: line.text,
     pattern,
     scopeNote,
+    matchers,
     why: `${rule.law_short} ${rule.article}：${firstSentence(rule.requirement)}`,
   });
 }
 
-function claimFinding(candidate: Candidate): ComplianceFinding {
+function claimFinding(candidate: Candidate, matchers: ComplianceMatcher[]): ComplianceFinding {
   const { rule, pattern, line, scopeNote, def } = candidate;
   const note = def.kind === "claim" && def.note ? ` ${def.note}` : "";
   return buildFinding(rule, {
     quote: line.text,
     pattern,
     scopeNote,
+    matchers,
     why: `${rule.law_short} ${rule.article}：${firstSentence(rule.requirement)} 页面出现「${pattern}」表述，${levelHint(rule.decision_level)}${note}`,
   });
 }
-
 /* ------------------------------------------------------------------- 主入口 */
 
 export interface ComplianceOptions {
@@ -536,10 +683,12 @@ export interface ComplianceOptions {
 }
 
 /**
- * 非 MY 市场的显式降级：规则库已加载并核对过市场，但 v0.1 没有该国的可判定子集。
+ * 没有 matcher 的市场的显式降级：规则库已加载并核对过市场，但还没为该市场挂载判定器。
  * 不套用 MY 的 matcher，不生成任何 finding，也不把「没查」写成「没问题」。
  */
 function notAssessedAnalysis(market: MarketInfo, library: LegalLibrary): ComplianceAnalysis {
+  // 文案保持 RAY-754 的逐字口径：这条只服务「没挂 matcher」的市场，
+  // 「尚未建立该市场的可判定子集」对它们仍然是事实描述，不改成别的说法。
   const reason = `${market.name}规则库 ${library.rules.length} 条（${library.version}）已加载，但 agent 侧尚未建立该市场的可判定子集；本版不输出该市场的合规 finding，也不据此判断合规。`;
   return {
     market: market.code,
@@ -575,34 +724,30 @@ function notAssessedAnalysis(market: MarketInfo, library: LegalLibrary): Complia
 export function analyzeCompliance(input: ComplianceInput, options: ComplianceOptions = {}): ComplianceAnalysis {
   const market = resolveMarket(options.market);
   const library = loadLegalLibrary(market);
-  // RAY-754：MY 之外的市场先显式降级，绝不把 MY 法条写进别国报告。
-  if (market.code !== "MY") return notAssessedAnalysis(market, library);
+  // RAY-773：早退条件只认「这个市场有没有挂载 matcher」，不按市场代码判。
+  // 没挂载的市场整库降级为 not_assessable，绝不借用 MY 的法条。
+  if (!hasMatchersFor(market.code)) return notAssessedAnalysis(market, library);
 
+  const matchers = matchersFor(market.code);
+  const skipReasons = skipReasonsFor(market.code);
   const lines = toLines(input.text);
   const panel = findProductPanel(input.text, lines);
 
-  const claimMatchers = COMPLIANCE_MATCHERS.filter((matcher) => matcher.kind === "claim");
-  const formalMatchers = COMPLIANCE_MATCHERS.filter(
-    (matcher): matcher is FormalMatcherDef => matcher.kind === "formal",
-  );
+  const claimMatchers = matchers.filter((matcher) => matcher.kind === "claim");
+  const formalMatchers = matchers.filter((matcher): matcher is FormalMatcherDef => matcher.kind === "formal");
 
-  const { candidates, misses } = collectCandidates({ matchers: claimMatchers, lines, panel });
+  const { candidates, misses } = collectCandidates({ market: market.code, matchers: claimMatchers, lines, panel });
   const dispositions: ComplianceRuleDisposition[] = [...misses];
 
   for (const matcher of formalMatchers) {
-    const candidate = formalCandidates(matcher, { lines, panel });
-    const rule = ruleById(matcher.ruleId);
+    const candidate = formalCandidates(matcher, { market: market.code, lines, panel });
+    const rule = ruleById(market.code, matcher.ruleId);
     if (!candidate) {
       dispositions.push({
         ruleId: rule.id,
         decisionLevel: rule.decision_level,
         outcome: "no_match",
-        reason:
-          matcher.check === "malay_disclosure_absent"
-            ? "页面已出现马来语文本，或正文过短无法判断"
-            : matcher.check === "privacy_notice_absent"
-              ? "页面已有隐私告知，或没有可观察的数据收集入口"
-              : "页面未触发该条检查的触发条件",
+        reason: formalMissReason(matcher),
       });
       continue;
     }
@@ -624,7 +769,7 @@ export function analyzeCompliance(input: ComplianceInput, options: ComplianceOpt
   const ordered = [...groups.values()]
     .map((group) =>
       [...group].sort((a, b) => {
-        const severity = SEVERITY_RANK[severityOf(a.rule)] - SEVERITY_RANK[severityOf(b.rule)];
+        const severity = SEVERITY_RANK[severityOf(a.rule, matchers)] - SEVERITY_RANK[severityOf(b.rule, matchers)];
         if (severity !== 0) return severity;
         const level = LEVEL_RANK[a.rule.decision_level] - LEVEL_RANK[b.rule.decision_level];
         if (level !== 0) return level;
@@ -638,7 +783,7 @@ export function analyzeCompliance(input: ComplianceInput, options: ComplianceOpt
     const [primary, ...rest] = group;
     if (!primary) continue;
     const merged = rest.map((item) => ({ rule: item.rule, pattern: item.pattern }));
-    const base = primary.def.kind === "formal" ? formalFinding(primary) : claimFinding(primary);
+    const base = findingFor(primary, matchers, market.code);
     const finding: ComplianceFinding = merged.length
       ? { ...base, evidence: evidenceFor(primary.rule, primary.scopeNote, primary.pattern, merged) }
       : base;
@@ -678,9 +823,12 @@ export function analyzeCompliance(input: ComplianceInput, options: ComplianceOpt
     });
   }
 
-  for (const skip of COMPLIANCE_SKIP_REASONS) {
+  // 跳过清单是「为什么这条没判」的说明：只对本版规则库里真实存在的规则产出处置。
+  // 清单与规则库版本漂移由测试里的 `validateSkipReasons()` 兜底，运行时不因此报错。
+  for (const skip of skipReasons) {
     for (const id of skip.ruleIds) {
-      const rule = ruleById(id);
+      const rule = library.byId.get(id);
+      if (!rule) continue;
       dispositions.push({
         ruleId: id,
         decisionLevel: rule.decision_level,
@@ -690,9 +838,9 @@ export function analyzeCompliance(input: ComplianceInput, options: ComplianceOpt
     }
   }
 
-  const uncovered = uncoveredRuleIds();
+  const uncovered = uncoveredRuleIds(market.code);
   if (uncovered.length) {
-    throw new Error(`合规规则库有规则既没判定也没记跳过原因：${uncovered.join(", ")}`);
+    throw new Error(`${market.code} 合规规则库有规则既没判定也没记跳过原因：${uncovered.join(", ")}`);
   }
 
   const counts = {
@@ -707,7 +855,7 @@ export function analyzeCompliance(input: ComplianceInput, options: ComplianceOpt
   };
 
   const libraryRuleCount = library.rules.length;
-  const assessedRuleCount = COMPLIANCE_MATCHERS.length;
+  const assessedRuleCount = matchers.length;
 
   return {
     market: market.code,
@@ -717,9 +865,12 @@ export function analyzeCompliance(input: ComplianceInput, options: ComplianceOpt
     dispositions,
     boundaryNote: {
       item: `合规与风险（${COMPLIANCE_DIMENSION_NAME}）的判定范围`,
-      reason: `${market.name}规则库 ${libraryRuleCount} 条中，本版对页面文本可判定的 ${assessedRuleCount} 条已跑（规则直判 ${counts.rule_level}、需事实核实 ${counts.substantiation}、需人工判断 ${counts.human_review}）。其余条目属证书核验、主体或平台义务，不生成 finding，也不据此判断合规。`,
+      reason:
+        `${market.name}规则库 ${libraryRuleCount} 条中，本版为该国挂载的可判定子集 ${assessedRuleCount} 条已跑` +
+        `（页面命中：规则直判 ${counts.rule_level}、需事实核实 ${counts.substantiation}、需人工判断 ${counts.human_review}）。` +
+        `其余 ${libraryRuleCount - assessedRuleCount} 条属证书核验、主体或平台义务，本版不判定，也不据此判断合规。`,
     },
-    skipReasons: COMPLIANCE_SKIP_REASONS,
+    skipReasons,
     assessedRuleCount,
     libraryRuleCount,
     libraryVersion: library.version,
@@ -765,7 +916,9 @@ export function complianceDimension(analysis: ComplianceAnalysis): {
 export function complianceSummary(analysis: ComplianceAnalysis): string {
   const { counts } = analysis;
   if (!analysis.assessedRuleCount) {
-    return `合规筛查未覆盖${analysis.marketName}：规则库 ${analysis.libraryRuleCount} 条已加载，本版判定器只覆盖马来西亚`;
+    // 已挂载 matcher 的市场会随版本增加，这里不要写死「只覆盖马来西亚」。
+    const covered = assessedMarkets().join(" / ");
+    return `合规筛查未覆盖${analysis.marketName}：规则库 ${analysis.libraryRuleCount} 条已加载，本版判定器只为 ${covered} 挂载了可判定子集`;
   }
   return `合规规则命中 ${counts.total} 条：规则直判 ${counts.rule_level}、需事实核实 ${counts.substantiation}、需人工判断 ${counts.human_review}；需专业审核 ${counts.reviewRequired}`;
 }

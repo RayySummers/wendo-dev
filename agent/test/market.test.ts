@@ -6,6 +6,7 @@ import { join } from "node:path";
 import { MarketError, resolveMarket } from "../src/market.js";
 import { clearLegalLibraryCache } from "../src/compliance/library.js";
 import { analyzeCompliance } from "../src/compliance/analyze.js";
+import { matchersFor } from "../src/compliance/rules.js";
 import { buildReportMeta, runDiagnosis } from "../src/pipeline.js";
 import { TIERS } from "../src/config.js";
 import { retrieveKb } from "../src/tools/retrieve-kb.js";
@@ -33,6 +34,11 @@ const FIXTURE_MARKETS: FixtureMarket[] = [
   { code: "AE", name: "阿联酋", countryFile: "uae.md", domain: "uaelegislation.gov.ae", offset: "+04:00" },
   { code: "US", name: "美国", countryFile: "united-states.md", domain: "ftc.gov", offset: "-04:00" },
 ];
+
+/** 该国已挂载 matcher 覆盖的规则数（按规则 id 去重：同一规则可能挂多条检查）。 */
+function mountedRuleCount(code: string): number {
+  return new Set(matchersFor(code).map((matcher) => matcher.ruleId)).size;
+}
 
 function fixturePage(): FetchedPage {
   return {
@@ -101,7 +107,37 @@ function countryKb(market: FixtureMarket): string {
   ].join("\n");
 }
 
+/**
+ * 夹具的规则库：一条基础规则 + 该国已挂载 matcher 指向的每条规则。
+ * 这样夹具与生产口径一致——判定器引用的 id 必须真实存在于该国规则库，
+ * 否则 `ruleById` 会以 market_rules_mismatch 失败。
+ */
 function legalRules(market: FixtureMarket): string {
+  const fixtureRule = (id: string, level: "human_review" | "rule_level") => ({
+    id,
+    market: market.code,
+    category: "general",
+    law_name: `${market.name}测试法 ${id}`,
+    law_short: "Test Act",
+    article: "s.1",
+    article_type: "section",
+    source_id: "test-fixture",
+    official_url: `https://${market.domain}/test`,
+    source_tier: "official",
+    language: "en",
+    effective_date: "2026-01-01",
+    last_verified: "2026-11-18",
+    rule_type: "advertising",
+    decision_level: level,
+    claim_pattern: ["test"],
+    requirement: "测试规则，仅用于夹具。",
+    evidence_needed: "测试证据",
+    penalty_or_note: "无",
+    verbatim_excerpt: "test",
+    confidence: "medium",
+    review_required: level === "human_review",
+  });
+  const mounted = [...new Set(matchersFor(market.code).map((matcher) => matcher.ruleId))];
   return JSON.stringify(
     {
       schema_version: "0.1",
@@ -111,32 +147,9 @@ function legalRules(market: FixtureMarket): string {
       scope: "测试夹具",
       last_verified: "2026-11-18",
       review_policy: "测试夹具不构成法律意见",
-      rules: [
-        {
-          id: `${market.code}-LEGAL-01`,
-          market: market.code,
-          category: "general",
-          law_name: `${market.name}测试法`,
-          law_short: "Test Act",
-          article: "s.1",
-          article_type: "section",
-          source_id: "test-fixture",
-          official_url: `https://${market.domain}/test`,
-          source_tier: "official",
-          language: "en",
-          effective_date: "2026-01-01",
-          last_verified: "2026-11-18",
-          rule_type: "advertising",
-          decision_level: "human_review",
-          claim_pattern: ["test"],
-          requirement: "测试规则，仅用于夹具。",
-          evidence_needed: "测试证据",
-          penalty_or_note: "无",
-          verbatim_excerpt: "test",
-          confidence: "medium",
-          review_required: true,
-        },
-      ],
+      // 夹具规则库必须与判定器一一对应：每条规则要么有 matcher、要么在跳过清单里，
+      // 否则 `uncoveredRuleIds` 会按「静默丢规则」报错（与生产口径一致）。
+      rules: mounted.map((id) => fixtureRule(id, "rule_level")),
     },
     null,
     2,
@@ -274,7 +287,8 @@ test("SG/AE/US：知识库、规则 id、报告 meta 与时间都来自请求市
       assert.equal(kb.market, market.code);
       assert.equal(kb.marketName, market.name);
       assert.equal(kb.legalVersion, `test-${market.code}-v0.1`);
-      assert.equal(kb.legalRuleCount, 1);
+      // 夹具规则库 = 该国已挂载 matcher 指向的每条规则。
+      assert.equal(kb.legalRuleCount, mountedRuleCount(market.code));
 
       const ruleIds = kb.dimensions.flatMap((dimension) => dimension.rules.map((rule) => rule.id));
       assert.ok(ruleIds.length > 0);
@@ -308,12 +322,21 @@ test("SG/AE/US：知识库、规则 id、报告 meta 与时间都来自请求市
       );
       assert.equal(compliance.market, market.code);
       assert.equal(compliance.marketName, market.name);
-      assert.equal(compliance.findings.length, 0, "非 MY 不套用 MY 判定器");
-      assert.equal(compliance.assessedRuleCount, 0);
-      assert.equal(compliance.libraryRuleCount, 1);
-      assert.ok(compliance.dispositions.every((item) => item.outcome === "not_assessable"));
+      // RAY-773：SG/AE/US 已挂载可判定子集，不再整库降级；但仍然绝不借用 MY 的法条。
+      assert.equal(compliance.assessedRuleCount, mountedRuleCount(market.code));
+      assert.equal(compliance.libraryRuleCount, kb.legalRuleCount);
       assert.ok(compliance.boundaryNote.reason.includes(market.name));
       assert.ok(!compliance.findings.some((finding) => finding.ruleId.startsWith("MY-")));
+      assert.ok(
+        compliance.findings.every((finding) => finding.ruleId.startsWith(`${market.code}-`)),
+        `${market.code} 的 finding 不应引用别国规则`,
+      );
+      for (const finding of compliance.findings) {
+        assert.ok(finding.lawName, `${finding.ruleId} 缺 law_name`);
+        assert.ok(finding.article, `${finding.ruleId} 缺 article`);
+        assert.ok(finding.officialUrl.startsWith(`https://${market.domain}/`), `${finding.ruleId} 的官方 URL 不属于该国`);
+        assert.ok(finding.lastVerified, `${finding.ruleId} 缺 last_verified`);
+      }
     }
   });
 });

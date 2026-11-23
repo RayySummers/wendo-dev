@@ -4,9 +4,10 @@
  * 唯一数据源：`agent/knowledge/legal/<cc>/rules.v0.1.json`。这里只做加载与一致性
  * 校验，不解释法条；可判定子集（matcher）仍由 `rules.ts` 声明。
  *
- * 与 RAY-698 的边界：v0.1 的可判定子集只覆盖马来西亚。其他市场即使规则库已收录，
- * 也不能套用 MY 的 matcher，否则会在 SG 报告里写出马来西亚法条——那是比「没有合规
- * 章节」严重得多的错误。加载器先保证「读到的是本国的库」，判定器再决定是否评估。
+ * 与 RAY-773 的边界：加载器只保证「读到的是本国的库」，判定器再决定「这个市场怎么判」。
+ * 已挂载可判定子集的市场见 `rules.ts` 的 `COMPLIANCE_MATCHERS_BY_MARKET`（当前 MY / SG / AE / US）；
+ * 未挂载的市场整库降级为 not_assessable。任何情况下都不把 MY 的 matcher 套到别国页面上，
+ * 否则会在 SG 报告里写出马来西亚法条——那是比「没有合规章节」严重得多的错误。
  */
 
 import { existsSync, readFileSync } from "node:fs";

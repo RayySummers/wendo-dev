@@ -75,7 +75,7 @@ test("规则库：45 条规则都能加载，且每条都有判定或跳过原�
   const rules = myRules();
   assert.equal(rules.length, 45);
   assert.equal(new Set(rules.map((rule) => rule.id)).size, 45);
-  assert.deepEqual(uncoveredRuleIds(), []);
+  assert.deepEqual(uncoveredRuleIds("MY"), []);
   const covered = new Set([
     ...COMPLIANCE_MATCHERS.map((matcher) => matcher.ruleId),
     ...COMPLIANCE_SKIP_REASONS.flatMap((reason) => reason.ruleIds),
@@ -91,7 +91,7 @@ test("规则库：45 条规则都能加载，且每条都有判定或跳过原�
 
 test("规则库：判定层级只来自规则库，代码不改写", () => {
   for (const matcher of COMPLIANCE_MATCHERS) {
-    const rule = ruleById(matcher.ruleId);
+    const rule = ruleById("MY", matcher.ruleId);
     assert.ok(rule.article, `${rule.id} 缺条文号`);
     assert.ok(rule.official_url.startsWith("https://"), `${rule.id} 缺官方 URL`);
     assert.ok(rule.last_verified, `${rule.id} 缺核验日期`);
@@ -102,7 +102,7 @@ test("finding：每条都能回到规则库的 id + 条文 + 官方 URL，引用
   const analysis = analyze(CLAIM_PAGE);
   assert.ok(analysis.findings.length >= 4);
   for (const item of analysis.findings) {
-    const rule = ruleById(item.ruleId);
+    const rule = ruleById("MY", item.ruleId);
     assert.equal(item.decisionLevel, rule.decision_level);
     assert.equal(item.article, rule.article);
     assert.equal(item.lawName, rule.law_name);
@@ -301,5 +301,5 @@ test("报告契约：合规条目能被 ReportSchema 接受，旧字段仍然可
   }
   // 旧四维报告（没有合规字段）仍然能过 schema。
   assert.ok(ReportSchema.safeParse(base).success);
-  assert.equal(rulesVersion(), myRules()[0] ? rulesVersion() : "");
+  assert.equal(rulesVersion("MY"), myRules()[0] ? rulesVersion("MY") : "");
 });
