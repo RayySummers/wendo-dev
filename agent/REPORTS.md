@@ -187,17 +187,22 @@
 判定器由 `src/compliance/rules.ts` 的 `COMPLIANCE_MATCHERS_BY_MARKET` 决定。
 `src/compliance/analyze.ts` 在 pipeline 里**代码侧**判定，不经模型。
 
-RAY-773 起已挂载可判定子集的市场：**MY（45 条里 17 条）、SG（42 条里 5 条）、
-AE（33 条里 4 条）、US（35 条里 5 条）**。早退条件只看「这个市场有没有 matcher」
+已挂载可判定子集的市场：**MY（45 条里 17 条）、SG（42 条里 7 条）、
+AE（33 条里 8 条）、US（35 条里 8 条）**（SG/AE/US 的条数由 RAY-774 定稿）。早退条件只看「这个市场有没有 matcher」
 （`hasMatchersFor(market.code)`），不按市场代码判断；没挂载 matcher 的市场（如 PH）
 整库标 `not_assessable`，**不套用 MY 的法条**。具体：
 
 - **三档判定**：`rule_level`（页面要素直接对应法条）/ `substantiation`（只写「需要证明」）/
   `human_review`（需人工判断）。层级只来自规则库，代码不升级也不降级。
-- **可判定子集**：只挂 `rule_level` 且单页文本能证实的条目，且只从四个通用 check 里表达
-  （`privnotice` 类「有入口缺告知」/ `limited_without_terms` / 语言版本缺失 / 声称缺凭据）；
-  其余条目逐条写进 `COMPLIANCE_SKIP_REASONS_BY_MARKET` 给原因，不硬凑覆盖率。
-  MY 清单见 `knowledge/compliance/my/README.md`。
+- **可判定子集**：只挂 `rule_level` 且单页文本能证实的条目，用四类判定表达——
+  缺席类（`privacy_notice_absent` / `notice_disclosure_absent`：「有入口缺告知」）、
+  限定类（`limited_without_terms`：限量/免费措辞缺同屏条件）、语言版本缺失
+  （`language_disclosure_absent`）、凭据类（`claim_without_evidence` /
+  `halal_claim_without_certificate`），另加 `claim` 类表述判定（页面作出了该条直接约束的
+  说明：符合性标示、真伪说明、激励换评论）。其余条目逐条写进
+  `COMPLIANCE_SKIP_REASONS_BY_MARKET` 给原因，不硬凑覆盖率。
+  MY 清单见 `knowledge/compliance/my/README.md`；SG / AE / US 的口径写在
+  `src/compliance/rules.ts` 文件头「各国判定子集的口径」。
 - **出处可追溯**：每条 finding 的 `law_name` / `article` / `last_verified` 来自规则库，
   `evidence` 写成 `规则 <id> · <法条> · 官方来源 <url> · 取证：<范围> · 命中：<模式>`，
   网页与 PDF 都原样渲染，所以每条都能回到规则 id + 条文 + 官方 URL。

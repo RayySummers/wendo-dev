@@ -1,14 +1,18 @@
 /**
- * 判定器按市场分派（RAY-773）的契约测试。
+ * 判定器按市场分派（RAY-773）与内容（RAY-774）的契约测试。
  *
- * 这一组测试锁住四件事，避免以后「为了多覆盖一条规则」把别国法条写进报告：
+ * 这一组测试锁住六件事，避免以后「为了多覆盖一条规则」把别国法条写进报告：
  * 1. 每个已挂载市场的 matcher 只引用**该国规则库里真实存在**的规则；
  * 2. 挂上去的规则一律是 `rule_level`（不把需核实 / 需人工判断的条目硬塞进可判定集）；
  * 3. 规则库里每条规则要么有 matcher、要么在跳过清单里，不静默丢规则；
- * 4. 没挂 matcher 的市场（PH）仍是 `not_assessable`，且 downgrade 文案与 RAY-754 逐字一致。
+ * 4. 没挂 matcher 的市场（PH）仍是 `not_assessable`，且 downgrade 文案与 RAY-754 逐字一致；
+ * 5. RAY-774 的口径：SG / AE / US 各挂 5–8 条；一份明显违规的英文商品页每国至少命中 5 条；
+ * 6. 反例：一份把该披露的都披露了的英文商品页，三国都不能出 finding（不误报），
+ *    且输出里不能出现马来西亚专属词。
  */
 
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import { analyzeCompliance } from "../src/compliance/analyze.js";
 import {
@@ -50,6 +54,30 @@ const FIXTURE_PAGE = [
   "NovaChef Home Pte Ltd, 12 Kitchener Road, Singapore",
   "Contact our support team for spare parts and repairs.",
 ].join("\n");
+
+/**
+ * 反例页：故意把三国要求的披露都写全（含 GST 含税价、DPO 联系方式、阿拉伯语版本、
+ * 交易者执照与迪拜地址、limited warranty + 保修条款、退订方式、实体邮政地址、
+ * 公制+英制并列、误导性用语 0）。一份干净页面不该出任何 finding。
+ */
+const CLEAN_PAGE = readFileSync(
+  new URL("./fixtures/compliance-en-clean.txt", import.meta.url),
+  "utf8",
+);
+
+/**
+ * 违规页：手写构造的英文商品页，覆盖三国各自的典型缺口（限量无期限、GST 未含、
+ * 英制无公制、符合性标示、真伪说明、保修无指定/无全文、订阅无退订、无地址、
+ * 免费赠品无条件、激励换评论、关键条件只写 see terms、无阿拉伯语、隐性同意）。
+ * 只用于验证「能命中」，不代表任何真实站点。
+ */
+const FLAWED_PAGE = readFileSync(
+  new URL("./fixtures/compliance-en-flawed.txt", import.meta.url),
+  "utf8",
+);
+
+/** 马来西亚专属词：出现在 SG / AE / US 的报告里就是串味。 */
+const MY_ONLY_TERMS = /\bSIRIM\b|\bFPX\b|\bTTPM\b|\bMCMC\b|\bRM\b|东马|马来语|Malaysia|JAKIM|PDPA 2010/i;
 
 const MOUNTED = assessedMarkets();
 
@@ -95,6 +123,62 @@ test("规则库不静默丢规则：每条规则要么有 matcher、要么记了
     for (const reason of skipReasonsFor(code)) {
       assert.ok(reason.ruleIds.length > 0, `${code} 有空的分组`);
       assert.ok(reason.reason.trim().length > 10, `${code} 的跳过原因太短：${reason.reason}`);
+    }
+  }
+});
+
+test("RAY-774：SG / AE / US 各挂 5–8 条 rule_level matcher，ruleId 不重复", () => {
+  for (const code of ["SG", "AE", "US"]) {
+    const ids = matchersFor(code).map((matcher) => matcher.ruleId);
+    assert.ok(ids.length >= 5 && ids.length <= 8, `${code} 挂了 ${ids.length} 条，应在 5–8 条之间`);
+    assert.equal(new Set(ids).size, ids.length, `${code} 的 matcher 有重复 ruleId：${ids.join("、")}`);
+  }
+});
+
+test("RAY-774 反例：明显违规的英文页，SG / AE / US 各出至少 5 条 finding", () => {
+  for (const code of ["SG", "AE", "US"]) {
+    const analysis = analyzeCompliance(
+      { text: FLAWED_PAGE, category: "small_appliances", url: "https://example.com/blender" },
+      { market: code },
+    );
+    assert.ok(
+      analysis.findings.length >= 5,
+      `${code} 在违规页只出了 ${analysis.findings.length} 条 finding：${analysis.findings.map((f) => f.ruleId).join("、")}`,
+    );
+    assert.ok(
+      analysis.findings.every((finding) => finding.ruleId.startsWith(`${code}-`)),
+      `${code} 的 finding 混进了别国规则：${analysis.findings.map((f) => f.ruleId).join("、")}`,
+    );
+    assert.ok(
+      analysis.findings.every((finding) => finding.decisionLevel === "rule_level"),
+      `${code} 的 finding 里出现了非 rule_level 条目`,
+    );
+  }
+});
+
+test("RAY-774 反例：披露齐全的英文页，SG / AE / US 都不出 finding（不误报）", () => {
+  for (const code of ["SG", "AE", "US"]) {
+    const analysis = analyzeCompliance(
+      { text: CLEAN_PAGE, category: "small_appliances", url: "https://example.com/purifier" },
+      { market: code },
+    );
+    assert.deepEqual(
+      analysis.findings.map((finding) => finding.ruleId),
+      [],
+      `${code} 在干净页上误报：${analysis.findings.map((f) => `${f.ruleId}「${f.quote}」`).join("、")}`,
+    );
+  }
+});
+
+test("RAY-774：SG / AE / US 的报告里不出现马来西亚专属词", () => {
+  for (const code of ["SG", "AE", "US"]) {
+    const analysis = analyzeCompliance(
+      { text: FLAWED_PAGE, category: "small_appliances", url: "https://example.com/blender" },
+      { market: code },
+    );
+    for (const finding of analysis.findings) {
+      const text = [finding.why, finding.fix, finding.evidence, finding.lawName].join(" ");
+      assert.doesNotMatch(text, MY_ONLY_TERMS, `${code} / ${finding.ruleId} 的输出出现马来西亚专属词：${text}`);
     }
   }
 });

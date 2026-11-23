@@ -480,15 +480,23 @@ function formalCandidates(
     const hasNotice = (line: Line): boolean => notice.test(line.text);
     if (!matcher.lineScoped && lines.some(hasNotice)) return undefined;
     // 有平台自己的 PDPO/PDPA 页脚链接时，不因为找不到具体措辞就判缺席。
+    // 只对隐私/目的告知类检查成立：标价、退订、发件人地址、执照与运费条款不能被一个
+    // Terms 链接代替，这些 matcher 显式设 `legalLinkFallback: false`（RAY-774）。
     if (
       !matcher.lineScoped &&
       matcher.check === "notice_disclosure_absent" &&
+      matcher.legalLinkFallback !== false &&
       lines.some((line) => GENERIC_LEGAL_LINK.test(line.text))
     ) {
       return undefined;
     }
     const trigger = lines.find(
-      (line) => (matcher.trigger ?? DATA_COLLECTION).test(line.text) && isSubstantiveLine(line.text) && !hasNotice(line),
+      (line) =>
+        (matcher.trigger ?? DATA_COLLECTION).test(line.text) &&
+        // 购买按钮这类 2–3 个词的短行过不了句子行门槛，matcher 显式打开 `triggerAnyLine`
+        // 才允许在短行上触发（E-Commerce Law 的费用与执照检查）。
+        (matcher.triggerAnyLine === true || isSubstantiveLine(line.text)) &&
+        !hasNotice(line),
     );
     if (!trigger) return undefined;
     // 命中说明别写死「收集入口」：同一个 check 也用于标价（GST）、单位制（英制/公制）等场景。
@@ -546,13 +554,19 @@ function formalFindingForMarket(candidate: Candidate, matchers: ComplianceMatche
   const legal = `${rule.law_short} ${rule.article}`;
   const requirement = firstSentence(rule.requirement);
   const missing = def.missingEvidence ?? "相应凭据";
+  // matcher 自带 fix 时优先用它：同一句 check（例如 claim_without_evidence）在不同法条下
+  // 该改成什么差别很大，通用文案会把「保修文件」和「换评论」说成同一件事。
+  const pickFix = (fallback: string): string => def.fix ?? fallback;
+  const note = def.note ? ` ${def.note}` : "";
   const common = { quote: line.text, pattern, scopeNote, matchers, reviewRequired: true, confidence: "medium" as const };
 
   if (def.check === "limited_without_terms") {
     return buildFinding(rule, {
       ...common,
-      why: `页面用「${pattern}」作优惠表述，但同一屏没有写清优惠期间、限量数量或取得条件。${legal}：${requirement}`,
-      fix: "在这句旁边写明优惠期间、限量数量或取得条件（例如 while stocks last / ends 31 Dec 2026 / min. spend S$80）；写不出条件就不要用限量或免费措辞。",
+      why: `页面用「${pattern}」作优惠表述，但同一屏没有写清优惠期间、限量数量或取得条件。${legal}：${requirement}${note}`,
+      fix: pickFix(
+        "在这句旁边写明优惠期间、限量数量或取得条件（例如 while stocks last / ends 31 Dec 2026 / min. spend）；写不出条件就不要用限量或免费措辞。",
+      ),
     });
   }
 
@@ -561,8 +575,8 @@ function formalFindingForMarket(candidate: Candidate, matchers: ComplianceMatche
     return buildFinding(rule, {
       ...common,
       scopeNote: `整页可见文本（${label}标记命中 0）`,
-      why: `整页可见文本里没有发现${label}版本。${legal}：${requirement} 这里只看页面文本，页面未展示不等于商家没有该语言版本，需向商家核实。`,
-      fix: `把该条要求的消费者信息加上${label}版本并与现有语言并列；只把品牌名译成${label}不算。`,
+      why: `整页可见文本里没有发现${label}版本。${legal}：${requirement} 这里只看页面文本，页面未展示不等于商家没有该语言版本，需向商家核实。${note}`,
+      fix: pickFix(`把该条要求的消费者信息加上${label}版本并与现有语言并列；只把品牌名译成${label}不算。`),
     });
   }
 
@@ -570,22 +584,24 @@ function formalFindingForMarket(candidate: Candidate, matchers: ComplianceMatche
     return buildFinding(rule, {
       ...common,
       scopeNote: def.lineScoped ? "同一行文本（要求同一处并列）" : "整页可见文本（未见该项告知）",
-      why: `页面出现「${line.text}」这类表述，但整页看不到${missing}。${legal}：${requirement} 页面未展示不等于商家没有做这项披露，需向商家核实。`,
-      fix: `在这句表述旁或同一流程里给出${missing}，并链到可读的告知页面；内容要能对应到 ${rule.article} 要求的具体项目。`,
+      why: `页面出现「${line.text}」这类表述，但整页看不到${missing}。${legal}：${requirement} 页面未展示不等于商家没有做到这项披露，需向商家核实。${note}`,
+      fix: pickFix(
+        `在这句表述旁或同一流程里补上${missing}；内容要能对应到 ${rule.article} 要求的具体项目，写不出就不要用这句话。`,
+      ),
     });
   }
 
   if (def.check === "claim_without_evidence" || def.check === "halal_claim_without_certificate") {
     return buildFinding(rule, {
       ...common,
-      why: `页面出现「${pattern}」这类表述，但整页看不到${missing}。${legal}：${requirement} 页面未展示不等于该凭据不存在，需向商家核实，不能据此推断违规。`,
-      fix: `把${missing}写在页面可读位置（编号/链接/条款全文）；提供不出时，删去或改写这句表述。`,
+      why: `页面出现「${pattern}」这类表述，但整页看不到${missing}。${legal}：${requirement} 页面未展示不等于商家没有做到这项披露，需向商家核实，不能据此推断违规。${note}`,
+      fix: pickFix(`把${missing}写在页面可读位置（编号/链接/条款全文）；提供不出时，删去或改写这句表述。`),
     });
   }
 
   return buildFinding(rule, {
     ...common,
-    why: `${legal}：${requirement}`,
+    why: `${legal}：${requirement}${note}`,
   });
 }
 
@@ -667,12 +683,15 @@ function formalFinding(candidate: Candidate, matchers: ComplianceMatcher[], mark
 function claimFinding(candidate: Candidate, matchers: ComplianceMatcher[]): ComplianceFinding {
   const { rule, pattern, line, scopeNote, def } = candidate;
   const note = def.kind === "claim" && def.note ? ` ${def.note}` : "";
+  // matcher 自带 fix 时优先用它：默认文案按「出示依据」写，不适用于「改写法」类条目。
+  const fix = def.fix;
   return buildFinding(rule, {
     quote: line.text,
     pattern,
     scopeNote,
     matchers,
     why: `${rule.law_short} ${rule.article}：${firstSentence(rule.requirement)} 页面出现「${pattern}」表述，${levelHint(rule.decision_level)}${note}`,
+    ...(fix ? { fix } : {}),
   });
 }
 /* ------------------------------------------------------------------- 主入口 */

@@ -2,8 +2,8 @@
  * 合规规则跑真实页面：抓页面 → 跑 `analyzeCompliance` → 打印 finding 表 + 落一份 JSON。
  *
  * 用法：
- *   npx tsx scripts/run-compliance.ts --url <页面> --category small_appliances
- *   npx tsx scripts/run-compliance.ts --text-file <可见文本> --category consumer_electronics
+ *   npx tsx scripts/run-compliance.ts --url <页面> --market SG --category small_appliances
+ *   npx tsx scripts/run-compliance.ts --text-file <可见文本> --market AE --category consumer_electronics
  *
  * 只跑代码侧判定，不调用模型，所以同一页两次结果完全一致；输出不含分数。
  */
@@ -18,11 +18,12 @@ interface Args {
   url?: string;
   textFile?: string;
   category: string;
+  market: string;
   out?: string;
 }
 
 function parseArgs(argv: string[]): Args {
-  const args: Args = { category: "small_appliances" };
+  const args: Args = { category: "small_appliances", market: process.env.WENDO_MARKET ?? "MY" };
   for (let index = 0; index < argv.length; index += 1) {
     const flag = argv[index];
     const value = argv[index + 1];
@@ -30,6 +31,7 @@ function parseArgs(argv: string[]): Args {
     if (flag === "--url") args.url = value;
     else if (flag === "--text-file") args.textFile = value;
     else if (flag === "--category") args.category = value;
+    else if (flag === "--market") args.market = value;
     else if (flag === "--out") args.out = value;
     else continue;
     index += 1;
@@ -54,15 +56,18 @@ async function main(): Promise<void> {
         charCount: 0,
       };
 
-  const analysis = analyzeCompliance({
-    text: page.text,
-    category: args.category,
-    title: page.title,
-    url: page.finalUrl,
-  });
+  const analysis = analyzeCompliance(
+    {
+      text: page.text,
+      category: args.category,
+      title: page.title,
+      url: page.finalUrl,
+    },
+    { market: args.market },
+  );
 
   console.log(`\n页面：${page.finalUrl}`);
-  console.log(`品类：${args.category} · 正文 ${page.text.length} 字符 · 规则库 ${analysis.libraryVersion}`);
+  console.log(`市场：${analysis.market}（${analysis.marketName}）· 品类：${args.category} · 正文 ${page.text.length} 字符 · 规则库 ${analysis.libraryVersion}`);
   console.log(complianceSummary(analysis));
   console.log(complianceDimension(analysis).note);
   console.log("\n| # | 规则 | 判定 | 严重度 | 法条 | 原文 |");
@@ -93,6 +98,7 @@ async function main(): Promise<void> {
         url: page.finalUrl,
         title: page.title,
         category: args.category,
+        market: analysis.market,
         ran_at: new Date().toISOString(),
         rules_version: analysis.libraryVersion,
         counts: analysis.counts,
